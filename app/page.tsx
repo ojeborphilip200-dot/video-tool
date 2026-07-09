@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ClipTimeline from "./components/ClipTimeline";
 
 type Video = {
   id: number;
@@ -12,6 +13,8 @@ type Video = {
 type Beat = {
   text: string;
   duration: number;
+  trimStart: number;
+  trimEnd: number;
   videos?: Video[];
   loadingVideos?: boolean;
 };
@@ -61,7 +64,10 @@ export default function Home() {
       .map((s) => s.trim())
       .filter((s) => s.length > 0);
 
-    return sentences.map((s) => ({ text: s, duration: estimateDuration(s) }));
+    return sentences.map((s) => {
+      const duration = estimateDuration(s);
+      return { text: s, duration, trimStart: 0, trimEnd: duration };
+    });
   }
 
   function handleSegment() {
@@ -97,10 +103,20 @@ export default function Home() {
     }
   }
 
+  function updateTrim(index: number, field: "trimStart" | "trimEnd", value: number) {
+    setBeats((prev) =>
+      prev.map((b, i) => (i === index ? { ...b, [field]: value } : b))
+    );
+  }
+
   async function handleRenderVideo() {
     const clips = beats
       .filter((b) => b.videos && b.videos.length > 0)
-      .map((b) => ({ url: b.videos![0].previewUrl, duration: b.duration }));
+      .map((b) => ({
+        url: b.videos![0].previewUrl,
+        trimStart: b.trimStart,
+        trimEnd: b.trimEnd,
+      }));
 
     if (clips.length === 0) {
       alert("Generate footage for at least one beat first.");
@@ -183,14 +199,26 @@ export default function Home() {
               </button>
 
               {beat.videos && beat.videos.length > 0 && (
-                <div style={{ display: "flex", gap: "10px", marginTop: "10px", flexWrap: "wrap" }}>
-                  {beat.videos.map((v) => (
-                    <div key={v.id} style={{ textAlign: "center" }}>
-                      <img src={v.thumbnail} alt="clip thumbnail" width={120} />
-                      <p style={{ fontSize: "12px" }}>{v.duration}s</p>
-                    </div>
-                  ))}
-                </div>
+                <>
+                  <div style={{ display: "flex", gap: "10px", marginTop: "10px", flexWrap: "wrap" }}>
+                    {beat.videos.map((v) => (
+                      <div key={v.id} style={{ textAlign: "center" }}>
+                        <img src={v.thumbnail} alt="clip thumbnail" width={120} />
+                        <p style={{ fontSize: "12px" }}>{v.duration}s original</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <ClipTimeline
+                    totalDuration={beat.videos![0].duration}
+                    trimStart={beat.trimStart}
+                    trimEnd={beat.trimEnd}
+                    onChange={(start, end) => {
+                      updateTrim(i, "trimStart", start);
+                      updateTrim(i, "trimEnd", end);
+                    }}
+                  />
+                </>
               )}
 
               {beat.videos && beat.videos.length === 0 && (

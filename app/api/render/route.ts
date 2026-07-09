@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
   let tempDir = "";
 
   try {
-   const formData = await req.formData();
+    const formData = await req.formData();
     const clipsJson = formData.get("clips") as string;
     const audioFile = formData.get("audio") as File | null;
 
@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "No videos provided" }, { status: 400 });
     }
 
-    const clips: { url: string; duration: number }[] = JSON.parse(clipsJson);
+    const clips: { url: string; trimStart: number; trimEnd: number }[] = JSON.parse(clipsJson);
 
     tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "video-tool-"));
     const downloadedFiles: string[] = [];
@@ -48,10 +48,11 @@ export async function POST(req: NextRequest) {
     const audioInput = audioPath ? `-i "${audioPath}"` : "";
 
     const scaleFilters = downloadedFiles
-      .map(
-        (_, i) =>
-          `[${i}:v:0]trim=duration=${clips[i].duration},scale=${TARGET_WIDTH}:${TARGET_HEIGHT}:force_original_aspect_ratio=decrease,pad=${TARGET_WIDTH}:${TARGET_HEIGHT}:(ow-iw)/2:(oh-ih)/2,setsar=1[v${i}]`
-      )
+      .map((_, i) => {
+        const start = clips[i].trimStart;
+        const end = clips[i].trimEnd;
+        return `[${i}:v:0]trim=start=${start}:end=${end},setpts=PTS-STARTPTS,scale=${TARGET_WIDTH}:${TARGET_HEIGHT}:force_original_aspect_ratio=decrease,pad=${TARGET_WIDTH}:${TARGET_HEIGHT}:(ow-iw)/2:(oh-ih)/2,setsar=1[v${i}]`;
+      })
       .join("; ");
 
     const concatInputs = downloadedFiles.map((_, i) => `[v${i}]`).join("");
