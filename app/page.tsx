@@ -102,6 +102,11 @@ export default function Home() {
       alert("Error: " + data.error);
     }
   }
+   async function handleFindAllFootage() {
+    for (let i = 0; i < beats.length; i++) {
+      await handleFindFootage(i);
+    }
+  }
 
   function updateTrim(index: number, field: "trimStart" | "trimEnd", value: number) {
     setBeats((prev) =>
@@ -187,9 +192,18 @@ export default function Home() {
 
       {beats.length > 0 && (
         <div>
-          <h2 style={{ fontSize: "15px", fontWeight: 600, color: "#9295a0", margin: "24px 0 12px" }}>
-            BEATS ({beats.length})
-          </h2>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin: "24px 0 12px" }}>
+            <h2 style={{ fontSize: "15px", fontWeight: 600, color: "#9295a0", margin: 0 }}>
+              BEATS ({beats.length})
+            </h2>
+            <button
+              onClick={handleFindAllFootage}
+              className="btn btn-secondary"
+              style={{ fontSize: "13px", padding: "8px 16px" }}
+            >
+              Generate All Footage
+            </button>
+          </div>
 
           {beats.map((beat, i) => (
             <div className="card" key={i}>
