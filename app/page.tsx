@@ -187,6 +187,7 @@ export default function Home() {
 
     const formData = new FormData();
     formData.append("clips", JSON.stringify(clips));
+    formData.append("script", script);
     formData.append("words", JSON.stringify(captionsEnabled ? words : []));
     if (audioFile) {
       formData.append("audio", audioFile);
