@@ -19,11 +19,15 @@ export default function Home() {
   const [script, setScript] = useState("");
   const [transcribing, setTranscribing] = useState(false);
   const [beats, setBeats] = useState<Beat[]>([]);
+  const [rendering, setRendering] = useState(false);
+  const [renderedVideoUrl, setRenderedVideoUrl] = useState("");
+  const [audioFile, setAudioFile] = useState<File | null>(null);
 
   async function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
 
+    setAudioFile(file);
     setTranscribing(true);
 
     const formData = new FormData();
@@ -55,6 +59,7 @@ export default function Home() {
 
   function handleSegment() {
     setBeats(splitBySentence(script));
+    setRenderedVideoUrl("");
   }
 
   async function handleFindFootage(index: number) {
@@ -83,6 +88,43 @@ export default function Home() {
     if (data.error) {
       alert("Error: " + data.error);
     }
+  }
+
+  async function handleRenderVideo() {
+    const videoUrls = beats
+      .filter((b) => b.videos && b.videos.length > 0)
+      .map((b) => b.videos![0].previewUrl);
+
+    if (videoUrls.length === 0) {
+      alert("Generate footage for at least one beat first.");
+      return;
+    }
+
+    setRendering(true);
+    setRenderedVideoUrl("");
+
+    const formData = new FormData();
+    formData.append("videoUrls", JSON.stringify(videoUrls));
+    if (audioFile) {
+      formData.append("audio", audioFile);
+    }
+
+    const res = await fetch("/api/render", {
+      method: "POST",
+      body: formData,
+    });
+
+    setRendering(false);
+
+    if (!res.ok) {
+      const data = await res.json();
+      alert("Error: " + (data.error || "Rendering failed"));
+      return;
+    }
+
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    setRenderedVideoUrl(url);
   }
 
   return (
@@ -149,6 +191,31 @@ export default function Home() {
               )}
             </div>
           ))}
+
+          <button
+            onClick={handleRenderVideo}
+            disabled={rendering}
+            style={{
+              marginTop: "20px",
+              padding: "12px 24px",
+              fontSize: "16px",
+              fontWeight: "bold",
+            }}
+          >
+            {rendering ? "Rendering video... this may take a minute" : "Render Full Video"}
+          </button>
+
+          {renderedVideoUrl && (
+            <div style={{ marginTop: "20px" }}>
+              <h3>Your rendered video:</h3>
+              <video src={renderedVideoUrl} controls width="100%" />
+              <a href={renderedVideoUrl} download="final-video.mp4">
+                <button style={{ marginTop: "10px", padding: "8px 16px" }}>
+                  Download Video
+                </button>
+              </a>
+            </div>
+          )}
         </div>
       )}
     </main>
