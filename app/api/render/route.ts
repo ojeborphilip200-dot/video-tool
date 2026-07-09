@@ -4,6 +4,7 @@ import { promisify } from "util";
 import fs from "fs/promises";
 import path from "path";
 import os from "os";
+import { groupWordsIntoCaptions, generateCaptionImage } from "../_lib/captions";
 
 const execAsync = promisify(exec);
 
@@ -13,6 +14,7 @@ export async function POST(req: NextRequest) {
   try {
     const formData = await req.formData();
     const clipsJson = formData.get("clips") as string;
+    const wordsJson = formData.get("words") as string | null;
     const audioFile = formData.get("audio") as File | null;
 
     if (!clipsJson) {
@@ -20,6 +22,9 @@ export async function POST(req: NextRequest) {
     }
 
     const clips: { url: string; trimStart: number; trimEnd: number }[] = JSON.parse(clipsJson);
+    const words: { word: string; start: number; end: number }[] = wordsJson
+      ? JSON.parse(wordsJson)
+      : [];
 
     tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "video-tool-"));
     const downloadedFiles: string[] = [];
@@ -56,15 +61,44 @@ export async function POST(req: NextRequest) {
       .join("; ");
 
     const concatInputs = downloadedFiles.map((_, i) => `[v${i}]`).join("");
-    const filterComplex = `${scaleFilters}; ${concatInputs}concat=n=${downloadedFiles.length}:v=1:a=0[outv]`;
+
+    // Generate caption images, if we have word timing data
+    const captionChunks = words.length > 0 ? groupWordsIntoCaptions(words, 5) : [];
+    const captionFiles: string[] = [];
+
+    for (let i = 0; i < captionChunks.length; i++) {
+      const imgPath = path.join(tempDir, `caption-${i}.png`);
+      await generateCaptionImage(captionChunks[i].text, imgPath, TARGET_WIDTH, TARGET_HEIGHT);
+      captionFiles.push(imgPath);
+    }
+
+    const captionInputs = captionFiles.map((f) => `-i "${f}"`).join(" ");
+    const firstCaptionInputIndex = downloadedFiles.length + (audioPath ? 1 : 0);
+
+    // Build overlay chain: start from concatenated video, layer each caption on top in sequence
+    let overlayChain = "";
+    let previousLabel = "concatvid";
+
+    captionChunks.forEach((chunk, i) => {
+      const inputIndex = firstCaptionInputIndex + i;
+      const nextLabel = `cap${i}`;
+      overlayChain += `[${previousLabel}][${inputIndex}:v]overlay=0:0:enable='between(t,${chunk.start},${chunk.end})'[${nextLabel}]; `;
+      previousLabel = nextLabel;
+    });
+
+    const filterComplex =
+      `${scaleFilters}; ${concatInputs}concat=n=${downloadedFiles.length}:v=1:a=0[concatvid]` +
+      (overlayChain ? `; ${overlayChain.trim().replace(/;\s*$/, "")}` : "");
+
+    const finalVideoLabel = captionChunks.length > 0 ? previousLabel : "concatvid";
 
     let cmd: string;
 
     if (audioPath) {
       const audioIndex = downloadedFiles.length;
-      cmd = `ffmpeg -y ${videoInputs} ${audioInput} -filter_complex "${filterComplex}" -map "[outv]" -map ${audioIndex}:a:0 -c:v libx264 -c:a aac -shortest "${outputPath}"`;
+      cmd = `ffmpeg -y ${videoInputs} ${audioInput} ${captionInputs} -filter_complex "${filterComplex}" -map "[${finalVideoLabel}]" -map ${audioIndex}:a:0 -c:v libx264 -c:a aac -shortest "${outputPath}"`;
     } else {
-      cmd = `ffmpeg -y ${videoInputs} -filter_complex "${filterComplex}" -map "[outv]" -c:v libx264 "${outputPath}"`;
+      cmd = `ffmpeg -y ${videoInputs} ${captionInputs} -filter_complex "${filterComplex}" -map "[${finalVideoLabel}]" -c:v libx264 "${outputPath}"`;
     }
 
     await execAsync(cmd, { maxBuffer: 1024 * 1024 * 50 });

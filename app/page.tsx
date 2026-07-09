@@ -40,6 +40,8 @@ export default function Home() {
   const [rendering, setRendering] = useState(false);
   const [renderedVideoUrl, setRenderedVideoUrl] = useState("");
   const [audioFile, setAudioFile] = useState<File | null>(null);
+  const [words, setWords] = useState<{ word: string; start: number; end: number }[]>([]);
+  const [captionsEnabled, setCaptionsEnabled] = useState(true);
 
   async function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -61,6 +63,7 @@ export default function Home() {
 
     if (data.text) {
       setScript(data.text);
+      setWords(data.words || []);
     } else {
       alert("Error: " + (data.error || "Something went wrong"));
     }
@@ -183,6 +186,7 @@ export default function Home() {
 
     const formData = new FormData();
     formData.append("clips", JSON.stringify(clips));
+    formData.append("words", JSON.stringify(captionsEnabled ? words : []));
     if (audioFile) {
       formData.append("audio", audioFile);
     }
@@ -324,6 +328,14 @@ export default function Home() {
           })}
 
           <div className="render-section">
+            <label style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px", fontSize: "14px", color: "#9295a0" }}>
+              <input
+                type="checkbox"
+                checked={captionsEnabled}
+                onChange={(e) => setCaptionsEnabled(e.target.checked)}
+              />
+              Add captions to video
+            </label>
             <button
               onClick={handleRenderVideo}
               disabled={rendering}
