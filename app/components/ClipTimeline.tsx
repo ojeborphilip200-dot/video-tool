@@ -76,66 +76,84 @@ export default function ClipTimeline({
   const endPct = totalDuration > 0 ? (trimEnd / totalDuration) * 100 : 100;
 
   return (
-    <div style={{ marginTop: "10px" }}>
+    <div style={{ marginTop: "14px" }}>
       <div
         ref={trackRef}
         style={{
           position: "relative",
-          height: "36px",
-          background: "#e5e5e5",
-          borderRadius: "6px",
+          height: "40px",
+          background: "#0f1013",
+          border: "1px solid #2a2c32",
+          borderRadius: "8px",
           userSelect: "none",
+          overflow: "hidden",
         }}
       >
-        {/* Selected region */}
         <div
           onMouseDown={(e) => handleMouseDown(e, "move")}
           style={{
             position: "absolute",
+            top: "4px",
+            bottom: "4px",
             left: `${startPct}%`,
             width: `${endPct - startPct}%`,
-            height: "100%",
-            background: "#4f83ff",
-            borderRadius: "4px",
+            background: "linear-gradient(180deg, #ff9d75, #ff8a65)",
+            borderRadius: "6px",
             cursor: "grab",
+            boxShadow: "0 0 0 1px rgba(255,138,101,0.4)",
           }}
         />
 
-        {/* Left trim handle */}
         <div
           onMouseDown={(e) => handleMouseDown(e, "start")}
           style={{
             position: "absolute",
+            top: 0,
+            bottom: 0,
             left: `${startPct}%`,
             transform: "translateX(-50%)",
-            width: "10px",
-            height: "100%",
-            background: "#1e3a8a",
+            width: "12px",
             cursor: "ew-resize",
-            borderRadius: "3px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
-        />
+        >
+          <div style={{ width: "3px", height: "20px", background: "#fff", borderRadius: "2px" }} />
+        </div>
 
-        {/* Right trim handle */}
         <div
           onMouseDown={(e) => handleMouseDown(e, "end")}
           style={{
             position: "absolute",
+            top: 0,
+            bottom: 0,
             left: `${endPct}%`,
             transform: "translateX(-50%)",
-            width: "10px",
-            height: "100%",
-            background: "#1e3a8a",
+            width: "12px",
             cursor: "ew-resize",
-            borderRadius: "3px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
-        />
+        >
+          <div style={{ width: "3px", height: "20px", background: "#fff", borderRadius: "2px" }} />
+        </div>
       </div>
-      <div style={{ display: "flex", justifyContent: "space-between", fontSize: "12px", color: "#666", marginTop: "4px" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          fontFamily: "ui-monospace, monospace",
+          fontSize: "11px",
+          color: "#5c5f68",
+          marginTop: "6px",
+        }}
+      >
         <span>{trimStart.toFixed(1)}s</span>
-        <span>Clip length: {totalDuration.toFixed(1)}s</span>
+        <span style={{ color: "#9295a0" }}>{totalDuration.toFixed(1)}s total</span>
         <span>{trimEnd.toFixed(1)}s</span>
       </div>
     </div>
   );
-}
+  }

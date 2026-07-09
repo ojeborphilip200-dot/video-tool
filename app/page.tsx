@@ -151,66 +151,73 @@ export default function Home() {
   }
 
   return (
-    <main style={{ padding: "40px", maxWidth: "700px", margin: "0 auto" }}>
-      <h1>My Video Tool</h1>
+    <div className="app-shell">
+      <div className="app-header">
+        <h1 className="app-title">My Video Tool</h1>
+        <p className="app-subtitle">Script or voiceover in, edited video out.</p>
+      </div>
 
-      <p>Upload a voiceover file (mp3/wav) to auto-transcribe:</p>
-      <input type="file" accept="audio/*" onChange={handleFileUpload} />
-      {transcribing && <p>Transcribing... this may take a moment.</p>}
+      <div className="card">
+        <p style={{ marginTop: 0, marginBottom: "10px", fontSize: "14px", color: "#9295a0" }}>
+          Upload a voiceover file (mp3/wav) to auto-transcribe
+        </p>
+        <input type="file" accept="audio/*" onChange={handleFileUpload} />
+        {transcribing && <p className="empty-note">Transcribing... this may take a moment.</p>}
 
-      <p style={{ marginTop: "20px" }}>Or paste/edit your script directly below:</p>
-      <textarea
-        value={script}
-        onChange={(e) => setScript(e.target.value)}
-        rows={8}
-        style={{ width: "100%", padding: "10px", fontSize: "16px" }}
-        placeholder="Paste your script here..."
-      />
+        <p style={{ marginTop: "20px", marginBottom: "10px", fontSize: "14px", color: "#9295a0" }}>
+          Or paste/edit your script directly below
+        </p>
+        <textarea
+          value={script}
+          onChange={(e) => setScript(e.target.value)}
+          rows={8}
+          style={{ width: "100%", fontSize: "14px", lineHeight: 1.5 }}
+          placeholder="Paste your script here..."
+        />
 
-      <button
-        onClick={handleSegment}
-        disabled={!script}
-        style={{ marginTop: "10px", padding: "10px 20px", fontSize: "16px" }}
-      >
-        Break into sentences
-      </button>
+        <button
+          onClick={handleSegment}
+          disabled={!script}
+          className="btn btn-primary"
+          style={{ marginTop: "14px" }}
+        >
+          Break into sentences
+        </button>
+      </div>
 
       {beats.length > 0 && (
-        <div style={{ marginTop: "30px" }}>
-          <h2>Beats ({beats.length}):</h2>
+        <div>
+          <h2 style={{ fontSize: "15px", fontWeight: 600, color: "#9295a0", margin: "24px 0 12px" }}>
+            BEATS ({beats.length})
+          </h2>
+
           {beats.map((beat, i) => (
-            <div
-              key={i}
-              style={{
-                border: "1px solid #ccc",
-                borderRadius: "8px",
-                padding: "12px",
-                marginBottom: "10px",
-              }}
-            >
-              <p><strong>Beat {i + 1}</strong> (~{beat.duration.toFixed(1)}s): {beat.text}</p>
+            <div className="card" key={i}>
+              <span className="chip chip-video">BEAT {i + 1} · {beat.duration.toFixed(1)}S</span>
+              <p className="beat-text">{beat.text}</p>
 
               <button
                 onClick={() => handleFindFootage(i)}
                 disabled={beat.loadingVideos}
-                style={{ padding: "6px 12px", marginTop: "6px" }}
+                className="btn btn-secondary"
+                style={{ marginTop: "12px" }}
               >
                 {beat.loadingVideos ? "Searching..." : "Generate Footage"}
               </button>
 
               {beat.videos && beat.videos.length > 0 && (
                 <>
-                  <div style={{ display: "flex", gap: "10px", marginTop: "10px", flexWrap: "wrap" }}>
+                  <div className="thumb-row">
                     {beat.videos.map((v) => (
-                      <div key={v.id} style={{ textAlign: "center" }}>
-                        <img src={v.thumbnail} alt="clip thumbnail" width={120} />
-                        <p style={{ fontSize: "12px" }}>{v.duration}s original</p>
+                      <div key={v.id} className="thumb">
+                        <img src={v.thumbnail} alt="clip thumbnail" width={110} />
+                        <div className="thumb-label">{v.duration}s</div>
                       </div>
                     ))}
                   </div>
 
                   <ClipTimeline
-                    totalDuration={beat.videos![0].duration}
+                    totalDuration={beat.videos[0].duration}
                     trimStart={beat.trimStart}
                     trimEnd={beat.trimEnd}
                     onChange={(start, end) => {
@@ -222,37 +229,35 @@ export default function Home() {
               )}
 
               {beat.videos && beat.videos.length === 0 && (
-                <p style={{ color: "#999" }}>No footage found.</p>
+                <p className="empty-note">No footage found.</p>
               )}
             </div>
           ))}
 
-          <button
-            onClick={handleRenderVideo}
-            disabled={rendering}
-            style={{
-              marginTop: "20px",
-              padding: "12px 24px",
-              fontSize: "16px",
-              fontWeight: "bold",
-            }}
-          >
-            {rendering ? "Rendering video... this may take a minute" : "Render Full Video"}
-          </button>
+          <div className="render-section">
+            <button
+              onClick={handleRenderVideo}
+              disabled={rendering}
+              className="btn btn-primary"
+              style={{ width: "100%", padding: "14px", fontSize: "15px" }}
+            >
+              {rendering ? "Rendering video... this may take a minute" : "Render Full Video"}
+            </button>
 
-          {renderedVideoUrl && (
-            <div style={{ marginTop: "20px" }}>
-              <h3>Your rendered video:</h3>
-              <video src={renderedVideoUrl} controls width="100%" />
-              <a href={renderedVideoUrl} download="final-video.mp4">
-                <button style={{ marginTop: "10px", padding: "8px 16px" }}>
-                  Download Video
-                </button>
-              </a>
-            </div>
-          )}
+            {renderedVideoUrl && (
+              <div className="video-result">
+                <h3 style={{ fontSize: "14px", color: "#9295a0", fontWeight: 500 }}>Your rendered video</h3>
+                <video src={renderedVideoUrl} controls width="100%" />
+                <a href={renderedVideoUrl} download="final-video.mp4">
+                  <button className="btn btn-secondary" style={{ marginTop: "12px" }}>
+                    Download Video
+                  </button>
+                </a>
+              </div>
+            )}
+          </div>
         </div>
       )}
-    </main>
+    </div>
   );
 }
