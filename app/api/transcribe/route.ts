@@ -15,9 +15,13 @@ export async function POST(req: NextRequest) {
     const transcription = await openai.audio.transcriptions.create({
       file,
       model: "whisper-1",
+      response_format: "verbose_json",
+      timestamp_granularities: ["word"],
     });
 
-    return NextResponse.json({ text: transcription.text });
+    const words = (transcription as any).words || [];
+
+    return NextResponse.json({ text: transcription.text, words });
   } catch (err: any) {
     console.error(err);
     return NextResponse.json({ error: err.message }, { status: 500 });
