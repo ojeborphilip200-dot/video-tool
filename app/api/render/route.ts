@@ -16,6 +16,7 @@ export async function POST(req: NextRequest) {
     const clipsJson = formData.get("clips") as string;
     const wordsJson = formData.get("words") as string | null;
     const audioFile = formData.get("audio") as File | null;
+    const musicFile = formData.get("music") as File | null;
 
     if (!clipsJson) {
       return NextResponse.json({ error: "No videos provided" }, { status: 400 });
@@ -44,6 +45,13 @@ export async function POST(req: NextRequest) {
       await fs.writeFile(audioPath, audioBuffer);
     }
 
+    let musicPath = "";
+    if (musicFile) {
+      const musicBuffer = Buffer.from(await musicFile.arrayBuffer());
+      musicPath = path.join(tempDir, "music" + path.extname(musicFile.name || ".mp3"));
+      await fs.writeFile(musicPath, musicBuffer);
+    }
+
     const outputPath = path.join(tempDir, "output.mp4");
 
     const TARGET_WIDTH = 1280;
@@ -51,6 +59,7 @@ export async function POST(req: NextRequest) {
 
     const videoInputs = downloadedFiles.map((f) => `-i "${f}"`).join(" ");
     const audioInput = audioPath ? `-i "${audioPath}"` : "";
+    const musicInput = musicPath ? `-stream_loop -1 -i "${musicPath}"` : "";
 
     const scaleFilters = downloadedFiles
       .map((_, i) => {
@@ -62,7 +71,6 @@ export async function POST(req: NextRequest) {
 
     const concatInputs = downloadedFiles.map((_, i) => `[v${i}]`).join("");
 
-    // Generate caption images, if we have word timing data
     const captionChunks = words.length > 0 ? groupWordsIntoCaptions(words, 5) : [];
     const captionFiles: string[] = [];
 
@@ -73,9 +81,11 @@ export async function POST(req: NextRequest) {
     }
 
     const captionInputs = captionFiles.map((f) => `-i "${f}"`).join(" ");
-    const firstCaptionInputIndex = downloadedFiles.length + (audioPath ? 1 : 0);
+    const narrationIndex = downloadedFiles.length;
+    const musicIndex = downloadedFiles.length + (audioPath ? 1 : 0);
+    const firstCaptionInputIndex =
+      downloadedFiles.length + (audioPath ? 1 : 0) + (musicPath ? 1 : 0);
 
-    // Build overlay chain: start from concatenated video, layer each caption on top in sequence
     let overlayChain = "";
     let previousLabel = "concatvid";
 
@@ -86,17 +96,33 @@ export async function POST(req: NextRequest) {
       previousLabel = nextLabel;
     });
 
+    let audioFilter = "";
+    let audioMapArgs = "";
+
+    if (audioPath && musicPath) {
+      audioFilter = `[${narrationIndex}:a:0]volume=1.0[narr]; [${musicIndex}:a:0]volume=0.18[musicvol]; [narr][musicvol]amix=inputs=2:duration=first:dropout_transition=2[aout]`;
+
+      audioMapArgs = `-map "[aout]"`;
+    } else if (audioPath) {
+      audioMapArgs = `-map ${narrationIndex}:a:0`;
+    } else if (musicPath) {
+      audioFilter = `[${musicIndex}:a:0]volume=0.5[aout]`;
+      audioMapArgs = `-map "[aout]"`;
+    }
+
     const filterComplex =
       `${scaleFilters}; ${concatInputs}concat=n=${downloadedFiles.length}:v=1:a=0[concatvid]` +
-      (overlayChain ? `; ${overlayChain.trim().replace(/;\s*$/, "")}` : "");
+      (overlayChain ? `; ${overlayChain.trim().replace(/;\s*$/, "")}` : "") +
+      (audioFilter ? `; ${audioFilter}` : "");
 
     const finalVideoLabel = captionChunks.length > 0 ? previousLabel : "concatvid";
 
+    const hasAudio = Boolean(audioPath || musicPath);
+
     let cmd: string;
 
-    if (audioPath) {
-      const audioIndex = downloadedFiles.length;
-      cmd = `ffmpeg -y ${videoInputs} ${audioInput} ${captionInputs} -filter_complex "${filterComplex}" -map "[${finalVideoLabel}]" -map ${audioIndex}:a:0 -c:v libx264 -c:a aac -shortest "${outputPath}"`;
+    if (hasAudio) {
+      cmd = `ffmpeg -y ${videoInputs} ${audioInput} ${musicInput} ${captionInputs} -filter_complex "${filterComplex}" -map "[${finalVideoLabel}]" ${audioMapArgs} -c:v libx264 -c:a aac -shortest "${outputPath}"`;
     } else {
       cmd = `ffmpeg -y ${videoInputs} ${captionInputs} -filter_complex "${filterComplex}" -map "[${finalVideoLabel}]" -c:v libx264 "${outputPath}"`;
     }

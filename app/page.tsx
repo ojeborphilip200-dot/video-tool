@@ -42,6 +42,7 @@ export default function Home() {
   const [audioFile, setAudioFile] = useState<File | null>(null);
   const [words, setWords] = useState<{ word: string; start: number; end: number }[]>([]);
   const [captionsEnabled, setCaptionsEnabled] = useState(true);
+  const [musicFile, setMusicFile] = useState<File | null>(null);
 
   async function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -190,6 +191,9 @@ export default function Home() {
     if (audioFile) {
       formData.append("audio", audioFile);
     }
+    if (musicFile) {
+      formData.append("music", musicFile);
+    }
 
     const res = await fetch("/api/render", {
       method: "POST",
@@ -221,6 +225,14 @@ export default function Home() {
           Upload a voiceover file (mp3/wav) to auto-transcribe
         </p>
         <input type="file" accept="audio/*" onChange={handleFileUpload} />
+        <p style={{ marginTop: "20px", marginBottom: "10px", fontSize: "14px", color: "#9295a0" }}>
+          Optional: upload background music
+        </p>
+        <input
+          type="file"
+          accept="audio/*"
+          onChange={(e) => setMusicFile(e.target.files?.[0] || null)}
+        />
         {transcribing && <p className="empty-note">Transcribing... this may take a moment.</p>}
 
         <p style={{ marginTop: "20px", marginBottom: "10px", fontSize: "14px", color: "#9295a0" }}>
