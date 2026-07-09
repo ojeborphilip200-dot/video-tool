@@ -2,17 +2,18 @@
 
 import { useState } from "react";
 
+type Beat = { text: string };
+
 export default function Home() {
   const [script, setScript] = useState("");
   const [transcribing, setTranscribing] = useState(false);
-  const [transcript, setTranscript] = useState("");
+  const [beats, setBeats] = useState<Beat[]>([]);
 
   async function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
 
     setTranscribing(true);
-    setTranscript("");
 
     const formData = new FormData();
     formData.append("audio", file);
@@ -26,11 +27,23 @@ export default function Home() {
     setTranscribing(false);
 
     if (data.text) {
-      setTranscript(data.text);
       setScript(data.text);
     } else {
-      setTranscript("Error: " + (data.error || "Something went wrong"));
+      alert("Error: " + (data.error || "Something went wrong"));
     }
+  }
+
+  function splitBySentence(text: string): Beat[] {
+    const sentences = text
+      .split(/(?<=[.!?])\s+/)
+      .map((s) => s.trim())
+      .filter((s) => s.length > 0);
+
+    return sentences.map((s) => ({ text: s }));
+  }
+
+  function handleSegment() {
+    setBeats(splitBySentence(script));
   }
 
   return (
@@ -40,12 +53,6 @@ export default function Home() {
       <p>Upload a voiceover file (mp3/wav) to auto-transcribe:</p>
       <input type="file" accept="audio/*" onChange={handleFileUpload} />
       {transcribing && <p>Transcribing... this may take a moment.</p>}
-      {transcript && (
-        <div>
-          <h3>Transcript result:</h3>
-          <p>{transcript}</p>
-        </div>
-      )}
 
       <p style={{ marginTop: "20px" }}>Or paste/edit your script directly below:</p>
       <textarea
@@ -56,8 +63,32 @@ export default function Home() {
         placeholder="Paste your script here..."
       />
 
-      <h2>Preview:</h2>
-      <p>{script || "Nothing typed yet."}</p>
+      <button
+        onClick={handleSegment}
+        disabled={!script}
+        style={{ marginTop: "10px", padding: "10px 20px", fontSize: "16px" }}
+      >
+        Break into sentences
+      </button>
+
+      {beats.length > 0 && (
+        <div style={{ marginTop: "30px" }}>
+          <h2>Beats ({beats.length}):</h2>
+          {beats.map((beat, i) => (
+            <div
+              key={i}
+              style={{
+                border: "1px solid #ccc",
+                borderRadius: "8px",
+                padding: "12px",
+                marginBottom: "10px",
+              }}
+            >
+              <p><strong>Beat {i + 1}:</strong> {beat.text}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </main>
   );
 }
