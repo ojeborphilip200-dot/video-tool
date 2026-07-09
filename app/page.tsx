@@ -11,6 +11,7 @@ type Video = {
 
 type Beat = {
   text: string;
+  duration: number;
   videos?: Video[];
   loadingVideos?: boolean;
 };
@@ -48,13 +49,19 @@ export default function Home() {
     }
   }
 
+  function estimateDuration(text: string): number {
+    const wordCount = text.trim().split(/\s+/).length;
+    const wordsPerSecond = 2.5;
+    return Math.max(2, wordCount / wordsPerSecond);
+  }
+
   function splitBySentence(text: string): Beat[] {
     const sentences = text
       .split(/(?<=[.!?])\s+/)
       .map((s) => s.trim())
       .filter((s) => s.length > 0);
 
-    return sentences.map((s) => ({ text: s }));
+    return sentences.map((s) => ({ text: s, duration: estimateDuration(s) }));
   }
 
   function handleSegment() {
@@ -91,11 +98,11 @@ export default function Home() {
   }
 
   async function handleRenderVideo() {
-    const videoUrls = beats
+    const clips = beats
       .filter((b) => b.videos && b.videos.length > 0)
-      .map((b) => b.videos![0].previewUrl);
+      .map((b) => ({ url: b.videos![0].previewUrl, duration: b.duration }));
 
-    if (videoUrls.length === 0) {
+    if (clips.length === 0) {
       alert("Generate footage for at least one beat first.");
       return;
     }
@@ -104,7 +111,7 @@ export default function Home() {
     setRenderedVideoUrl("");
 
     const formData = new FormData();
-    formData.append("videoUrls", JSON.stringify(videoUrls));
+    formData.append("clips", JSON.stringify(clips));
     if (audioFile) {
       formData.append("audio", audioFile);
     }
@@ -165,7 +172,7 @@ export default function Home() {
                 marginBottom: "10px",
               }}
             >
-              <p><strong>Beat {i + 1}:</strong> {beat.text}</p>
+              <p><strong>Beat {i + 1}</strong> (~{beat.duration.toFixed(1)}s): {beat.text}</p>
 
               <button
                 onClick={() => handleFindFootage(i)}
