@@ -2,7 +2,18 @@
 
 import { useState } from "react";
 
-type Beat = { text: string };
+type Video = {
+  id: number;
+  thumbnail: string;
+  previewUrl: string;
+  duration: number;
+};
+
+type Beat = {
+  text: string;
+  videos?: Video[];
+  loadingVideos?: boolean;
+};
 
 export default function Home() {
   const [script, setScript] = useState("");
@@ -46,6 +57,34 @@ export default function Home() {
     setBeats(splitBySentence(script));
   }
 
+  async function handleFindFootage(index: number) {
+    setBeats((prev) =>
+      prev.map((b, i) => (i === index ? { ...b, loadingVideos: true } : b))
+    );
+
+    const beatText = beats[index].text;
+
+    const res = await fetch("/api/footage", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ query: beatText }),
+    });
+
+    const data = await res.json();
+
+    setBeats((prev) =>
+      prev.map((b, i) =>
+        i === index
+          ? { ...b, videos: data.videos || [], loadingVideos: false }
+          : b
+      )
+    );
+
+    if (data.error) {
+      alert("Error: " + data.error);
+    }
+  }
+
   return (
     <main style={{ padding: "40px", maxWidth: "700px", margin: "0 auto" }}>
       <h1>My Video Tool</h1>
@@ -85,6 +124,29 @@ export default function Home() {
               }}
             >
               <p><strong>Beat {i + 1}:</strong> {beat.text}</p>
+
+              <button
+                onClick={() => handleFindFootage(i)}
+                disabled={beat.loadingVideos}
+                style={{ padding: "6px 12px", marginTop: "6px" }}
+              >
+                {beat.loadingVideos ? "Searching..." : "Generate Footage"}
+              </button>
+
+              {beat.videos && beat.videos.length > 0 && (
+                <div style={{ display: "flex", gap: "10px", marginTop: "10px", flexWrap: "wrap" }}>
+                  {beat.videos.map((v) => (
+                    <div key={v.id} style={{ textAlign: "center" }}>
+                      <img src={v.thumbnail} alt="clip thumbnail" width={120} />
+                      <p style={{ fontSize: "12px" }}>{v.duration}s</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {beat.videos && beat.videos.length === 0 && (
+                <p style={{ color: "#999" }}>No footage found.</p>
+              )}
             </div>
           ))}
         </div>
