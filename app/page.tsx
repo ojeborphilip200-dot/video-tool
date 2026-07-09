@@ -4,20 +4,34 @@ import { useState } from "react";
 import ClipTimeline from "./components/ClipTimeline";
 
 type Video = {
-  id: number;
+  id: string;
   thumbnail: string;
   previewUrl: string;
   duration: number;
+  source: "pexels" | "pixabay";
+};
+
+type SelectedClip = {
+  video: Video;
+  trimStart: number;
+  trimEnd: number;
 };
 
 type Beat = {
   text: string;
   duration: number;
-  trimStart: number;
-  trimEnd: number;
   videos?: Video[];
   loadingVideos?: boolean;
+  selectedClips: SelectedClip[];
 };
+
+function usedTime(beat: Beat): number {
+  return beat.selectedClips.reduce((sum, c) => sum + (c.trimEnd - c.trimStart), 0);
+}
+
+function remainingTime(beat: Beat): number {
+  return Math.max(0, beat.duration - usedTime(beat));
+}
 
 export default function Home() {
   const [script, setScript] = useState("");
@@ -64,10 +78,11 @@ export default function Home() {
       .map((s) => s.trim())
       .filter((s) => s.length > 0);
 
-    return sentences.map((s) => {
-      const duration = estimateDuration(s);
-      return { text: s, duration, trimStart: 0, trimEnd: duration };
-    });
+    return sentences.map((s) => ({
+      text: s,
+      duration: estimateDuration(s),
+      selectedClips: [],
+    }));
   }
 
   function handleSegment() {
@@ -102,29 +117,64 @@ export default function Home() {
       alert("Error: " + data.error);
     }
   }
-   async function handleFindAllFootage() {
+
+  async function handleFindAllFootage() {
     for (let i = 0; i < beats.length; i++) {
       await handleFindFootage(i);
     }
   }
 
-  function updateTrim(index: number, field: "trimStart" | "trimEnd", value: number) {
+  function toggleSelectVideo(beatIndex: number, video: Video) {
     setBeats((prev) =>
-      prev.map((b, i) => (i === index ? { ...b, [field]: value } : b))
+      prev.map((b, i) => {
+        if (i !== beatIndex) return b;
+
+        const alreadySelected = b.selectedClips.some((c) => c.video.id === video.id);
+
+        if (alreadySelected) {
+          return {
+            ...b,
+            selectedClips: b.selectedClips.filter((c) => c.video.id !== video.id),
+          };
+        }
+
+        const remaining = remainingTime(b);
+        if (remaining <= 0) return b;
+
+        const trimEnd = Math.min(video.duration, remaining);
+        return {
+          ...b,
+          selectedClips: [...b.selectedClips, { video, trimStart: 0, trimEnd }],
+        };
+      })
+    );
+  }
+
+  function updateClipTrim(beatIndex: number, clipId: string, start: number, end: number) {
+    setBeats((prev) =>
+      prev.map((b, i) => {
+        if (i !== beatIndex) return b;
+        return {
+          ...b,
+          selectedClips: b.selectedClips.map((c) =>
+            c.video.id === clipId ? { ...c, trimStart: start, trimEnd: end } : c
+          ),
+        };
+      })
     );
   }
 
   async function handleRenderVideo() {
-    const clips = beats
-      .filter((b) => b.videos && b.videos.length > 0)
-      .map((b) => ({
-        url: b.videos![0].previewUrl,
-        trimStart: b.trimStart,
-        trimEnd: b.trimEnd,
-      }));
+    const clips = beats.flatMap((b) =>
+      b.selectedClips.map((c) => ({
+        url: c.video.previewUrl,
+        trimStart: c.trimStart,
+        trimEnd: c.trimEnd,
+      }))
+    );
 
     if (clips.length === 0) {
-      alert("Generate footage for at least one beat first.");
+      alert("Select at least one clip for a beat first.");
       return;
     }
 
@@ -205,48 +255,73 @@ export default function Home() {
             </button>
           </div>
 
-          {beats.map((beat, i) => (
-            <div className="card" key={i}>
-              <span className="chip chip-video">BEAT {i + 1} · {beat.duration.toFixed(1)}S</span>
-              <p className="beat-text">{beat.text}</p>
+          {beats.map((beat, i) => {
+            const remaining = remainingTime(beat);
+            return (
+              <div className="card" key={i}>
+                <span className="chip chip-video">
+                  BEAT {i + 1} · {beat.duration.toFixed(1)}S · {remaining.toFixed(1)}S LEFT
+                </span>
+                <p className="beat-text">{beat.text}</p>
 
-              <button
-                onClick={() => handleFindFootage(i)}
-                disabled={beat.loadingVideos}
-                className="btn btn-secondary"
-                style={{ marginTop: "12px" }}
-              >
-                {beat.loadingVideos ? "Searching..." : "Generate Footage"}
-              </button>
+                <button
+                  onClick={() => handleFindFootage(i)}
+                  disabled={beat.loadingVideos}
+                  className="btn btn-secondary"
+                  style={{ marginTop: "12px" }}
+                >
+                  {beat.loadingVideos ? "Searching..." : "Generate Footage"}
+                </button>
 
-              {beat.videos && beat.videos.length > 0 && (
-                <>
+                {beat.videos && beat.videos.length > 0 && (
                   <div className="thumb-row">
-                    {beat.videos.map((v) => (
-                      <div key={v.id} className="thumb">
-                        <img src={v.thumbnail} alt="clip thumbnail" width={110} />
-                        <div className="thumb-label">{v.duration}s</div>
-                      </div>
-                    ))}
+                    {beat.videos.map((v) => {
+                      const isSelected = beat.selectedClips.some((c) => c.video.id === v.id);
+                      const disabled = !isSelected && remaining <= 0;
+                      return (
+                        <div
+                          key={v.id}
+                          className="thumb"
+                          onClick={() => !disabled && toggleSelectVideo(i, v)}
+                          style={{
+                            cursor: disabled ? "not-allowed" : "pointer",
+                            opacity: disabled ? 0.35 : 1,
+                            outline: isSelected ? "2px solid var(--accent-blue)" : "none",
+                            outlineOffset: "1px",
+                          }}
+                        >
+                          <div className="thumb-frame">
+                            <img src={v.thumbnail} alt="clip thumbnail" />
+                          </div>
+                          <div className="thumb-label">
+                            {isSelected ? "✓ selected" : `${v.duration}s`}
+                          </div>
+                        </div>
+                      );
+                    })}
                   </div>
+                )}
 
-                  <ClipTimeline
-                    totalDuration={beat.videos[0].duration}
-                    trimStart={beat.trimStart}
-                    trimEnd={beat.trimEnd}
-                    onChange={(start, end) => {
-                      updateTrim(i, "trimStart", start);
-                      updateTrim(i, "trimEnd", end);
-                    }}
-                  />
-                </>
-              )}
+                {beat.videos && beat.videos.length === 0 && (
+                  <p className="empty-note">No footage found.</p>
+                )}
 
-              {beat.videos && beat.videos.length === 0 && (
-                <p className="empty-note">No footage found.</p>
-              )}
-            </div>
-          ))}
+                {beat.selectedClips.map((clip) => (
+                  <div key={clip.video.id} style={{ marginTop: "10px" }}>
+                    <p style={{ fontSize: "12px", color: "#8a8d96", margin: "0 0 4px" }}>
+                      Selected clip ({clip.video.source})
+                    </p>
+                    <ClipTimeline
+                      totalDuration={clip.video.duration}
+                      trimStart={clip.trimStart}
+                      trimEnd={clip.trimEnd}
+                      onChange={(start, end) => updateClipTrim(i, clip.video.id, start, end)}
+                    />
+                  </div>
+                ))}
+              </div>
+            );
+          })}
 
           <div className="render-section">
             <button

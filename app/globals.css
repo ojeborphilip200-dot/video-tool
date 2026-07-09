@@ -151,9 +151,24 @@ input:focus {
   border-radius: var(--radius-md);
   overflow: hidden;
   border: 1px solid var(--border-subtle);
+  width: 140px;
 }
 
-.thumb img {
+.thumb-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #0f1013;
+}
+
+.thumb-frame img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
