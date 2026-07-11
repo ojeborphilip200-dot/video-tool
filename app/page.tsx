@@ -3,8 +3,9 @@
 import { useState } from "react";
 import ClipTimeline from "./components/ClipTimeline";
 
-type Video = {
+type MediaItem = {
   id: string;
+  kind: "video" | "image";
   thumbnail: string;
   previewUrl: string;
   duration: number;
@@ -12,16 +13,19 @@ type Video = {
 };
 
 type SelectedClip = {
-  video: Video;
+  media: MediaItem;
   trimStart: number;
   trimEnd: number;
 };
 
 type Beat = {
   text: string;
+  keywords: string[];
+  treatment: "video" | "image";
   duration: number;
-  videos?: Video[];
-  loadingVideos?: boolean;
+  videos?: MediaItem[];
+  images?: MediaItem[];
+  loadingMedia?: boolean;
   selectedClips: SelectedClip[];
 };
 
@@ -36,13 +40,14 @@ function remainingTime(beat: Beat): number {
 export default function Home() {
   const [script, setScript] = useState("");
   const [transcribing, setTranscribing] = useState(false);
+  const [segmenting, setSegmenting] = useState(false);
   const [beats, setBeats] = useState<Beat[]>([]);
   const [rendering, setRendering] = useState(false);
   const [renderedVideoUrl, setRenderedVideoUrl] = useState("");
   const [audioFile, setAudioFile] = useState<File | null>(null);
+  const [musicFile, setMusicFile] = useState<File | null>(null);
   const [words, setWords] = useState<{ word: string; start: number; end: number }[]>([]);
   const [captionsEnabled, setCaptionsEnabled] = useState(true);
-  const [musicFile, setMusicFile] = useState<File | null>(null);
 
   async function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -70,13 +75,8 @@ export default function Home() {
     }
   }
 
-  function estimateDuration(text: string): number {
-    const wordCount = text.trim().split(/\s+/).length;
-    const wordsPerSecond = 2.5;
-    return Math.max(2, wordCount / wordsPerSecond);
-  }
-
-  function splitBySentence(text: string): Beat[] {
+  // Fallback: simple sentence split if the AI segmentation call fails
+  function splitBySentenceFallback(text: string): Beat[] {
     const sentences = text
       .split(/(?<=[.!?])\s+/)
       .map((s) => s.trim())
@@ -84,37 +84,87 @@ export default function Home() {
 
     return sentences.map((s) => ({
       text: s,
-      duration: estimateDuration(s),
+      keywords: [s.split(/\s+/).slice(0, 4).join(" ")],
+      treatment: "video" as const,
+      duration: Math.max(2, s.trim().split(/\s+/).length / 2.5),
       selectedClips: [],
     }));
   }
 
-  function handleSegment() {
-    setBeats(splitBySentence(script));
+  async function handleSegment() {
+    setSegmenting(true);
     setRenderedVideoUrl("");
+    setBeats([]);
+
+    try {
+      const res = await fetch("/api/segment", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ script, words }),
+      });
+
+      const data = await res.json();
+
+      if (data.beats && data.beats.length > 0) {
+        setBeats(
+          data.beats.map((b: any) => ({
+            text: b.text,
+            keywords: b.keywords || [],
+            treatment: b.treatment || "video",
+            duration: b.duration,
+            selectedClips: [],
+          }))
+        );
+      } else {
+        setBeats(splitBySentenceFallback(script));
+      }
+    } catch {
+      setBeats(splitBySentenceFallback(script));
+    }
+
+    setSegmenting(false);
   }
 
-  async function handleFindFootage(index: number) {
+  async function handleFindMedia(index: number) {
     setBeats((prev) =>
-      prev.map((b, i) => (i === index ? { ...b, loadingVideos: true } : b))
+      prev.map((b, i) => (i === index ? { ...b, loadingMedia: true } : b))
     );
 
-    const beatText = beats[index].text;
+    const beat = beats[index];
+    const query = beat.keywords.length > 0 ? beat.keywords.join(" ") : beat.text;
 
     const res = await fetch("/api/footage", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query: beatText }),
+      body: JSON.stringify({ query }),
     });
 
     const data = await res.json();
 
     setBeats((prev) =>
-      prev.map((b, i) =>
-        i === index
-          ? { ...b, videos: data.videos || [], loadingVideos: false }
-          : b
-      )
+      prev.map((b, i) => {
+        if (i !== index) return b;
+
+        const videos: MediaItem[] = data.videos || [];
+        const images: MediaItem[] = data.images || [];
+
+        // AI pre-pick: auto-select the first result matching the beat's treatment
+        let selectedClips = b.selectedClips;
+        if (selectedClips.length === 0) {
+          const preferred = b.treatment === "image" ? images[0] : videos[0];
+          const fallback = b.treatment === "image" ? videos[0] : images[0];
+          const pick = preferred || fallback;
+          if (pick) {
+            const trimEnd =
+              pick.kind === "image"
+                ? b.duration
+                : Math.min(pick.duration, b.duration);
+            selectedClips = [{ media: pick, trimStart: 0, trimEnd }];
+          }
+        }
+
+        return { ...b, videos, images, loadingMedia: false, selectedClips };
+      })
     );
 
     if (data.error) {
@@ -122,33 +172,34 @@ export default function Home() {
     }
   }
 
-  async function handleFindAllFootage() {
+  async function handleFindAllMedia() {
     for (let i = 0; i < beats.length; i++) {
-      await handleFindFootage(i);
+      await handleFindMedia(i);
     }
   }
 
-  function toggleSelectVideo(beatIndex: number, video: Video) {
+  function toggleSelectMedia(beatIndex: number, media: MediaItem) {
     setBeats((prev) =>
       prev.map((b, i) => {
         if (i !== beatIndex) return b;
 
-        const alreadySelected = b.selectedClips.some((c) => c.video.id === video.id);
+        const alreadySelected = b.selectedClips.some((c) => c.media.id === media.id);
 
         if (alreadySelected) {
           return {
             ...b,
-            selectedClips: b.selectedClips.filter((c) => c.video.id !== video.id),
+            selectedClips: b.selectedClips.filter((c) => c.media.id !== media.id),
           };
         }
 
         const remaining = remainingTime(b);
         if (remaining <= 0) return b;
 
-        const trimEnd = Math.min(video.duration, remaining);
+        const trimEnd =
+          media.kind === "image" ? remaining : Math.min(media.duration, remaining);
         return {
           ...b,
-          selectedClips: [...b.selectedClips, { video, trimStart: 0, trimEnd }],
+          selectedClips: [...b.selectedClips, { media, trimStart: 0, trimEnd }],
         };
       })
     );
@@ -161,7 +212,7 @@ export default function Home() {
         return {
           ...b,
           selectedClips: b.selectedClips.map((c) =>
-            c.video.id === clipId ? { ...c, trimStart: start, trimEnd: end } : c
+            c.media.id === clipId ? { ...c, trimStart: start, trimEnd: end } : c
           ),
         };
       })
@@ -171,7 +222,8 @@ export default function Home() {
   async function handleRenderVideo() {
     const clips = beats.flatMap((b) =>
       b.selectedClips.map((c) => ({
-        url: c.video.previewUrl,
+        url: c.media.previewUrl,
+        kind: c.media.kind,
         trimStart: c.trimStart,
         trimEnd: c.trimEnd,
       }))
@@ -226,6 +278,8 @@ export default function Home() {
           Upload a voiceover file (mp3/wav) to auto-transcribe
         </p>
         <input type="file" accept="audio/*" onChange={handleFileUpload} />
+        {transcribing && <p className="empty-note">Transcribing... this may take a moment.</p>}
+
         <p style={{ marginTop: "20px", marginBottom: "10px", fontSize: "14px", color: "#9295a0" }}>
           Optional: upload background music
         </p>
@@ -234,7 +288,6 @@ export default function Home() {
           accept="audio/*"
           onChange={(e) => setMusicFile(e.target.files?.[0] || null)}
         />
-        {transcribing && <p className="empty-note">Transcribing... this may take a moment.</p>}
 
         <p style={{ marginTop: "20px", marginBottom: "10px", fontSize: "14px", color: "#9295a0" }}>
           Or paste/edit your script directly below
@@ -249,11 +302,11 @@ export default function Home() {
 
         <button
           onClick={handleSegment}
-          disabled={!script}
+          disabled={!script || segmenting}
           className="btn btn-primary"
           style={{ marginTop: "14px" }}
         >
-          Break into sentences
+          {segmenting ? "Analyzing script..." : "Generate beats"}
         </button>
       </div>
 
@@ -264,7 +317,7 @@ export default function Home() {
               BEATS ({beats.length})
             </h2>
             <button
-              onClick={handleFindAllFootage}
+              onClick={handleFindAllMedia}
               className="btn btn-secondary"
               style={{ fontSize: "13px", padding: "8px 16px" }}
             >
@@ -274,32 +327,38 @@ export default function Home() {
 
           {beats.map((beat, i) => {
             const remaining = remainingTime(beat);
+            const allMedia = [...(beat.videos || []), ...(beat.images || [])];
             return (
               <div className="card" key={i}>
                 <span className="chip chip-video">
-                  BEAT {i + 1} · {beat.duration.toFixed(1)}S · {remaining.toFixed(1)}S LEFT
+                  BEAT {i + 1} · {beat.duration.toFixed(1)}S · {remaining.toFixed(1)}S LEFT · {beat.treatment.toUpperCase()}
                 </span>
                 <p className="beat-text">{beat.text}</p>
+                {beat.keywords.length > 0 && (
+                  <p style={{ fontSize: "12px", color: "#5c5f68", margin: "6px 0 0" }}>
+                    Search: {beat.keywords.join(", ")}
+                  </p>
+                )}
 
                 <button
-                  onClick={() => handleFindFootage(i)}
-                  disabled={beat.loadingVideos}
+                  onClick={() => handleFindMedia(i)}
+                  disabled={beat.loadingMedia}
                   className="btn btn-secondary"
                   style={{ marginTop: "12px" }}
                 >
-                  {beat.loadingVideos ? "Searching..." : "Generate Footage"}
+                  {beat.loadingMedia ? "Searching..." : "Generate Footage"}
                 </button>
 
-                {beat.videos && beat.videos.length > 0 && (
+                {allMedia.length > 0 && (
                   <div className="thumb-row">
-                    {beat.videos.map((v) => {
-                      const isSelected = beat.selectedClips.some((c) => c.video.id === v.id);
+                    {allMedia.map((m) => {
+                      const isSelected = beat.selectedClips.some((c) => c.media.id === m.id);
                       const disabled = !isSelected && remaining <= 0;
                       return (
                         <div
-                          key={v.id}
+                          key={m.id}
                           className="thumb"
-                          onClick={() => !disabled && toggleSelectVideo(i, v)}
+                          onClick={() => !disabled && toggleSelectMedia(i, m)}
                           style={{
                             cursor: disabled ? "not-allowed" : "pointer",
                             opacity: disabled ? 0.35 : 1,
@@ -308,10 +367,14 @@ export default function Home() {
                           }}
                         >
                           <div className="thumb-frame">
-                            <img src={v.thumbnail} alt="clip thumbnail" />
+                            <img src={m.thumbnail} alt="media thumbnail" />
                           </div>
                           <div className="thumb-label">
-                            {isSelected ? "✓ selected" : `${v.duration}s`}
+                            {isSelected
+                              ? "✓ selected"
+                              : m.kind === "image"
+                              ? "IMAGE"
+                              : `${m.duration}s`}
                           </div>
                         </div>
                       );
@@ -319,21 +382,27 @@ export default function Home() {
                   </div>
                 )}
 
-                {beat.videos && beat.videos.length === 0 && (
-                  <p className="empty-note">No footage found.</p>
+                {beat.videos && beat.videos.length === 0 && beat.images && beat.images.length === 0 && (
+                  <p className="empty-note">No media found.</p>
                 )}
 
                 {beat.selectedClips.map((clip) => (
-                  <div key={clip.video.id} style={{ marginTop: "10px" }}>
+                  <div key={clip.media.id} style={{ marginTop: "10px" }}>
                     <p style={{ fontSize: "12px", color: "#8a8d96", margin: "0 0 4px" }}>
-                      Selected clip ({clip.video.source})
+                      Selected {clip.media.kind} ({clip.media.source})
                     </p>
-                    <ClipTimeline
-                      totalDuration={clip.video.duration}
-                      trimStart={clip.trimStart}
-                      trimEnd={clip.trimEnd}
-                      onChange={(start, end) => updateClipTrim(i, clip.video.id, start, end)}
-                    />
+                    {clip.media.kind === "video" ? (
+                      <ClipTimeline
+                        totalDuration={clip.media.duration}
+                        trimStart={clip.trimStart}
+                        trimEnd={clip.trimEnd}
+                        onChange={(start, end) => updateClipTrim(i, clip.media.id, start, end)}
+                      />
+                    ) : (
+                      <p style={{ fontSize: "12px", color: "#5c5f68" }}>
+                        Still image · shows for {(clip.trimEnd - clip.trimStart).toFixed(1)}s
+                      </p>
+                    )}
                   </div>
                 ))}
               </div>

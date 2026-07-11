@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "No videos provided" }, { status: 400 });
     }
 
-    const clips: { url: string; trimStart: number; trimEnd: number }[] = JSON.parse(clipsJson);
+    const clips: { url: string; kind?: "video" | "image"; trimStart: number; trimEnd: number }[] = JSON.parse(clipsJson);
     const words: { word: string; start: number; end: number }[] = wordsJson
       ? JSON.parse(wordsJson)
       : [];
@@ -35,7 +35,8 @@ export async function POST(req: NextRequest) {
     for (let i = 0; i < clips.length; i++) {
       const res = await fetch(clips[i].url);
       const buffer = Buffer.from(await res.arrayBuffer());
-      const filePath = path.join(tempDir, `clip-${i}.mp4`);
+      const ext = clips[i].kind === "image" ? ".jpg" : ".mp4";
+      const filePath = path.join(tempDir, `clip-${i}${ext}`);
       await fs.writeFile(filePath, buffer);
       downloadedFiles.push(filePath);
     }
@@ -73,15 +74,27 @@ export async function POST(req: NextRequest) {
       console.log(`DEBUG - ASS file written with ${words.length} words, ${callouts.length} callouts`);
     }
 
-    const videoInputs = downloadedFiles.map((f) => `-i "${f}"`).join(" ");
+    const videoInputs = downloadedFiles
+      .map((f, i) => {
+        if (clips[i].kind === "image") {
+          const dur = clips[i].trimEnd - clips[i].trimStart;
+          return `-loop 1 -t ${dur} -i "${f}"`;
+        }
+        return `-i "${f}"`;
+      })
+      .join(" ");
     const audioInput = audioPath ? `-i "${audioPath}"` : "";
     const musicInput = musicPath ? `-stream_loop -1 -i "${musicPath}"` : "";
 
     const scaleFilters = downloadedFiles
       .map((_, i) => {
+        const common = `scale=${TARGET_WIDTH}:${TARGET_HEIGHT}:force_original_aspect_ratio=decrease,pad=${TARGET_WIDTH}:${TARGET_HEIGHT}:(ow-iw)/2:(oh-ih)/2,setsar=1`;
+        if (clips[i].kind === "image") {
+          return `[${i}:v:0]${common},fps=25[v${i}]`;
+        }
         const start = clips[i].trimStart;
         const end = clips[i].trimEnd;
-        return `[${i}:v:0]trim=start=${start}:end=${end},setpts=PTS-STARTPTS,scale=${TARGET_WIDTH}:${TARGET_HEIGHT}:force_original_aspect_ratio=decrease,pad=${TARGET_WIDTH}:${TARGET_HEIGHT}:(ow-iw)/2:(oh-ih)/2,setsar=1[v${i}]`;
+        return `[${i}:v:0]trim=start=${start}:end=${end},setpts=PTS-STARTPTS,${common}[v${i}]`;
       })
       .join("; ");
 
