@@ -52,6 +52,8 @@ export default function Home() {
   const [words, setWords] = useState<{ word: string; start: number; end: number }[]>([]);
   const [captionsEnabled, setCaptionsEnabled] = useState(true);
   const [renderProgress, setRenderProgress] = useState<{ progress: number; message: string } | null>(null);
+  const [background, setBackground] = useState("none");
+  const [bgFrequency, setBgFrequency] = useState("2-3");
 
   async function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -245,10 +247,25 @@ export default function Home() {
     setRendering(true);
     setRenderedVideoUrl("");
 
+    // Beat windows in output-timeline seconds, so the backend can apply
+    // the background frame to whole beats only
+    const beatWindows: { start: number; end: number }[] = [];
+    let winCursor = 0;
+    for (const b of beats) {
+      const dur = b.selectedClips.reduce((s, c) => s + (c.trimEnd - c.trimStart), 0);
+      if (dur > 0) {
+        beatWindows.push({ start: winCursor, end: winCursor + dur });
+        winCursor += dur;
+      }
+    }
+
     const formData = new FormData();
     formData.append("clips", JSON.stringify(clips));
+    formData.append("beatWindows", JSON.stringify(beatWindows));
     formData.append("script", script);
     formData.append("words", JSON.stringify(captionsEnabled ? words : []));
+    formData.append("background", background);
+    formData.append("bgFrequency", bgFrequency);
     if (audioFile) {
       formData.append("audio", audioFile);
     }
@@ -453,6 +470,55 @@ export default function Home() {
           })}
 
           <div className="render-section">
+            <div style={{ marginBottom: "14px" }}>
+              <p style={{ fontSize: "14px", color: "#9295a0", margin: "0 0 8px" }}>Background frame</p>
+              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                {[
+                  { id: "none", label: "None", bg: "#17181c" },
+                  { id: "black", label: "Pure Black", bg: "#000" },
+                  { id: "grid", label: "Dark Grid", bg: "repeating-linear-gradient(0deg,#0d0e12,#0d0e12 9px,#2a2c32 10px),repeating-linear-gradient(90deg,#0d0e12,#0d0e12 9px,#2a2c32 10px)" },
+                  { id: "blue-gradient", label: "Blue", bg: "linear-gradient(#1a2c5b,#05070d)" },
+                  { id: "green-gradient", label: "Green", bg: "linear-gradient(#14532d,#04100a)" },
+                  { id: "vintage", label: "Vintage", bg: "linear-gradient(#e8dfc8,#c9bfa5)" },
+                ].map((p) => (
+                  <div key={p.id} onClick={() => setBackground(p.id)} style={{ cursor: "pointer", textAlign: "center" }}>
+                    <div
+                      style={{
+                        width: "64px",
+                        height: "40px",
+                        borderRadius: "6px",
+                        background: p.bg,
+                        border: background === p.id ? "2px solid var(--accent-blue)" : "1px solid var(--border-subtle)",
+                      }}
+                    />
+                    <div style={{ fontSize: "10px", color: "#9295a0", marginTop: "4px" }}>{p.label}</div>
+                  </div>
+                ))}
+              </div>
+              {background !== "none" && (
+                <div style={{ marginTop: "10px", display: "flex", gap: "10px" }}>
+                  {[
+                    { id: "2-3", label: "2-3 times", tip: "Good for 8-15 min videos" },
+                    { id: "3-5", label: "3-5 times", tip: "Good for 30 min+ videos" },
+                  ].map((o) => (
+                    <div
+                      key={o.id}
+                      onClick={() => setBgFrequency(o.id)}
+                      style={{
+                        cursor: "pointer",
+                        padding: "8px 12px",
+                        borderRadius: "8px",
+                        border: bgFrequency === o.id ? "2px solid var(--accent-blue)" : "1px solid var(--border-subtle)",
+                        background: "var(--bg-elevated)",
+                      }}
+                    >
+                      <div style={{ fontSize: "13px", color: "#eceef1" }}>{o.label}</div>
+                      <div style={{ fontSize: "11px", color: "#5c5f68", marginTop: "2px" }}>{o.tip}</div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
             <label style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px", fontSize: "14px", color: "#9295a0" }}>
               <input
                 type="checkbox"
@@ -471,7 +537,7 @@ export default function Home() {
             )}
             <button
               onClick={handleRenderVideo}
-              disabled={rendering}
+              disabled={rendering || beats.some((b) => b.loadingMedia)}
               className="btn btn-primary"
               style={{ width: "100%", padding: "14px", fontSize: "15px" }}
             >

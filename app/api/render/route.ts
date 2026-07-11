@@ -29,6 +29,66 @@ function kenBurnsFilter(durationSec: number): string {
   return `${pre},${pick},setsar=1`;
 }
 
+// Picks background-frame beats, GUARANTEEING the promised count whenever the
+// video has enough beats: restricted to the middle-to-near-end stretch (never
+// the opening, never the final beat), never consecutive.
+function pickBackgroundWindows(
+  windows: { start: number; end: number }[],
+  frequency: string = "2-3"
+): { start: number; end: number }[] {
+  const n = windows.length;
+  if (n < 4) return [];
+
+  const lo = Math.max(1, Math.floor(n / 2));
+  const hi = n - 2; // exclude the final beat
+  if (hi < lo) return [];
+
+  const span = hi - lo + 1;
+  const desired =
+    frequency === "3-5"
+      ? 3 + Math.floor(Math.random() * 3) // 3, 4, or 5
+      : 2 + (Math.random() < 0.5 ? 1 : 0); // 2 or 3
+  // Non-consecutive picks in a span of S allow at most ceil(S/2) selections
+  const count = Math.min(desired, Math.ceil(span / 2));
+
+  const chosen: number[] = [];
+
+  // Pass 1: evenly spaced with jitter, pushed forward on collisions
+  for (let s = 0; s < count; s++) {
+    let idx = lo + Math.round(((s + 0.2 + Math.random() * 0.6) * span) / count);
+    idx = Math.max(lo, Math.min(hi, idx));
+    if (chosen.length > 0 && idx <= chosen[chosen.length - 1] + 1) {
+      idx = chosen[chosen.length - 1] + 2;
+    }
+    if (idx > hi) break;
+    chosen.push(idx);
+  }
+
+  // Pass 2 (guarantee): fill any shortfall from remaining valid slots
+  if (chosen.length < count) {
+    for (let idx = lo; idx <= hi && chosen.length < count; idx++) {
+      if (chosen.every((c) => Math.abs(c - idx) >= 2)) {
+        chosen.push(idx);
+      }
+    }
+    chosen.sort((a, b) => a - b);
+  }
+
+  console.log(
+    `DEBUG - background frames: requested ${frequency} (target ${desired}), delivering ${chosen.length}`
+  );
+
+  return chosen.map((i) => windows[i]);
+}
+
+const BG_PRESETS: Record<string, { input: string; filter: string }> = {
+  black: { input: "color=c=black:s=1280x720:r=25", filter: "null" },
+  grid: { input: "color=c=0x0d0e12:s=1280x720:r=25", filter: "drawgrid=w=40:h=40:t=1:color=0x2a2c32" },
+  "blue-gradient": { input: "gradients=s=1280x720:c0=0x1a2c5b:c1=0x05070d", filter: "null" },
+  "green-gradient": { input: "gradients=s=1280x720:c0=0x14532d:c1=0x04100a", filter: "null" },
+  vintage: { input: "gradients=s=1280x720:c0=0xe8dfc8:c1=0xc9bfa5", filter: "null" },
+};
+
 type RenderInput = {
   clips: { url: string; kind?: "video" | "image"; trimStart: number; trimEnd: number }[];
   words: { word: string; start: number; end: number }[];
@@ -37,6 +97,9 @@ type RenderInput = {
   audioName: string;
   musicBuffer: Buffer | null;
   musicName: string;
+  background: string;
+  bgFrequency: string;
+  beatWindows: { start: number; end: number }[];
 };
 
 export async function POST(req: NextRequest) {
@@ -59,6 +122,9 @@ export async function POST(req: NextRequest) {
     audioName: audioFile?.name || "narration.mp3",
     musicBuffer: musicFile ? Buffer.from(await musicFile.arrayBuffer()) : null,
     musicName: musicFile?.name || "music.mp3",
+    background: (formData.get("background") as string | null) || "none",
+    bgFrequency: (formData.get("bgFrequency") as string | null) || "2-3",
+    beatWindows: JSON.parse((formData.get("beatWindows") as string | null) || "[]"),
   };
 
   const job = createJob();
@@ -71,7 +137,7 @@ async function runRenderJob(jobId: string, input: RenderInput) {
 
   try {
     updateJob(jobId, { status: "processing", progress: 3, message: "Creating" });
-    const { clips, words, scriptText } = input;
+    const { clips, words, scriptText, background } = input;
 
     tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "video-tool-"));
     const downloadedFiles: string[] = [];
@@ -131,6 +197,11 @@ async function runRenderJob(jobId: string, input: RenderInput) {
     const videoInputs = downloadedFiles.map((f) => `-i "${f}"`).join(" ");
     const audioInput = audioPath ? `-i "${audioPath}"` : "";
     const musicInput = musicPath ? `-stream_loop -1 -i "${musicPath}"` : "";
+
+    const bgPreset = BG_PRESETS[background];
+    const useBackground = Boolean(bgPreset);
+    const bgIndex = downloadedFiles.length + (audioPath ? 1 : 0) + (musicPath ? 1 : 0);
+    const bgInput = useBackground ? `-f lavfi -i "${bgPreset.input}"` : "";
 
     const FADE_DUR = 0.5;
     // Crossfades disabled: xfade drops frames with mixed image/video inputs.
@@ -236,8 +307,31 @@ async function runRenderJob(jobId: string, input: RenderInput) {
       audioMapArgs = `-map "[aout]"`;
     }
 
+    let bgFilter = "";
+    if (useBackground) {
+      const bgWindows = pickBackgroundWindows(input.beatWindows || [], input.bgFrequency);
+      assemblyFilter = assemblyFilter.replace(`[${concatLabel}]`, "[asm]");
+      if (bgWindows.length === 0) {
+        bgFilter = `[${bgIndex}:v]${bgPreset.filter},fps=25,settb=AVTB[bgready]; [asm]scale=1024:576,setsar=1[smallv]; [bgready][smallv]overlay=(W-w)/2:(H-h)/2:shortest=1[${concatLabel}]`;
+      } else {
+        const enableExpr = bgWindows
+          .map((w) => `between(t,${w.start.toFixed(3)},${w.end.toFixed(3)})`)
+          .join("+");
+        console.log(
+          `DEBUG - background frame windows: ${bgWindows.map((w) => `${w.start.toFixed(1)}s-${w.end.toFixed(1)}s`).join(", ")}`
+        );
+        bgFilter =
+          `[asm]split=2[fullv][forsmall]; ` +
+          `[forsmall]scale=1024:576,setsar=1[smallv]; ` +
+          `[${bgIndex}:v]${bgPreset.filter},fps=25,settb=AVTB[bgready]; ` +
+          `[bgready][smallv]overlay=(W-w)/2:(H-h)/2:shortest=1[framed]; ` +
+          `[fullv][framed]overlay=0:0:enable='${enableExpr}'[${concatLabel}]`;
+      }
+    }
+
     const filterComplex =
       `${scaleFilters}; ${assemblyFilter}` +
+      (bgFilter ? `; ${bgFilter}` : "") +
       (subtitlesFilter ? `; ${subtitlesFilter}` : "") +
       (audioFilter ? `; ${audioFilter}` : "");
 
@@ -246,9 +340,9 @@ async function runRenderJob(jobId: string, input: RenderInput) {
     let cmd: string;
 
     if (hasAudio) {
-      cmd = `ffmpeg -y ${videoInputs} ${audioInput} ${musicInput} -filter_complex "${filterComplex}" -map "[outv]" ${audioMapArgs} -c:v libx264 -c:a aac -shortest "${outputPath}"`;
+      cmd = `ffmpeg -y ${videoInputs} ${audioInput} ${musicInput} ${bgInput} -filter_complex "${filterComplex}" -map "[outv]" ${audioMapArgs} -c:v libx264 -c:a aac -shortest "${outputPath}"`;
     } else {
-      cmd = `ffmpeg -y ${videoInputs} -filter_complex "${filterComplex}" -map "[outv]" -c:v libx264 "${outputPath}"`;
+      cmd = `ffmpeg -y ${videoInputs} ${bgInput} -filter_complex "${filterComplex}" -map "[outv]" -c:v libx264 "${outputPath}"`;
     }
 
     updateJob(jobId, { progress: 45, message: "Rendering" });
