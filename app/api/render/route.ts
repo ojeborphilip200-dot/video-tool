@@ -10,6 +10,24 @@ import { getCachedMedia } from "../_lib/cache";
 
 const execAsync = promisify(exec);
 
+
+// Ken Burns: animates a virtual camera over a still image.
+// Upscales first to avoid zoompan jitter, crops to 16:9, then applies a random motion.
+function kenBurnsFilter(durationSec: number): string {
+  const FPS = 25;
+  const frames = Math.max(1, Math.round(durationSec * FPS));
+  const pre = `scale=2560:1440:force_original_aspect_ratio=increase,crop=2560:1440`;
+
+  const variants = [
+    `zoompan=z='min(zoom+0.0010,1.25)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${frames}:s=1280x720:fps=${FPS}`,
+    `zoompan=z='if(eq(on,0),1.25,max(zoom-0.0010,1.0))':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${frames}:s=1280x720:fps=${FPS}`,
+    `zoompan=z='1.15':x='(iw-iw/zoom)*on/${frames}':y='ih/2-(ih/zoom/2)':d=${frames}:s=1280x720:fps=${FPS}`,
+  ];
+
+  const pick = variants[Math.floor(Math.random() * variants.length)];
+  return `${pre},${pick},setsar=1`;
+}
+
 export async function POST(req: NextRequest) {
   let tempDir = "";
 
@@ -71,15 +89,7 @@ export async function POST(req: NextRequest) {
       console.log(`DEBUG - ASS file written with ${words.length} words, ${callouts.length} callouts`);
     }
 
-    const videoInputs = downloadedFiles
-      .map((f, i) => {
-        if (clips[i].kind === "image") {
-          const dur = clips[i].trimEnd - clips[i].trimStart;
-          return `-loop 1 -t ${dur} -i "${f}"`;
-        }
-        return `-i "${f}"`;
-      })
-      .join(" ");
+    const videoInputs = downloadedFiles.map((f) => `-i "${f}"`).join(" ");
     const audioInput = audioPath ? `-i "${audioPath}"` : "";
     const musicInput = musicPath ? `-stream_loop -1 -i "${musicPath}"` : "";
 
@@ -87,8 +97,8 @@ export async function POST(req: NextRequest) {
       .map((_, i) => {
         const common = `scale=${TARGET_WIDTH}:${TARGET_HEIGHT}:force_original_aspect_ratio=decrease,pad=${TARGET_WIDTH}:${TARGET_HEIGHT}:(ow-iw)/2:(oh-ih)/2,setsar=1`;
         if (clips[i].kind === "image") {
-          // Images still need scaling (cached as originals) + fps for concat
-          return `[${i}:v:0]${common},fps=25[v${i}]`;
+          const dur = clips[i].trimEnd - clips[i].trimStart;
+          return `[${i}:v:0]${kenBurnsFilter(dur)}[v${i}]`;
         }
         // Videos are pre-normalized at cache time - just trim
         const start = clips[i].trimStart;
