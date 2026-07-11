@@ -136,7 +136,7 @@ export default function Home() {
     const res = await fetch("/api/footage", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query }),
+      body: JSON.stringify({ query, beatText: beat.text, keywords: beat.keywords }),
     });
 
     const data = await res.json();

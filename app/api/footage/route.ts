@@ -5,9 +5,16 @@ type MediaItem = {
   kind: "video" | "image";
   thumbnail: string;
   previewUrl: string;
-  duration: number; // images report 0
+  duration: number;
   source: "pexels" | "pixabay";
+  description: string;
 };
+
+function slugToWords(url: string): string {
+  // Pexels URLs look like https://www.pexels.com/video/drone-view-of-a-beach-857321/
+  const match = url.match(/\/(video|photo)\/([^/]+)-\d+\/?$/);
+  return match ? match[2].replace(/-/g, " ") : "";
+}
 
 async function searchPexelsVideos(query: string): Promise<MediaItem[]> {
   try {
@@ -26,6 +33,7 @@ async function searchPexelsVideos(query: string): Promise<MediaItem[]> {
         v.video_files.find((f: any) => f.quality === "sd")?.link || v.video_files[0]?.link,
       duration: v.duration,
       source: "pexels" as const,
+      description: slugToWords(v.url),
     }));
   } catch {
     return [];
@@ -48,6 +56,7 @@ async function searchPexelsImages(query: string): Promise<MediaItem[]> {
       previewUrl: p.src.large2x || p.src.large,
       duration: 0,
       source: "pexels" as const,
+      description: p.alt || slugToWords(p.url),
     }));
   } catch {
     return [];
@@ -69,6 +78,7 @@ async function searchPixabayVideos(query: string): Promise<MediaItem[]> {
       previewUrl: v.videos.small.url || v.videos.medium.url,
       duration: v.duration,
       source: "pixabay" as const,
+      description: v.tags || "",
     }));
   } catch {
     return [];
@@ -90,15 +100,66 @@ async function searchPixabayImages(query: string): Promise<MediaItem[]> {
       previewUrl: p.largeImageURL,
       duration: 0,
       source: "pixabay" as const,
+      description: p.tags || "",
     }));
   } catch {
     return [];
   }
 }
 
+// Ask Claude to rank all candidates against the beat's narration.
+// Returns the same items, sorted best-first. Any failure = original order.
+async function rankMedia(
+  beatText: string,
+  keywords: string[],
+  items: MediaItem[]
+): Promise<MediaItem[]> {
+  if (items.length <= 1) return items;
+
+  try {
+    const Anthropic = (await import("@anthropic-ai/sdk")).default;
+    const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+
+    const candidateList = items
+      .map((m) => `- id: ${m.id} | kind: ${m.kind} | description: ${m.description || "(none)"}`)
+      .join("\n");
+
+    const message = await anthropic.messages.create({
+      model: "claude-sonnet-4-6",
+      max_tokens: 500,
+      messages: [
+        {
+          role: "user",
+          content: `I'm matching stock media to a narration segment in a video.
+
+Narration: "${beatText}"
+Search keywords used: ${keywords.join(", ")}
+
+Candidates:
+${candidateList}
+
+Rank ALL candidates from best visual match to worst, judging by how well each description fits what the narration is about. Respond ONLY with a JSON array of ids in ranked order, no other text.`,
+        },
+      ],
+    });
+
+    const rawText = message.content[0].type === "text" ? message.content[0].text : "[]";
+    const cleaned = rawText.replace(/```json|```/g, "").trim();
+    const rankedIds: string[] = JSON.parse(cleaned);
+
+    const rankIndex = new Map(rankedIds.map((id, i) => [id, i]));
+    return [...items].sort(
+      (a, b) => (rankIndex.get(a.id) ?? 999) - (rankIndex.get(b.id) ?? 999)
+    );
+  } catch (err) {
+    console.error("Ranking failed, using original order:", err);
+    return items;
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
-    const { query } = await req.json();
+    const { query, beatText, keywords } = await req.json();
 
     if (!query) {
       return NextResponse.json({ error: "No query provided" }, { status: 400 });
@@ -111,8 +172,15 @@ export async function POST(req: NextRequest) {
       searchPixabayImages(query),
     ]);
 
-    const videos = [...pexelsVideos, ...pixabayVideos];
-    const images = [...pexelsImages, ...pixabayImages];
+    let videos = [...pexelsVideos, ...pixabayVideos];
+    let images = [...pexelsImages, ...pixabayImages];
+
+    // AI ranking: one call ranks videos and images together, then we split back out
+    if (beatText) {
+      const ranked = await rankMedia(beatText, keywords || [], [...videos, ...images]);
+      videos = ranked.filter((m) => m.kind === "video");
+      images = ranked.filter((m) => m.kind === "image");
+    }
 
     return NextResponse.json({ videos, images });
   } catch (err: any) {
