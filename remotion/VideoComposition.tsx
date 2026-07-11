@@ -1,4 +1,4 @@
-import { Series, OffthreadVideo, AbsoluteFill } from "remotion";
+import { Series, OffthreadVideo, Audio, AbsoluteFill, staticFile } from "remotion";
 
 export type ClipProps = {
   url: string;
@@ -9,9 +9,16 @@ export type ClipProps = {
 export type VideoCompositionProps = {
   clips: ClipProps[];
   fps: number;
+  narrationSrc?: string;
+  musicSrc?: string;
 };
 
-export const VideoComposition: React.FC<VideoCompositionProps> = ({ clips, fps }) => {
+export const VideoComposition: React.FC<VideoCompositionProps> = ({
+  clips,
+  fps,
+  narrationSrc,
+  musicSrc,
+}) => {
   return (
     <AbsoluteFill style={{ backgroundColor: "black" }}>
       <Series>
@@ -26,11 +33,15 @@ export const VideoComposition: React.FC<VideoCompositionProps> = ({ clips, fps }
                 startFrom={Math.round(clip.trimStart * fps)}
                 endAt={Math.round(clip.trimEnd * fps)}
                 style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                muted
               />
             </Series.Sequence>
           );
         })}
       </Series>
+
+      {narrationSrc && <Audio src={narrationSrc} volume={1} />}
+      {musicSrc && <Audio src={musicSrc} volume={0.18} loop />}
     </AbsoluteFill>
   );
 };
