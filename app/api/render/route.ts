@@ -6,6 +6,7 @@ import path from "path";
 import os from "os";
 import { generateAss, Callout } from "../_lib/ass";
 import { detectYearCallouts, detectLocationCallouts } from "../_lib/captions";
+import { getCachedMedia } from "../_lib/cache";
 
 const execAsync = promisify(exec);
 
@@ -33,12 +34,8 @@ export async function POST(req: NextRequest) {
     const downloadedFiles: string[] = [];
 
     for (let i = 0; i < clips.length; i++) {
-      const res = await fetch(clips[i].url);
-      const buffer = Buffer.from(await res.arrayBuffer());
-      const ext = clips[i].kind === "image" ? ".jpg" : ".mp4";
-      const filePath = path.join(tempDir, `clip-${i}${ext}`);
-      await fs.writeFile(filePath, buffer);
-      downloadedFiles.push(filePath);
+      const cachedPath = await getCachedMedia(clips[i].url, clips[i].kind || "video");
+      downloadedFiles.push(cachedPath);
     }
 
     let audioPath = "";
