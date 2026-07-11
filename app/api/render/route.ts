@@ -93,21 +93,25 @@ export async function POST(req: NextRequest) {
     const audioInput = audioPath ? `-i "${audioPath}"` : "";
     const musicInput = musicPath ? `-stream_loop -1 -i "${musicPath}"` : "";
 
+    const FADE_DUR = 0.5;
+    const useXfade = downloadedFiles.length > 1;
+
     const scaleFilters = downloadedFiles
       .map((_, i) => {
-        const common = `scale=${TARGET_WIDTH}:${TARGET_HEIGHT}:force_original_aspect_ratio=decrease,pad=${TARGET_WIDTH}:${TARGET_HEIGHT}:(ow-iw)/2:(oh-ih)/2,setsar=1`;
+        const isLast = i === downloadedFiles.length - 1;
+        // Pad every clip except the last with a clone of its final frame,
+        // so the crossfade overlap eats padding instead of real content
+        const pad = useXfade && !isLast ? `,tpad=stop_mode=clone:stop_duration=${FADE_DUR}` : "";
         if (clips[i].kind === "image") {
           const dur = clips[i].trimEnd - clips[i].trimStart;
-          return `[${i}:v:0]${kenBurnsFilter(dur)}[v${i}]`;
+          return `[${i}:v:0]${kenBurnsFilter(dur)}${pad},format=yuv420p[v${i}]`;
         }
-        // Videos are pre-normalized at cache time - just trim
-        const start = clips[i].trimStart;
-        const end = clips[i].trimEnd;
-        return `[${i}:v:0]trim=start=${start}:end=${end},setpts=PTS-STARTPTS[v${i}]`;
+        const s = clips[i].trimStart;
+        const e = clips[i].trimEnd;
+        return `[${i}:v:0]trim=start=${s}:end=${e},setpts=PTS-STARTPTS${pad},format=yuv420p[v${i}]`;
       })
       .join("; ");
 
-    const concatInputs = downloadedFiles.map((_, i) => `[v${i}]`).join("");
 
     // Subtitles filter goes right after concat - one filter replaces the whole old overlay chain
     const subtitlesFilter = assPath
@@ -115,6 +119,24 @@ export async function POST(req: NextRequest) {
       : "";
 
     const concatLabel = assPath ? "concatpre" : "outv";
+
+    // Assemble clips: xfade chain (crossfades) or passthrough for a single clip
+    let assemblyFilter: string;
+    if (!useXfade) {
+      assemblyFilter = `[v0]null[${concatLabel}]`;
+    } else {
+      const durs = clips.map((c) => c.trimEnd - c.trimStart);
+      let chain = "";
+      let prev = "v0";
+      let offset = 0;
+      for (let i = 1; i < downloadedFiles.length; i++) {
+        offset += durs[i - 1];
+        const out = i === downloadedFiles.length - 1 ? concatLabel : `xf${i}`;
+        chain += `[${prev}][v${i}]xfade=transition=fade:duration=${FADE_DUR}:offset=${offset.toFixed(3)}[${out}]; `;
+        prev = out;
+      }
+      assemblyFilter = chain.trim().replace(/;$/, "");
+    }
 
     const narrationIndex = downloadedFiles.length;
     const musicIndex = downloadedFiles.length + (audioPath ? 1 : 0);
@@ -139,7 +161,7 @@ export async function POST(req: NextRequest) {
     }
 
     const filterComplex =
-      `${scaleFilters}; ${concatInputs}concat=n=${downloadedFiles.length}:v=1:a=0[${concatLabel}]` +
+      `${scaleFilters}; ${assemblyFilter}` +
       (subtitlesFilter ? `; ${subtitlesFilter}` : "") +
       (audioFilter ? `; ${audioFilter}` : "");
 
