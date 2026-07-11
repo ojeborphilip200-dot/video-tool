@@ -10,16 +10,10 @@
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.110.0",
-    "@remotion/bundler": "^4.0.487",
-    "@remotion/cli": "^4.0.487",
-    "@remotion/player": "^4.0.487",
-    "@remotion/renderer": "^4.0.487",
-    "canvas": "^3.2.3",
     "next": "16.2.10",
     "openai": "^6.45.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "remotion": "^4.0.487",
     "zod": "4.3.6"
   },
   "devDependencies": {

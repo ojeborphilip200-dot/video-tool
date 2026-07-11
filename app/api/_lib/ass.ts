@@ -62,8 +62,16 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
     );
   }
 
+  // Sort callouts by start time and trim overlaps so only one shows at a time
+  const sorted = [...callouts].sort((a, b) => a.start - b.start);
+  for (let i = 0; i < sorted.length - 1; i++) {
+    if (sorted[i].end > sorted[i + 1].start) {
+      sorted[i] = { ...sorted[i], end: sorted[i + 1].start };
+    }
+  }
+
   // Callouts: ALL CAPS black text on white box, random position, pop-in scale animation
-  for (const callout of callouts) {
+  for (const callout of sorted) {
     const text = escapeAssText(callout.text.toUpperCase());
     const start = toAssTime(callout.start);
     const end = toAssTime(callout.end);
