@@ -123,7 +123,13 @@ export async function POST(req: NextRequest) {
     let audioMapArgs = "";
 
     if (audioPath && musicPath) {
-      audioFilter = `[${narrationIndex}:a:0]volume=1.0[narr]; [${musicIndex}:a:0]volume=0.18[musicvol]; [narr][musicvol]amix=inputs=2:duration=first:dropout_transition=2[aout]`;
+      // Auto-ducking: narration splits into a mix copy and a sidechain key;
+      // music is compressed whenever the key (voice) has energy, and rises in pauses.
+      audioFilter =
+        `[${narrationIndex}:a:0]asplit=2[narrmix][narrkey]; ` +
+        `[${musicIndex}:a:0]volume=0.55[musicpre]; ` +
+        `[musicpre][narrkey]sidechaincompress=threshold=0.03:ratio=8:attack=50:release=500[ducked]; ` +
+        `[narrmix][ducked]amix=inputs=2:duration=first:dropout_transition=2[aout]`;
       audioMapArgs = `-map "[aout]"`;
     } else if (audioPath) {
       audioMapArgs = `-map ${narrationIndex}:a:0`;
