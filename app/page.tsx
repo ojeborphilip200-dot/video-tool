@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import ClipTimeline from "./components/ClipTimeline";
+import VoiceoverWaveform from "./components/VoiceoverWaveform";
 
 type MediaItem = {
   id: string;
@@ -23,6 +24,8 @@ type Beat = {
   keywords: string[];
   treatment: "video" | "image";
   duration: number;
+  start: number;
+  end: number;
   videos?: MediaItem[];
   images?: MediaItem[];
   loadingMedia?: boolean;
@@ -87,6 +90,8 @@ export default function Home() {
       keywords: [s.split(/\s+/).slice(0, 4).join(" ")],
       treatment: "video" as const,
       duration: Math.max(2, s.trim().split(/\s+/).length / 2.5),
+      start: 0,
+      end: 0,
       selectedClips: [],
     }));
   }
@@ -112,6 +117,8 @@ export default function Home() {
             keywords: b.keywords || [],
             treatment: b.treatment || "video",
             duration: b.duration,
+            start: b.start || 0,
+            end: b.end || 0,
             selectedClips: [],
           }))
         );
@@ -312,6 +319,14 @@ export default function Home() {
 
       {beats.length > 0 && (
         <div>
+          {audioFile && (
+            <VoiceoverWaveform
+              audioFile={audioFile}
+              beatMarkers={beats
+                .filter((b) => b.end > b.start)
+                .map((b, i) => ({ start: b.start, end: b.end, label: `B${i + 1}` }))}
+            />
+          )}
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", margin: "24px 0 12px" }}>
             <h2 style={{ fontSize: "15px", fontWeight: 600, color: "#9295a0", margin: 0 }}>
               BEATS ({beats.length})

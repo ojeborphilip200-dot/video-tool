@@ -87,11 +87,13 @@ export async function POST(req: NextRequest) {
       .map((_, i) => {
         const common = `scale=${TARGET_WIDTH}:${TARGET_HEIGHT}:force_original_aspect_ratio=decrease,pad=${TARGET_WIDTH}:${TARGET_HEIGHT}:(ow-iw)/2:(oh-ih)/2,setsar=1`;
         if (clips[i].kind === "image") {
+          // Images still need scaling (cached as originals) + fps for concat
           return `[${i}:v:0]${common},fps=25[v${i}]`;
         }
+        // Videos are pre-normalized at cache time - just trim
         const start = clips[i].trimStart;
         const end = clips[i].trimEnd;
-        return `[${i}:v:0]trim=start=${start}:end=${end},setpts=PTS-STARTPTS,${common}[v${i}]`;
+        return `[${i}:v:0]trim=start=${start}:end=${end},setpts=PTS-STARTPTS[v${i}]`;
       })
       .join("; ");
 
