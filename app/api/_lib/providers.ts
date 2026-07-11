@@ -230,3 +230,28 @@ export async function searchINaturalist(query: string): Promise<MediaItem[]> {
     return [];
   }
 }
+
+// Unsplash: free key, top-tier photo quality. Dev tier: 50 requests/hour.
+export async function searchUnsplash(query: string): Promise<MediaItem[]> {
+  try {
+    const key = process.env.UNSPLASH_ACCESS_KEY;
+    if (!key) return [];
+    const res = await fetch(
+      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=3`,
+      { headers: { Authorization: `Client-ID ${key}` } }
+    );
+    const data = await res.json();
+    if (!res.ok || !data.results) return [];
+    return data.results.map((p: any) => ({
+      id: `unsplash-i-${p.id}`,
+      kind: "image" as const,
+      thumbnail: p.urls?.small || p.urls?.thumb || "",
+      previewUrl: p.urls?.regular || p.urls?.full || "",
+      duration: 0,
+      source: "unsplash",
+      description: p.alt_description || p.description || "",
+    })).filter((m: MediaItem) => m.previewUrl);
+  } catch {
+    return [];
+  }
+}
