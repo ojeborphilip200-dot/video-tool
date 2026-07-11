@@ -43,23 +43,26 @@ ${script}`,
     const aiBeats: { text: string; keywords: string[]; treatment: "video" | "image" }[] =
       JSON.parse(cleaned);
 
-    // Map each beat back to real narration timings using word timestamps
+    // Map beats to narration timings sequentially: beats are verbatim and in
+    // order, so walk the word list with a cursor. Snap each beat's start to its
+    // first word within a small lookahead window, size it by word count - never
+    // depends on last-word matching, so every beat gets a timestamp.
+    let wordCursor = 0;
     const beats = aiBeats.map((beat) => {
+      const beatWords = beat.text
+        .toLowerCase()
+        .split(/\s+/)
+        .map((w) => w.replace(/[^a-z0-9']/g, ""))
+        .filter(Boolean);
+
       let start = 0;
       let end = 0;
 
-      if (words && words.length > 0) {
-        const beatWords = beat.text
-          .toLowerCase()
-          .split(/\s+/)
-          .map((w) => w.replace(/[^a-z0-9']/g, ""))
-          .filter(Boolean);
-
+      if (words && words.length > 0 && beatWords.length > 0 && wordCursor < words.length) {
         const firstWord = beatWords[0];
-        const lastWord = beatWords[beatWords.length - 1];
-
-        let startIdx = -1;
-        for (let i = 0; i < words.length; i++) {
+        let startIdx = wordCursor;
+        const windowEnd = Math.min(wordCursor + 12, words.length);
+        for (let i = wordCursor; i < windowEnd; i++) {
           const clean = words[i].word.toLowerCase().replace(/[^a-z0-9']/g, "");
           if (clean === firstWord) {
             startIdx = i;
@@ -67,21 +70,10 @@ ${script}`,
           }
         }
 
-        let endIdx = -1;
-        if (startIdx >= 0) {
-          for (let i = Math.min(startIdx + beatWords.length + 5, words.length - 1); i >= startIdx; i--) {
-            const clean = words[i].word.toLowerCase().replace(/[^a-z0-9']/g, "");
-            if (clean === lastWord) {
-              endIdx = i;
-              break;
-            }
-          }
-        }
-
-        if (startIdx >= 0 && endIdx >= 0) {
-          start = words[startIdx].start;
-          end = words[endIdx].end;
-        }
+        const endIdx = Math.min(startIdx + beatWords.length - 1, words.length - 1);
+        start = words[startIdx].start;
+        end = words[endIdx].end;
+        wordCursor = endIdx + 1;
       }
 
       const duration =
@@ -92,19 +84,9 @@ ${script}`,
       return { ...beat, start, end, duration };
     });
 
-    // Consume matched words so repeated phrases don't all match the first occurrence:
-    // (simple approach - beats are sequential, so track a moving cursor)
-    let cursor = 0;
-    for (const b of beats) {
-      if (b.end > 0 && b.start >= 0) {
-        if (b.start < cursor) {
-          // Overlapping/backwards match - shift to cursor and re-derive end from duration
-          b.start = cursor;
-          b.end = cursor + b.duration;
-        }
-        cursor = b.end;
-      }
-    }
+    console.log(
+      `DEBUG - beats with real timings: ${beats.filter((b) => b.end > b.start).length}/${beats.length}`
+    );
 
     return NextResponse.json({ beats });
   } catch (err: any) {
