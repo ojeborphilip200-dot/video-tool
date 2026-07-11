@@ -10,7 +10,7 @@ type MediaItem = {
   thumbnail: string;
   previewUrl: string;
   duration: number;
-  source: "pexels" | "pixabay";
+  source: string;
 };
 
 type SelectedClip = {

@@ -104,11 +104,11 @@ export async function POST(req: NextRequest) {
         const pad = useXfade && !isLast ? `,tpad=stop_mode=clone:stop_duration=${FADE_DUR}` : "";
         if (clips[i].kind === "image") {
           const dur = clips[i].trimEnd - clips[i].trimStart;
-          return `[${i}:v:0]${kenBurnsFilter(dur)}${pad},format=yuv420p[v${i}]`;
+          return `[${i}:v:0]${kenBurnsFilter(dur)}${pad},format=yuv420p,settb=AVTB[v${i}]`;
         }
         const s = clips[i].trimStart;
         const e = clips[i].trimEnd;
-        return `[${i}:v:0]trim=start=${s}:end=${e},setpts=PTS-STARTPTS${pad},format=yuv420p[v${i}]`;
+        return `[${i}:v:0]trim=start=${s}:end=${e},setpts=PTS-STARTPTS${pad},format=yuv420p,settb=AVTB[v${i}]`;
       })
       .join("; ");
 

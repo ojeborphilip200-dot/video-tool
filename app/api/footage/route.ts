@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { searchOpenverse, searchWikimedia, searchNasa, searchArtInstitute } from "../_lib/providers";
 
 type MediaItem = {
   id: string;
@@ -6,7 +7,7 @@ type MediaItem = {
   thumbnail: string;
   previewUrl: string;
   duration: number;
-  source: "pexels" | "pixabay";
+  source: string;
   description: string;
 };
 
@@ -165,15 +166,28 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "No query provided" }, { status: 400 });
     }
 
-    const [pexelsVideos, pixabayVideos, pexelsImages, pixabayImages] = await Promise.all([
+    const [
+      pexelsVideos,
+      pixabayVideos,
+      pexelsImages,
+      pixabayImages,
+      openverseImages,
+      wikimediaImages,
+      nasaImages,
+      articImages,
+    ] = await Promise.all([
       searchPexelsVideos(query),
       searchPixabayVideos(query),
       searchPexelsImages(query),
       searchPixabayImages(query),
+      searchOpenverse(query),
+      searchWikimedia(query),
+      searchNasa(query),
+      searchArtInstitute(query),
     ]);
 
     let videos = [...pexelsVideos, ...pixabayVideos];
-    let images = [...pexelsImages, ...pixabayImages];
+    let images = [...pexelsImages, ...pixabayImages, ...openverseImages, ...wikimediaImages, ...nasaImages, ...articImages];
 
     // AI ranking: one call ranks videos and images together, then we split back out
     if (beatText) {
