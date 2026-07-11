@@ -54,6 +54,18 @@ export async function POST(req: NextRequest) {
     for (let i = 0; i < clips.length; i++) {
       const cachedPath = await getCachedMedia(clips[i].url, clips[i].kind || "video");
       downloadedFiles.push(cachedPath);
+      // DEBUG: compare assumed trim window vs the file's real duration
+      try {
+        const { stdout } = await execAsync(
+          `ffprobe -v error -show_entries format=duration -of csv=p=0 "${cachedPath}"`
+        );
+        console.log(
+          `DEBUG clip ${i}: kind=${clips[i].kind} trim=${clips[i].trimStart}-${clips[i].trimEnd} ` +
+          `(want ${(clips[i].trimEnd - clips[i].trimStart).toFixed(2)}s) actualFile=${stdout.trim()}s`
+        );
+      } catch {
+        console.log(`DEBUG clip ${i}: probe failed for ${cachedPath}`);
+      }
     }
 
     let audioPath = "";
@@ -94,21 +106,53 @@ export async function POST(req: NextRequest) {
     const musicInput = musicPath ? `-stream_loop -1 -i "${musicPath}"` : "";
 
     const FADE_DUR = 0.5;
-    const useXfade = downloadedFiles.length > 1;
+    // Crossfades disabled: xfade drops frames with mixed image/video inputs.
+    // Flip to true to re-enable once that bug is solved.
+    const ENABLE_CROSSFADES = false;
+    const useXfade = ENABLE_CROSSFADES && downloadedFiles.length > 1;
+
+    // Ensure the video covers the full narration: if selected clips total less
+    // than the audio length, extend the last clip by holding its final frame.
+    let lastClipExtraPad = 0;
+    if (audioPath) {
+      try {
+        // Fully decode for an exact duration - MP3 header estimates can be seconds off
+        const { stdout: probeOut, stderr: probeErr } = await execAsync(
+          `ffmpeg -i "${audioPath}" -f null - 2>&1 | tail -5`,
+          { shell: "/bin/bash", maxBuffer: 1024 * 1024 * 10 }
+        );
+        const m = String(probeOut || probeErr || "").match(/time=(\d+):(\d+):(\d+\.?\d*)/g);
+        let audioDur = NaN;
+        if (m && m.length > 0) {
+          const last = m[m.length - 1].replace("time=", "").split(":");
+          audioDur = parseInt(last[0]) * 3600 + parseInt(last[1]) * 60 + parseFloat(last[2]);
+        }
+        const totalVideo = clips.reduce((s, c) => s + (c.trimEnd - c.trimStart), 0);
+        if (!isNaN(audioDur) && audioDur > totalVideo + 0.05) {
+          lastClipExtraPad = audioDur - totalVideo;
+          console.log(`DEBUG - padding last clip by ${lastClipExtraPad.toFixed(2)}s to cover narration`);
+        } else {
+          console.log(`DEBUG - no padding needed: audioDur=${audioDur}, totalVideo=${totalVideo.toFixed(2)}`);
+        }
+      } catch (e) {
+        console.error("DEBUG - audio probe failed:", e);
+      }
+    }
 
     const scaleFilters = downloadedFiles
       .map((_, i) => {
         const isLast = i === downloadedFiles.length - 1;
         // Pad every clip except the last with a clone of its final frame,
         // so the crossfade overlap eats padding instead of real content
-        const pad = useXfade && !isLast ? `,tpad=stop_mode=clone:stop_duration=${FADE_DUR}` : "";
+        const padDur = isLast ? lastClipExtraPad : useXfade ? FADE_DUR : 0;
+        const pad = padDur > 0 ? `,tpad=stop_mode=clone:stop_duration=${padDur.toFixed(3)}` : "";
         if (clips[i].kind === "image") {
           const dur = clips[i].trimEnd - clips[i].trimStart;
-          return `[${i}:v:0]${kenBurnsFilter(dur)}${pad},format=yuv420p,settb=AVTB[v${i}]`;
+          return `[${i}:v:0]${kenBurnsFilter(dur)}${pad},format=yuv420p,fps=25,settb=AVTB[v${i}]`;
         }
         const s = clips[i].trimStart;
         const e = clips[i].trimEnd;
-        return `[${i}:v:0]trim=start=${s}:end=${e},setpts=PTS-STARTPTS${pad},format=yuv420p,settb=AVTB[v${i}]`;
+        return `[${i}:v:0]trim=start=${s}:end=${e},setpts=PTS-STARTPTS${pad},format=yuv420p,fps=25,settb=AVTB[v${i}]`;
       })
       .join("; ");
 
@@ -123,7 +167,12 @@ export async function POST(req: NextRequest) {
     // Assemble clips: xfade chain (crossfades) or passthrough for a single clip
     let assemblyFilter: string;
     if (!useXfade) {
-      assemblyFilter = `[v0]null[${concatLabel}]`;
+      if (downloadedFiles.length === 1) {
+        assemblyFilter = `[v0]null[${concatLabel}]`;
+      } else {
+        const concatInputs = downloadedFiles.map((_, i) => `[v${i}]`).join("");
+        assemblyFilter = `${concatInputs}concat=n=${downloadedFiles.length}:v=1:a=0[${concatLabel}]`;
+      }
     } else {
       const durs = clips.map((c) => c.trimEnd - c.trimStart);
       let chain = "";
@@ -175,7 +224,19 @@ export async function POST(req: NextRequest) {
       cmd = `ffmpeg -y ${videoInputs} -filter_complex "${filterComplex}" -map "[outv]" -c:v libx264 "${outputPath}"`;
     }
 
-    await execAsync(cmd, { maxBuffer: 1024 * 1024 * 50 });
+    await fs.writeFile(path.join(process.cwd(), "last-render-cmd.txt"), cmd);
+    const renderResult = await execAsync(cmd, { maxBuffer: 1024 * 1024 * 50 });
+    const errTail = String(renderResult.stderr || "").split("\n").slice(-25).join("\n");
+    console.log("DEBUG - ffmpeg stderr tail:\n" + errTail);
+
+    try {
+      const { stdout } = await execAsync(
+        `ffprobe -v error -show_entries format=duration -of csv=p=0 "${outputPath}"`
+      );
+      console.log(`DEBUG - rendered output duration: ${stdout.trim()}s`);
+    } catch {
+      console.log("DEBUG - output probe failed");
+    }
 
     const videoBuffer = await fs.readFile(outputPath);
 

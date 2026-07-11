@@ -133,3 +133,100 @@ export async function searchArtInstitute(query: string): Promise<MediaItem[]> {
     return [];
   }
 }
+
+// The Met: no key, public-domain artworks and artifacts. Two-step API (search -> object details).
+export async function searchMet(query: string): Promise<MediaItem[]> {
+  try {
+    const res = await fetch(
+      `https://collectionapi.metmuseum.org/public/collection/v1/search?q=${encodeURIComponent(query)}&hasImages=true`
+    );
+    const data = await res.json();
+    const ids: number[] = (data?.objectIDs || []).slice(0, 3);
+    if (ids.length === 0) return [];
+
+    const results = await Promise.all(
+      ids.map(async (id) => {
+        try {
+          const objRes = await fetch(
+            `https://collectionapi.metmuseum.org/public/collection/v1/objects/${id}`
+          );
+          const obj = await objRes.json();
+          if (!obj?.primaryImage) return null;
+          return {
+            id: `met-i-${id}`,
+            kind: "image" as const,
+            thumbnail: obj.primaryImageSmall || obj.primaryImage,
+            previewUrl: obj.primaryImage,
+            duration: 0,
+            source: "met",
+            description: obj.title || "",
+          };
+        } catch {
+          return null;
+        }
+      })
+    );
+
+    return results.filter(Boolean) as MediaItem[];
+  } catch {
+    return [];
+  }
+}
+
+// Library of Congress: no key. Historical photos, prints, documents.
+export async function searchLoc(query: string): Promise<MediaItem[]> {
+  try {
+    const res = await fetch(
+      `https://www.loc.gov/photos/?q=${encodeURIComponent(query)}&fo=json&c=3`
+    );
+    const data = await res.json();
+    const items = (data?.results || []).slice(0, 3);
+    return items
+      .map((r: any) => {
+        const imgs: string[] = Array.isArray(r.image_url) ? r.image_url : [];
+        if (imgs.length === 0) return null;
+        const thumb = imgs[0];
+        const preview = imgs[imgs.length - 1] || thumb;
+        return {
+          id: `loc-i-${(r.id || "").replace(/[^a-z0-9]/gi, "").slice(-16)}`,
+          kind: "image" as const,
+          thumbnail: thumb.startsWith("//") ? "https:" + thumb : thumb,
+          previewUrl: preview.startsWith("//") ? "https:" + preview : preview,
+          duration: 0,
+          source: "loc",
+          description: r.title || "",
+        };
+      })
+      .filter(Boolean) as MediaItem[];
+  } catch {
+    return [];
+  }
+}
+
+// iNaturalist: no key. Species/wildlife photos via taxa search.
+export async function searchINaturalist(query: string): Promise<MediaItem[]> {
+  try {
+    const res = await fetch(
+      `https://api.inaturalist.org/v1/taxa?q=${encodeURIComponent(query)}&per_page=3`
+    );
+    const data = await res.json();
+    const items = (data?.results || []).slice(0, 3);
+    return items
+      .map((t: any) => {
+        const photo = t.default_photo;
+        if (!photo?.medium_url) return null;
+        return {
+          id: `inat-i-${t.id}`,
+          kind: "image" as const,
+          thumbnail: photo.square_url || photo.medium_url,
+          previewUrl: photo.medium_url.replace("medium", "large"),
+          duration: 0,
+          source: "inaturalist",
+          description: `${t.preferred_common_name || t.name || ""} (license: ${photo.license_code || "?"})`,
+        };
+      })
+      .filter(Boolean) as MediaItem[];
+  } catch {
+    return [];
+  }
+}
