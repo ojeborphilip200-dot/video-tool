@@ -45,3 +45,4 @@ test-remotion-output.mp4
 public/temp-audio
 models/
 .clip-cache
+.render-output

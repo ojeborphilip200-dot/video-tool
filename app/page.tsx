@@ -51,6 +51,7 @@ export default function Home() {
   const [musicFile, setMusicFile] = useState<File | null>(null);
   const [words, setWords] = useState<{ word: string; start: number; end: number }[]>([]);
   const [captionsEnabled, setCaptionsEnabled] = useState(true);
+  const [renderProgress, setRenderProgress] = useState<{ progress: number; message: string } | null>(null);
 
   async function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -260,17 +261,44 @@ export default function Home() {
       body: formData,
     });
 
-    setRendering(false);
-
     if (!res.ok) {
+      setRendering(false);
       const data = await res.json();
       alert("Error: " + (data.error || "Rendering failed"));
       return;
     }
 
-    const blob = await res.blob();
-    const url = URL.createObjectURL(blob);
-    setRenderedVideoUrl(url);
+    const { jobId } = await res.json();
+
+    const poll = async (): Promise<void> => {
+      try {
+        const sRes = await fetch(`/api/render-status?id=${jobId}`);
+        const job = await sRes.json();
+
+        if (job.status === "error") {
+          setRendering(false);
+          setRenderProgress(null);
+          alert("Error: " + (job.error || "Rendering failed"));
+          return;
+        }
+
+        if (job.status === "done") {
+          const rRes = await fetch(`/api/render-result?id=${jobId}`);
+          const blob = await rRes.blob();
+          setRenderedVideoUrl(URL.createObjectURL(blob));
+          setRendering(false);
+          setRenderProgress(null);
+          return;
+        }
+
+        setRenderProgress({ progress: job.progress || 0, message: job.message || "Working..." });
+      } catch {
+        // transient polling error - keep trying
+      }
+      setTimeout(poll, 1500);
+    };
+
+    poll();
   }
 
   return (
@@ -433,13 +461,21 @@ export default function Home() {
               />
               Add captions to video
             </label>
+            {rendering && renderProgress && (
+              <div style={{ marginBottom: "10px" }}>
+                <div style={{ height: "6px", background: "#2a2c32", borderRadius: "3px", overflow: "hidden" }}>
+                  <div style={{ height: "100%", width: `${renderProgress.progress}%`, background: "var(--accent-blue)", transition: "width 0.4s" }} />
+                </div>
+                <p style={{ fontSize: "12px", color: "#9295a0", margin: "6px 0 0" }}>{renderProgress.message}</p>
+              </div>
+            )}
             <button
               onClick={handleRenderVideo}
               disabled={rendering}
               className="btn btn-primary"
               style={{ width: "100%", padding: "14px", fontSize: "15px" }}
             >
-              {rendering ? "Rendering video... this may take a minute" : "Render Full Video"}
+              {rendering ? "Rendering..." : "Render Full Video"}
             </button>
 
             {renderedVideoUrl && (

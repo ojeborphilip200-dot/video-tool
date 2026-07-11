@@ -7,6 +7,7 @@ import os from "os";
 import { generateAss, Callout } from "../_lib/ass";
 import { detectYearCallouts, detectLocationCallouts } from "../_lib/captions";
 import { getCachedMedia } from "../_lib/cache";
+import { createJob, updateJob } from "../_lib/jobs";
 
 const execAsync = promisify(exec);
 
@@ -28,30 +29,58 @@ function kenBurnsFilter(durationSec: number): string {
   return `${pre},${pick},setsar=1`;
 }
 
+type RenderInput = {
+  clips: { url: string; kind?: "video" | "image"; trimStart: number; trimEnd: number }[];
+  words: { word: string; start: number; end: number }[];
+  scriptText: string;
+  audioBuffer: Buffer | null;
+  audioName: string;
+  musicBuffer: Buffer | null;
+  musicName: string;
+};
+
 export async function POST(req: NextRequest) {
+  const formData = await req.formData();
+  const clipsJson = formData.get("clips") as string;
+  const wordsJson = formData.get("words") as string | null;
+  const scriptText = (formData.get("script") as string | null) || "";
+  const audioFile = formData.get("audio") as File | null;
+  const musicFile = formData.get("music") as File | null;
+
+  if (!clipsJson) {
+    return NextResponse.json({ error: "No videos provided" }, { status: 400 });
+  }
+
+  const input: RenderInput = {
+    clips: JSON.parse(clipsJson),
+    words: wordsJson ? JSON.parse(wordsJson) : [],
+    scriptText,
+    audioBuffer: audioFile ? Buffer.from(await audioFile.arrayBuffer()) : null,
+    audioName: audioFile?.name || "narration.mp3",
+    musicBuffer: musicFile ? Buffer.from(await musicFile.arrayBuffer()) : null,
+    musicName: musicFile?.name || "music.mp3",
+  };
+
+  const job = createJob();
+  void runRenderJob(job.id, input);
+  return NextResponse.json({ jobId: job.id });
+}
+
+async function runRenderJob(jobId: string, input: RenderInput) {
   let tempDir = "";
 
   try {
-    const formData = await req.formData();
-    const clipsJson = formData.get("clips") as string;
-    const wordsJson = formData.get("words") as string | null;
-    const scriptText = (formData.get("script") as string | null) || "";
-    const audioFile = formData.get("audio") as File | null;
-    const musicFile = formData.get("music") as File | null;
-
-    if (!clipsJson) {
-      return NextResponse.json({ error: "No videos provided" }, { status: 400 });
-    }
-
-    const clips: { url: string; kind?: "video" | "image"; trimStart: number; trimEnd: number }[] = JSON.parse(clipsJson);
-    const words: { word: string; start: number; end: number }[] = wordsJson
-      ? JSON.parse(wordsJson)
-      : [];
+    updateJob(jobId, { status: "processing", progress: 3, message: "Starting render" });
+    const { clips, words, scriptText } = input;
 
     tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "video-tool-"));
     const downloadedFiles: string[] = [];
 
     for (let i = 0; i < clips.length; i++) {
+      updateJob(jobId, {
+        progress: 5 + Math.round((i / clips.length) * 35),
+        message: `Fetching media ${i + 1}/${clips.length}`,
+      });
       const cachedPath = await getCachedMedia(clips[i].url, clips[i].kind || "video");
       downloadedFiles.push(cachedPath);
       // DEBUG: compare assumed trim window vs the file's real duration
@@ -69,17 +98,15 @@ export async function POST(req: NextRequest) {
     }
 
     let audioPath = "";
-    if (audioFile) {
-      const audioBuffer = Buffer.from(await audioFile.arrayBuffer());
-      audioPath = path.join(tempDir, "narration" + path.extname(audioFile.name || ".mp3"));
-      await fs.writeFile(audioPath, audioBuffer);
+    if (input.audioBuffer) {
+      audioPath = path.join(tempDir, "narration" + path.extname(input.audioName));
+      await fs.writeFile(audioPath, input.audioBuffer);
     }
 
     let musicPath = "";
-    if (musicFile) {
-      const musicBuffer = Buffer.from(await musicFile.arrayBuffer());
-      musicPath = path.join(tempDir, "music" + path.extname(musicFile.name || ".mp3"));
-      await fs.writeFile(musicPath, musicBuffer);
+    if (input.musicBuffer) {
+      musicPath = path.join(tempDir, "music" + path.extname(input.musicName));
+      await fs.writeFile(musicPath, input.musicBuffer);
     }
 
     const outputPath = path.join(tempDir, "output.mp4");
@@ -224,6 +251,7 @@ export async function POST(req: NextRequest) {
       cmd = `ffmpeg -y ${videoInputs} -filter_complex "${filterComplex}" -map "[outv]" -c:v libx264 "${outputPath}"`;
     }
 
+    updateJob(jobId, { progress: 45, message: "Rendering video with FFmpeg" });
     await fs.writeFile(path.join(process.cwd(), "last-render-cmd.txt"), cmd);
     const renderResult = await execAsync(cmd, { maxBuffer: 1024 * 1024 * 50 });
     const errTail = String(renderResult.stderr || "").split("\n").slice(-25).join("\n");
@@ -238,17 +266,15 @@ export async function POST(req: NextRequest) {
       console.log("DEBUG - output probe failed");
     }
 
-    const videoBuffer = await fs.readFile(outputPath);
+    const outDir = path.join(process.cwd(), ".render-output");
+    await fs.mkdir(outDir, { recursive: true });
+    const finalPath = path.join(outDir, `${jobId}.mp4`);
+    await fs.copyFile(outputPath, finalPath);
 
-    return new NextResponse(videoBuffer, {
-      headers: {
-        "Content-Type": "video/mp4",
-        "Content-Disposition": "attachment; filename=final-video.mp4",
-      },
-    });
+    updateJob(jobId, { status: "done", progress: 100, message: "Done", outputPath: finalPath });
   } catch (err: any) {
     console.error(err);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    updateJob(jobId, { status: "error", error: err.message, message: "Render failed" });
   } finally {
     if (tempDir) {
       await fs.rm(tempDir, { recursive: true, force: true }).catch(() => {});
