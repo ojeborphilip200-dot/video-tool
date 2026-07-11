@@ -70,7 +70,7 @@ async function runRenderJob(jobId: string, input: RenderInput) {
   let tempDir = "";
 
   try {
-    updateJob(jobId, { status: "processing", progress: 3, message: "Starting render" });
+    updateJob(jobId, { status: "processing", progress: 3, message: "Creating" });
     const { clips, words, scriptText } = input;
 
     tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "video-tool-"));
@@ -79,7 +79,7 @@ async function runRenderJob(jobId: string, input: RenderInput) {
     for (let i = 0; i < clips.length; i++) {
       updateJob(jobId, {
         progress: 5 + Math.round((i / clips.length) * 35),
-        message: `Fetching media ${i + 1}/${clips.length}`,
+        message: "Adding Edits",
       });
       const cachedPath = await getCachedMedia(clips[i].url, clips[i].kind || "video");
       downloadedFiles.push(cachedPath);
@@ -251,7 +251,7 @@ async function runRenderJob(jobId: string, input: RenderInput) {
       cmd = `ffmpeg -y ${videoInputs} -filter_complex "${filterComplex}" -map "[outv]" -c:v libx264 "${outputPath}"`;
     }
 
-    updateJob(jobId, { progress: 45, message: "Rendering video with FFmpeg" });
+    updateJob(jobId, { progress: 45, message: "Rendering" });
     await fs.writeFile(path.join(process.cwd(), "last-render-cmd.txt"), cmd);
     const renderResult = await execAsync(cmd, { maxBuffer: 1024 * 1024 * 50 });
     const errTail = String(renderResult.stderr || "").split("\n").slice(-25).join("\n");

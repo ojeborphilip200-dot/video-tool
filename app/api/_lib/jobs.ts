@@ -18,7 +18,7 @@ export function createJob(): RenderJob {
     id: crypto.randomUUID(),
     status: "queued",
     progress: 0,
-    message: "Queued",
+    message: "Received",
     createdAt: Date.now(),
   };
   jobs.set(job.id, job);
