@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { searchOpenverse, searchWikimedia, searchNasa, searchArtInstitute, searchMet, searchLoc, searchINaturalist, searchUnsplash } from "../_lib/providers";
+import { searchOpenverse, searchWikimedia, searchNasa, searchArtInstitute, searchMet, searchLoc, searchINaturalist, searchUnsplash, searchEuropeana, searchSmithsonian } from "../_lib/providers";
 
 type MediaItem = {
   id: string;
@@ -179,6 +179,8 @@ export async function POST(req: NextRequest) {
       locImages,
       inatImages,
       unsplashImages,
+      europeanaImages,
+      smithsonianImages,
     ] = await Promise.all([
       searchPexelsVideos(query),
       searchPixabayVideos(query),
@@ -192,10 +194,12 @@ export async function POST(req: NextRequest) {
       searchLoc(query),
       searchINaturalist(query),
       searchUnsplash(query),
+      searchEuropeana(query),
+      searchSmithsonian(query),
     ]);
 
     let videos = [...pexelsVideos, ...pixabayVideos];
-    let images = [...pexelsImages, ...pixabayImages, ...openverseImages, ...wikimediaImages, ...nasaImages, ...articImages, ...metImages, ...locImages, ...inatImages, ...unsplashImages];
+    let images = [...pexelsImages, ...pixabayImages, ...openverseImages, ...wikimediaImages, ...nasaImages, ...articImages, ...metImages, ...locImages, ...inatImages, ...unsplashImages, ...europeanaImages, ...smithsonianImages];
 
     // AI ranking: one call ranks videos and images together, then we split back out
     if (beatText) {

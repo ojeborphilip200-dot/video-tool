@@ -255,3 +255,68 @@ export async function searchUnsplash(query: string): Promise<MediaItem[]> {
     return [];
   }
 }
+
+// Europeana: free key, aggregates European museums/archives/libraries.
+export async function searchEuropeana(query: string): Promise<MediaItem[]> {
+  try {
+    const key = process.env.EUROPEANA_API_KEY;
+    if (!key) return [];
+    const res = await fetch(
+      `https://api.europeana.eu/record/v2/search.json?wskey=${key}&query=${encodeURIComponent(query)}&rows=3&media=true&qf=TYPE:IMAGE`
+    );
+    const data = await res.json();
+    if (!res.ok || !data.items) return [];
+    return data.items
+      .map((r: any) => {
+        const thumb = Array.isArray(r.edmPreview) ? r.edmPreview[0] : r.edmPreview;
+        const full = Array.isArray(r.edmIsShownBy) ? r.edmIsShownBy[0] : r.edmIsShownBy;
+        if (!thumb && !full) return null;
+        const title = Array.isArray(r.title) ? r.title[0] : r.title || "";
+        return {
+          id: `europeana-i-${(r.id || "").replace(/[^a-zA-Z0-9]/g, "").slice(-16)}`,
+          kind: "image" as const,
+          thumbnail: thumb || full,
+          previewUrl: full || thumb,
+          duration: 0,
+          source: "europeana",
+          description: title,
+        };
+      })
+      .filter(Boolean) as MediaItem[];
+  } catch {
+    return [];
+  }
+}
+
+// Smithsonian Open Access: free api.data.gov key. Museum artifacts, specimens, history.
+export async function searchSmithsonian(query: string): Promise<MediaItem[]> {
+  try {
+    const key = process.env.SMITHSONIAN_API_KEY;
+    if (!key) return [];
+    const res = await fetch(
+      `https://api.si.edu/openaccess/api/v1.0/search?api_key=${key}&q=${encodeURIComponent(query)}&rows=3`
+    );
+    const data = await res.json();
+    const rows = data?.response?.rows || [];
+    return rows
+      .map((r: any) => {
+        const media = r?.content?.descriptiveNonRepeating?.online_media?.media?.[0];
+        if (!media) return null;
+        const full = media.content || media.resources?.[0]?.url || "";
+        const thumb = media.thumbnail || full;
+        if (!full && !thumb) return null;
+        return {
+          id: `si-i-${(r.id || "").replace(/[^a-zA-Z0-9]/g, "").slice(-16)}`,
+          kind: "image" as const,
+          thumbnail: thumb,
+          previewUrl: full || thumb,
+          duration: 0,
+          source: "smithsonian",
+          description: r?.title || "",
+        };
+      })
+      .filter(Boolean) as MediaItem[];
+  } catch {
+    return [];
+  }
+}
