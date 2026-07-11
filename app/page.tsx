@@ -187,6 +187,8 @@ export default function Home() {
 
     const formData = new FormData();
     formData.append("clips", JSON.stringify(clips));
+    formData.append("script", script);
+    formData.append("words", JSON.stringify(captionsEnabled ? words : []));
     if (audioFile) {
       formData.append("audio", audioFile);
     }
@@ -194,7 +196,7 @@ export default function Home() {
       formData.append("music", musicFile);
     }
 
-    const res = await fetch("/api/render-remotion", {
+    const res = await fetch("/api/render", {
       method: "POST",
       body: formData,
     });

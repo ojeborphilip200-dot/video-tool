@@ -4,15 +4,8 @@ import { promisify } from "util";
 import fs from "fs/promises";
 import path from "path";
 import os from "os";
-import {
-  groupWordsIntoCaptions,
-  generateCaptionImage,
-  detectYearCallouts,
-  detectLocationCallouts,
-  generateCalloutImage,
-  getRandomPosition,
-  positionToOverlayExpr,
-} from "../_lib/captions";
+import { generateAss, Callout } from "../_lib/ass";
+import { detectYearCallouts, detectLocationCallouts } from "../_lib/captions";
 
 const execAsync = promisify(exec);
 
@@ -66,6 +59,20 @@ export async function POST(req: NextRequest) {
     const TARGET_WIDTH = 1280;
     const TARGET_HEIGHT = 720;
 
+    // Build ASS subtitle file (captions + callouts) if we have word timings
+    let assPath = "";
+    if (words.length > 0) {
+      let callouts: Callout[] = detectYearCallouts(words);
+      if (scriptText) {
+        const locationCallouts = await detectLocationCallouts(scriptText, words);
+        callouts = [...callouts, ...locationCallouts];
+      }
+      const assContent = generateAss(words, callouts, 5, TARGET_WIDTH, TARGET_HEIGHT);
+      assPath = path.join(tempDir, "subs.ass");
+      await fs.writeFile(assPath, assContent);
+      console.log(`DEBUG - ASS file written with ${words.length} words, ${callouts.length} callouts`);
+    }
+
     const videoInputs = downloadedFiles.map((f) => `-i "${f}"`).join(" ");
     const audioInput = audioPath ? `-i "${audioPath}"` : "";
     const musicInput = musicPath ? `-stream_loop -1 -i "${musicPath}"` : "";
@@ -80,76 +87,15 @@ export async function POST(req: NextRequest) {
 
     const concatInputs = downloadedFiles.map((_, i) => `[v${i}]`).join("");
 
-    // Captions
-    const captionChunks = words.length > 0 ? groupWordsIntoCaptions(words, 5) : [];
-    const captionFiles: string[] = [];
+    // Subtitles filter goes right after concat - one filter replaces the whole old overlay chain
+    const subtitlesFilter = assPath
+      ? `[concatpre]subtitles='${assPath.replace(/'/g, "\\'")}'[outv]`
+      : "";
 
-    for (let i = 0; i < captionChunks.length; i++) {
-      const imgPath = path.join(tempDir, `caption-${i}.png`);
-      await generateCaptionImage(captionChunks[i].text, imgPath, TARGET_WIDTH, TARGET_HEIGHT);
-      captionFiles.push(imgPath);
-    }
-
-    // Callouts (years + locations), each with a random screen position
-    let callouts: { text: string; start: number; end: number }[] = [];
-    if (words.length > 0) {
-      const yearCallouts = detectYearCallouts(words);
-      const locationCallouts = scriptText
-        ? await detectLocationCallouts(scriptText, words)
-        : [];
-      callouts = [...yearCallouts, ...locationCallouts];
-      console.log("DEBUG - words.length:", words.length);
-      console.log("DEBUG - yearCallouts:", JSON.stringify(yearCallouts));
-      console.log("DEBUG - locationCallouts:", JSON.stringify(locationCallouts));
-    }
-
-    const calloutFiles: string[] = [];
-    const calloutPositions = callouts.map(() => getRandomPosition());
-
-    for (let i = 0; i < callouts.length; i++) {
-      const imgPath = path.join(tempDir, `callout-${i}.png`);
-      await generateCalloutImage(callouts[i].text, imgPath, TARGET_HEIGHT);
-      calloutFiles.push(imgPath);
-      const stats = await fs.stat(imgPath);
-      console.log(`DEBUG - callout-${i}.png size:`, stats.size, "bytes");
-    }
-
-    const captionInputs = captionFiles.map((f) => `-i "${f}"`).join(" ");
-    const calloutInputs = calloutFiles.map((f) => `-i "${f}"`).join(" ");
+    const concatLabel = assPath ? "concatpre" : "outv";
 
     const narrationIndex = downloadedFiles.length;
     const musicIndex = downloadedFiles.length + (audioPath ? 1 : 0);
-    const firstCaptionInputIndex =
-      downloadedFiles.length + (audioPath ? 1 : 0) + (musicPath ? 1 : 0);
-    const firstCalloutInputIndex = firstCaptionInputIndex + captionFiles.length;
-
-    let overlayChain = "";
-    let previousLabel = "concatvid";
-
-    // Layer captions first (instant show/hide, no fade needed for these)
-    captionChunks.forEach((chunk, i) => {
-      const inputIndex = firstCaptionInputIndex + i;
-      const nextLabel = `cap${i}`;
-      overlayChain += `[${previousLabel}][${inputIndex}:v]overlay=0:0:enable='between(t,${chunk.start},${chunk.end})'[${nextLabel}]; `;
-      previousLabel = nextLabel;
-    });
-
-    // Then layer callouts with a smooth fade in/out and randomized position
-    const FADE_DURATION = 0.3;
-
-    callouts.forEach((callout, i) => {
-      const inputIndex = firstCalloutInputIndex + i;
-      const fadeLabel = `callfade${i}`;
-      const nextLabel = `call${i}`;
-      const { x, y } = positionToOverlayExpr(calloutPositions[i]);
-
-      const fadeOutStart = Math.max(callout.start, callout.end - FADE_DURATION);
-
-      // Apply fade-in and fade-out directly to the callout image's alpha channel
-      overlayChain += `[${inputIndex}:v]format=rgba,fade=t=in:st=${callout.start}:d=${FADE_DURATION}:alpha=1,fade=t=out:st=${fadeOutStart}:d=${FADE_DURATION}:alpha=1[${fadeLabel}]; `;
-      overlayChain += `[${previousLabel}][${fadeLabel}]overlay=x='${x}':y='${y}':enable='between(t,${callout.start},${callout.end})'[${nextLabel}]; `;
-      previousLabel = nextLabel;
-    });
 
     let audioFilter = "";
     let audioMapArgs = "";
@@ -165,21 +111,18 @@ export async function POST(req: NextRequest) {
     }
 
     const filterComplex =
-      `${scaleFilters}; ${concatInputs}concat=n=${downloadedFiles.length}:v=1:a=0[concatvid]` +
-      (overlayChain ? `; ${overlayChain.trim().replace(/;\s*$/, "")}` : "") +
+      `${scaleFilters}; ${concatInputs}concat=n=${downloadedFiles.length}:v=1:a=0[${concatLabel}]` +
+      (subtitlesFilter ? `; ${subtitlesFilter}` : "") +
       (audioFilter ? `; ${audioFilter}` : "");
-
-    const finalVideoLabel =
-      captionChunks.length > 0 || callouts.length > 0 ? previousLabel : "concatvid";
 
     const hasAudio = Boolean(audioPath || musicPath);
 
     let cmd: string;
 
     if (hasAudio) {
-      cmd = `ffmpeg -y ${videoInputs} ${audioInput} ${musicInput} ${captionInputs} ${calloutInputs} -filter_complex "${filterComplex}" -map "[${finalVideoLabel}]" ${audioMapArgs} -c:v libx264 -c:a aac -shortest "${outputPath}"`;
+      cmd = `ffmpeg -y ${videoInputs} ${audioInput} ${musicInput} -filter_complex "${filterComplex}" -map "[outv]" ${audioMapArgs} -c:v libx264 -c:a aac -shortest "${outputPath}"`;
     } else {
-      cmd = `ffmpeg -y ${videoInputs} ${captionInputs} ${calloutInputs} -filter_complex "${filterComplex}" -map "[${finalVideoLabel}]" -c:v libx264 "${outputPath}"`;
+      cmd = `ffmpeg -y ${videoInputs} -filter_complex "${filterComplex}" -map "[outv]" -c:v libx264 "${outputPath}"`;
     }
 
     await execAsync(cmd, { maxBuffer: 1024 * 1024 * 50 });
