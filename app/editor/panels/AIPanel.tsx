@@ -72,6 +72,23 @@ export default function AIPanel() {
     } catch {
       dispatch({ type: "SET_BEATS", beats: sentenceFallback(state.script) });
     }
+    // Detect text animations for the TEXT lane (non-blocking)
+    fetch("/api/preflight", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        script: state.script,
+        words: state.words,
+        countupLevel: state.settings.countupLevel,
+        calloutsEnabled: state.settings.calloutsEnabled,
+      }),
+    })
+      .then((r) => r.json())
+      .then((d) =>
+        dispatch({ type: "SET_TEXT_EVENTS", events: { callouts: d.callouts || [], countups: d.countups || [] } })
+      )
+      .catch(() => {});
+
     setSegmenting(false);
   }
 

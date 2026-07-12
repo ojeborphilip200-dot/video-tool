@@ -49,6 +49,9 @@ export function useExport() {
     formData.append("calloutsEnabled", String(state.settings.calloutsEnabled));
     formData.append("countupLevel", state.settings.countupLevel);
     formData.append("textStyle", state.settings.textStyle);
+    if (state.textEvents) {
+      formData.append("textEvents", JSON.stringify(state.textEvents));
+    }
     formData.append("background", state.settings.background);
     formData.append("bgFrequency", state.settings.bgFrequency);
     if (state.audioFile) formData.append("audio", state.audioFile);

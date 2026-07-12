@@ -96,6 +96,21 @@ export default function TimelineDock() {
     return () => window.removeEventListener("keydown", onKey);
   }, [state.playing, timelineDur, dispatch]);
 
+  // Delete/Backspace removes the selected text animation
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const el = e.target as HTMLElement;
+      if (el?.tagName === "INPUT" || el?.tagName === "TEXTAREA") return;
+      if (e.key !== "Delete" && e.key !== "Backspace") return;
+      const sel = state.selected;
+      if (sel?.type !== "text") return;
+      e.preventDefault();
+      dispatch({ type: "REMOVE_TEXT_EVENT", eventId: sel.eventId });
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [state.selected, dispatch]);
+
   function seekFromClientX(clientX: number) {
     const el = scrollRef.current;
     if (!el) return;
@@ -242,7 +257,56 @@ export default function TimelineDock() {
             );
           }), 40)}
 
-          {lane("TEXT", <span style={{ fontSize: "8px", color: "var(--ed-text-3)", paddingLeft: "6px", lineHeight: "22px" }}>computed at render (callouts & count-ups)</span>)}
+          {lane("TEXT", state.textEvents && state.textEvents.callouts.length + state.textEvents.countups.length > 0 ? (
+            <>
+              {state.textEvents.callouts.map((ev) => {
+                const len = Math.min(Math.max(ev.end - ev.start, 1.2), 5.5);
+                const isSel = state.selected?.type === "text" && state.selected.eventId === ev.id;
+                return (
+                  <div
+                    key={ev.id}
+                    data-clip="1"
+                    onMouseDown={(e) => e.stopPropagation()}
+                    onClick={() => {
+                      dispatch({ type: "SELECT", item: { type: "text", eventId: ev.id } });
+                      const evT = (ev as any).start ?? (ev as any).animStart;
+                      dispatch({ type: "SET_PLAYING", playing: false });
+                      dispatch({ type: "SET_TIME", t: Math.max(0, evT - 0.2) });
+                      if (audioRef.current) audioRef.current.currentTime = Math.max(0, evT - 0.2);
+                    }}
+                    title={`${ev.text} — click, then Delete to remove`}
+                    style={{ position: "absolute", left: `${ev.start * pxPerSec}px`, width: `${Math.max(len * pxPerSec - 2, 8)}px`, top: "2px", bottom: "2px", borderRadius: "5px", cursor: "pointer", background: "rgba(167,139,250,0.3)", outline: isSel ? "2px solid var(--ed-accent)" : "1px solid rgba(167,139,250,0.5)", fontSize: "8px", color: "var(--ed-text-1)", paddingLeft: "4px", overflow: "hidden", whiteSpace: "nowrap", lineHeight: "20px" }}
+                  >
+                    {ev.text}
+                  </div>
+                );
+              })}
+              {state.textEvents.countups.map((ev) => {
+                const len = ev.land + 1.9 - ev.animStart;
+                const isSel = state.selected?.type === "text" && state.selected.eventId === ev.id;
+                return (
+                  <div
+                    key={ev.id}
+                    data-clip="1"
+                    onMouseDown={(e) => e.stopPropagation()}
+                    onClick={() => {
+                      dispatch({ type: "SELECT", item: { type: "text", eventId: ev.id } });
+                      const evT = (ev as any).start ?? (ev as any).animStart;
+                      dispatch({ type: "SET_PLAYING", playing: false });
+                      dispatch({ type: "SET_TIME", t: Math.max(0, evT - 0.2) });
+                      if (audioRef.current) audioRef.current.currentTime = Math.max(0, evT - 0.2);
+                    }}
+                    title={`Count-up to ${ev.prefix}${ev.value}${ev.suffix} — click, then Delete to remove`}
+                    style={{ position: "absolute", left: `${ev.animStart * pxPerSec}px`, width: `${Math.max(len * pxPerSec - 2, 8)}px`, top: "2px", bottom: "2px", borderRadius: "5px", cursor: "pointer", background: "rgba(74,222,128,0.25)", outline: isSel ? "2px solid var(--ed-accent)" : "1px solid rgba(74,222,128,0.5)", fontSize: "8px", color: "var(--ed-text-1)", paddingLeft: "4px", overflow: "hidden", whiteSpace: "nowrap", lineHeight: "20px" }}
+                  >
+                    ↑{ev.prefix}{ev.value}{ev.suffix}
+                  </div>
+                );
+              })}
+            </>
+          ) : (
+            <span style={{ fontSize: "8px", color: "var(--ed-text-3)", paddingLeft: "6px", lineHeight: "22px" }}>{state.textEvents ? "no text animations detected" : "generate scenes to detect text animations"}</span>
+          ))}
           {lane("BACKGROUND", <span style={{ fontSize: "8px", color: "var(--ed-text-3)", paddingLeft: "6px", lineHeight: "22px" }}>{state.settings.background === "none" ? "off" : "windows chosen at render"}</span>)}
 
           {lane("CAPTIONS", state.settings.captionsEnabled ? chunks.map((c, i) => (

@@ -7,6 +7,7 @@ import os from "os";
 import { generateAss, Callout } from "../_lib/ass";
 import { detectYearCallouts, detectLocationCallouts } from "../_lib/captions";
 import { detectCountups, CountupSpec } from "../_lib/countups";
+import { buildTextOverlay } from "../_lib/hfOverlays";
 import { buildImageSequenceClip } from "../_lib/slideshow";
 import { getCachedMedia } from "../_lib/cache";
 import { createJob, updateJob } from "../_lib/jobs";
@@ -109,6 +110,7 @@ type RenderInput = {
   calloutsEnabled: boolean;
   countupLevel: string;
   beatWindows: { start: number; end: number }[];
+  textEventsOverride: { callouts: Callout[]; countups: CountupSpec[] } | null;
 };
 
 export async function POST(req: NextRequest) {
@@ -138,6 +140,7 @@ export async function POST(req: NextRequest) {
     calloutsEnabled: (formData.get("calloutsEnabled") as string | null) !== "false",
     countupLevel: (formData.get("countupLevel") as string | null) || "medium",
     beatWindows: JSON.parse((formData.get("beatWindows") as string | null) || "[]"),
+    textEventsOverride: JSON.parse((formData.get("textEvents") as string | null) || "null"),
   };
 
   const job = createJob();
@@ -243,27 +246,102 @@ async function runRenderJob(jobId: string, input: RenderInput) {
     // Build ASS subtitle file (captions + callouts) if we have word timings
     let assPath = "";
     const wantCountups = input.countupLevel !== "off";
-    if (words.length > 0 && (input.captionsEnabled || input.calloutsEnabled || wantCountups)) {
-      let callouts: Callout[] = [];
-      if (input.calloutsEnabled) {
-        callouts = detectYearCallouts(words);
-        if (scriptText) {
-          const locationCallouts = await detectLocationCallouts(scriptText, words);
-          callouts = [...callouts, ...locationCallouts];
-        }
+
+    let callouts: Callout[] = [];
+    let countups: CountupSpec[] = [];
+    if (input.textEventsOverride) {
+      // The editor curated these (deletions applied) - obey, don't re-detect
+      callouts = input.calloutsEnabled ? input.textEventsOverride.callouts || [] : [];
+      countups = wantCountups ? input.textEventsOverride.countups || [] : [];
+      console.log(`DEBUG - curated text events: ${callouts.length} callouts, ${countups.length} countups`);
+    } else {
+    if (words.length > 0 && input.calloutsEnabled) {
+      callouts = detectYearCallouts(words);
+      if (scriptText) {
+        const locationCallouts = await detectLocationCallouts(scriptText, words);
+        callouts = [...callouts, ...locationCallouts];
       }
-      let countups: CountupSpec[] = [];
-      if (wantCountups && scriptText) {
-        try {
-          countups = await detectCountups(scriptText, words, input.countupLevel);
-          console.log(
-            `DEBUG - countups (${input.countupLevel}): ${countups.length} -> ${countups.map((c) => `${c.phrase}@${c.land.toFixed(1)}s`).join(", ") || "none"}`
-          );
-        } catch (e) {
-          console.error("Countup detection failed, continuing without:", e);
-        }
+    }
+    if (words.length > 0 && wantCountups && scriptText) {
+      try {
+        countups = await detectCountups(scriptText, words, input.countupLevel);
+        console.log(
+          `DEBUG - countups (${input.countupLevel}): ${countups.length} -> ${countups.map((c) => `${c.phrase}@${c.land.toFixed(1)}s`).join(", ") || "none"}`
+        );
+      } catch (e) {
+        console.error("Countup detection failed, continuing without:", e);
       }
-      const assContent = generateAss(input.captionsEnabled ? words : [], callouts, 5, TARGET_WIDTH, TARGET_HEIGHT, input.textStyle, countups);
+    }
+    }
+
+    // Count-ups own their moment: drop any callout whose on-screen window
+    // overlaps a count-up's window (count start through hold + fade-out)
+    if (countups.length > 0 && callouts.length > 0) {
+      const cuWindows = countups.map((cu) => ({
+        start: cu.animStart,
+        end: cu.land + 1.9,
+      }));
+      const before = callouts.length;
+      callouts = callouts.filter((c) => {
+        const cStart = c.start;
+        const cEnd = c.start + Math.min(Math.max(c.end - c.start, 1.2), 5.5);
+        return !cuWindows.some((w) => cStart < w.end && cEnd > w.start);
+      });
+      if (callouts.length < before) {
+        console.log(
+          `DEBUG - suppressed ${before - callouts.length} callout(s) overlapping count-up windows`
+        );
+      }
+    }
+
+    // Build themed HyperFrames overlay clips (cached transparent WebM per event)
+    const textOverlays: { file: string; start: number }[] = [];
+    const totalEvents = callouts.length + countups.length;
+    let eventIdx = 0;
+    // Five distinct spots, assigned round-robin - top-center stays reserved for
+    // count-ups, so simultaneous events can never stack on the same pixels
+    const CALLOUT_POS = ["top-left", "top-right", "mid-left", "low-center", "mid-right"];
+    let posIdx = 0;
+    for (const c of callouts) {
+      eventIdx++;
+      updateJob(jobId, { progress: 42, message: `Creating text animations ${eventIdx}/${totalEvents}` });
+      try {
+        const file = await buildTextOverlay("callout", {
+          text: c.text,
+          theme: input.textStyle,
+          dur: Math.min(Math.max(c.end - c.start, 1.2), 5.5),
+          pos: CALLOUT_POS[posIdx++ % CALLOUT_POS.length],
+        });
+        textOverlays.push({ file, start: Math.max(0, c.start - 0.25) });
+      } catch (e) {
+        console.error("Callout overlay failed, skipping:", e);
+      }
+    }
+    for (const cu of countups) {
+      eventIdx++;
+      updateJob(jobId, { progress: 42, message: `Creating text animations ${eventIdx}/${totalEvents}` });
+      try {
+        const file = await buildTextOverlay("countup", {
+          value: cu.value,
+          prefix: cu.prefix,
+          suffix: cu.suffix,
+          decimals: cu.decimals,
+          compact: cu.compact,
+          countDur: Math.min(Math.max(cu.land - cu.animStart, 1), 5),
+          hold: 1.5,
+          theme: input.textStyle,
+        });
+        textOverlays.push({ file, start: cu.animStart });
+      } catch (e) {
+        console.error("Countup overlay failed, skipping:", e);
+      }
+    }
+    if (textOverlays.length > 0) {
+      console.log(`DEBUG - text overlays: ${textOverlays.length} composited via HyperFrames`);
+    }
+
+    if (words.length > 0 && input.captionsEnabled) {
+      const assContent = generateAss(words, [], 5, TARGET_WIDTH, TARGET_HEIGHT, input.textStyle, []);
       assPath = path.join(tempDir, "subs.ass");
       await fs.writeFile(assPath, assContent);
       console.log(`DEBUG - ASS file written with ${words.length} words, ${callouts.length} callouts`);
@@ -277,6 +355,11 @@ async function runRenderJob(jobId: string, input: RenderInput) {
     const useBackground = Boolean(bgPreset);
     const bgIndex = downloadedFiles.length + (audioPath ? 1 : 0) + (musicPath ? 1 : 0);
     const bgInput = useBackground ? `-f lavfi -i "${bgPreset.input}"` : "";
+
+    const ovBase = bgIndex + (useBackground ? 1 : 0);
+    const overlayInputs = textOverlays
+      .map((o) => `-c:v libvpx-vp9 -i "${o.file}"`)
+      .join(" ");
 
     const FADE_DUR = 0.5;
     // Crossfades disabled: xfade drops frames with mixed image/video inputs.
@@ -404,9 +487,28 @@ async function runRenderJob(jobId: string, input: RenderInput) {
       }
     }
 
+    let overlayChain = "";
+    if (textOverlays.length > 0) {
+      const target = `[${concatLabel}]`;
+      if (bgFilter.includes(target)) {
+        bgFilter = bgFilter.replace(target, "[preov]");
+      } else {
+        assemblyFilter = assemblyFilter.replace(target, "[preov]");
+      }
+      let prev = "preov";
+      textOverlays.forEach((o, i) => {
+        const out = i === textOverlays.length - 1 ? concatLabel : `ov${i}`;
+        const s = o.start.toFixed(3);
+        overlayChain += `; [${ovBase + i}:v]setpts=PTS+${s}/TB[ovsrc${i}]`;
+        overlayChain += `; [${prev}][ovsrc${i}]overlay=0:0:eof_action=pass:enable='gte(t,${s})'[${out}]`;
+        prev = out;
+      });
+    }
+
     const filterComplex =
       `${scaleFilters}; ${assemblyFilter}` +
       (bgFilter ? `; ${bgFilter}` : "") +
+      overlayChain +
       (subtitlesFilter ? `; ${subtitlesFilter}` : "") +
       (audioFilter ? `; ${audioFilter}` : "");
 
@@ -415,9 +517,9 @@ async function runRenderJob(jobId: string, input: RenderInput) {
     let cmd: string;
 
     if (hasAudio) {
-      cmd = `ffmpeg -y ${videoInputs} ${audioInput} ${musicInput} ${bgInput} -filter_complex "${filterComplex}" -map "[outv]" ${audioMapArgs} -c:v libx264 -c:a aac -shortest "${outputPath}"`;
+      cmd = `ffmpeg -y ${videoInputs} ${audioInput} ${musicInput} ${bgInput} ${overlayInputs} -filter_complex "${filterComplex}" -map "[outv]" ${audioMapArgs} -c:v libx264 -c:a aac -shortest "${outputPath}"`;
     } else {
-      cmd = `ffmpeg -y ${videoInputs} ${bgInput} -filter_complex "${filterComplex}" -map "[outv]" -c:v libx264 "${outputPath}"`;
+      cmd = `ffmpeg -y ${videoInputs} ${bgInput} ${overlayInputs} -filter_complex "${filterComplex}" -map "[outv]" -c:v libx264 "${outputPath}"`;
     }
 
     updateJob(jobId, { progress: 45, message: "Rendering" });

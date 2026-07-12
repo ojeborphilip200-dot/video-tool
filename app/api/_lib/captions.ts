@@ -44,18 +44,33 @@ export async function detectLocationCallouts(
   }
 
   const callouts: Callout[] = [];
-  const uniqueLocations = [...new Set(locationNames.map((l) => l.toLowerCase()))];
+
+  // Locations that never get a callout pill - add words here as needed
+  const EXCLUDED_LOCATIONS = new Set(["america", "moon"]);
+
+  const uniqueLocations = [...new Set(locationNames.map((l) => l.toLowerCase()))].filter(
+    (l) => !EXCLUDED_LOCATIONS.has(l.replace(/^the\s+/, "").trim())
+  );
+
+  const clean = (w: string) => w.toLowerCase().replace(/[^a-z]/g, "");
 
   for (const location of uniqueLocations) {
-    const locationWords = location.toLowerCase().split(/\s+/);
-    const firstWord = locationWords[0];
+    const locationWords = location.toLowerCase().split(/\s+/).map(clean).filter(Boolean);
+    if (locationWords.length === 0) continue;
 
-    for (let i = 0; i < words.length; i++) {
-      const cleanedWord = words[i].word.toLowerCase().replace(/[^a-z]/g, "");
-      if (cleanedWord === firstWord.replace(/[^a-z]/g, "")) {
+    // Require the FULL consecutive phrase to match - a phrase starting with
+    // "the" must never land on some unrelated "the" earlier in the script
+    for (let i = 0; i <= words.length - locationWords.length; i++) {
+      let matched = true;
+      for (let j = 0; j < locationWords.length; j++) {
+        if (clean(words[i + j].word) !== locationWords[j]) {
+          matched = false;
+          break;
+        }
+      }
+      if (matched) {
         const start = words[i].start;
-        const endIndex = Math.min(i + locationWords.length - 1, words.length - 1);
-        const end = words[endIndex].end;
+        const end = words[i + locationWords.length - 1].end;
         callouts.push({ text: location, start, end: end + 2 });
         break;
       }

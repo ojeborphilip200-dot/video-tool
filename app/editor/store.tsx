@@ -57,9 +57,25 @@ export type ProjectSettings = {
   autoFill: boolean;
 };
 
+export type TextEventCallout = { id: string; text: string; start: number; end: number };
+export type TextEventCountup = {
+  id: string;
+  phrase?: string;
+  value: number;
+  prefix: string;
+  suffix: string;
+  decimals: number;
+  compact: boolean;
+  importance?: number;
+  animStart: number;
+  land: number;
+};
+export type TextEvents = { callouts: TextEventCallout[]; countups: TextEventCountup[] };
+
 export type SelectedTimelineItem =
   | { type: "clip"; beatIndex: number; clipId: string }
   | { type: "beat"; beatIndex: number }
+  | { type: "text"; eventId: string }
   | null;
 
 export type ProjectState = {
@@ -69,6 +85,7 @@ export type ProjectState = {
   musicFile: File | null;
   beats: Beat[];
   settings: ProjectSettings;
+  textEvents: TextEvents | null;
   currentTime: number;
   playing: boolean;
   selected: SelectedTimelineItem;
@@ -90,6 +107,7 @@ export const initialState: ProjectState = {
     mediaPref: null,
     autoFill: false,
   },
+  textEvents: null,
   currentTime: 0,
   playing: false,
   selected: null,
@@ -106,6 +124,8 @@ export type Action =
   | { type: "SELECT"; item: SelectedTimelineItem }
   | { type: "SET_TIME"; t: number }
   | { type: "SET_PLAYING"; playing: boolean }
+  | { type: "SET_TEXT_EVENTS"; events: TextEvents }
+  | { type: "REMOVE_TEXT_EVENT"; eventId: string }
   | { type: "UNDO" }
   | { type: "REDO" };
 
@@ -134,6 +154,23 @@ function reducer(state: ProjectState, action: Action): ProjectState {
       return { ...state, currentTime: action.t };
     case "SET_PLAYING":
       return { ...state, playing: action.playing };
+    case "SET_TEXT_EVENTS":
+      return { ...state, textEvents: action.events };
+    case "REMOVE_TEXT_EVENT": {
+      if (!state.textEvents) return state;
+      const cleared =
+        state.selected?.type === "text" && state.selected.eventId === action.eventId
+          ? null
+          : state.selected;
+      return {
+        ...state,
+        textEvents: {
+          callouts: state.textEvents.callouts.filter((c) => c.id !== action.eventId),
+          countups: state.textEvents.countups.filter((c) => c.id !== action.eventId),
+        },
+        selected: cleared,
+      };
+    }
     default:
       return state;
   }
@@ -149,6 +186,8 @@ const UNDOABLE = new Set([
   "SET_BEATS",
   "PATCH_BEAT",
   "SET_SETTING",
+  "SET_TEXT_EVENTS",
+  "REMOVE_TEXT_EVENT",
 ]);
 
 // Rapid edits of the same thing merge into one history step (typing in the

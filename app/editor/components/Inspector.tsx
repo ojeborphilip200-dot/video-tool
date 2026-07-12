@@ -7,6 +7,111 @@ export default function Inspector() {
   const { state, dispatch } = useProject();
   const [regenerating, setRegenerating] = useState(false);
 
+  const selT = state.selected;
+  if (selT?.type === "text") {
+    const co = state.textEvents?.callouts.find((c) => c.id === selT.eventId);
+    const cu = state.textEvents?.countups.find((c) => c.id === selT.eventId);
+    if (!co && !cu) {
+      return (
+        <div style={{ padding: "16px" }}>
+          <p style={{ fontSize: "12px", color: "var(--ed-text-3)" }}>Selection no longer exists.</p>
+        </div>
+      );
+    }
+    return (
+      <div style={{ padding: "16px" }}>
+        <h3 style={{ fontSize: "13px", margin: "0 0 2px" }}>{co ? "TEXT ANIMATION" : "COUNT-UP"}</h3>
+        <p style={{ fontSize: "10px", color: "var(--ed-text-3)", margin: "0 0 10px" }}>
+          {co
+            ? `"${co.text}" · ${co.start.toFixed(1)}s`
+            : `${cu!.prefix}${cu!.value}${cu!.suffix} · lands ${cu!.land.toFixed(1)}s`}
+        </p>
+        {(() => {
+          const evStart = co ? co.start : cu!.animStart;
+          const evEnd = co ? co.end : cu!.land;
+          const ctx = state.words.filter((w) => w.end >= evStart - 3.5 && w.start <= evEnd + 3.5);
+          if (ctx.length === 0) return null;
+
+          // Highlight ONLY the words the animation is about: match the event's
+          // own text as a consecutive phrase inside the context
+          const cleanW = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, "");
+          const phrase = (co ? co.text : (cu!.phrase || String(cu!.value)))
+            .toLowerCase()
+            .split(/\s+/)
+            .map(cleanW)
+            .filter(Boolean);
+          const hotSet = new Set<number>();
+
+          // Tier 1: exact consecutive phrase
+          if (phrase.length > 0) {
+            for (let s = 0; s <= ctx.length - phrase.length; s++) {
+              let ok = true;
+              for (let j = 0; j < phrase.length; j++) {
+                if (cleanW(ctx[s + j].word) !== phrase[j]) { ok = false; break; }
+              }
+              if (ok) {
+                for (let j = 0; j < phrase.length; j++) hotSet.add(s + j);
+                break;
+              }
+            }
+          }
+
+          // Tier 2: looser consecutive match (prefix either direction, handles
+          // "1969," vs "1969" and partial transcription differences)
+          if (hotSet.size === 0 && phrase.length > 0) {
+            const loose = (a: string, b: string) =>
+              a.length > 2 && b.length > 2 && (a.startsWith(b) || b.startsWith(a));
+            for (let s = 0; s <= ctx.length - phrase.length; s++) {
+              let ok = true;
+              for (let j = 0; j < phrase.length; j++) {
+                const w = cleanW(ctx[s + j].word);
+                if (w !== phrase[j] && !loose(w, phrase[j])) { ok = false; break; }
+              }
+              if (ok) {
+                for (let j = 0; j < phrase.length; j++) hotSet.add(s + j);
+                break;
+              }
+            }
+          }
+
+          // Tier 3 (guaranteed): the words at the event's spoken moment
+          if (hotSet.size === 0) {
+            const spokenStart = co ? co.start : Math.max(cu!.animStart, cu!.land - 1.2);
+            const spokenEnd = co ? Math.min(co.end, co.start + 1.4) : cu!.land;
+            ctx.forEach((w, wi) => {
+              if (w.end > spokenStart && w.start < spokenEnd) hotSet.add(wi);
+            });
+          }
+          return (
+            <div style={{ background: "var(--ed-bg-2)", border: "1px solid var(--ed-border)", borderRadius: "8px", padding: "10px 12px", margin: "0 0 12px" }}>
+              <p style={{ fontSize: "9px", color: "var(--ed-text-3)", margin: "0 0 5px", letterSpacing: "0.08em" }}>NARRATION AT THIS MOMENT</p>
+              <p style={{ fontSize: "12px", lineHeight: 1.6, margin: 0, color: "var(--ed-text-2)" }}>
+                …{ctx.map((w, wi) => {
+                  const hot = hotSet.has(wi);
+                  return (
+                    <span key={wi} style={hot ? { color: "var(--ed-accent)", fontWeight: 700 } : undefined}>
+                      {w.word}{" "}
+                    </span>
+                  );
+                })}…
+              </p>
+            </div>
+          );
+        })()}
+        <button
+          className="btn btn-secondary"
+          style={{ width: "100%", fontSize: "12px" }}
+          onClick={() => dispatch({ type: "REMOVE_TEXT_EVENT", eventId: selT.eventId })}
+        >
+          Delete (or press Delete key)
+        </button>
+        <p style={{ fontSize: "10px", color: "var(--ed-text-3)", marginTop: "10px", lineHeight: 1.5 }}>
+          Deleted animations won't appear in the export. Cmd+Z restores.
+        </p>
+      </div>
+    );
+  }
+
   if (state.selected?.type !== "clip") {
     return (
       <div style={{ padding: "16px" }}>
