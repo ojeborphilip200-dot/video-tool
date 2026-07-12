@@ -51,9 +51,11 @@ export default function Home() {
   const [musicFile, setMusicFile] = useState<File | null>(null);
   const [words, setWords] = useState<{ word: string; start: number; end: number }[]>([]);
   const [captionsEnabled, setCaptionsEnabled] = useState(true);
+  const [calloutsEnabled, setCalloutsEnabled] = useState(true);
   const [renderProgress, setRenderProgress] = useState<{ progress: number; message: string } | null>(null);
   const [background, setBackground] = useState("none");
   const [bgFrequency, setBgFrequency] = useState("2-3");
+  const [textStyle, setTextStyle] = useState("standard");
 
   async function handleFileUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -263,9 +265,12 @@ export default function Home() {
     formData.append("clips", JSON.stringify(clips));
     formData.append("beatWindows", JSON.stringify(beatWindows));
     formData.append("script", script);
-    formData.append("words", JSON.stringify(captionsEnabled ? words : []));
+    formData.append("words", JSON.stringify(words));
+    formData.append("captionsEnabled", String(captionsEnabled));
+    formData.append("calloutsEnabled", String(calloutsEnabled));
     formData.append("background", background);
     formData.append("bgFrequency", bgFrequency);
+    formData.append("textStyle", textStyle);
     if (audioFile) {
       formData.append("audio", audioFile);
     }
@@ -471,6 +476,34 @@ export default function Home() {
 
           <div className="render-section">
             <div style={{ marginBottom: "14px" }}>
+              <p style={{ fontSize: "14px", color: "#9295a0", margin: "0 0 8px" }}>Text & graphics style</p>
+              <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
+                {[
+                  { id: "standard", label: "Standard", desc: "Clean & versatile", font: "Arial, sans-serif", weight: 700 },
+                  { id: "crime", label: "Crime", desc: "Bold & investigative", font: "'Arial Narrow', sans-serif", weight: 700 },
+                  { id: "history", label: "History", desc: "Classic & archival", font: "Georgia, serif", weight: 700 },
+                  { id: "modern", label: "Modern", desc: "Vibrant & kinetic", font: "'Helvetica Neue', sans-serif", weight: 700 },
+                  { id: "minimalist", label: "Minimalist", desc: "Subtle & spacious", font: "'Helvetica Neue', sans-serif", weight: 300 },
+                ].map((s) => (
+                  <div
+                    key={s.id}
+                    onClick={() => setTextStyle(s.id)}
+                    style={{
+                      cursor: "pointer",
+                      padding: "10px 14px",
+                      borderRadius: "8px",
+                      minWidth: "110px",
+                      border: textStyle === s.id ? "2px solid var(--accent-blue)" : "1px solid var(--border-subtle)",
+                      background: "var(--bg-elevated)",
+                    }}
+                  >
+                    <div style={{ fontSize: "14px", color: "#eceef1", fontFamily: s.font, fontWeight: s.weight }}>{s.label}</div>
+                    <div style={{ fontSize: "10px", color: "#5c5f68", marginTop: "3px" }}>{s.desc}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div style={{ marginBottom: "14px" }}>
               <p style={{ fontSize: "14px", color: "#9295a0", margin: "0 0 8px" }}>Background frame</p>
               <div style={{ display: "flex", gap: "10px", flexWrap: "wrap" }}>
                 {[
@@ -526,6 +559,14 @@ export default function Home() {
                 onChange={(e) => setCaptionsEnabled(e.target.checked)}
               />
               Add captions to video
+            </label>
+            <label style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "12px", fontSize: "14px", color: "#9295a0" }}>
+              <input
+                type="checkbox"
+                checked={calloutsEnabled}
+                onChange={(e) => setCalloutsEnabled(e.target.checked)}
+              />
+              Add text graphics (years, locations)
             </label>
             {rendering && renderProgress && (
               <div style={{ marginBottom: "10px" }}>

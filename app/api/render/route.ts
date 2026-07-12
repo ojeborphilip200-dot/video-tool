@@ -99,6 +99,9 @@ type RenderInput = {
   musicName: string;
   background: string;
   bgFrequency: string;
+  textStyle: string;
+  captionsEnabled: boolean;
+  calloutsEnabled: boolean;
   beatWindows: { start: number; end: number }[];
 };
 
@@ -124,6 +127,9 @@ export async function POST(req: NextRequest) {
     musicName: musicFile?.name || "music.mp3",
     background: (formData.get("background") as string | null) || "none",
     bgFrequency: (formData.get("bgFrequency") as string | null) || "2-3",
+    textStyle: (formData.get("textStyle") as string | null) || "standard",
+    captionsEnabled: (formData.get("captionsEnabled") as string | null) !== "false",
+    calloutsEnabled: (formData.get("calloutsEnabled") as string | null) !== "false",
     beatWindows: JSON.parse((formData.get("beatWindows") as string | null) || "[]"),
   };
 
@@ -182,13 +188,16 @@ async function runRenderJob(jobId: string, input: RenderInput) {
 
     // Build ASS subtitle file (captions + callouts) if we have word timings
     let assPath = "";
-    if (words.length > 0) {
-      let callouts: Callout[] = detectYearCallouts(words);
-      if (scriptText) {
-        const locationCallouts = await detectLocationCallouts(scriptText, words);
-        callouts = [...callouts, ...locationCallouts];
+    if (words.length > 0 && (input.captionsEnabled || input.calloutsEnabled)) {
+      let callouts: Callout[] = [];
+      if (input.calloutsEnabled) {
+        callouts = detectYearCallouts(words);
+        if (scriptText) {
+          const locationCallouts = await detectLocationCallouts(scriptText, words);
+          callouts = [...callouts, ...locationCallouts];
+        }
       }
-      const assContent = generateAss(words, callouts, 5, TARGET_WIDTH, TARGET_HEIGHT);
+      const assContent = generateAss(input.captionsEnabled ? words : [], callouts, 5, TARGET_WIDTH, TARGET_HEIGHT, input.textStyle);
       assPath = path.join(tempDir, "subs.ass");
       await fs.writeFile(assPath, assContent);
       console.log(`DEBUG - ASS file written with ${words.length} words, ${callouts.length} callouts`);
