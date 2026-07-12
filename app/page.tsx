@@ -145,6 +145,23 @@ export default function Home() {
 
   async function handleFindMedia(index: number, regenerate = false) {
     const page = regenerate ? (beats[index].mediaPage || 1) + 1 : beats[index].mediaPage || 1;
+
+    // Cross-video diversity: exclude everything already shown or selected in
+    // other beats, plus this beat's own current set when regenerating
+    const excludeIds = [
+      ...new Set(
+        beats.flatMap((b, bi) => {
+          const own = bi === index;
+          if (own && !regenerate) return [];
+          const galleryIds = own && regenerate
+            ? [...(b.videos || []).map((m) => m.id), ...(b.images || []).map((m) => m.id)]
+            : !own
+            ? [...(b.videos || []).map((m) => m.id), ...(b.images || []).map((m) => m.id)]
+            : [];
+          return [...galleryIds, ...b.selectedClips.map((c) => c.media.id)];
+        })
+      ),
+    ];
     setBeats((prev) =>
       prev.map((b, i) => (i === index ? { ...b, loadingMedia: true } : b))
     );
@@ -162,6 +179,7 @@ export default function Home() {
         beatText: beat.text,
         keywords: beat.keywords,
         page,
+        excludeIds,
       }),
     });
 

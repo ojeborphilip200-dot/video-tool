@@ -9,6 +9,8 @@ type MediaItem = {
   duration: number;
   source: string;
   description: string;
+  width?: number;
+  height?: number;
 };
 
 function slugToWords(url: string): string {
@@ -33,6 +35,8 @@ async function searchPexelsVideos(query: string, page = 1): Promise<MediaItem[]>
       previewUrl:
         v.video_files.find((f: any) => f.quality === "sd")?.link || v.video_files[0]?.link,
       duration: v.duration,
+      width: v.width,
+      height: v.height,
       source: "pexels" as const,
       description: slugToWords(v.url),
     }));
@@ -56,6 +60,8 @@ async function searchPexelsImages(query: string, page = 1): Promise<MediaItem[]>
       thumbnail: p.src.medium,
       previewUrl: p.src.large2x || p.src.large,
       duration: 0,
+      width: p.width,
+      height: p.height,
       source: "pexels" as const,
       description: p.alt || slugToWords(p.url),
     }));
@@ -78,6 +84,8 @@ async function searchPixabayVideos(query: string, page = 1): Promise<MediaItem[]
       thumbnail: v.videos.tiny.thumbnail,
       previewUrl: v.videos.small.url || v.videos.medium.url,
       duration: v.duration,
+      width: v.videos?.small?.width,
+      height: v.videos?.small?.height,
       source: "pixabay" as const,
       description: v.tags || "",
     }));
@@ -100,6 +108,8 @@ async function searchPixabayImages(query: string, page = 1): Promise<MediaItem[]
       thumbnail: p.previewURL,
       previewUrl: p.largeImageURL,
       duration: 0,
+      width: p.imageWidth,
+      height: p.imageHeight,
       source: "pixabay" as const,
       description: p.tags || "",
     }));
@@ -182,6 +192,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { beatText, keywords, entities, page: rawPage } = body;
     const page = Math.max(1, parseInt(rawPage) || 1);
+    const excludeIds: string[] = Array.isArray(body.excludeIds) ? body.excludeIds : [];
 
     const queryList: string[] = (
       Array.isArray(body.queries) && body.queries.length > 0 ? body.queries : [body.query]
@@ -247,17 +258,29 @@ export async function POST(req: NextRequest) {
       for (const arr of r3.slice(2)) images.push(...arr);
     }
 
-    // Hard filters first: dedupe by id and URL
-    const seen = new Set<string>();
+    // Hard filters first: cross-beat exclusions, dedupe, resolution minimums
+    const seen = new Set<string>(excludeIds);
+    const fetchedV = videos.length;
+    const fetchedI = images.length;
+
+    const bigEnough = (m: MediaItem) => {
+      if (!m.width || !m.height) return true; // unknown dimensions pass
+      return m.kind === "image" ? m.width >= 800 && m.height >= 450 : m.width >= 640;
+    };
+
     const dedupe = (arr: MediaItem[]) =>
       arr.filter((m) => {
         if (!m.previewUrl || seen.has(m.id) || seen.has(m.previewUrl)) return false;
+        if (!bigEnough(m)) return false;
         seen.add(m.id);
         seen.add(m.previewUrl);
         return true;
       });
     videos = dedupe(videos);
     images = dedupe(images);
+    console.log(
+      `DEBUG - hard filters: ${fetchedV}v/${fetchedI}i fetched -> ${videos.length}v/${images.length}i kept (${excludeIds.length} excluded ids)`
+    );
 
     console.log(
       `DEBUG - sourcing: ${queryList.length} queries -> ${videos.length} videos, ${images.length} images before ranking`

@@ -6,6 +6,8 @@ export type MediaItem = {
   duration: number;
   source: string;
   description: string;
+  width?: number;
+  height?: number;
 };
 
 // Openverse: aggregates CC images from Flickr, museums, Wikimedia and more. No key (rate-limited).
@@ -248,6 +250,8 @@ export async function searchUnsplash(query: string, page = 1): Promise<MediaItem
       thumbnail: p.urls?.small || p.urls?.thumb || "",
       previewUrl: p.urls?.regular || p.urls?.full || "",
       duration: 0,
+      width: p.width,
+      height: p.height,
       source: "unsplash",
       description: p.alt_description || p.description || "",
     })).filter((m: MediaItem) => m.previewUrl);
