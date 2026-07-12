@@ -1,6 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import { ProjectProvider } from "./store";
+import AIPanel from "./panels/AIPanel";
+import MediaPanel from "./panels/MediaPanel";
 
 const NAV = [
   { id: "ai", icon: "✦", label: "AI" },
@@ -23,7 +26,15 @@ function Placeholder({ title, note }: { title: string; note: string }) {
   );
 }
 
-export default function Editor() {
+export default function EditorPage() {
+  return (
+    <ProjectProvider>
+      <Editor />
+    </ProjectProvider>
+  );
+}
+
+function Editor() {
   const [nav, setNav] = useState<string>("ai");
   const [zoom, setZoom] = useState(1);
 
@@ -114,7 +125,7 @@ export default function Editor() {
 
       {/* Contextual left panel */}
       <div style={{ gridArea: "panel", borderRight: "1px solid var(--border-subtle, #2a2c32)", overflowY: "auto" }}>
-        <Placeholder title={panels[nav].title} note={panels[nav].note} />
+        {nav === "ai" ? <AIPanel /> : nav === "media" ? <MediaPanel /> : <Placeholder title={panels[nav].title} note={panels[nav].note} />}
       </div>
 
       {/* Preview stage */}
