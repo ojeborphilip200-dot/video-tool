@@ -56,6 +56,7 @@ export default function Home() {
   const [captionsEnabled, setCaptionsEnabled] = useState(true);
   const [calloutsEnabled, setCalloutsEnabled] = useState(true);
   const [countupLevel, setCountupLevel] = useState("medium");
+  const [preview, setPreview] = useState<{ beatIndex: number; media: MediaItem } | null>(null);
   const [renderProgress, setRenderProgress] = useState<{ progress: number; message: string } | null>(null);
   const [background, setBackground] = useState("none");
   const [bgFrequency, setBgFrequency] = useState("2-3");
@@ -358,6 +359,59 @@ export default function Home() {
 
   return (
     <div className="app-shell">
+      {preview && (
+        <div
+          onClick={() => setPreview(null)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.88)",
+            zIndex: 1000,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "30px",
+          }}
+        >
+          <div onClick={(e) => e.stopPropagation()} style={{ maxWidth: "900px", width: "100%" }}>
+            {preview.media.kind === "video" ? (
+              <video
+                src={preview.media.previewUrl}
+                controls
+                autoPlay
+                style={{ width: "100%", maxHeight: "70vh", borderRadius: "10px", background: "#000" }}
+              />
+            ) : (
+              <img
+                src={preview.media.previewUrl}
+                alt="preview"
+                style={{ width: "100%", maxHeight: "70vh", objectFit: "contain", borderRadius: "10px", background: "#000" }}
+              />
+            )}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "12px" }}>
+              <span style={{ fontSize: "13px", color: "#9295a0" }}>
+                {preview.media.source} · {preview.media.kind === "video" ? `${preview.media.duration}s video` : "image"}
+              </span>
+              <div style={{ display: "flex", gap: "10px" }}>
+                <button
+                  className="btn btn-primary"
+                  onClick={() => {
+                    toggleSelectMedia(preview.beatIndex, preview.media);
+                    setPreview(null);
+                  }}
+                >
+                  {beats[preview.beatIndex]?.selectedClips.some((c) => c.media.id === preview.media.id)
+                    ? "Unselect"
+                    : "Select this"}
+                </button>
+                <button className="btn btn-secondary" onClick={() => setPreview(null)}>
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="app-header">
         <h1 className="app-title">My Video Tool</h1>
         <p className="app-subtitle">Script or voiceover in, edited video out.</p>
@@ -474,8 +528,31 @@ export default function Home() {
                             outlineOffset: "1px",
                           }}
                         >
-                          <div className="thumb-frame">
+                          <div className="thumb-frame" style={{ position: "relative" }}>
                             <img src={m.thumbnail} alt="media thumbnail" />
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                setPreview({ beatIndex: i, media: m });
+                              }}
+                              title="Preview"
+                              style={{
+                                position: "absolute",
+                                top: "4px",
+                                right: "4px",
+                                width: "24px",
+                                height: "24px",
+                                borderRadius: "6px",
+                                border: "none",
+                                background: "rgba(0,0,0,0.65)",
+                                color: "#fff",
+                                fontSize: "13px",
+                                cursor: "pointer",
+                                lineHeight: 1,
+                              }}
+                            >
+                              ⤢
+                            </button>
                           </div>
                           <div className="thumb-label">
                             {isSelected
