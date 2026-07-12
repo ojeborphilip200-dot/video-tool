@@ -57,6 +57,8 @@ export default function Home() {
   const [calloutsEnabled, setCalloutsEnabled] = useState(true);
   const [countupLevel, setCountupLevel] = useState("medium");
   const [preview, setPreview] = useState<{ beatIndex: number; media: MediaItem } | null>(null);
+  const [mediaPref, setMediaPref] = useState<"both" | "video" | "image">("both");
+  const [autoFill, setAutoFill] = useState(false);
   const [renderProgress, setRenderProgress] = useState<{ progress: number; message: string } | null>(null);
   const [background, setBackground] = useState("none");
   const [bgFrequency, setBgFrequency] = useState("2-3");
@@ -181,6 +183,7 @@ export default function Home() {
         keywords: beat.keywords,
         page,
         excludeIds,
+        mediaType: mediaPref,
       }),
     });
 
@@ -196,15 +199,22 @@ export default function Home() {
         // AI pre-pick: auto-select the first result matching the beat's treatment
         let selectedClips = regenerate ? [] : b.selectedClips;
         if (selectedClips.length === 0) {
-          const preferred = b.treatment === "image" ? images[0] : videos[0];
-          const fallback = b.treatment === "image" ? videos[0] : images[0];
-          const pick = preferred || fallback;
-          if (pick) {
-            const trimEnd =
-              pick.kind === "image"
-                ? b.duration
-                : Math.min(pick.duration, b.duration);
-            selectedClips = [{ media: pick, trimStart: 0, trimEnd }];
+          const vPool = mediaPref === "image" ? [] : videos;
+          const iPool = mediaPref === "video" ? [] : images;
+          if (autoFill && iPool.length >= 2 && b.duration >= 6) {
+            // Two best-ranked images, equal screen time, never under 3s each
+            const per = b.duration / 2;
+            selectedClips = iPool.slice(0, 2).map((m) => ({ media: m, trimStart: 0, trimEnd: per }));
+          } else {
+            const pick =
+              b.treatment === "image" ? iPool[0] || vPool[0] : vPool[0] || iPool[0];
+            if (pick) {
+              const trimEnd =
+                pick.kind === "image"
+                  ? b.duration
+                  : Math.min(pick.duration, b.duration);
+              selectedClips = [{ media: pick, trimStart: 0, trimEnd }];
+            }
           }
         }
 
@@ -468,6 +478,42 @@ export default function Home() {
             <h2 style={{ fontSize: "15px", fontWeight: 600, color: "#9295a0", margin: 0 }}>
               BEATS ({beats.length})
             </h2>
+            <div style={{ display: "flex", gap: "6px", alignItems: "center", flexWrap: "wrap" }}>
+              {([
+                { id: "both", label: "Video + Images" },
+                { id: "video", label: "Video only" },
+                { id: "image", label: "Images only" },
+              ] as const).map((m) => (
+                <div
+                  key={m.id}
+                  onClick={() => setMediaPref(m.id)}
+                  style={{
+                    cursor: "pointer",
+                    padding: "4px 10px",
+                    borderRadius: "999px",
+                    fontSize: "11px",
+                    border: mediaPref === m.id ? "1px solid var(--accent-blue)" : "1px solid var(--border-subtle)",
+                    color: mediaPref === m.id ? "#eceef1" : "#9295a0",
+                  }}
+                >
+                  {m.label}
+                </div>
+              ))}
+              <div
+                onClick={() => setAutoFill(!autoFill)}
+                title="Automatically select the 2 best images on beats long enough to fit them (6s+), split equally"
+                style={{
+                  cursor: "pointer",
+                  padding: "4px 10px",
+                  borderRadius: "999px",
+                  fontSize: "11px",
+                  border: autoFill ? "1px solid var(--accent-blue)" : "1px solid var(--border-subtle)",
+                  color: autoFill ? "#eceef1" : "#9295a0",
+                }}
+              >
+                Auto 2-img
+              </div>
+            </div>
             <button
               onClick={handleFindAllMedia}
               className="btn btn-secondary"

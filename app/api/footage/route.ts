@@ -294,6 +294,11 @@ export async function POST(req: NextRequest) {
     const { beatText, keywords, entities, page: rawPage } = body;
     const page = Math.max(1, parseInt(rawPage) || 1);
     const excludeIds: string[] = Array.isArray(body.excludeIds) ? body.excludeIds : [];
+    const mediaType: string =
+      body.mediaType === "video" || body.mediaType === "image" ? body.mediaType : "both";
+    const wantV = mediaType !== "image";
+    const wantI = mediaType !== "video";
+    const none: Promise<MediaItem[]> = Promise.resolve([]);
 
     const queryList: string[] = (
       Array.isArray(body.queries) && body.queries.length > 0 ? body.queries : [body.query]
@@ -311,22 +316,22 @@ export async function POST(req: NextRequest) {
     // Round 1: the exact (Tier 1) query across all 14 providers
     const q0 = queryList[0];
     const r1 = await Promise.all([
-      searchPexelsVideos(q0, page),
-      searchPixabayVideos(q0, page),
-      searchPexelsImages(q0, page),
-      searchPixabayImages(q0, page),
-      searchOpenverse(q0, page),
-      searchWikimedia(q0, page),
-      searchNasa(q0, page),
-      searchArtInstitute(q0, page),
-      searchMet(q0, page),
-      searchLoc(q0, page),
-      searchINaturalist(q0, page),
-      searchUnsplash(q0, page),
-      searchEuropeana(q0, page),
-      searchSmithsonian(q0, page),
-      searchNasaVideos(q0, page),
-      searchInternetArchiveVideos(q0, page),
+      wantV ? searchPexelsVideos(q0, page) : none,
+      wantV ? searchPixabayVideos(q0, page) : none,
+      wantI ? searchPexelsImages(q0, page) : none,
+      wantI ? searchPixabayImages(q0, page) : none,
+      wantI ? searchOpenverse(q0, page) : none,
+      wantI ? searchWikimedia(q0, page) : none,
+      wantI ? searchNasa(q0, page) : none,
+      wantI ? searchArtInstitute(q0, page) : none,
+      wantI ? searchMet(q0, page) : none,
+      wantI ? searchLoc(q0, page) : none,
+      wantI ? searchINaturalist(q0, page) : none,
+      wantI ? searchUnsplash(q0, page) : none,
+      wantI ? searchEuropeana(q0, page) : none,
+      wantI ? searchSmithsonian(q0, page) : none,
+      wantV ? searchNasaVideos(q0, page) : none,
+      wantV ? searchInternetArchiveVideos(q0, page) : none,
     ]);
     videos.push(...r1[0], ...r1[1], ...r1[14], ...r1[15]);
     for (const arr of r1.slice(2, 14)) images.push(...arr);
@@ -335,29 +340,29 @@ export async function POST(req: NextRequest) {
     if (queryList[1]) {
       const q1 = queryList[1];
       const r2 = await Promise.all([
-        searchPexelsVideos(q1, page),
-        searchPixabayVideos(q1, page),
-        searchPexelsImages(q1, page),
-        searchPixabayImages(q1, page),
-        searchUnsplash(q1, page),
-        searchOpenverse(q1, page),
-        searchNasaVideos(q1, page),
-        searchInternetArchiveVideos(q1, page),
+        wantV ? searchPexelsVideos(q1, page) : none,
+        wantV ? searchPixabayVideos(q1, page) : none,
+        wantI ? searchPexelsImages(q1, page) : none,
+        wantI ? searchPixabayImages(q1, page) : none,
+        wantI ? searchUnsplash(q1, page) : none,
+        wantI ? searchOpenverse(q1, page) : none,
+        wantV ? searchNasaVideos(q1, page) : none,
+        wantV ? searchInternetArchiveVideos(q1, page) : none,
       ]);
       videos.push(...r2[0], ...r2[1], ...r2[6], ...r2[7]);
       for (const arr of r2.slice(2, 6)) images.push(...arr);
     }
 
     // Round 3: broaden ONLY if results are thin (Tier 3 behavior)
-    if ((videos.length < 4 || images.length < 6) && queryList[2]) {
+    if (((wantV && videos.length < 4) || (wantI && images.length < 6)) && queryList[2]) {
       const q2 = queryList[2];
       const r3 = await Promise.all([
-        searchPexelsVideos(q2, page),
-        searchPixabayVideos(q2, page),
-        searchPexelsImages(q2, page),
-        searchPixabayImages(q2, page),
-        searchUnsplash(q2, page),
-        searchOpenverse(q2, page),
+        wantV ? searchPexelsVideos(q2, page) : none,
+        wantV ? searchPixabayVideos(q2, page) : none,
+        wantI ? searchPexelsImages(q2, page) : none,
+        wantI ? searchPixabayImages(q2, page) : none,
+        wantI ? searchUnsplash(q2, page) : none,
+        wantI ? searchOpenverse(q2, page) : none,
       ]);
       videos.push(...r3[0], ...r3[1]);
       for (const arr of r3.slice(2)) images.push(...arr);
