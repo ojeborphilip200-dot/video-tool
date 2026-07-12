@@ -167,6 +167,19 @@ async function runRenderJob(jobId: string, input: RenderInput) {
           `DEBUG clip ${i}: kind=${clips[i].kind} trim=${clips[i].trimStart}-${clips[i].trimEnd} ` +
           `(want ${(clips[i].trimEnd - clips[i].trimStart).toFixed(2)}s) actualFile=${stdout.trim()}s`
         );
+        // Clamp video trims to the file's real length - archive metadata can
+        // over-report durations, and an out-of-range trim silently shortens
+        // the whole video relative to the narration
+        const actual = parseFloat(stdout.trim());
+        if (clips[i].kind !== "image" && !isNaN(actual) && actual > 0) {
+          if (clips[i].trimStart >= actual) {
+            clips[i].trimStart = 0;
+          }
+          if (clips[i].trimEnd > actual) {
+            console.log(`DEBUG clip ${i}: clamping trimEnd ${clips[i].trimEnd} -> ${actual}`);
+            clips[i].trimEnd = actual;
+          }
+        }
       } catch {
         console.log(`DEBUG clip ${i}: probe failed for ${cachedPath}`);
       }

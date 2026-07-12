@@ -324,3 +324,122 @@ export async function searchSmithsonian(query: string, page = 1): Promise<MediaI
     return [];
   }
 }
+
+// NASA video collection: no key, public domain. Search -> asset lookup for mp4.
+export async function searchNasaVideos(query: string, page = 1): Promise<MediaItem[]> {
+  try {
+    const res = await fetch(
+      `https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}&media_type=video&page_size=3&page=${page}`
+    );
+    const data = await res.json();
+    const items = (data?.collection?.items || []).slice(0, 3);
+
+    const results = await Promise.all(
+      items.map(async (item: any) => {
+        const meta = item.data?.[0];
+        const thumb = item.links?.[0]?.href || "";
+        if (!meta?.nasa_id) return null;
+        try {
+          const assetRes = await fetch(`https://images-api.nasa.gov/asset/${meta.nasa_id}`);
+          const asset = await assetRes.json();
+          const hrefs: string[] = (asset?.collection?.items || []).map((i: any) => i.href);
+          const mp4 =
+            hrefs.find((h) => h.includes("~mobile.mp4")) ||
+            hrefs.find((h) => h.includes("~small.mp4")) ||
+            hrefs.find((h) => h.includes("~medium.mp4")) ||
+            hrefs.find((h) => /\.mp4$/i.test(h));
+          if (!mp4) return null;
+
+          let duration = 20;
+          try {
+            const mRes = await fetch(`https://images-api.nasa.gov/metadata/${meta.nasa_id}`);
+            const mLoc = (await mRes.json())?.location;
+            if (mLoc) {
+              const full = await (await fetch(mLoc)).json();
+              const durStr = full?.["File:Duration"] || full?.["QuickTime:Duration"] || full?.Duration;
+              if (typeof durStr === "string") {
+                const parts = durStr.split(":").map(parseFloat);
+                if (parts.length === 3) duration = parts[0] * 3600 + parts[1] * 60 + parts[2];
+                else if (parts.length === 2) duration = parts[0] * 60 + parts[1];
+                else if (!isNaN(parts[0])) duration = parts[0];
+              } else if (typeof durStr === "number") {
+                duration = durStr;
+              }
+            }
+          } catch {
+            // keep default
+          }
+
+          return {
+            id: `nasa-v-${meta.nasa_id}`,
+            kind: "video" as const,
+            thumbnail: thumb,
+            previewUrl: mp4.startsWith("http") ? mp4 : `https://${mp4}`,
+            duration: Math.round(duration),
+            source: "nasa",
+            description: meta.title || "",
+          };
+        } catch {
+          return null;
+        }
+      })
+    );
+
+    return results.filter(Boolean) as MediaItem[];
+  } catch {
+    return [];
+  }
+}
+
+// Internet Archive: public-domain film collections (incl. Prelinger newsreels/documentaries).
+export async function searchInternetArchiveVideos(query: string, page = 1): Promise<MediaItem[]> {
+  try {
+    const q = `(${query}) AND mediatype:(movies) AND (collection:(prelinger) OR licenseurl:(*publicdomain*))`;
+    const res = await fetch(
+      `https://archive.org/advancedsearch.php?q=${encodeURIComponent(q)}&fl[]=identifier&fl[]=title&rows=3&page=${page}&output=json`
+    );
+    const data = await res.json();
+    const docs = (data?.response?.docs || []).slice(0, 3);
+
+    const results = await Promise.all(
+      docs.map(async (d: any) => {
+        try {
+          const mRes = await fetch(`https://archive.org/metadata/${d.identifier}`);
+          const meta = await mRes.json();
+          const files: any[] = meta?.files || [];
+          const mp4 = files.find(
+            (f) => /\.mp4$/i.test(f.name || "") && (f.format || "").toLowerCase().includes("mpeg4")
+          ) || files.find((f) => /\.mp4$/i.test(f.name || ""));
+          if (!mp4) return null;
+
+          let duration = 30;
+          const len = mp4.length;
+          if (typeof len === "string") {
+            if (len.includes(":")) {
+              const parts = len.split(":").map(parseFloat);
+              duration = parts.length === 3 ? parts[0] * 3600 + parts[1] * 60 + parts[2] : parts[0] * 60 + parts[1];
+            } else if (!isNaN(parseFloat(len))) {
+              duration = parseFloat(len);
+            }
+          }
+
+          return {
+            id: `ia-v-${d.identifier}`,
+            kind: "video" as const,
+            thumbnail: `https://archive.org/services/img/${d.identifier}`,
+            previewUrl: `https://archive.org/download/${d.identifier}/${encodeURIComponent(mp4.name)}`,
+            duration: Math.round(duration),
+            source: "internet-archive",
+            description: d.title || "",
+          };
+        } catch {
+          return null;
+        }
+      })
+    );
+
+    return results.filter(Boolean) as MediaItem[];
+  } catch {
+    return [];
+  }
+}

@@ -30,11 +30,29 @@ export async function getCachedMedia(url: string, kind: "video" | "image"): Prom
     // cache miss - download + normalize
   }
 
-  const res = await fetch(url);
-  if (!res.ok) {
-    throw new Error(`Failed to download media: ${res.status} ${url}`);
+  let buffer: Buffer;
+  if (url.startsWith("yt:")) {
+    // YouTube clips are never downloaded automatically. The user acquires the
+    // file through an authorized workflow (YouTube Studio for their own
+    // channels, or the original public-domain archive) and drops it here.
+    const videoId = url.slice(3);
+    const localPath = path.join(process.cwd(), ".yt-media", `${videoId}.mp4`);
+    try {
+      buffer = await fs.readFile(localPath);
+    } catch {
+      throw new Error(
+        `YouTube clip ${videoId} not found. Acquire it through an authorized workflow ` +
+          `(e.g. YouTube Studio download for your own channel, or the original archive) ` +
+          `and save it as .yt-media/${videoId}.mp4, then render again.`
+      );
+    }
+  } else {
+    const res = await fetch(url);
+    if (!res.ok) {
+      throw new Error(`Failed to download media: ${res.status} ${url}`);
+    }
+    buffer = Buffer.from(await res.arrayBuffer());
   }
-  const buffer = Buffer.from(await res.arrayBuffer());
 
   const rawPath = path.join(CACHE_DIR, `${hash}-raw${ext}`);
   await fs.writeFile(rawPath, buffer);

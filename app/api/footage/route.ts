@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { searchOpenverse, searchWikimedia, searchNasa, searchArtInstitute, searchMet, searchLoc, searchINaturalist, searchUnsplash, searchEuropeana, searchSmithsonian } from "../_lib/providers";
+import { searchOpenverse, searchWikimedia, searchNasa, searchArtInstitute, searchMet, searchLoc, searchINaturalist, searchUnsplash, searchEuropeana, searchSmithsonian, searchNasaVideos, searchInternetArchiveVideos } from "../_lib/providers";
 
 type MediaItem = {
   id: string;
@@ -151,16 +151,18 @@ Candidates (metadata only):
 ${candidateList}
 
 Score EVERY candidate 0-100 using this rubric:
-- Semantic relevance to the narration's meaning (0-30)
-- Exact entity match - likely shows the actual person/company/place/event discussed (0-20)
+- Exact subject match - likely shows the ACTUAL person/company/place/event/era discussed (0-40)
+- Semantic relevance to the narration's meaning (0-25)
 - Time-period accuracy when the narration is historical (0-15)
-- Likely visual quality given the source (0-10)
-- Suitability for a 16:9 documentary frame (0-10)
-- Source reliability for this subject (0-5)
-- Novelty vs the other candidates - penalize near-duplicates (0-5)
+- Source fit: archival/government sources (nasa, internet-archive, loc, wikimedia, europeana, smithsonian) are STRONGLY preferred whenever the narration names a specific subject, event, or era - even if older, grainy, or 4:3. Modern stock (pexels, pixabay, unsplash) only wins for present-day generic scenes (0-10)
+- Novelty vs the other candidates (0-5)
 - Low watermark/text-clutter risk (0-5)
 
-Judge only from the metadata given. A candidate that likely depicts the WRONG entity or wrong period scores below 30. Generic-but-accurate B-roll scores 40-60. Likely exact matches score 70+.
+HARD RULES:
+- Never let a prettier generic clip outrank real footage of the actual subject. Resolution and modern look do NOT compensate for showing the wrong thing.
+- Abstract "concept" stock (handshakes, skylines, keyboards, sunsets) scores below 35 whenever the narration names a concrete subject - it only scores 40-60 when the narration itself is genuinely abstract.
+- A candidate likely depicting the WRONG entity or wrong period scores below 30.
+- Likely exact matches of the named subject score 75+.
 
 Respond ONLY with a JSON array, no other text: [{"id":"...","score":87}, ...]`,
         },
@@ -177,8 +179,8 @@ Respond ONLY with a JSON array, no other text: [{"id":"...","score":87}, ...]`,
     );
 
     // Reject weak candidates (score < 35) as long as enough strong ones remain
-    const strong = ranked.filter((m) => (scoreMap.get(m.id) ?? 0) >= 35);
-    if (strong.length >= 8) ranked = strong;
+    const strong = ranked.filter((m) => (scoreMap.get(m.id) ?? 0) >= 40);
+    if (strong.length >= 6) ranked = strong;
 
     return ranked;
   } catch (err) {
@@ -323,9 +325,11 @@ export async function POST(req: NextRequest) {
       searchUnsplash(q0, page),
       searchEuropeana(q0, page),
       searchSmithsonian(q0, page),
+      searchNasaVideos(q0, page),
+      searchInternetArchiveVideos(q0, page),
     ]);
-    videos.push(...r1[0], ...r1[1]);
-    for (const arr of r1.slice(2)) images.push(...arr);
+    videos.push(...r1[0], ...r1[1], ...r1[14], ...r1[15]);
+    for (const arr of r1.slice(2, 14)) images.push(...arr);
 
     // Round 2: the contextual-variation query across the high-volume providers
     if (queryList[1]) {
@@ -337,9 +341,11 @@ export async function POST(req: NextRequest) {
         searchPixabayImages(q1, page),
         searchUnsplash(q1, page),
         searchOpenverse(q1, page),
+        searchNasaVideos(q1, page),
+        searchInternetArchiveVideos(q1, page),
       ]);
-      videos.push(...r2[0], ...r2[1]);
-      for (const arr of r2.slice(2)) images.push(...arr);
+      videos.push(...r2[0], ...r2[1], ...r2[6], ...r2[7]);
+      for (const arr of r2.slice(2, 6)) images.push(...arr);
     }
 
     // Round 3: broaden ONLY if results are thin (Tier 3 behavior)
