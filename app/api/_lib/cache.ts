@@ -30,29 +30,19 @@ export async function getCachedMedia(url: string, kind: "video" | "image"): Prom
     // cache miss - download + normalize
   }
 
-  let buffer: Buffer;
-  if (url.startsWith("yt:")) {
-    // YouTube clips are never downloaded automatically. The user acquires the
-    // file through an authorized workflow (YouTube Studio for their own
-    // channels, or the original public-domain archive) and drops it here.
-    const videoId = url.slice(3);
-    const localPath = path.join(process.cwd(), ".yt-media", `${videoId}.mp4`);
-    try {
-      buffer = await fs.readFile(localPath);
-    } catch {
-      throw new Error(
-        `YouTube clip ${videoId} not found. Acquire it through an authorized workflow ` +
-          `(e.g. YouTube Studio download for your own channel, or the original archive) ` +
-          `and save it as .yt-media/${videoId}.mp4, then render again.`
-      );
-    }
-  } else {
-    const res = await fetch(url);
-    if (!res.ok) {
-      throw new Error(`Failed to download media: ${res.status} ${url}`);
-    }
-    buffer = Buffer.from(await res.arrayBuffer());
+  const headers = {
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) video-tool/1.0",
+    Accept: "*/*",
+  };
+  let res = await fetch(url, { headers });
+  // Some IIIF servers (e.g. Art Institute) refuse certain size variants - retry smaller
+  if (!res.ok && url.includes("/iiif/") && url.includes("/full/843,")) {
+    res = await fetch(url.replace("/full/843,", "/full/600,"), { headers });
   }
+  if (!res.ok) {
+    throw new Error(`Failed to download media: ${res.status} ${url}`);
+  }
+  const buffer = Buffer.from(await res.arrayBuffer());
 
   const rawPath = path.join(CACHE_DIR, `${hash}-raw${ext}`);
   await fs.writeFile(rawPath, buffer);

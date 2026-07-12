@@ -241,7 +241,7 @@ export default function Home() {
         if (remaining <= 0) return b;
 
         const trimEnd =
-          media.kind === "image" ? remaining : Math.min(media.duration, remaining);
+          media.kind === "image" ? Math.min(4, remaining) : Math.min(media.duration, remaining);
         return {
           ...b,
           selectedClips: [...b.selectedClips, { media, trimStart: 0, trimEnd }],
@@ -584,9 +584,22 @@ export default function Home() {
                         onChange={(start, end) => updateClipTrim(i, clip.media.id, start, end)}
                       />
                     ) : (
-                      <p style={{ fontSize: "12px", color: "#5c5f68" }}>
-                        Still image · shows for {(clip.trimEnd - clip.trimStart).toFixed(1)}s
-                      </p>
+                      <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                        <span style={{ fontSize: "12px", color: "#5c5f68" }}>Still image · shows for</span>
+                        <input
+                          type="number"
+                          min={1}
+                          step={0.5}
+                          value={Number((clip.trimEnd - clip.trimStart).toFixed(1))}
+                          onChange={(e) => {
+                            const want = parseFloat(e.target.value) || 1;
+                            const maxAllowed = clip.trimEnd - clip.trimStart + remainingTime(beat);
+                            updateClipTrim(i, clip.media.id, 0, Math.max(1, Math.min(want, maxAllowed)));
+                          }}
+                          style={{ width: "60px" }}
+                        />
+                        <span style={{ fontSize: "12px", color: "#5c5f68" }}>s</span>
+                      </div>
                     )}
                   </div>
                 ))}

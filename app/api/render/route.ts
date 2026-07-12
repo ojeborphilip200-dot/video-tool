@@ -7,6 +7,7 @@ import os from "os";
 import { generateAss, Callout } from "../_lib/ass";
 import { detectYearCallouts, detectLocationCallouts } from "../_lib/captions";
 import { detectCountups, CountupSpec } from "../_lib/countups";
+import { buildImageSequenceClip } from "../_lib/slideshow";
 import { getCachedMedia } from "../_lib/cache";
 import { createJob, updateJob } from "../_lib/jobs";
 
@@ -183,6 +184,40 @@ async function runRenderJob(jobId: string, input: RenderInput) {
       } catch {
         console.log(`DEBUG clip ${i}: probe failed for ${cachedPath}`);
       }
+    }
+
+    // Group runs of 2+ consecutive images into single pre-rendered slideshow
+    // clips (Ken Burns + crossfades baked in) - seamless within the beat, and
+    // the main pass sees one ordinary video clip instead of N images
+    {
+      const newClips: typeof clips = [];
+      const newFiles: string[] = [];
+      let gi = 0;
+      while (gi < clips.length) {
+        if (clips[gi].kind === "image") {
+          let gj = gi;
+          while (gj < clips.length && clips[gj].kind === "image") gj++;
+          if (gj - gi >= 2) {
+            const groupFiles = downloadedFiles.slice(gi, gj);
+            const groupDurs = clips.slice(gi, gj).map((c) => c.trimEnd - c.trimStart);
+            const seq = await buildImageSequenceClip(groupFiles, groupDurs);
+            console.log(
+              `DEBUG - image sequence: ${gj - gi} images -> ${seq.duration.toFixed(1)}s slideshow clip`
+            );
+            newClips.push({ url: "", kind: "video", trimStart: 0, trimEnd: seq.duration });
+            newFiles.push(seq.path);
+            gi = gj;
+            continue;
+          }
+        }
+        newClips.push(clips[gi]);
+        newFiles.push(downloadedFiles[gi]);
+        gi++;
+      }
+      clips.length = 0;
+      clips.push(...newClips);
+      downloadedFiles.length = 0;
+      downloadedFiles.push(...newFiles);
     }
 
     let audioPath = "";
