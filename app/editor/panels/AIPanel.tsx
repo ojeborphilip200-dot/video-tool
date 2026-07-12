@@ -61,6 +61,7 @@ export default function AIPanel() {
               entities: b.entities || [],
               queries: b.queries || [],
               treatment: b.treatment || "video",
+              map: b.map && b.map.score >= 75 ? b.map : undefined,
               duration: b.duration,
               start: b.start || 0,
               end: b.end || 0,

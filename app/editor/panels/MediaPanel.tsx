@@ -3,6 +3,17 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useProject, Beat, MediaItem } from "../store";
 
+function makeMapMedia(beat: Beat, beatIndex: number): MediaItem {
+  return {
+    id: `map-${beatIndex}`,
+    kind: "video",
+    thumbnail: "",
+    previewUrl: "map:" + JSON.stringify({ ...beat.map, template: "route", durationSec: Number(beat.duration.toFixed(2)) }),
+    duration: beat.duration,
+    source: "map",
+  };
+}
+
 function usedTime(b: Beat) {
   return b.selectedClips.reduce((s, c) => s + (c.trimEnd - c.trimStart), 0);
 }
@@ -71,7 +82,10 @@ export default function MediaPanel() {
       if (selectedClips.length === 0) {
         const vPool = state.settings.mediaPref === "image" ? [] : videos;
         const iPool = state.settings.mediaPref === "video" ? [] : images;
-        if (state.settings.autoFill && iPool.length >= 2 && beat.duration >= 6) {
+        if (beat.map && beat.map.score >= 85) {
+          const mapMedia = makeMapMedia(beat, index);
+          selectedClips = [{ media: mapMedia, trimStart: 0, trimEnd: beat.duration }];
+        } else if (state.settings.autoFill && iPool.length >= 2 && beat.duration >= 6) {
           const per = beat.duration / 2;
           selectedClips = iPool.slice(0, 2).map((m) => ({ media: m, trimStart: 0, trimEnd: per }));
         } else {
@@ -355,7 +369,38 @@ export default function MediaPanel() {
               <button onClick={() => findMedia(i)} disabled={beat.loadingMedia} className="btn btn-secondary" style={{ fontSize: "11px", padding: "4px 10px" }}>
                 {beat.loadingMedia ? "Searching..." : "Generate"}
               </button>
-              {all.length > 0 && (
+              {beat.map && (() => {
+              const mapMedia = makeMapMedia(beat, i);
+              const isSel = beat.selectedClips.some((c) => c.media.id === mapMedia.id);
+              return (
+                <div
+                  onClick={() => toggleSelect(i, mapMedia)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "8px",
+                    padding: "8px 10px",
+                    marginBottom: "8px",
+                    borderRadius: "8px",
+                    cursor: "pointer",
+                    border: isSel ? "2px solid var(--ed-accent)" : "1px dashed var(--ed-border-strong)",
+                    background: "var(--ed-accent-soft)",
+                  }}
+                >
+                  <span style={{ fontSize: "16px" }}>🗺</span>
+                  <div style={{ flex: 1, minWidth: 0 }}>
+                    <div style={{ fontSize: "11px", color: "var(--ed-text-1)" }}>
+                      Map: {beat.map.locations.map((l) => l.name).join(" → ")}
+                    </div>
+                    <div style={{ fontSize: "9px", color: "var(--ed-text-3)" }}>
+                      AI score {beat.map.score} · {isSel ? "on timeline" : "click to use"}
+                    </div>
+                  </div>
+                </div>
+              );
+            })()}
+
+            {all.length > 0 && (
                 <button onClick={() => findMedia(i, true)} disabled={beat.loadingMedia} className="btn btn-secondary" style={{ fontSize: "11px", padding: "4px 10px" }}>
                   ↻
                 </button>

@@ -57,7 +57,14 @@ export default function PreviewStage() {
         <span style={{ fontSize: "12px", color: "var(--ed-text-3)", fontFamily: "var(--font-mono)" }}>EMPTY SLOT</span>
       )}
 
-      {active && !active.gap && active.kind === "video" && (
+      {active && !active.gap && active.previewUrl.startsWith("map:") && (
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
+          <span style={{ fontSize: "22px" }}>🗺</span>
+          <span style={{ fontSize: "11px", color: "var(--ed-text-3)" }}>Map animation — renders in the final export (live preview coming)</span>
+        </div>
+      )}
+
+      {active && !active.gap && !active.previewUrl.startsWith("map:") && active.kind === "video" && (
         <video
           key={active.id}
           ref={videoRef}

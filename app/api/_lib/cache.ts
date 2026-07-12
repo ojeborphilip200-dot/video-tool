@@ -30,6 +30,14 @@ export async function getCachedMedia(url: string, kind: "video" | "image"): Prom
     // cache miss - download + normalize
   }
 
+  // Map animation clips: rendered by the shared map engine, cached by config
+  if (url.startsWith("map:")) {
+    const { buildMapClip } = await import("./mapFrames");
+    const config = JSON.parse(url.slice(4));
+    const built = await buildMapClip(config);
+    return built.path;
+  }
+
   // Empty timeline slots render as black frames (holds timing, visible as a gap)
   if (url === "black:") {
     const blackPath = path.join(CACHE_DIR, "black-frame-norm.jpg");

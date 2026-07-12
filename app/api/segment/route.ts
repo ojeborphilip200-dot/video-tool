@@ -40,9 +40,11 @@ For each beat provide:
   4th (only if genuinely useful): accurate symbolic B-roll that communicates the idea without misleading the viewer
 - "keywords": 2-4 short display terms summarizing the visual direction
 - "treatment": "video" (motion suits this beat) or "image" (a still suits it better - historical references, documents, static subjects)
+- "map": include ONLY when geographic movement, spread, migration, military campaigns, travel routes, expansion, territorial change, or regional comparison is CENTRAL to understanding the beat - never for incidental location mentions ("she was born in Chicago" gets NO map). Score the geographic importance 0-100; only include the field at all if it scores 75+. Format: { "template": "route", "score": 82, "locations": [{ "name": "Kyiv", "lat": 50.45, "lon": 30.52 }, ...] } with locations in travel order (origin, stops, destination) using accurate real-world coordinates. 2-5 locations.
 
 Respond ONLY with a valid JSON array, no other text:
-[{ "text": "...", "entities": ["..."], "queries": ["...", "..."], "keywords": ["..."], "treatment": "video" }]
+[{ "text": "...", "entities": ["..."], "queries": ["...", "..."], "keywords": ["..."], "treatment": "video", "map": { "template": "route", "score": 82, "locations": [{ "name": "...", "lat": 0, "lon": 0 }] } }]
+(omit "map" entirely on beats where geography is not central)
 
 Script:
 ${script}`,
@@ -52,7 +54,7 @@ ${script}`,
 
     const rawText = message.content[0].type === "text" ? message.content[0].text : "[]";
     const cleaned = rawText.replace(/```json|```/g, "").trim();
-    const aiBeats: { text: string; entities: string[]; queries: string[]; keywords: string[]; treatment: "video" | "image" }[] =
+    const aiBeats: { text: string; entities: string[]; queries: string[]; keywords: string[]; treatment: "video" | "image"; map?: { template: string; score: number; locations: { name: string; lat: number; lon: number }[] } }[] =
       JSON.parse(cleaned);
 
     // Map beats to narration timings sequentially: beats are verbatim and in
