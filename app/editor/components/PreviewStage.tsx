@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useProject } from "../store";
 import { deriveTimeline, deriveCaptionChunks } from "../timeline";
+import MapPreview from "./MapPreview";
 
 export default function PreviewStage() {
   const { state } = useProject();
@@ -58,10 +59,7 @@ export default function PreviewStage() {
       )}
 
       {active && !active.gap && active.previewUrl.startsWith("map:") && (
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "6px" }}>
-          <span style={{ fontSize: "22px" }}>🗺</span>
-          <span style={{ fontSize: "11px", color: "var(--ed-text-3)" }}>Map animation — renders in the final export (live preview coming)</span>
-        </div>
+        <MapPreview config={JSON.parse(active.previewUrl.slice(4))} t={t - active.start} />
       )}
 
       {active && !active.gap && !active.previewUrl.startsWith("map:") && active.kind === "video" && (
