@@ -82,11 +82,25 @@ export default function TimelineDock() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.playing]);
 
+  // Enter / Space toggle playback anywhere in the editor (unless typing)
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const el = e.target as HTMLElement;
+      if (el?.tagName === "INPUT" || el?.tagName === "TEXTAREA" || el?.isContentEditable) return;
+      if (e.key !== "Enter" && e.key !== " ") return;
+      if (timelineDur <= 1) return;
+      e.preventDefault();
+      dispatch({ type: "SET_PLAYING", playing: !state.playing });
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [state.playing, timelineDur, dispatch]);
+
   function seekFromClientX(clientX: number) {
     const el = scrollRef.current;
     if (!el) return;
     const rect = el.getBoundingClientRect();
-    const x = clientX - rect.left + el.scrollLeft;
+    const x = clientX - rect.left + el.scrollLeft - LABEL_W;
     const t = Math.max(0, Math.min(timelineDur, x / pxPerSec));
     dispatch({ type: "SET_TIME", t });
     if (audioRef.current) audioRef.current.currentTime = t;
@@ -141,7 +155,16 @@ export default function TimelineDock() {
         ref={scrollRef}
         onMouseDown={(e) => {
           if ((e.target as HTMLElement).dataset?.clip) return;
+          e.preventDefault();
+          dispatch({ type: "SET_PLAYING", playing: false });
           seekFromClientX(e.clientX);
+          const move = (ev: MouseEvent) => seekFromClientX(ev.clientX);
+          const up = () => {
+            window.removeEventListener("mousemove", move);
+            window.removeEventListener("mouseup", up);
+          };
+          window.addEventListener("mousemove", move);
+          window.addEventListener("mouseup", up);
         }}
         style={{ flex: 1, overflowX: "auto", overflowY: "auto", padding: "6px 0", position: "relative", cursor: "text" }}
       >
@@ -221,6 +244,8 @@ export default function TimelineDock() {
           <div
             onMouseDown={(e) => {
               e.stopPropagation();
+              e.preventDefault();
+              dispatch({ type: "SET_PLAYING", playing: false });
               const move = (ev: MouseEvent) => seekFromClientX(ev.clientX);
               const up = () => {
                 window.removeEventListener("mousemove", move);
@@ -229,9 +254,21 @@ export default function TimelineDock() {
               window.addEventListener("mousemove", move);
               window.addEventListener("mouseup", up);
             }}
-            style={{ position: "absolute", left: `${LABEL_W + state.currentTime * pxPerSec}px`, top: 0, bottom: 0, width: "10px", marginLeft: "-5px", cursor: "ew-resize", zIndex: 5 }}
+            style={{ position: "absolute", left: `${LABEL_W + state.currentTime * pxPerSec}px`, top: 0, bottom: 0, width: "16px", marginLeft: "-8px", cursor: "ew-resize", zIndex: 6 }}
           >
-            <div style={{ position: "absolute", left: "4px", top: 0, bottom: 0, width: "2px", background: "#ff8a65" }} />
+            <div style={{ position: "absolute", left: "7px", top: 0, bottom: 0, width: "2px", background: "#ff8a65" }} />
+            <div
+              style={{
+                position: "absolute",
+                left: "2px",
+                top: "-2px",
+                width: "12px",
+                height: "12px",
+                borderRadius: "3px",
+                background: "#ff8a65",
+                boxShadow: "0 1px 3px rgba(0,0,0,0.5)",
+              }}
+            />
           </div>
         </div>
       </div>

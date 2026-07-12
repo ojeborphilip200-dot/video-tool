@@ -19,12 +19,12 @@ const execAsync = promisify(exec);
 function kenBurnsFilter(durationSec: number): string {
   const FPS = 25;
   const frames = Math.max(1, Math.round(durationSec * FPS));
-  const pre = `scale=2560:1440:force_original_aspect_ratio=increase,crop=2560:1440`;
+  const pre = `scale=w='if(lt(a,1),-2,if(lt(a,16/9),2560,-2))':h='if(lt(a,1),1309,if(lt(a,16/9),-2,1440))',crop=w='min(2560,iw)':h='min(1440,ih)',pad=2560:1440:(ow-iw)/2:(oh-ih)/2:color=white`;
 
   const variants = [
-    `zoompan=z='min(zoom+0.0010,1.25)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${frames}:s=1280x720:fps=${FPS}`,
-    `zoompan=z='if(eq(on,0),1.25,max(zoom-0.0010,1.0))':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${frames}:s=1280x720:fps=${FPS}`,
-    `zoompan=z='1.15':x='(iw-iw/zoom)*on/${frames}':y='ih/2-(ih/zoom/2)':d=${frames}:s=1280x720:fps=${FPS}`,
+    `zoompan=z='min(zoom+0.0005,1.10)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${frames}:s=1280x720:fps=${FPS}`,
+    `zoompan=z='if(eq(on,0),1.10,max(zoom-0.0005,1.0))':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${frames}:s=1280x720:fps=${FPS}`,
+    `zoompan=z='1.10':x='(iw-iw/zoom)*on/${frames}':y='ih/2-(ih/zoom/2)':d=${frames}:s=1280x720:fps=${FPS}`,
   ];
 
   const pick = variants[Math.floor(Math.random() * variants.length)];

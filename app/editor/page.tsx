@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { ProjectProvider } from "./store";
+import { useEffect, useState } from "react";
+import { ProjectProvider, useProject } from "./store";
 import AIPanel from "./panels/AIPanel";
 import MediaPanel from "./panels/MediaPanel";
 import AudioPanel from "./panels/AudioPanel";
@@ -44,6 +44,25 @@ export default function EditorPage() {
 function Editor() {
   const [nav, setNav] = useState<string>("ai");
   const { status, exportVideo, canExport, clearResult } = useExport();
+  const { state, dispatch, canUndo, canRedo } = useProject();
+
+  // Selecting a clip on the timeline reveals it in the Media panel
+  useEffect(() => {
+    if (state.selected?.type === "clip") setNav("media");
+  }, [state.selected]);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const el = e.target as HTMLElement;
+      const typing = el?.tagName === "INPUT" || el?.tagName === "TEXTAREA";
+      if (!(e.metaKey || e.ctrlKey) || e.key.toLowerCase() !== "z") return;
+      if (typing && el.tagName === "TEXTAREA" && !e.shiftKey) return; // let the textarea undo its own text
+      e.preventDefault();
+      dispatch({ type: e.shiftKey ? "REDO" : "UNDO" });
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [dispatch]);
 
   const panels: Record<string, { title: string; note: string }> = {
     ai: { title: "AI", note: "Script, transcription, Generate Beats, media preference and Auto 2-img connect here in Phase 4." },
@@ -87,6 +106,24 @@ function Editor() {
           <span style={{ fontSize: "11px", color: "#5c5f68" }}>Untitled project</span>
         </div>
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          <button
+            className="btn btn-secondary"
+            onClick={() => dispatch({ type: "UNDO" })}
+            disabled={!canUndo}
+            title="Undo (Cmd+Z)"
+            style={{ padding: "4px 10px" }}
+          >
+            ↶
+          </button>
+          <button
+            className="btn btn-secondary"
+            onClick={() => dispatch({ type: "REDO" })}
+            disabled={!canRedo}
+            title="Redo (Cmd+Shift+Z)"
+            style={{ padding: "4px 10px" }}
+          >
+            ↷
+          </button>
           {status.rendering && (
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               <div style={{ width: "120px", height: "5px", background: "#2a2c32", borderRadius: "3px", overflow: "hidden" }}>

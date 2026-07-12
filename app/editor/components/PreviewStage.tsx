@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useProject } from "../store";
 import { deriveTimeline, deriveCaptionChunks } from "../timeline";
 
 export default function PreviewStage() {
   const { state } = useProject();
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [portrait, setPortrait] = useState<Record<string, boolean>>({});
 
   const { clips, total } = useMemo(() => deriveTimeline(state.beats), [state.beats]);
   const chunks = useMemo(() => deriveCaptionChunks(state.words), [state.words]);
@@ -68,7 +69,21 @@ export default function PreviewStage() {
       )}
 
       {active && !active.gap && active.kind === "image" && (
-        <img src={active.previewUrl} alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        <img
+          src={active.previewUrl}
+          alt=""
+          onLoad={(e) => {
+            const el = e.currentTarget;
+            const isPortrait = el.naturalHeight > el.naturalWidth;
+            setPortrait((p) => (p[active.id] === isPortrait ? p : { ...p, [active.id]: isPortrait }));
+          }}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: portrait[active.id] ? "contain" : "cover",
+            background: portrait[active.id] ? "#fff" : "transparent",
+          }}
+        />
       )}
 
       {caption && (

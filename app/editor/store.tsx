@@ -104,7 +104,9 @@ export type Action =
   | { type: "SET_SETTING"; key: keyof ProjectSettings; value: any }
   | { type: "SELECT"; item: SelectedTimelineItem }
   | { type: "SET_TIME"; t: number }
-  | { type: "SET_PLAYING"; playing: boolean };
+  | { type: "SET_PLAYING"; playing: boolean }
+  | { type: "UNDO" }
+  | { type: "REDO" };
 
 function reducer(state: ProjectState, action: Action): ProjectState {
   switch (action.type) {
@@ -136,11 +138,115 @@ function reducer(state: ProjectState, action: Action): ProjectState {
   }
 }
 
-const ProjectContext = createContext<{ state: ProjectState; dispatch: Dispatch<Action> } | null>(null);
+// Content changes are undoable; playhead, play/pause and selection are not -
+// Cmd+Z should never rewind the playhead.
+const UNDOABLE = new Set([
+  "SET_SCRIPT",
+  "SET_WORDS",
+  "SET_AUDIO",
+  "SET_MUSIC",
+  "SET_BEATS",
+  "PATCH_BEAT",
+  "SET_SETTING",
+]);
+
+// Rapid edits of the same thing merge into one history step (typing in the
+// script box, nudging a trim input) so one undo doesn't take forty presses.
+const COALESCE_MS = 700;
+const MAX_HISTORY = 50;
+
+function actionLabel(a: Action): string {
+  switch (a.type) {
+    case "PATCH_BEAT":
+      return `beat-${a.index}`;
+    case "SET_SETTING":
+      return `setting-${String(a.key)}`;
+    default:
+      return a.type;
+  }
+}
+
+type History = {
+  past: ProjectState[];
+  present: ProjectState;
+  future: ProjectState[];
+  lastLabel: string | null;
+  lastAt: number;
+};
+
+function historyReducer(h: History, action: Action): History {
+  if (action.type === "UNDO") {
+    if (h.past.length === 0) return h;
+    const previous = h.past[h.past.length - 1];
+    return {
+      past: h.past.slice(0, -1),
+      present: { ...previous, currentTime: h.present.currentTime, playing: false },
+      future: [h.present, ...h.future],
+      lastLabel: null,
+      lastAt: 0,
+    };
+  }
+
+  if (action.type === "REDO") {
+    if (h.future.length === 0) return h;
+    const next = h.future[0];
+    return {
+      past: [...h.past, h.present],
+      present: { ...next, currentTime: h.present.currentTime, playing: false },
+      future: h.future.slice(1),
+      lastLabel: null,
+      lastAt: 0,
+    };
+  }
+
+  const nextState = reducer(h.present, action);
+  if (nextState === h.present) return h;
+
+  if (!UNDOABLE.has(action.type)) {
+    return { ...h, present: nextState };
+  }
+
+  const now = Date.now();
+  const label = actionLabel(action);
+  const merge = h.lastLabel === label && now - h.lastAt < COALESCE_MS;
+
+  return {
+    past: merge ? h.past : [...h.past, h.present].slice(-MAX_HISTORY),
+    present: nextState,
+    future: [],
+    lastLabel: label,
+    lastAt: now,
+  };
+}
+
+const ProjectContext = createContext<{
+  state: ProjectState;
+  dispatch: Dispatch<Action>;
+  canUndo: boolean;
+  canRedo: boolean;
+} | null>(null);
 
 export function ProjectProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
-  return <ProjectContext.Provider value={{ state, dispatch }}>{children}</ProjectContext.Provider>;
+  const [history, dispatch] = useReducer(historyReducer, {
+    past: [],
+    present: initialState,
+    future: [],
+    lastLabel: null,
+    lastAt: 0,
+  });
+
+  return (
+    <ProjectContext.Provider
+      value={{
+        state: history.present,
+        dispatch,
+        canUndo: history.past.length > 0,
+        canRedo: history.future.length > 0,
+      }}
+    >
+      {children}
+    </ProjectContext.Provider>
+  );
 }
 
 export function useProject() {

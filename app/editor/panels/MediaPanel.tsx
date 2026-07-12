@@ -14,6 +14,15 @@ export default function MediaPanel() {
   const { state, dispatch } = useProject();
   const [preview, setPreview] = useState<{ beatIndex: number; media: MediaItem } | null>(null);
   const [beatAudioOn, setBeatAudioOn] = useState(false);
+
+  // Scroll the selected timeline clip into view inside this panel
+  useEffect(() => {
+    const sel = state.selected;
+    if (sel?.type !== "clip") return;
+    const el = document.getElementById(`mp-${sel.beatIndex}-${sel.clipId}`) ||
+      document.getElementById(`mp-beat-${sel.beatIndex}`);
+    el?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [state.selected]);
   const beatAudioRef = useRef<HTMLAudioElement>(null);
 
   const narrationUrl = useMemo(
@@ -322,7 +331,20 @@ export default function MediaPanel() {
         const all = [...(beat.videos || []), ...(beat.images || [])];
         const remaining = remainingTime(beat);
         return (
-          <div key={i} style={{ marginBottom: "16px", paddingBottom: "12px", borderBottom: "1px solid var(--border-subtle)" }}>
+          <div
+            key={i}
+            id={`mp-beat-${i}`}
+            style={{
+              marginBottom: "16px",
+              paddingBottom: "12px",
+              borderBottom: "1px solid var(--border-subtle)",
+              background:
+                state.selected?.type === "clip" && state.selected.beatIndex === i
+                  ? "rgba(79,124,255,0.06)"
+                  : "transparent",
+              borderRadius: "6px",
+            }}
+          >
             <div style={{ fontSize: "10px", color: "#ff8a65", fontFamily: "var(--font-mono)", marginBottom: "4px" }}>
               B{i + 1} · {beat.duration.toFixed(1)}S · {remaining.toFixed(1)}S LEFT
             </div>
@@ -347,11 +369,18 @@ export default function MediaPanel() {
                   return (
                     <div
                       key={m.id}
+                      id={`mp-${i}-${m.id}`}
                       onClick={() => !disabled && toggleSelect(i, m)}
                       style={{
                         position: "relative",
                         cursor: disabled ? "not-allowed" : "pointer",
                         opacity: disabled ? 0.35 : 1,
+                        boxShadow:
+                          state.selected?.type === "clip" &&
+                          state.selected.beatIndex === i &&
+                          state.selected.clipId === m.id
+                            ? "0 0 0 3px #ff8a65"
+                            : "none",
                         outline: isSel ? "2px solid var(--accent-blue)" : "1px solid var(--border-subtle)",
                         borderRadius: "6px",
                         overflow: "hidden",
