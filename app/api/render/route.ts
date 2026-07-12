@@ -38,6 +38,9 @@ function pickBackgroundWindows(
   windows: { start: number; end: number }[],
   frequency: string = "2-3"
 ): { start: number; end: number }[] {
+  // "always" = frame the whole video: no windows means the full-video compositing path
+  if (frequency === "always") return [];
+
   const n = windows.length;
   if (n < 4) return [];
 

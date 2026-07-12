@@ -93,21 +93,6 @@ export default function AIPanel() {
         placeholder="Paste your script or upload a voiceover..."
       />
 
-      <button
-        onClick={handleGenerateBeats}
-        disabled={!state.script || segmenting}
-        className="btn btn-primary"
-        style={{ marginTop: "10px", width: "100%" }}
-      >
-        {segmenting ? "Analyzing script..." : "Generate beats"}
-      </button>
-
-      {state.beats.length > 0 && (
-        <p style={{ fontSize: "11px", color: "#4ade80", marginTop: "8px" }}>
-          {state.beats.length} beats ready — open the Media tab to source footage.
-        </p>
-      )}
-
       <p style={label}>Media preference</p>
       <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
         {(["both", "video", "image"] as const).map((m) => (
@@ -143,6 +128,28 @@ export default function AIPanel() {
       >
         Auto 2-img
       </div>
+
+      <button
+        onClick={handleGenerateBeats}
+        disabled={!state.script || segmenting || !state.settings.mediaPref}
+        className="btn btn-primary"
+        style={{ marginTop: "10px", width: "100%" }}
+      >
+        {segmenting ? "Analyzing script..." : "Generate Scenes"}
+      </button>
+
+      {!state.settings.mediaPref && (
+        <p style={{ fontSize: "11px", color: "#ff8a65", marginTop: "6px" }}>
+          Choose a media preference above to continue.
+        </p>
+      )}
+
+      {state.beats.length > 0 && (
+        <p style={{ fontSize: "11px", color: "#4ade80", marginTop: "8px" }}>
+          {state.beats.length} beats ready — open the Media tab to source footage.
+        </p>
+      )}
+
     </div>
   );
 }

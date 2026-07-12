@@ -9,6 +9,9 @@ import TextPanel from "./panels/TextPanel";
 import CaptionsPanel from "./panels/CaptionsPanel";
 import EffectsPanel from "./panels/EffectsPanel";
 import BackgroundsPanel from "./panels/BackgroundsPanel";
+import PreviewStage from "./components/PreviewStage";
+import TimelineDock from "./components/TimelineDock";
+import Inspector from "./components/Inspector";
 
 const NAV = [
   { id: "ai", icon: "✦", label: "AI" },
@@ -19,8 +22,6 @@ const NAV = [
   { id: "effects", icon: "★", label: "Effects" },
   { id: "backgrounds", icon: "▦", label: "Backgrounds" },
 ] as const;
-
-const TRACKS = ["SCRIPT", "VISUALS", "TEXT", "BACKGROUND", "CAPTIONS", "VOICE", "MUSIC"];
 
 function Placeholder({ title, note }: { title: string; note: string }) {
   return (
@@ -41,7 +42,6 @@ export default function EditorPage() {
 
 function Editor() {
   const [nav, setNav] = useState<string>("ai");
-  const [zoom, setZoom] = useState(1);
 
   const panels: Record<string, { title: string; note: string }> = {
     ai: { title: "AI", note: "Script, transcription, Generate Beats, media preference and Auto 2-img connect here in Phase 4." },
@@ -150,60 +150,17 @@ function Editor() {
           padding: "20px",
         }}
       >
-        <div
-          style={{
-            width: "100%",
-            maxWidth: "820px",
-            aspectRatio: "16 / 9",
-            background: "#000",
-            borderRadius: "8px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            border: "1px solid var(--border-subtle, #2a2c32)",
-          }}
-        >
-          <span style={{ fontSize: "12px", color: "#5c5f68" }}>Preview connects in Phase 5</span>
-        </div>
+        <PreviewStage />
       </div>
 
       {/* Inspector */}
       <div style={{ gridArea: "inspector", borderLeft: "1px solid var(--border-subtle, #2a2c32)", overflowY: "auto" }}>
-        <Placeholder
-          title="Properties"
-          note="Select a timeline item to edit it. Contextual inspectors (clip trim, image duration, text style) connect in Phase 4-5."
-        />
+        <Inspector />
       </div>
 
       {/* Timeline dock */}
-      <div style={{ gridArea: "dock", borderTop: "1px solid var(--border-subtle, #2a2c32)", display: "flex", flexDirection: "column" }}>
-        <div
-          style={{
-            height: "36px",
-            display: "flex",
-            alignItems: "center",
-            gap: "14px",
-            padding: "0 14px",
-            borderBottom: "1px solid var(--border-subtle, #2a2c32)",
-          }}
-        >
-          <button className="btn btn-secondary" disabled title="Connects in Phase 5" style={{ padding: "4px 12px", fontSize: "12px" }}>
-            ▶
-          </button>
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "#9295a0" }}>00:00.00 / 00:00.00</span>
-          <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "8px" }}>
-            <span style={{ fontSize: "10px", color: "#5c5f68" }}>Zoom</span>
-            <input type="range" min={0.5} max={4} step={0.1} value={zoom} onChange={(e) => setZoom(parseFloat(e.target.value))} />
-          </div>
-        </div>
-        <div style={{ flex: 1, overflowY: "auto", padding: "6px 0" }}>
-          {TRACKS.map((t) => (
-            <div key={t} style={{ display: "flex", alignItems: "center", height: "24px", padding: "0 8px", gap: "8px" }}>
-              <span style={{ width: "86px", fontSize: "9px", color: "#5c5f68", fontFamily: "var(--font-mono)" }}>{t}</span>
-              <div style={{ flex: 1, height: "18px", background: "#17181c", borderRadius: "4px" }} />
-            </div>
-          ))}
-        </div>
+      <div style={{ gridArea: "dock", borderTop: "1px solid var(--border-subtle, #2a2c32)", display: "flex", flexDirection: "column", minHeight: 0 }}>
+        <TimelineDock />
       </div>
     </div>
   );

@@ -37,7 +37,7 @@ export default function BackgroundsPanel() {
       {state.settings.background !== "none" && (
         <>
           <p style={{ fontSize: "11px", color: "#9295a0", margin: "12px 0 6px" }}>Appearances</p>
-          {(["2-3", "3-5"] as const).map((f) => (
+          {(["2-3", "3-5", "always"] as const).map((f) => (
             <div
               key={f}
               onClick={() => dispatch({ type: "SET_SETTING", key: "bgFrequency", value: f })}
@@ -50,8 +50,10 @@ export default function BackgroundsPanel() {
                 background: "var(--bg-elevated)",
               }}
             >
-              <div style={{ fontSize: "12px" }}>{f} times</div>
-              <div style={{ fontSize: "10px", color: "#5c5f68" }}>{f === "2-3" ? "Good for 8-15 min videos" : "Good for 30 min+ videos"}</div>
+              <div style={{ fontSize: "12px" }}>{f === "always" ? "Throughout" : `${f} times`}</div>
+              <div style={{ fontSize: "10px", color: "#5c5f68" }}>
+                {f === "2-3" ? "Good for 8-15 min videos" : f === "3-5" ? "Good for 30 min+ videos" : "Frames the entire video"}
+              </div>
             </div>
           ))}
         </>

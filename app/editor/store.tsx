@@ -15,7 +15,19 @@ export type SelectedClip = {
   media: MediaItem;
   trimStart: number;
   trimEnd: number;
+  gap?: boolean; // an empty slot: holds its place and duration until filled
 };
+
+export function makeGapMedia(): MediaItem {
+  return {
+    id: `gap-${Math.random().toString(36).slice(2, 9)}`,
+    kind: "image",
+    thumbnail: "",
+    previewUrl: "",
+    duration: 0,
+    source: "empty",
+  };
+}
 
 export type Beat = {
   text: string;
@@ -39,8 +51,8 @@ export type ProjectSettings = {
   countupLevel: "off" | "low" | "medium" | "high";
   textStyle: string;
   background: string;
-  bgFrequency: "2-3" | "3-5";
-  mediaPref: "both" | "video" | "image";
+  bgFrequency: "2-3" | "3-5" | "always";
+  mediaPref: "both" | "video" | "image" | null;
   autoFill: boolean;
 };
 
@@ -57,6 +69,7 @@ export type ProjectState = {
   beats: Beat[];
   settings: ProjectSettings;
   currentTime: number;
+  playing: boolean;
   selected: SelectedTimelineItem;
 };
 
@@ -73,10 +86,11 @@ export const initialState: ProjectState = {
     textStyle: "standard",
     background: "none",
     bgFrequency: "2-3",
-    mediaPref: "both",
+    mediaPref: null,
     autoFill: false,
   },
   currentTime: 0,
+  playing: false,
   selected: null,
 };
 
@@ -89,7 +103,8 @@ export type Action =
   | { type: "PATCH_BEAT"; index: number; patch: Partial<Beat> }
   | { type: "SET_SETTING"; key: keyof ProjectSettings; value: any }
   | { type: "SELECT"; item: SelectedTimelineItem }
-  | { type: "SET_TIME"; t: number };
+  | { type: "SET_TIME"; t: number }
+  | { type: "SET_PLAYING"; playing: boolean };
 
 function reducer(state: ProjectState, action: Action): ProjectState {
   switch (action.type) {
@@ -114,6 +129,8 @@ function reducer(state: ProjectState, action: Action): ProjectState {
       return { ...state, selected: action.item };
     case "SET_TIME":
       return { ...state, currentTime: action.t };
+    case "SET_PLAYING":
+      return { ...state, playing: action.playing };
     default:
       return state;
   }

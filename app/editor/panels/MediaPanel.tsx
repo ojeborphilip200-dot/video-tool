@@ -85,6 +85,28 @@ export default function MediaPanel() {
 
   function toggleSelect(index: number, media: MediaItem) {
     const beat = state.beats[index];
+
+    // If an empty slot in this beat is selected, drop the clip straight into it
+    const sel = state.selected;
+    if (sel?.type === "clip" && sel.beatIndex === index) {
+      const slot = beat.selectedClips.find((c) => c.media.id === sel.clipId && c.gap);
+      if (slot) {
+        const len = slot.trimEnd - slot.trimStart;
+        const trimEnd = media.kind === "image" ? len : Math.min(media.duration, len);
+        dispatch({
+          type: "PATCH_BEAT",
+          index,
+          patch: {
+            selectedClips: beat.selectedClips.map((c) =>
+              c.media.id === sel.clipId ? { media, trimStart: 0, trimEnd } : c
+            ),
+          },
+        });
+        dispatch({ type: "SELECT", item: { type: "clip", beatIndex: index, clipId: media.id } });
+        return;
+      }
+    }
+
     const already = beat.selectedClips.some((c) => c.media.id === media.id);
     if (already) {
       dispatch({

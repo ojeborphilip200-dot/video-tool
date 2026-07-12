@@ -712,6 +712,7 @@ export default function Home() {
                   {[
                     { id: "2-3", label: "2-3 times", tip: "Good for 8-15 min videos" },
                     { id: "3-5", label: "3-5 times", tip: "Good for 30 min+ videos" },
+                    { id: "always", label: "Throughout", tip: "Frames the entire video" },
                   ].map((o) => (
                     <div
                       key={o.id}
