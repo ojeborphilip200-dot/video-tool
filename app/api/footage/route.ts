@@ -108,11 +108,11 @@ async function searchPixabayImages(query: string, page = 1): Promise<MediaItem[]
   }
 }
 
-// Ask Claude to rank all candidates against the beat's narration.
-// Returns the same items, sorted best-first. Any failure = original order.
+// Rubric-based ranking: scores every candidate 0-100 like a documentary researcher.
 async function rankMedia(
   beatText: string,
-  keywords: string[],
+  entities: string[],
+  queries: string[],
   items: MediaItem[]
 ): Promise<MediaItem[]> {
   if (items.length <= 1) return items;
@@ -122,36 +122,55 @@ async function rankMedia(
     const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
     const candidateList = items
-      .map((m) => `- id: ${m.id} | kind: ${m.kind} | description: ${m.description || "(none)"}`)
+      .map((m) => `- id: ${m.id} | kind: ${m.kind} | source: ${m.source} | description: ${m.description || "(none)"}`)
       .join("\n");
 
     const message = await anthropic.messages.create({
       model: "claude-sonnet-4-6",
-      max_tokens: 500,
+      max_tokens: 1800,
       messages: [
         {
           role: "user",
-          content: `I'm matching stock media to a narration segment in a video.
+          content: `You are an experienced documentary visual researcher choosing footage for a narration segment.
 
 Narration: "${beatText}"
-Search keywords used: ${keywords.join(", ")}
+Subjects/entities discussed: ${entities.join(", ") || "(none identified)"}
+Searches used: ${queries.join(" | ")}
 
-Candidates:
+Candidates (metadata only):
 ${candidateList}
 
-Rank ALL candidates from best visual match to worst, judging by how well each description fits what the narration is about. Respond ONLY with a JSON array of ids in ranked order, no other text.`,
+Score EVERY candidate 0-100 using this rubric:
+- Semantic relevance to the narration's meaning (0-30)
+- Exact entity match - likely shows the actual person/company/place/event discussed (0-20)
+- Time-period accuracy when the narration is historical (0-15)
+- Likely visual quality given the source (0-10)
+- Suitability for a 16:9 documentary frame (0-10)
+- Source reliability for this subject (0-5)
+- Novelty vs the other candidates - penalize near-duplicates (0-5)
+- Low watermark/text-clutter risk (0-5)
+
+Judge only from the metadata given. A candidate that likely depicts the WRONG entity or wrong period scores below 30. Generic-but-accurate B-roll scores 40-60. Likely exact matches score 70+.
+
+Respond ONLY with a JSON array, no other text: [{"id":"...","score":87}, ...]`,
         },
       ],
     });
 
     const rawText = message.content[0].type === "text" ? message.content[0].text : "[]";
     const cleaned = rawText.replace(/```json|```/g, "").trim();
-    const rankedIds: string[] = JSON.parse(cleaned);
+    const scored: { id: string; score: number }[] = JSON.parse(cleaned);
+    const scoreMap = new Map(scored.map((s) => [s.id, s.score]));
 
-    const rankIndex = new Map(rankedIds.map((id, i) => [id, i]));
-    return [...items].sort(
-      (a, b) => (rankIndex.get(a.id) ?? 999) - (rankIndex.get(b.id) ?? 999)
+    let ranked = [...items].sort(
+      (a, b) => (scoreMap.get(b.id) ?? 0) - (scoreMap.get(a.id) ?? 0)
     );
+
+    // Reject weak candidates (score < 35) as long as enough strong ones remain
+    const strong = ranked.filter((m) => (scoreMap.get(m.id) ?? 0) >= 35);
+    if (strong.length >= 8) ranked = strong;
+
+    return ranked;
   } catch (err) {
     console.error("Ranking failed, using original order:", err);
     return items;
@@ -160,51 +179,98 @@ Rank ALL candidates from best visual match to worst, judging by how well each de
 
 export async function POST(req: NextRequest) {
   try {
-    const { query, beatText, keywords, page: rawPage } = await req.json();
+    const body = await req.json();
+    const { beatText, keywords, entities, page: rawPage } = body;
     const page = Math.max(1, parseInt(rawPage) || 1);
 
-    if (!query) {
+    const queryList: string[] = (
+      Array.isArray(body.queries) && body.queries.length > 0 ? body.queries : [body.query]
+    )
+      .filter(Boolean)
+      .slice(0, 4);
+
+    if (queryList.length === 0) {
       return NextResponse.json({ error: "No query provided" }, { status: 400 });
     }
 
-    const [
-      pexelsVideos,
-      pixabayVideos,
-      pexelsImages,
-      pixabayImages,
-      openverseImages,
-      wikimediaImages,
-      nasaImages,
-      articImages,
-      metImages,
-      locImages,
-      inatImages,
-      unsplashImages,
-      europeanaImages,
-      smithsonianImages,
-    ] = await Promise.all([
-      searchPexelsVideos(query, page),
-      searchPixabayVideos(query, page),
-      searchPexelsImages(query, page),
-      searchPixabayImages(query, page),
-      searchOpenverse(query, page),
-      searchWikimedia(query, page),
-      searchNasa(query, page),
-      searchArtInstitute(query, page),
-      searchMet(query, page),
-      searchLoc(query, page),
-      searchINaturalist(query, page),
-      searchUnsplash(query, page),
-      searchEuropeana(query, page),
-      searchSmithsonian(query, page),
+    let videos: MediaItem[] = [];
+    let images: MediaItem[] = [];
+
+    // Round 1: the exact (Tier 1) query across all 14 providers
+    const q0 = queryList[0];
+    const r1 = await Promise.all([
+      searchPexelsVideos(q0, page),
+      searchPixabayVideos(q0, page),
+      searchPexelsImages(q0, page),
+      searchPixabayImages(q0, page),
+      searchOpenverse(q0, page),
+      searchWikimedia(q0, page),
+      searchNasa(q0, page),
+      searchArtInstitute(q0, page),
+      searchMet(q0, page),
+      searchLoc(q0, page),
+      searchINaturalist(q0, page),
+      searchUnsplash(q0, page),
+      searchEuropeana(q0, page),
+      searchSmithsonian(q0, page),
     ]);
+    videos.push(...r1[0], ...r1[1]);
+    for (const arr of r1.slice(2)) images.push(...arr);
 
-    let videos = [...pexelsVideos, ...pixabayVideos];
-    let images = [...pexelsImages, ...pixabayImages, ...openverseImages, ...wikimediaImages, ...nasaImages, ...articImages, ...metImages, ...locImages, ...inatImages, ...unsplashImages, ...europeanaImages, ...smithsonianImages];
+    // Round 2: the contextual-variation query across the high-volume providers
+    if (queryList[1]) {
+      const q1 = queryList[1];
+      const r2 = await Promise.all([
+        searchPexelsVideos(q1, page),
+        searchPixabayVideos(q1, page),
+        searchPexelsImages(q1, page),
+        searchPixabayImages(q1, page),
+        searchUnsplash(q1, page),
+        searchOpenverse(q1, page),
+      ]);
+      videos.push(...r2[0], ...r2[1]);
+      for (const arr of r2.slice(2)) images.push(...arr);
+    }
 
-    // AI ranking: one call ranks videos and images together, then we split back out
+    // Round 3: broaden ONLY if results are thin (Tier 3 behavior)
+    if ((videos.length < 4 || images.length < 6) && queryList[2]) {
+      const q2 = queryList[2];
+      const r3 = await Promise.all([
+        searchPexelsVideos(q2, page),
+        searchPixabayVideos(q2, page),
+        searchPexelsImages(q2, page),
+        searchPixabayImages(q2, page),
+        searchUnsplash(q2, page),
+        searchOpenverse(q2, page),
+      ]);
+      videos.push(...r3[0], ...r3[1]);
+      for (const arr of r3.slice(2)) images.push(...arr);
+    }
+
+    // Hard filters first: dedupe by id and URL
+    const seen = new Set<string>();
+    const dedupe = (arr: MediaItem[]) =>
+      arr.filter((m) => {
+        if (!m.previewUrl || seen.has(m.id) || seen.has(m.previewUrl)) return false;
+        seen.add(m.id);
+        seen.add(m.previewUrl);
+        return true;
+      });
+    videos = dedupe(videos);
+    images = dedupe(images);
+
+    console.log(
+      `DEBUG - sourcing: ${queryList.length} queries -> ${videos.length} videos, ${images.length} images before ranking`
+    );
+
+    // Semantic rubric scoring on what survives the hard filters
     if (beatText) {
-      const ranked = await rankMedia(beatText, keywords || [], [...videos, ...images]);
+      const ranked = await rankMedia(
+        beatText,
+        entities || keywords || [],
+        queryList,
+        [...videos, ...images]
+      );
       videos = ranked.filter((m) => m.kind === "video");
       images = ranked.filter((m) => m.kind === "image");
     }

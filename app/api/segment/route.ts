@@ -18,19 +18,31 @@ export async function POST(req: NextRequest) {
 
     const message = await anthropic.messages.create({
       model: "claude-sonnet-4-6",
-      max_tokens: 4000,
+      max_tokens: 6000,
       messages: [
         {
           role: "user",
-          content: `Split this video narration script into visual "beats" - segments that each work as one on-screen shot, roughly 5-10 seconds of speech each (merge very short sentences, split very long ones at natural pauses).
+          content: `You are an experienced documentary editor and visual researcher planning the complete visual sequence for a narrated video.
+
+First read the ENTIRE script to understand its overall topic and identify every named entity (people, companies, organizations, places, events, products, time periods).
+
+Then split the script into visual "beats" - segments that each work as one on-screen shot, roughly 5-10 seconds of speech each. Group sentences into one beat when they discuss the same subject or idea; start a new beat when the narrative focus changes, a new entity is introduced, or a meaningful action occurs.
+
+CRITICAL - contextual continuity: resolve every pronoun and indirect reference ("he", "she", "the company", "the president", "the city", "the incident") to the correct previously established subject. Search queries must ALWAYS name the resolved subject explicitly - never the pronoun. Example: if a prior sentence establishes General Motors and the current beat says "but by 2008, the company was on the verge of collapse", the queries must be like "General Motors 2008 financial crisis" and "GM factory recession 2008" - NEVER "company verge of collapse" or "sad businessman office".
 
 For each beat provide:
-- "text": the exact text of that beat, verbatim from the script (do not paraphrase - I need to match it back to word timestamps)
-- "keywords": 3-5 concrete VISUAL stock-search terms (things a camera can film - objects, scenes, actions - not abstract concepts). Example: for "your electric bill is climbing" use ["electric bill paper", "utility meter spinning", "worried person bills"] not ["expense", "concern"]
-- "treatment": either "video" (motion suits this beat) or "image" (a still photo suits it better - e.g. historical references, diagrams, static objects)
+- "text": the exact text of that beat, verbatim from the script (do not paraphrase - I match it back to word timestamps)
+- "entities": the resolved subjects this beat is actually about (e.g. ["General Motors", "2008 financial crisis"]); [] if none
+- "queries": 3-4 stock/archive search queries in strict priority order:
+  1st: the EXACT subject/entity/event/location/moment, fully named
+  2nd: the same subject from a different angle, environment, action, or era
+  3rd: broader but still accurate framing of the subject
+  4th (only if genuinely useful): accurate symbolic B-roll that communicates the idea without misleading the viewer
+- "keywords": 2-4 short display terms summarizing the visual direction
+- "treatment": "video" (motion suits this beat) or "image" (a still suits it better - historical references, documents, static subjects)
 
 Respond ONLY with a valid JSON array, no other text:
-[{ "text": "...", "keywords": ["...", "..."], "treatment": "video" }]
+[{ "text": "...", "entities": ["..."], "queries": ["...", "..."], "keywords": ["..."], "treatment": "video" }]
 
 Script:
 ${script}`,
@@ -40,7 +52,7 @@ ${script}`,
 
     const rawText = message.content[0].type === "text" ? message.content[0].text : "[]";
     const cleaned = rawText.replace(/```json|```/g, "").trim();
-    const aiBeats: { text: string; keywords: string[]; treatment: "video" | "image" }[] =
+    const aiBeats: { text: string; entities: string[]; queries: string[]; keywords: string[]; treatment: "video" | "image" }[] =
       JSON.parse(cleaned);
 
     // Map beats to narration timings sequentially: beats are verbatim and in

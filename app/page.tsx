@@ -22,6 +22,8 @@ type SelectedClip = {
 type Beat = {
   text: string;
   keywords: string[];
+  entities?: string[];
+  queries?: string[];
   treatment: "video" | "image";
   duration: number;
   start: number;
@@ -122,6 +124,8 @@ export default function Home() {
           data.beats.map((b: any) => ({
             text: b.text,
             keywords: b.keywords || [],
+            entities: b.entities || [],
+            queries: b.queries || [],
             treatment: b.treatment || "video",
             duration: b.duration,
             start: b.start || 0,
@@ -151,7 +155,14 @@ export default function Home() {
     const res = await fetch("/api/footage", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query, beatText: beat.text, keywords: beat.keywords, page }),
+      body: JSON.stringify({
+        query,
+        queries: beat.queries || [],
+        entities: beat.entities || [],
+        beatText: beat.text,
+        keywords: beat.keywords,
+        page,
+      }),
     });
 
     const data = await res.json();
