@@ -6,6 +6,7 @@ import path from "path";
 import os from "os";
 import { generateAss, Callout } from "../_lib/ass";
 import { detectYearCallouts, detectLocationCallouts } from "../_lib/captions";
+import { detectCountups, CountupSpec } from "../_lib/countups";
 import { getCachedMedia } from "../_lib/cache";
 import { createJob, updateJob } from "../_lib/jobs";
 
@@ -102,6 +103,7 @@ type RenderInput = {
   textStyle: string;
   captionsEnabled: boolean;
   calloutsEnabled: boolean;
+  countupLevel: string;
   beatWindows: { start: number; end: number }[];
 };
 
@@ -130,6 +132,7 @@ export async function POST(req: NextRequest) {
     textStyle: (formData.get("textStyle") as string | null) || "standard",
     captionsEnabled: (formData.get("captionsEnabled") as string | null) !== "false",
     calloutsEnabled: (formData.get("calloutsEnabled") as string | null) !== "false",
+    countupLevel: (formData.get("countupLevel") as string | null) || "medium",
     beatWindows: JSON.parse((formData.get("beatWindows") as string | null) || "[]"),
   };
 
@@ -188,7 +191,8 @@ async function runRenderJob(jobId: string, input: RenderInput) {
 
     // Build ASS subtitle file (captions + callouts) if we have word timings
     let assPath = "";
-    if (words.length > 0 && (input.captionsEnabled || input.calloutsEnabled)) {
+    const wantCountups = input.countupLevel !== "off";
+    if (words.length > 0 && (input.captionsEnabled || input.calloutsEnabled || wantCountups)) {
       let callouts: Callout[] = [];
       if (input.calloutsEnabled) {
         callouts = detectYearCallouts(words);
@@ -197,7 +201,18 @@ async function runRenderJob(jobId: string, input: RenderInput) {
           callouts = [...callouts, ...locationCallouts];
         }
       }
-      const assContent = generateAss(input.captionsEnabled ? words : [], callouts, 5, TARGET_WIDTH, TARGET_HEIGHT, input.textStyle);
+      let countups: CountupSpec[] = [];
+      if (wantCountups && scriptText) {
+        try {
+          countups = await detectCountups(scriptText, words, input.countupLevel);
+          console.log(
+            `DEBUG - countups (${input.countupLevel}): ${countups.length} -> ${countups.map((c) => `${c.phrase}@${c.land.toFixed(1)}s`).join(", ") || "none"}`
+          );
+        } catch (e) {
+          console.error("Countup detection failed, continuing without:", e);
+        }
+      }
+      const assContent = generateAss(input.captionsEnabled ? words : [], callouts, 5, TARGET_WIDTH, TARGET_HEIGHT, input.textStyle, countups);
       assPath = path.join(tempDir, "subs.ass");
       await fs.writeFile(assPath, assContent);
       console.log(`DEBUG - ASS file written with ${words.length} words, ${callouts.length} callouts`);

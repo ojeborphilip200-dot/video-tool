@@ -52,6 +52,7 @@ export default function Home() {
   const [words, setWords] = useState<{ word: string; start: number; end: number }[]>([]);
   const [captionsEnabled, setCaptionsEnabled] = useState(true);
   const [calloutsEnabled, setCalloutsEnabled] = useState(true);
+  const [countupLevel, setCountupLevel] = useState("medium");
   const [renderProgress, setRenderProgress] = useState<{ progress: number; message: string } | null>(null);
   const [background, setBackground] = useState("none");
   const [bgFrequency, setBgFrequency] = useState("2-3");
@@ -268,6 +269,7 @@ export default function Home() {
     formData.append("words", JSON.stringify(words));
     formData.append("captionsEnabled", String(captionsEnabled));
     formData.append("calloutsEnabled", String(calloutsEnabled));
+    formData.append("countupLevel", countupLevel);
     formData.append("background", background);
     formData.append("bgFrequency", bgFrequency);
     formData.append("textStyle", textStyle);
@@ -568,6 +570,32 @@ export default function Home() {
               />
               Add text graphics (years, locations)
             </label>
+            <div style={{ marginBottom: "14px" }}>
+              <p style={{ fontSize: "14px", color: "#9295a0", margin: "0 0 8px" }}>Number count-up overlays</p>
+              <div style={{ display: "flex", gap: "8px" }}>
+                {[
+                  { id: "off", label: "Off", tip: "Never" },
+                  { id: "low", label: "Low", tip: "~1 per 2-3 min" },
+                  { id: "medium", label: "Medium", tip: "~1 per 60-90s" },
+                  { id: "high", label: "High", tip: "Key stats" },
+                ].map((o) => (
+                  <div
+                    key={o.id}
+                    onClick={() => setCountupLevel(o.id)}
+                    style={{
+                      cursor: "pointer",
+                      padding: "8px 12px",
+                      borderRadius: "8px",
+                      border: countupLevel === o.id ? "2px solid var(--accent-blue)" : "1px solid var(--border-subtle)",
+                      background: "var(--bg-elevated)",
+                    }}
+                  >
+                    <div style={{ fontSize: "13px", color: "#eceef1" }}>{o.label}</div>
+                    <div style={{ fontSize: "10px", color: "#5c5f68", marginTop: "2px" }}>{o.tip}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
             {rendering && renderProgress && (
               <div style={{ marginBottom: "10px" }}>
                 <div style={{ height: "6px", background: "#2a2c32", borderRadius: "3px", overflow: "hidden" }}>

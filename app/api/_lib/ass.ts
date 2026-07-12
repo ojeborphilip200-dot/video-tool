@@ -1,4 +1,5 @@
 import { getTextStyle } from "./textStyles";
+import { CountupSpec, formatCountupValue } from "./countups";
 
 type Word = { word: string; start: number; end: number };
 export type Callout = { text: string; start: number; end: number };
@@ -27,7 +28,8 @@ export function generateAss(
   wordsPerChunk = 5,
   videoWidth = 1280,
   videoHeight = 720,
-  styleId = "standard"
+  styleId = "standard",
+  countups: CountupSpec[] = []
 ): string {
   const st = getTextStyle(styleId);
   const captionFontSize = Math.round(videoHeight * 0.055);
@@ -43,6 +45,7 @@ WrapStyle: 0
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
 Style: Caption,${st.captionFont},${captionFontSize},${st.captionPrimary},&H000000FF,${st.captionOutlineColor},&H80000000,${st.captionBold},0,0,0,100,100,${st.captionSpacing},0,1,${st.captionOutline},1,2,40,40,50,1
 Style: Callout,${st.calloutFont},${calloutFontSize},${st.calloutPrimary},&H000000FF,${st.calloutBox},${st.calloutBox},${st.calloutBold},0,0,0,100,100,${st.calloutSpacing},0,${st.calloutBorderStyle},${st.calloutOutline},0,8,60,60,60,1
+Style: Countup,${st.calloutFont},${Math.round(videoHeight * 0.09)},${st.calloutPrimary},&H000000FF,${st.calloutBox},${st.calloutBox},1,0,0,0,100,100,${st.calloutSpacing},0,${st.calloutBorderStyle},${st.calloutOutline + 2},0,8,60,60,80,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -79,6 +82,33 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 
     lines.push(
       `Dialogue: 1,${start},${end},Callout,,0,0,0,,{\\an${pos}${anim}}${text}`
+    );
+  }
+
+  // Count-up overlays: sequential short events, each showing the interpolated
+  // value - smooth continuous counting with ease-out, landing on the spoken moment
+  for (const cu of countups) {
+    const dur = cu.land - cu.animStart;
+    if (dur <= 0) continue;
+    const ticks = Math.min(60, Math.max(8, Math.round(dur / 0.1)));
+    const step = dur / ticks;
+
+    for (let i = 0; i < ticks; i++) {
+      const t0 = cu.animStart + i * step;
+      const t1 = i === ticks - 1 ? cu.land : cu.animStart + (i + 1) * step;
+      const p = (i + 1) / ticks;
+      const eased = 1 - Math.pow(1 - p, 3);
+      const val = cu.value * eased;
+      const text = escapeAssText(formatCountupValue(val, cu));
+      const tag = i === 0 ? "{\\an8\\fad(120,0)}" : "{\\an8}";
+      lines.push(`Dialogue: 2,${toAssTime(t0)},${toAssTime(t1)},Countup,,0,0,0,,${tag}${text}`);
+    }
+
+    // Hold the final value briefly, then fade out
+    const holdEnd = cu.land + 1.5;
+    const finalText = escapeAssText(formatCountupValue(cu.value, cu));
+    lines.push(
+      `Dialogue: 2,${toAssTime(cu.land)},${toAssTime(holdEnd)},Countup,,0,0,0,,{\\an8\\fad(0,250)}${finalText}`
     );
   }
 
