@@ -9,10 +9,10 @@ export type MediaItem = {
 };
 
 // Openverse: aggregates CC images from Flickr, museums, Wikimedia and more. No key (rate-limited).
-export async function searchOpenverse(query: string): Promise<MediaItem[]> {
+export async function searchOpenverse(query: string, page = 1): Promise<MediaItem[]> {
   try {
     const res = await fetch(
-      `https://api.openverse.org/v1/images/?q=${encodeURIComponent(query)}&page_size=3`,
+      `https://api.openverse.org/v1/images/?q=${encodeURIComponent(query)}&page_size=3&page=${page}`,
       { headers: { "User-Agent": "video-tool/1.0" } }
     );
     const data = await res.json();
@@ -34,12 +34,12 @@ export async function searchOpenverse(query: string): Promise<MediaItem[]> {
 }
 
 // Wikimedia Commons: no key, huge archival/historical library.
-export async function searchWikimedia(query: string): Promise<MediaItem[]> {
+export async function searchWikimedia(query: string, page = 1): Promise<MediaItem[]> {
   try {
     const url =
       `https://commons.wikimedia.org/w/api.php?action=query&generator=search` +
       `&gsrsearch=${encodeURIComponent("filetype:bitmap " + query)}` +
-      `&gsrlimit=3&gsrnamespace=6&prop=imageinfo&iiprop=url&iiurlwidth=400&format=json&origin=*`;
+      `&gsrlimit=3&gsroffset=${(page - 1) * 3}&gsrnamespace=6&prop=imageinfo&iiprop=url&iiurlwidth=400&format=json&origin=*`;
     const res = await fetch(url);
     const data = await res.json();
     const pages = data?.query?.pages;
@@ -64,10 +64,10 @@ export async function searchWikimedia(query: string): Promise<MediaItem[]> {
 }
 
 // NASA Image Library: no key. Space, earth science, aeronautics.
-export async function searchNasa(query: string): Promise<MediaItem[]> {
+export async function searchNasa(query: string, page = 1): Promise<MediaItem[]> {
   try {
     const res = await fetch(
-      `https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}&media_type=image&page_size=3`
+      `https://images-api.nasa.gov/search?q=${encodeURIComponent(query)}&media_type=image&page_size=3&page=${page}`
     );
     const data = await res.json();
     const items = (data?.collection?.items || []).slice(0, 3);
@@ -111,10 +111,10 @@ export async function searchNasa(query: string): Promise<MediaItem[]> {
 }
 
 // Art Institute of Chicago: no key, public-domain artworks.
-export async function searchArtInstitute(query: string): Promise<MediaItem[]> {
+export async function searchArtInstitute(query: string, page = 1): Promise<MediaItem[]> {
   try {
     const res = await fetch(
-      `https://api.artic.edu/api/v1/artworks/search?q=${encodeURIComponent(query)}&fields=id,title,image_id&limit=3`
+      `https://api.artic.edu/api/v1/artworks/search?q=${encodeURIComponent(query)}&fields=id,title,image_id&limit=3&page=${page}`
     );
     const data = await res.json();
     if (!res.ok || !data.data) return [];
@@ -135,13 +135,13 @@ export async function searchArtInstitute(query: string): Promise<MediaItem[]> {
 }
 
 // The Met: no key, public-domain artworks and artifacts. Two-step API (search -> object details).
-export async function searchMet(query: string): Promise<MediaItem[]> {
+export async function searchMet(query: string, page = 1): Promise<MediaItem[]> {
   try {
     const res = await fetch(
       `https://collectionapi.metmuseum.org/public/collection/v1/search?q=${encodeURIComponent(query)}&hasImages=true`
     );
     const data = await res.json();
-    const ids: number[] = (data?.objectIDs || []).slice(0, 3);
+    const ids: number[] = (data?.objectIDs || []).slice((page - 1) * 3, (page - 1) * 3 + 3);
     if (ids.length === 0) return [];
 
     const results = await Promise.all(
@@ -174,10 +174,10 @@ export async function searchMet(query: string): Promise<MediaItem[]> {
 }
 
 // Library of Congress: no key. Historical photos, prints, documents.
-export async function searchLoc(query: string): Promise<MediaItem[]> {
+export async function searchLoc(query: string, page = 1): Promise<MediaItem[]> {
   try {
     const res = await fetch(
-      `https://www.loc.gov/photos/?q=${encodeURIComponent(query)}&fo=json&c=3`
+      `https://www.loc.gov/photos/?q=${encodeURIComponent(query)}&fo=json&c=3&sp=${page}`
     );
     const data = await res.json();
     const items = (data?.results || []).slice(0, 3);
@@ -204,10 +204,10 @@ export async function searchLoc(query: string): Promise<MediaItem[]> {
 }
 
 // iNaturalist: no key. Species/wildlife photos via taxa search.
-export async function searchINaturalist(query: string): Promise<MediaItem[]> {
+export async function searchINaturalist(query: string, page = 1): Promise<MediaItem[]> {
   try {
     const res = await fetch(
-      `https://api.inaturalist.org/v1/taxa?q=${encodeURIComponent(query)}&per_page=3`
+      `https://api.inaturalist.org/v1/taxa?q=${encodeURIComponent(query)}&per_page=3&page=${page}`
     );
     const data = await res.json();
     const items = (data?.results || []).slice(0, 3);
@@ -232,12 +232,12 @@ export async function searchINaturalist(query: string): Promise<MediaItem[]> {
 }
 
 // Unsplash: free key, top-tier photo quality. Dev tier: 50 requests/hour.
-export async function searchUnsplash(query: string): Promise<MediaItem[]> {
+export async function searchUnsplash(query: string, page = 1): Promise<MediaItem[]> {
   try {
     const key = process.env.UNSPLASH_ACCESS_KEY;
     if (!key) return [];
     const res = await fetch(
-      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=3`,
+      `https://api.unsplash.com/search/photos?query=${encodeURIComponent(query)}&per_page=3&page=${page}`,
       { headers: { Authorization: `Client-ID ${key}` } }
     );
     const data = await res.json();
@@ -257,12 +257,12 @@ export async function searchUnsplash(query: string): Promise<MediaItem[]> {
 }
 
 // Europeana: free key, aggregates European museums/archives/libraries.
-export async function searchEuropeana(query: string): Promise<MediaItem[]> {
+export async function searchEuropeana(query: string, page = 1): Promise<MediaItem[]> {
   try {
     const key = process.env.EUROPEANA_API_KEY;
     if (!key) return [];
     const res = await fetch(
-      `https://api.europeana.eu/record/v2/search.json?wskey=${key}&query=${encodeURIComponent(query)}&rows=3&media=true&qf=TYPE:IMAGE`
+      `https://api.europeana.eu/record/v2/search.json?wskey=${key}&query=${encodeURIComponent(query)}&rows=3&start=${(page - 1) * 3 + 1}&media=true&qf=TYPE:IMAGE`
     );
     const data = await res.json();
     if (!res.ok || !data.items) return [];
@@ -289,12 +289,12 @@ export async function searchEuropeana(query: string): Promise<MediaItem[]> {
 }
 
 // Smithsonian Open Access: free api.data.gov key. Museum artifacts, specimens, history.
-export async function searchSmithsonian(query: string): Promise<MediaItem[]> {
+export async function searchSmithsonian(query: string, page = 1): Promise<MediaItem[]> {
   try {
     const key = process.env.SMITHSONIAN_API_KEY;
     if (!key) return [];
     const res = await fetch(
-      `https://api.si.edu/openaccess/api/v1.0/search?api_key=${key}&q=${encodeURIComponent(query)}&rows=3`
+      `https://api.si.edu/openaccess/api/v1.0/search?api_key=${key}&q=${encodeURIComponent(query)}&rows=3&start=${(page - 1) * 3}`
     );
     const data = await res.json();
     const rows = data?.response?.rows || [];

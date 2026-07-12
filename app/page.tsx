@@ -29,6 +29,7 @@ type Beat = {
   videos?: MediaItem[];
   images?: MediaItem[];
   loadingMedia?: boolean;
+  mediaPage?: number;
   selectedClips: SelectedClip[];
 };
 
@@ -138,7 +139,8 @@ export default function Home() {
     setSegmenting(false);
   }
 
-  async function handleFindMedia(index: number) {
+  async function handleFindMedia(index: number, regenerate = false) {
+    const page = regenerate ? (beats[index].mediaPage || 1) + 1 : beats[index].mediaPage || 1;
     setBeats((prev) =>
       prev.map((b, i) => (i === index ? { ...b, loadingMedia: true } : b))
     );
@@ -149,7 +151,7 @@ export default function Home() {
     const res = await fetch("/api/footage", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ query, beatText: beat.text, keywords: beat.keywords }),
+      body: JSON.stringify({ query, beatText: beat.text, keywords: beat.keywords, page }),
     });
 
     const data = await res.json();
@@ -162,7 +164,7 @@ export default function Home() {
         const images: MediaItem[] = data.images || [];
 
         // AI pre-pick: auto-select the first result matching the beat's treatment
-        let selectedClips = b.selectedClips;
+        let selectedClips = regenerate ? [] : b.selectedClips;
         if (selectedClips.length === 0) {
           const preferred = b.treatment === "image" ? images[0] : videos[0];
           const fallback = b.treatment === "image" ? videos[0] : images[0];
@@ -176,7 +178,7 @@ export default function Home() {
           }
         }
 
-        return { ...b, videos, images, loadingMedia: false, selectedClips };
+        return { ...b, videos, images, loadingMedia: false, selectedClips, mediaPage: page };
       })
     );
 
@@ -407,14 +409,24 @@ export default function Home() {
                   </p>
                 )}
 
-                <button
-                  onClick={() => handleFindMedia(i)}
-                  disabled={beat.loadingMedia}
-                  className="btn btn-secondary"
-                  style={{ marginTop: "12px" }}
-                >
-                  {beat.loadingMedia ? "Searching..." : "Generate Footage"}
-                </button>
+                <div style={{ display: "flex", gap: "10px", marginTop: "12px" }}>
+                  <button
+                    onClick={() => handleFindMedia(i)}
+                    disabled={beat.loadingMedia}
+                    className="btn btn-secondary"
+                  >
+                    {beat.loadingMedia ? "Searching..." : "Generate Footage"}
+                  </button>
+                  {((beat.videos && beat.videos.length > 0) || (beat.images && beat.images.length > 0)) && (
+                    <button
+                      onClick={() => handleFindMedia(i, true)}
+                      disabled={beat.loadingMedia}
+                      className="btn btn-secondary"
+                    >
+                      ↻ Regenerate
+                    </button>
+                  )}
+                </div>
 
                 {allMedia.length > 0 && (
                   <div className="thumb-row">

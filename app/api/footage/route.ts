@@ -17,10 +17,10 @@ function slugToWords(url: string): string {
   return match ? match[2].replace(/-/g, " ") : "";
 }
 
-async function searchPexelsVideos(query: string): Promise<MediaItem[]> {
+async function searchPexelsVideos(query: string, page = 1): Promise<MediaItem[]> {
   try {
     const res = await fetch(
-      `https://api.pexels.com/videos/search?query=${encodeURIComponent(query)}&per_page=3`,
+      `https://api.pexels.com/videos/search?query=${encodeURIComponent(query)}&per_page=3&page=${page}`,
       { headers: { Authorization: process.env.PEXELS_API_KEY as string } }
     );
     const data = await res.json();
@@ -41,10 +41,10 @@ async function searchPexelsVideos(query: string): Promise<MediaItem[]> {
   }
 }
 
-async function searchPexelsImages(query: string): Promise<MediaItem[]> {
+async function searchPexelsImages(query: string, page = 1): Promise<MediaItem[]> {
   try {
     const res = await fetch(
-      `https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&per_page=3`,
+      `https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&per_page=3&page=${page}`,
       { headers: { Authorization: process.env.PEXELS_API_KEY as string } }
     );
     const data = await res.json();
@@ -64,10 +64,10 @@ async function searchPexelsImages(query: string): Promise<MediaItem[]> {
   }
 }
 
-async function searchPixabayVideos(query: string): Promise<MediaItem[]> {
+async function searchPixabayVideos(query: string, page = 1): Promise<MediaItem[]> {
   try {
     const res = await fetch(
-      `https://pixabay.com/api/videos/?key=${process.env.PIXABAY_API_KEY}&q=${encodeURIComponent(query)}&per_page=3`
+      `https://pixabay.com/api/videos/?key=${process.env.PIXABAY_API_KEY}&q=${encodeURIComponent(query)}&per_page=3&page=${page}`
     );
     const data = await res.json();
     if (!res.ok || !data.hits) return [];
@@ -86,10 +86,10 @@ async function searchPixabayVideos(query: string): Promise<MediaItem[]> {
   }
 }
 
-async function searchPixabayImages(query: string): Promise<MediaItem[]> {
+async function searchPixabayImages(query: string, page = 1): Promise<MediaItem[]> {
   try {
     const res = await fetch(
-      `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=${encodeURIComponent(query)}&per_page=3&image_type=photo`
+      `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=${encodeURIComponent(query)}&per_page=3&image_type=photo&page=${page}`
     );
     const data = await res.json();
     if (!res.ok || !data.hits) return [];
@@ -160,7 +160,8 @@ Rank ALL candidates from best visual match to worst, judging by how well each de
 
 export async function POST(req: NextRequest) {
   try {
-    const { query, beatText, keywords } = await req.json();
+    const { query, beatText, keywords, page: rawPage } = await req.json();
+    const page = Math.max(1, parseInt(rawPage) || 1);
 
     if (!query) {
       return NextResponse.json({ error: "No query provided" }, { status: 400 });
@@ -182,20 +183,20 @@ export async function POST(req: NextRequest) {
       europeanaImages,
       smithsonianImages,
     ] = await Promise.all([
-      searchPexelsVideos(query),
-      searchPixabayVideos(query),
-      searchPexelsImages(query),
-      searchPixabayImages(query),
-      searchOpenverse(query),
-      searchWikimedia(query),
-      searchNasa(query),
-      searchArtInstitute(query),
-      searchMet(query),
-      searchLoc(query),
-      searchINaturalist(query),
-      searchUnsplash(query),
-      searchEuropeana(query),
-      searchSmithsonian(query),
+      searchPexelsVideos(query, page),
+      searchPixabayVideos(query, page),
+      searchPexelsImages(query, page),
+      searchPixabayImages(query, page),
+      searchOpenverse(query, page),
+      searchWikimedia(query, page),
+      searchNasa(query, page),
+      searchArtInstitute(query, page),
+      searchMet(query, page),
+      searchLoc(query, page),
+      searchINaturalist(query, page),
+      searchUnsplash(query, page),
+      searchEuropeana(query, page),
+      searchSmithsonian(query, page),
     ]);
 
     let videos = [...pexelsVideos, ...pixabayVideos];
@@ -207,6 +208,9 @@ export async function POST(req: NextRequest) {
       videos = ranked.filter((m) => m.kind === "video");
       images = ranked.filter((m) => m.kind === "image");
     }
+
+    videos = videos.slice(0, 4);
+    images = images.slice(0, 4);
 
     return NextResponse.json({ videos, images });
   } catch (err: any) {
