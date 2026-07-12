@@ -187,6 +187,105 @@ Respond ONLY with a JSON array, no other text: [{"id":"...","score":87}, ...]`,
   }
 }
 
+async function fetchImageAsBase64(url: string): Promise<{ data: string; mediaType: string } | null> {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    const ct = (res.headers.get("content-type") || "").toLowerCase();
+    let mediaType = "image/jpeg";
+    if (ct.includes("png")) mediaType = "image/png";
+    else if (ct.includes("webp")) mediaType = "image/webp";
+    else if (ct.includes("gif")) mediaType = "image/gif";
+    const buf = Buffer.from(await res.arrayBuffer());
+    if (buf.length > 3 * 1024 * 1024) return null;
+    return { data: buf.toString("base64"), mediaType };
+  } catch {
+    return null;
+  }
+}
+
+// Stage 3: vision verification. Claude inspects the top candidates' thumbnails at
+// SCENE level only (never person identification): does the content fit the
+// narration, is it free of watermarks/text clutter, does it compose for 16:9.
+// Failures are demoted to the back of their list, not deleted.
+async function verifyTopCandidates(
+  beatText: string,
+  entities: string[],
+  videos: MediaItem[],
+  images: MediaItem[]
+): Promise<{ videos: MediaItem[]; images: MediaItem[] }> {
+  const targets = [...images.slice(0, 3), ...videos.slice(0, 2)];
+  if (targets.length === 0) return { videos, images };
+
+  try {
+    const fetched = await Promise.all(
+      targets.map(async (m) => ({
+        item: m,
+        img: await fetchImageAsBase64(m.thumbnail || m.previewUrl),
+      }))
+    );
+    const inspectable = fetched.filter((f) => f.img);
+    if (inspectable.length === 0) return { videos, images };
+
+    const Anthropic = (await import("@anthropic-ai/sdk")).default;
+    const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+
+    const content: any[] = [];
+    for (const f of inspectable) {
+      content.push({ type: "text", text: `Candidate id: ${f.item.id}` });
+      content.push({
+        type: "image",
+        source: { type: "base64", media_type: f.img!.mediaType, data: f.img!.data },
+      });
+    }
+    content.push({
+      type: "text",
+      text: `These are candidate visuals for a documentary narration segment.
+
+Narration: "${beatText}"
+Subjects discussed: ${entities.join(", ") || "(none)"}
+
+For EACH candidate id above, verify at scene level ONLY - do NOT attempt to identify any person:
+- Does the scene content plausibly fit the narration's subject and era?
+- Is it free of prominent watermarks or heavy baked-in text?
+- Is the composition workable for a 16:9 video frame?
+
+Respond ONLY with a JSON array, no other text: [{"id":"...","pass":true,"reason":"..."}]`,
+    });
+
+    const message = await anthropic.messages.create({
+      model: "claude-sonnet-4-6",
+      max_tokens: 600,
+      messages: [{ role: "user", content }],
+    });
+
+    const rawText = message.content[0].type === "text" ? message.content[0].text : "[]";
+    const cleaned = rawText.replace(/```json|```/g, "").trim();
+    const verdicts: { id: string; pass: boolean; reason?: string }[] = JSON.parse(cleaned);
+    const failed = new Set(verdicts.filter((v) => v.pass === false).map((v) => v.id));
+
+    if (failed.size > 0) {
+      console.log(
+        `DEBUG - vision verification demoted: ${verdicts
+          .filter((v) => !v.pass)
+          .map((v) => `${v.id} (${v.reason || "failed"})`)
+          .join("; ")}`
+      );
+      const demote = (arr: MediaItem[]) => [
+        ...arr.filter((m) => !failed.has(m.id)),
+        ...arr.filter((m) => failed.has(m.id)),
+      ];
+      return { videos: demote(videos), images: demote(images) };
+    }
+
+    console.log(`DEBUG - vision verification: all ${inspectable.length} inspected candidates passed`);
+    return { videos, images };
+  } catch (err) {
+    console.error("Vision verification failed, keeping ranked order:", err);
+    return { videos, images };
+  }
+}
+
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
@@ -296,6 +395,10 @@ export async function POST(req: NextRequest) {
       );
       videos = ranked.filter((m) => m.kind === "video");
       images = ranked.filter((m) => m.kind === "image");
+
+      const verified = await verifyTopCandidates(beatText, entities || [], videos, images);
+      videos = verified.videos;
+      images = verified.images;
     }
 
     videos = videos.slice(0, 4);
