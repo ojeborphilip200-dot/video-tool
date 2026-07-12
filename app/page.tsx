@@ -13,17 +13,6 @@ type MediaItem = {
   source: string;
 };
 
-type YtCandidate = {
-  videoId: string;
-  title: string;
-  channel: string;
-  license: "creativeCommon" | "youtube";
-  duration: number;
-  thumbnail: string;
-  url: string;
-  description: string;
-};
-
 type SelectedClip = {
   media: MediaItem;
   trimStart: number;
@@ -43,8 +32,6 @@ type Beat = {
   images?: MediaItem[];
   loadingMedia?: boolean;
   mediaPage?: number;
-  youtube?: YtCandidate[];
-  loadingYt?: boolean;
   selectedClips: SelectedClip[];
 };
 
@@ -70,7 +57,6 @@ export default function Home() {
   const [calloutsEnabled, setCalloutsEnabled] = useState(true);
   const [countupLevel, setCountupLevel] = useState("medium");
   const [preview, setPreview] = useState<{ beatIndex: number; media: MediaItem } | null>(null);
-  const [ytPreview, setYtPreview] = useState<{ beatIndex: number; cand: YtCandidate; start: number; end: number } | null>(null);
   const [renderProgress, setRenderProgress] = useState<{ progress: number; message: string } | null>(null);
   const [background, setBackground] = useState("none");
   const [bgFrequency, setBgFrequency] = useState("2-3");
@@ -237,53 +223,6 @@ export default function Home() {
     }
   }
 
-  async function handleFindYoutube(index: number) {
-    setBeats((prev) => prev.map((b, i) => (i === index ? { ...b, loadingYt: true } : b)));
-    const beat = beats[index];
-    try {
-      const res = await fetch("/api/youtube-discover", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          beatText: beat.text,
-          entities: beat.entities || [],
-          queries:
-            beat.queries && beat.queries.length > 0
-              ? beat.queries
-              : [beat.keywords.join(" ") || beat.text],
-        }),
-      });
-      const data = await res.json();
-      setBeats((prev) =>
-        prev.map((b, i) => (i === index ? { ...b, youtube: data.candidates || [], loadingYt: false } : b))
-      );
-      if (data.error) alert("Error: " + data.error);
-    } catch {
-      setBeats((prev) => prev.map((b, i) => (i === index ? { ...b, loadingYt: false } : b)));
-    }
-  }
-
-  function addYoutubeClip(beatIndex: number, cand: YtCandidate, start: number, end: number) {
-    setBeats((prev) =>
-      prev.map((b, i) => {
-        if (i !== beatIndex) return b;
-        const remaining = remainingTime(b);
-        if (remaining <= 0) return b;
-        const len = Math.min(Math.max(0.5, end - start), remaining);
-        const media: MediaItem = {
-          id: `yt-${cand.videoId}`,
-          kind: "video",
-          thumbnail: cand.thumbnail,
-          previewUrl: `yt:${cand.videoId}`,
-          duration: cand.duration,
-          source: "youtube",
-        };
-        if (b.selectedClips.some((c) => c.media.id === media.id)) return b;
-        return { ...b, selectedClips: [...b.selectedClips, { media, trimStart: start, trimEnd: start + len }] };
-      })
-    );
-  }
-
   function toggleSelectMedia(beatIndex: number, media: MediaItem) {
     setBeats((prev) =>
       prev.map((b, i) => {
@@ -420,61 +359,6 @@ export default function Home() {
 
   return (
     <div className="app-shell">
-      {ytPreview && (
-        <div
-          onClick={() => setYtPreview(null)}
-          style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.88)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: "30px" }}
-        >
-          <div onClick={(e) => e.stopPropagation()} style={{ maxWidth: "900px", width: "100%" }}>
-            <div style={{ position: "relative", paddingTop: "56.25%", borderRadius: "10px", overflow: "hidden", background: "#000" }}>
-              <iframe
-                src={`https://www.youtube.com/embed/${ytPreview.cand.videoId}?start=${Math.max(0, Math.floor(ytPreview.start))}`}
-                style={{ position: "absolute", inset: 0, width: "100%", height: "100%", border: "none" }}
-                allow="autoplay; encrypted-media"
-                allowFullScreen
-              />
-            </div>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "12px", flexWrap: "wrap", gap: "10px" }}>
-              <span style={{ fontSize: "12px", color: "#9295a0" }}>
-                {ytPreview.cand.channel} ·{" "}
-                {ytPreview.cand.license === "creativeCommon" ? "Creative Commons" : "Standard license"} · scrub the player, then set your segment
-              </span>
-              <div style={{ display: "flex", gap: "8px", alignItems: "center", flexWrap: "wrap" }}>
-                <label style={{ fontSize: "12px", color: "#9295a0" }}>Start s</label>
-                <input
-                  type="number"
-                  min={0}
-                  max={ytPreview.cand.duration}
-                  value={ytPreview.start}
-                  onChange={(e) => setYtPreview({ ...ytPreview, start: parseFloat(e.target.value) || 0 })}
-                  style={{ width: "70px" }}
-                />
-                <label style={{ fontSize: "12px", color: "#9295a0" }}>End s</label>
-                <input
-                  type="number"
-                  min={0}
-                  max={ytPreview.cand.duration}
-                  value={ytPreview.end}
-                  onChange={(e) => setYtPreview({ ...ytPreview, end: parseFloat(e.target.value) || 0 })}
-                  style={{ width: "70px" }}
-                />
-                <button
-                  className="btn btn-primary"
-                  onClick={() => {
-                    addYoutubeClip(ytPreview.beatIndex, ytPreview.cand, ytPreview.start, ytPreview.end);
-                    setYtPreview(null);
-                  }}
-                >
-                  Add to beat
-                </button>
-                <button className="btn btn-secondary" onClick={() => setYtPreview(null)}>
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
       {preview && (
         <div
           onClick={() => setPreview(null)}
@@ -625,51 +509,7 @@ export default function Home() {
                       ↻ Regenerate
                     </button>
                   )}
-                  <button
-                    onClick={() => handleFindYoutube(i)}
-                    disabled={beat.loadingYt}
-                    className="btn btn-secondary"
-                  >
-                    {beat.loadingYt ? "Searching YouTube..." : "▶ Find YouTube"}
-                  </button>
                 </div>
-
-                {beat.youtube && beat.youtube.length > 0 && (
-                  <div style={{ marginTop: "10px" }}>
-                    {beat.youtube.map((c) => (
-                      <div
-                        key={c.videoId}
-                        onClick={() =>
-                          setYtPreview({ beatIndex: i, cand: c, start: 0, end: Math.min(6, c.duration) })
-                        }
-                        style={{
-                          display: "flex",
-                          gap: "10px",
-                          alignItems: "center",
-                          padding: "6px",
-                          borderRadius: "8px",
-                          cursor: "pointer",
-                          border: "1px solid var(--border-subtle)",
-                          marginBottom: "6px",
-                          background: "var(--bg-elevated)",
-                        }}
-                      >
-                        <img src={c.thumbnail} alt="yt thumbnail" style={{ width: "80px", borderRadius: "4px" }} />
-                        <div style={{ flex: 1, minWidth: 0 }}>
-                          <div style={{ fontSize: "12px", color: "#eceef1", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                            {c.title}
-                          </div>
-                          <div style={{ fontSize: "11px", color: "#5c5f68" }}>
-                            {c.channel} · {c.duration}s ·{" "}
-                            <span style={{ color: c.license === "creativeCommon" ? "#4ade80" : "#9295a0" }}>
-                              {c.license === "creativeCommon" ? "Creative Commons" : "Standard license"}
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
 
                 {allMedia.length > 0 && (
                   <div className="thumb-row">
