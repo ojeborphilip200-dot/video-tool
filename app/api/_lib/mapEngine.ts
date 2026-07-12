@@ -1,12 +1,12 @@
-// Shared map-animation engine. Pure geometry: takes a config + time t and
-// returns the SVG for that exact frame. The browser preview and the server
-// rasterizer both call THIS function - synchronization by construction.
+// Shared map-animation engine. Pure geometry: config + time t -> SVG frame.
+// Browser preview and server rasterizer both call THIS - sync by construction.
 
 export type MapLocation = { name: string; lat: number; lon: number };
 
 export type MapConfig = {
-  template: "route";
-  locations: MapLocation[]; // origin, optional stops..., destination
+  template: "route" | "reveal" | "sequence" | "region" | "spread";
+  locations: MapLocation[];
+  region?: string; // for "region": country/region name to highlight
   durationSec: number;
 };
 
@@ -16,10 +16,14 @@ const OCEAN = "#0b0c0f";
 const LAND = "#1a1e24";
 const BORDER = "#2c323b";
 const ACCENT = "#5b8cff";
+const ACCENT_FILL = "rgba(91,140,255,0.28)";
 const MARKER = "#ff8a65";
 
 function ease(u: number): number {
   return u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;
+}
+function clamp01(u: number): number {
+  return Math.max(0, Math.min(1, u));
 }
 
 export function createMapRenderer(
@@ -28,13 +32,35 @@ export function createMapRenderer(
   width = 1280,
   height = 720
 ): (t: number) => string {
-  // ---- Camera: fit all locations with padding, locked to 16:9 ----
-  const lats = config.locations.map((l) => l.lat);
-  const lons = config.locations.map((l) => l.lon);
-  let minLat = Math.min(...lats), maxLat = Math.max(...lats);
-  let minLon = Math.min(...lons), maxLon = Math.max(...lons);
-  const spanLat0 = Math.max(maxLat - minLat, 8);
-  const spanLon0 = Math.max(maxLon - minLon, 12);
+  const template = config.template || "route";
+
+  // ---- Region matching (for "region" template + camera) ----
+  const regionName = (config.region || "").toLowerCase();
+  const isRegionFeature = (f: any) => {
+    if (!regionName) return false;
+    const n = String(f?.properties?.name || "").toLowerCase();
+    return n.includes(regionName) || regionName.includes(n);
+  };
+  const regionFeatures = regionName ? (world.features || []).filter(isRegionFeature) : [];
+
+  // ---- Camera bounds ----
+  let pts: { lat: number; lon: number }[] = config.locations.map((l) => ({ lat: l.lat, lon: l.lon }));
+  if (template === "region" && regionFeatures.length > 0) {
+    for (const f of regionFeatures) {
+      const polys = f.geometry.type === "Polygon" ? [f.geometry.coordinates] : f.geometry.coordinates;
+      for (const poly of polys) {
+        for (let i = 0; i < poly[0].length; i += 5) {
+          pts.push({ lon: poly[0][i][0], lat: poly[0][i][1] });
+        }
+      }
+    }
+  }
+  if (pts.length === 0) pts = [{ lat: 20, lon: 0 }];
+
+  let minLat = Math.min(...pts.map((p) => p.lat)), maxLat = Math.max(...pts.map((p) => p.lat));
+  let minLon = Math.min(...pts.map((p) => p.lon)), maxLon = Math.max(...pts.map((p) => p.lon));
+  const spanLat0 = Math.max(maxLat - minLat, template === "reveal" ? 14 : 8);
+  const spanLon0 = Math.max(maxLon - minLon, template === "reveal" ? 22 : 12);
   minLat -= spanLat0 * 0.35; maxLat += spanLat0 * 0.35;
   minLon -= spanLon0 * 0.3; maxLon += spanLon0 * 0.3;
 
@@ -53,78 +79,184 @@ export function createMapRenderer(
     ((maxLat - lat) / latSpan) * height,
   ];
 
-  // ---- Static land layer: projected once, reused every frame ----
+  // ---- Land layers ----
   const landPaths: string[] = [];
+  const regionPaths: string[] = [];
   for (const f of world.features || []) {
     const g = f.geometry;
     if (!g) continue;
+    const isR = template === "region" && isRegionFeature(f);
     const polys = g.type === "Polygon" ? [g.coordinates] : g.type === "MultiPolygon" ? g.coordinates : [];
     for (const poly of polys) {
       const ring = poly[0];
       if (!ring || ring.length < 8) continue;
       const step = Math.max(1, Math.floor(ring.length / 300));
       let inView = false;
-      const pts: XY[] = [];
+      const proj: XY[] = [];
       for (let i = 0; i < ring.length; i += step) {
         const [lon, lat] = ring[i];
         if (lon >= minLon && lon <= maxLon && lat >= minLat && lat <= maxLat) inView = true;
-        pts.push(project(lon, lat));
+        proj.push(project(lon, lat));
       }
       if (!inView) continue;
-      landPaths.push("M" + pts.map((p) => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join("L") + "Z");
+      const d = "M" + proj.map((p) => `${p[0].toFixed(1)},${p[1].toFixed(1)}`).join("L") + "Z";
+      (isR ? regionPaths : landPaths).push(d);
     }
   }
-  const landSvg = landPaths
-    .map((d) => `<path d="${d}" fill="${LAND}" stroke="${BORDER}" stroke-width="1"/>`)
-    .join("");
+  const landSvg = landPaths.map((d) => `<path d="${d}" fill="${LAND}" stroke="${BORDER}" stroke-width="1"/>`).join("");
 
-  // ---- Route: quadratic arcs between consecutive stops, densely sampled ----
   const anchors = config.locations.map((l) => project(l.lon, l.lat));
+
+  // ---- Route sampling (route template) ----
   const samples: XY[] = [];
   const legOffsets: number[] = [0];
-  for (let i = 0; i < anchors.length - 1; i++) {
-    const a = anchors[i], b = anchors[i + 1];
-    const mx = (a[0] + b[0]) / 2;
-    const lift = Math.min(Math.hypot(b[0] - a[0], b[1] - a[1]) * 0.22, 80);
-    const cy = (a[1] + b[1]) / 2 - lift;
-    const SEG = 48;
-    for (let s = i === 0 ? 0 : 1; s <= SEG; s++) {
-      const u = s / SEG;
-      samples.push([
-        (1 - u) * (1 - u) * a[0] + 2 * (1 - u) * u * mx + u * u * b[0],
-        (1 - u) * (1 - u) * a[1] + 2 * (1 - u) * u * cy + u * u * b[1],
-      ]);
+  if (template === "route" && anchors.length > 1) {
+    for (let i = 0; i < anchors.length - 1; i++) {
+      const a = anchors[i], b = anchors[i + 1];
+      const mx = (a[0] + b[0]) / 2;
+      const lift = Math.min(Math.hypot(b[0] - a[0], b[1] - a[1]) * 0.22, 80);
+      const cy = (a[1] + b[1]) / 2 - lift;
+      const SEG = 48;
+      for (let s = i === 0 ? 0 : 1; s <= SEG; s++) {
+        const u = s / SEG;
+        samples.push([
+          (1 - u) * (1 - u) * a[0] + 2 * (1 - u) * u * mx + u * u * b[0],
+          (1 - u) * (1 - u) * a[1] + 2 * (1 - u) * u * cy + u * u * b[1],
+        ]);
+      }
+      legOffsets.push(samples.length - 1);
     }
-    legOffsets.push(samples.length - 1);
   }
 
-  function marker(p: XY, color: string, pulse: number): string {
-    const r = 5 + pulse * 9;
+  function marker(p: XY, color: string, pulse: number, scale = 1): string {
+    const r = (5 + pulse * 9) * scale;
     return (
       `<circle cx="${p[0]}" cy="${p[1]}" r="${r}" fill="none" stroke="${color}" stroke-width="2" opacity="${(1 - pulse) * 0.6}"/>` +
-      `<circle cx="${p[0]}" cy="${p[1]}" r="5.5" fill="${color}" stroke="#0b0c0f" stroke-width="2"/>`
+      `<circle cx="${p[0]}" cy="${p[1]}" r="${5.5 * scale}" fill="${color}" stroke="#0b0c0f" stroke-width="2"/>`
     );
   }
 
-  function label(p: XY, name: string, opacity: number): string {
+  function label(p: XY, name: string, opacity: number, big = false): string {
     if (opacity <= 0) return "";
-    const w = name.length * 8 + 20;
-    const x = p[0] - w / 2, y = p[1] - 34;
+    const fs = big ? 15 : 12;
+    const w = name.length * (fs * 0.66) + 22;
+    const x = p[0] - w / 2, y = p[1] - (big ? 42 : 34);
+    const h = big ? 26 : 22;
     return (
       `<g opacity="${opacity.toFixed(2)}">` +
-      `<rect x="${x}" y="${y}" width="${w}" height="22" rx="11" fill="#101216" stroke="rgba(255,255,255,0.14)"/>` +
-      `<text x="${p[0]}" y="${y + 15}" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="12" font-weight="600" fill="#f1f2f4">${name}</text>` +
+      `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${h / 2}" fill="#101216" stroke="rgba(255,255,255,0.14)"/>` +
+      `<text x="${p[0]}" y="${y + h / 2 + fs * 0.36}" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="${fs}" font-weight="600" fill="#f1f2f4">${name}</text>` +
       `</g>`
     );
   }
 
-  // ---- Frame at time t ----
-  return function frame(t: number): string {
-    const dur = config.durationSec;
-    const p = ease(Math.max(0, Math.min(1, t / (dur * 0.78)))); // route completes at 78%, then holds
-    const visCount = Math.max(1, Math.floor(p * samples.length));
+  function wrap(inner: string, k: number, center: XY): string {
+    return (
+      `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">` +
+      `<rect width="${width}" height="${height}" fill="${OCEAN}"/>` +
+      `<g transform="translate(${center[0]},${center[1]}) scale(${k.toFixed(4)}) translate(${-center[0]},${-center[1]})">` +
+      inner +
+      `</g></svg>`
+    );
+  }
+
+  const dur = config.durationSec;
+
+  // ================= Templates =================
+
+  if (template === "reveal") {
+    const p0 = anchors[0] || [width / 2, height / 2];
+    return (t: number) => {
+      const zp = ease(clamp01(t / (dur * 0.6)));
+      const k = 1 + 0.45 * zp;
+      const pulse = (t % 1.6) / 1.6;
+      const inner =
+        landSvg +
+        marker(p0, MARKER, pulse, 1 + zp * 0.2) +
+        label(p0, config.locations[0]?.name || "", clamp01((t - dur * 0.25) / 0.5), true);
+      return wrap(inner, k, p0);
+    };
+  }
+
+  if (template === "sequence") {
+    const n = Math.max(1, anchors.length);
+    return (t: number) => {
+      const pulse = (t % 1.6) / 1.6;
+      let inner = landSvg;
+      const per = (dur * 0.8) / n;
+      for (let i = 0; i < n; i++) {
+        const at = i * per + 0.3;
+        if (t >= at) {
+          const pop = ease(clamp01((t - at) / 0.35));
+          inner += marker(anchors[i], i === 0 ? MARKER : ACCENT, pulse, 0.6 + pop * 0.4);
+          inner += label(anchors[i], config.locations[i].name, pop);
+        }
+      }
+      const k = 1 + 0.06 * ease(clamp01(t / dur));
+      return wrap(inner, k, [width / 2, height / 2]);
+    };
+  }
+
+  if (template === "region") {
+    const p0 = anchors[0] || [width / 2, height / 2];
+    return (t: number) => {
+      const fadeIn = ease(clamp01((t - 0.3) / 0.8));
+      const breathe = 0.75 + 0.25 * Math.sin((t / 2.2) * Math.PI * 2);
+      const regionSvg = regionPaths
+        .map(
+          (d) =>
+            `<path d="${d}" fill="${ACCENT_FILL}" stroke="${ACCENT}" stroke-width="2" opacity="${(fadeIn * breathe).toFixed(2)}"/>` +
+            `<path d="${d}" fill="${LAND}" stroke="${BORDER}" stroke-width="1" opacity="${(1 - fadeIn).toFixed(2)}"/>`
+        )
+        .join("");
+      const dim = `<rect width="${width}" height="${height}" fill="rgba(0,0,0,${(fadeIn * 0.25).toFixed(2)})"/>`;
+      const lbl = config.region
+        ? label([width / 2, height * 0.16], config.region.toUpperCase(), fadeIn, true)
+        : "";
+      const k = 1 + 0.08 * ease(clamp01(t / dur));
+      // dim the world, then draw the highlighted region above the dim
+      return wrap(landSvg + dim + regionSvg + lbl, k, p0);
+    };
+  }
+
+  if (template === "spread") {
+    const origin = anchors[0] || [width / 2, height / 2];
+    const targets = anchors.slice(1);
+    const maxDist = Math.max(60, ...targets.map((p) => Math.hypot(p[0] - origin[0], p[1] - origin[1])));
+    return (t: number) => {
+      const p = ease(clamp01(t / (dur * 0.8)));
+      const radius = p * maxDist * 1.15;
+      const pulse = (t % 1.6) / 1.6;
+      let inner = landSvg;
+      // expanding wavefronts
+      for (let w = 0; w < 3; w++) {
+        const r = radius - w * (maxDist * 0.16);
+        if (r > 4) {
+          inner += `<circle cx="${origin[0]}" cy="${origin[1]}" r="${r.toFixed(1)}" fill="none" stroke="${ACCENT}" stroke-width="${2 - w * 0.5}" opacity="${(0.5 - w * 0.14).toFixed(2)}"/>`;
+        }
+      }
+      inner += `<circle cx="${origin[0]}" cy="${origin[1]}" r="${(radius * 0.55).toFixed(1)}" fill="${ACCENT_FILL}" opacity="0.35"/>`;
+      inner += marker(origin, MARKER, pulse);
+      inner += label(origin, config.locations[0]?.name || "", clamp01(t / 0.5));
+      for (let i = 0; i < targets.length; i++) {
+        const d = Math.hypot(targets[i][0] - origin[0], targets[i][1] - origin[1]);
+        if (radius >= d) {
+          const pop = ease(clamp01((radius - d) / 40));
+          inner += marker(targets[i], ACCENT, pulse, 0.6 + pop * 0.4);
+          inner += label(targets[i], config.locations[i + 1].name, pop);
+        }
+      }
+      const k = 1 + 0.07 * ease(clamp01(t / dur));
+      return wrap(inner, k, origin);
+    };
+  }
+
+  // ---- default: route ----
+  return (t: number) => {
+    const p = ease(clamp01(t / (dur * 0.78)));
+    const visCount = Math.max(1, Math.floor(p * Math.max(1, samples.length)));
     const vis = samples.slice(0, visCount);
-    const head = vis[vis.length - 1];
+    const head = vis[vis.length - 1] || anchors[0] || [width / 2, height / 2];
 
     const routeSvg =
       vis.length > 1
@@ -132,31 +264,16 @@ export function createMapRenderer(
         : "";
 
     const pulse = (t % 1.6) / 1.6;
-    let markers = marker(anchors[0], MARKER, pulse);
-    markers += label(anchors[0], config.locations[0].name, Math.min(1, t / 0.5));
+    let markers = anchors[0] ? marker(anchors[0], MARKER, pulse) + label(anchors[0], config.locations[0].name, clamp01(t / 0.5)) : "";
     for (let i = 1; i < anchors.length; i++) {
-      const reachedAt = legOffsets[i] / (samples.length - 1);
+      const reachedAt = legOffsets[i] / Math.max(1, samples.length - 1);
       if (p >= reachedAt) {
         markers += marker(anchors[i], i === anchors.length - 1 ? MARKER : ACCENT, pulse);
-        markers += label(anchors[i], config.locations[i].name, Math.min(1, (p - reachedAt) * 8));
+        markers += label(anchors[i], config.locations[i].name, clamp01((p - reachedAt) * 8));
       }
     }
-    const headDot = p < 1 ? `<circle cx="${head[0]}" cy="${head[1]}" r="6" fill="#fff"/>` : "";
-
-    // Gentle zoom-in over the animation
-    const k = 1 + 0.08 * ease(Math.min(1, t / dur));
-    const cx = width / 2, cy = height / 2;
-
-    return (
-      `<svg width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">` +
-      `<rect width="${width}" height="${height}" fill="${OCEAN}"/>` +
-      `<g transform="translate(${cx},${cy}) scale(${k.toFixed(4)}) translate(${-cx},${-cy})">` +
-      landSvg +
-      routeSvg +
-      headDot +
-      markers +
-      `</g>` +
-      `</svg>`
-    );
+    const headDot = p < 1 && samples.length > 1 ? `<circle cx="${head[0]}" cy="${head[1]}" r="6" fill="#fff"/>` : "";
+    const k = 1 + 0.08 * ease(clamp01(t / dur));
+    return wrap(landSvg + routeSvg + headDot + markers, k, [width / 2, height / 2]);
   };
 }

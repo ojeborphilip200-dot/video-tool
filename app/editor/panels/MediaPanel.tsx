@@ -8,7 +8,7 @@ function makeMapMedia(beat: Beat, beatIndex: number): MediaItem {
     id: `map-${beatIndex}`,
     kind: "video",
     thumbnail: "",
-    previewUrl: "map:" + JSON.stringify({ ...beat.map, template: "route", durationSec: Number(beat.duration.toFixed(2)) }),
+    previewUrl: "map:" + JSON.stringify({ ...beat.map, durationSec: Number(beat.duration.toFixed(2)) }),
     duration: beat.duration,
     source: "map",
   };
@@ -390,7 +390,7 @@ export default function MediaPanel() {
                   <span style={{ fontSize: "16px" }}>🗺</span>
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontSize: "11px", color: "var(--ed-text-1)" }}>
-                      Map: {beat.map.locations.map((l) => l.name).join(" → ")}
+                      Map ({beat.map.template}): {beat.map.template === "region" && beat.map.region ? beat.map.region : beat.map.locations.map((l) => l.name).join(" → ")}
                     </div>
                     <div style={{ fontSize: "9px", color: "var(--ed-text-3)" }}>
                       AI score {beat.map.score} · {isSel ? "on timeline" : "click to use"}

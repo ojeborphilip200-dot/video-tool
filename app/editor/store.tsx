@@ -42,7 +42,7 @@ export type Beat = {
   images?: MediaItem[];
   loadingMedia?: boolean;
   mediaPage?: number;
-  map?: { template: string; score: number; locations: { name: string; lat: number; lon: number }[] };
+  map?: { template: string; score: number; region?: string; locations: { name: string; lat: number; lon: number }[] };
   selectedClips: SelectedClip[];
 };
 
