@@ -4,6 +4,11 @@ import { useState } from "react";
 import { ProjectProvider } from "./store";
 import AIPanel from "./panels/AIPanel";
 import MediaPanel from "./panels/MediaPanel";
+import AudioPanel from "./panels/AudioPanel";
+import TextPanel from "./panels/TextPanel";
+import CaptionsPanel from "./panels/CaptionsPanel";
+import EffectsPanel from "./panels/EffectsPanel";
+import BackgroundsPanel from "./panels/BackgroundsPanel";
 
 const NAV = [
   { id: "ai", icon: "✦", label: "AI" },
@@ -125,7 +130,14 @@ function Editor() {
 
       {/* Contextual left panel */}
       <div style={{ gridArea: "panel", borderRight: "1px solid var(--border-subtle, #2a2c32)", overflowY: "auto" }}>
-        {nav === "ai" ? <AIPanel /> : nav === "media" ? <MediaPanel /> : <Placeholder title={panels[nav].title} note={panels[nav].note} />}
+        {nav === "ai" ? <AIPanel />
+          : nav === "media" ? <MediaPanel />
+          : nav === "audio" ? <AudioPanel />
+          : nav === "text" ? <TextPanel />
+          : nav === "captions" ? <CaptionsPanel />
+          : nav === "effects" ? <EffectsPanel />
+          : nav === "backgrounds" ? <BackgroundsPanel />
+          : <Placeholder title={panels[nav].title} note={panels[nav].note} />}
       </div>
 
       {/* Preview stage */}
