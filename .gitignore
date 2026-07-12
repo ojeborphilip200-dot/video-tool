@@ -46,3 +46,5 @@ public/temp-audio
 models/
 .clip-cache
 .render-output
+hf-overlays/renders
+hf-overlays/node_modules

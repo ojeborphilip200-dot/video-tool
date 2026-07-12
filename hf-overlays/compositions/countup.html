@@ -1,0 +1,67 @@
+<div id="root" data-composition-id="countup"
+     data-start="0" data-width="1280" data-height="720" data-fps="25">
+
+  <div id="wrap" class="clip" data-start="0" data-duration="8" data-track-index="0"
+       style="position: absolute; top: 12%; left: 50%; transform: translate(-50%, 0);
+              border-radius: 18px; padding: 18px 44px; opacity: 0;">
+    <span id="num" style="font-weight: 800; font-size: 92px; letter-spacing: 1px; white-space: nowrap;"></span>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script>
+    const THEMES = {
+      standard:   { font: "Arial, sans-serif",      bg: "#ffffff", color: "#000000" },
+      crime:      { font: "'Arial Narrow', Arial",   bg: "#101010", color: "#e83c3c" },
+      history:    { font: "Georgia, serif",          bg: "#e8dfc8", color: "#3c2d1e" },
+      modern:     { font: "'Helvetica Neue', Arial", bg: "#4f7cff", color: "#ffffff" },
+      minimalist: { font: "'Helvetica Neue', Arial", bg: "transparent", color: "#ffffff" },
+    };
+
+    const v = Object.assign(
+      { value: 1000000, prefix: "$", suffix: "", decimals: 0, compact: true, countDur: 3, hold: 1.5, theme: "standard" },
+      (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {}
+    );
+    const th = THEMES[v.theme] || THEMES.standard;
+    const wrap = document.getElementById("wrap");
+    const num = document.getElementById("num");
+    num.style.fontFamily = th.font;
+    num.style.color = th.color;
+    wrap.style.background = th.bg;
+
+    function fmt(x) {
+      const abs = Math.abs(x);
+      let s;
+      if (v.compact) {
+        if (abs >= 1e9) s = (x / 1e9).toFixed(abs / 1e9 >= 10 ? 0 : 1).replace(/\.0$/, "") + "B";
+        else if (abs >= 1e6) s = (x / 1e6).toFixed(abs / 1e6 >= 10 ? 0 : 1).replace(/\.0$/, "") + "M";
+        else if (abs >= 1e4) s = (x / 1e3).toFixed(0) + "K";
+        else s = Math.round(x).toLocaleString("en-US");
+      } else if (v.decimals > 0) {
+        s = x.toFixed(v.decimals);
+      } else {
+        s = Math.round(x).toLocaleString("en-US");
+      }
+      return v.prefix + s + v.suffix;
+    }
+
+    const state = { n: 0 };
+    num.textContent = fmt(0);
+    const countDur = Math.min(Math.max(Number(v.countDur) || 3, 1), 5);
+    const hold = Math.min(Math.max(Number(v.hold) || 1.5, 0.5), 2);
+
+    const tl = gsap.timeline({ paused: true });
+    tl.to("#wrap", { opacity: 1, duration: 0.25, ease: "power2.out" }, 0)
+      .from("#wrap", { scale: 0.85, duration: 0.35, ease: "back.out(1.6)" }, 0)
+      .to(state, {
+        n: Number(v.value),
+        duration: countDur,
+        ease: "power3.out",
+        onUpdate: () => { num.textContent = fmt(state.n); },
+      }, 0.1)
+      .to("#num", { scale: 1.06, duration: 0.15, ease: "power2.out" }, 0.1 + countDur)
+      .to("#num", { scale: 1, duration: 0.2 }, 0.25 + countDur)
+      .to("#wrap", { opacity: 0, y: -16, duration: 0.35, ease: "power2.in" }, 0.1 + countDur + hold);
+    window.__timelines = window.__timelines || {};
+    window.__timelines["countup"] = tl;
+  </script>
+</div>
