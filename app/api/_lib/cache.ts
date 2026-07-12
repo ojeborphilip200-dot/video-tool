@@ -30,6 +30,21 @@ export async function getCachedMedia(url: string, kind: "video" | "image"): Prom
     // cache miss - download + normalize
   }
 
+  // Empty timeline slots render as black frames (holds timing, visible as a gap)
+  if (url === "black:") {
+    const blackPath = path.join(CACHE_DIR, "black-frame-norm.jpg");
+    try {
+      await fs.access(blackPath);
+      return blackPath;
+    } catch {
+      await fs.mkdir(CACHE_DIR, { recursive: true });
+      await execAsync(
+        `ffmpeg -y -f lavfi -i color=c=black:s=1280x720 -frames:v 1 "${blackPath}"`
+      );
+      return blackPath;
+    }
+  }
+
   const headers = {
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) video-tool/1.0",
     Accept: "*/*",

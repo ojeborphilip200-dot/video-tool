@@ -12,6 +12,7 @@ import BackgroundsPanel from "./panels/BackgroundsPanel";
 import PreviewStage from "./components/PreviewStage";
 import TimelineDock from "./components/TimelineDock";
 import Inspector from "./components/Inspector";
+import { useExport } from "./useExport";
 
 const NAV = [
   { id: "ai", icon: "✦", label: "AI" },
@@ -42,6 +43,7 @@ export default function EditorPage() {
 
 function Editor() {
   const [nav, setNav] = useState<string>("ai");
+  const { status, exportVideo, canExport, clearResult } = useExport();
 
   const panels: Record<string, { title: string; note: string }> = {
     ai: { title: "AI", note: "Script, transcription, Generate Beats, media preference and Auto 2-img connect here in Phase 4." },
@@ -84,10 +86,23 @@ function Editor() {
           <span style={{ fontWeight: 700, fontSize: "14px" }}>My Video Tool</span>
           <span style={{ fontSize: "11px", color: "#5c5f68" }}>Untitled project</span>
         </div>
-        <div style={{ display: "flex", gap: "8px" }}>
-          <button className="btn btn-secondary" disabled title="Connects in a later phase">↶</button>
-          <button className="btn btn-secondary" disabled title="Connects in a later phase">↷</button>
-          <button className="btn btn-primary" disabled title="Connects in Phase 6">Export Video</button>
+        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          {status.rendering && (
+            <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+              <div style={{ width: "120px", height: "5px", background: "#2a2c32", borderRadius: "3px", overflow: "hidden" }}>
+                <div style={{ height: "100%", width: `${status.progress}%`, background: "var(--accent-blue)", transition: "width 0.4s" }} />
+              </div>
+              <span style={{ fontSize: "11px", color: "#9295a0" }}>{status.message}</span>
+            </div>
+          )}
+          <button
+            className="btn btn-primary"
+            onClick={() => exportVideo()}
+            disabled={!canExport}
+            title={canExport ? "Render the final video" : "Add a voiceover and select clips first"}
+          >
+            {status.rendering ? "Rendering..." : "Export Video"}
+          </button>
         </div>
       </div>
 
@@ -150,7 +165,31 @@ function Editor() {
           padding: "20px",
         }}
       >
-        <PreviewStage />
+        {status.videoUrl ? (
+          <div style={{ width: "100%", maxWidth: "820px" }}>
+            <video src={status.videoUrl} controls autoPlay style={{ width: "100%", borderRadius: "8px", background: "#000" }} />
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "10px" }}>
+              <a href={status.videoUrl} download="final-video.mp4" className="btn btn-primary" style={{ textDecoration: "none" }}>
+                Download MP4
+              </a>
+              <div style={{ display: "flex", gap: "8px" }}>
+                <button
+                  className="btn btn-secondary"
+                  disabled={status.rendering}
+                  onClick={() => exportVideo(!status.renderedWithCaptions)}
+                  title="Re-renders from cache - only the encode repeats"
+                >
+                  {status.renderedWithCaptions ? "Re-render without captions" : "Re-render with captions"}
+                </button>
+                <button className="btn btn-secondary" onClick={clearResult}>
+                  Back to editing
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <PreviewStage />
+        )}
       </div>
 
       {/* Inspector */}

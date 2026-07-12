@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useProject, Beat, MediaItem } from "../store";
 
 function usedTime(b: Beat) {
@@ -13,6 +13,14 @@ function remainingTime(b: Beat) {
 export default function MediaPanel() {
   const { state, dispatch } = useProject();
   const [preview, setPreview] = useState<{ beatIndex: number; media: MediaItem } | null>(null);
+  const [beatAudioOn, setBeatAudioOn] = useState(false);
+  const beatAudioRef = useRef<HTMLAudioElement>(null);
+
+  const narrationUrl = useMemo(
+    () => (state.audioFile ? URL.createObjectURL(state.audioFile) : null),
+    [state.audioFile]
+  );
+  useEffect(() => () => { if (narrationUrl) URL.revokeObjectURL(narrationUrl); }, [narrationUrl]);
 
   async function findMedia(index: number, regenerate = false) {
     const beat = state.beats[index];
@@ -126,6 +134,76 @@ export default function MediaPanel() {
     });
   }
 
+  // Plays only the open beat's stretch of the narration, looping, so the user
+  // can hear the line they are choosing footage for
+  function toggleBeatAudio() {
+    const el = beatAudioRef.current;
+    if (!el || !preview) return;
+    const beat = state.beats[preview.beatIndex];
+    if (!beat || beat.end <= beat.start) return;
+
+    if (beatAudioOn) {
+      el.pause();
+      setBeatAudioOn(false);
+      return;
+    }
+    el.currentTime = beat.start;
+    el.play().catch(() => {});
+    setBeatAudioOn(true);
+  }
+
+  useEffect(() => {
+    const el = beatAudioRef.current;
+    if (!el || !preview || !beatAudioOn) return;
+    const beat = state.beats[preview.beatIndex];
+    if (!beat) return;
+    const onTime = () => {
+      if (el.currentTime >= beat.end) el.currentTime = beat.start; // loop the beat
+    };
+    el.addEventListener("timeupdate", onTime);
+    return () => el.removeEventListener("timeupdate", onTime);
+  }, [beatAudioOn, preview, state.beats]);
+
+  // Stop narration whenever the preview closes
+  useEffect(() => {
+    if (!preview && beatAudioRef.current) {
+      beatAudioRef.current.pause();
+      setBeatAudioOn(false);
+    }
+  }, [preview]);
+
+  // Step through the open beat's gallery without leaving the preview
+  function stepPreview(dir: 1 | -1) {
+    if (!preview) return;
+    const beat = state.beats[preview.beatIndex];
+    if (!beat) return;
+    const gallery = [...(beat.videos || []), ...(beat.images || [])];
+    if (gallery.length < 2) return;
+    const idx = gallery.findIndex((m) => m.id === preview.media.id);
+    const next = gallery[(idx + dir + gallery.length) % gallery.length];
+    setPreview({ beatIndex: preview.beatIndex, media: next });
+  }
+
+  useEffect(() => {
+    if (!preview) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "ArrowRight") {
+        e.preventDefault();
+        stepPreview(1);
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        stepPreview(-1);
+      } else if (e.key === " ") {
+        e.preventDefault();
+        toggleBeatAudio();
+      } else if (e.key === "Escape") {
+        setPreview(null);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  });
+
   if (state.beats.length === 0) {
     return (
       <div style={{ padding: "14px" }}>
@@ -143,26 +221,92 @@ export default function MediaPanel() {
           style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.88)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: "30px" }}
         >
           <div onClick={(e) => e.stopPropagation()} style={{ maxWidth: "820px", width: "100%" }}>
+            {narrationUrl && <audio ref={beatAudioRef} src={narrationUrl} />}
             {preview.media.kind === "video" ? (
               <video src={preview.media.previewUrl} controls autoPlay style={{ width: "100%", maxHeight: "68vh", borderRadius: "10px", background: "#000" }} />
             ) : (
               <img src={preview.media.previewUrl} alt="preview" style={{ width: "100%", maxHeight: "68vh", objectFit: "contain", borderRadius: "10px", background: "#000" }} />
             )}
-            <div style={{ display: "flex", justifyContent: "space-between", marginTop: "10px" }}>
-              <span style={{ fontSize: "12px", color: "#9295a0" }}>{preview.media.source}</span>
-              <div style={{ display: "flex", gap: "8px" }}>
-                <button
-                  className="btn btn-primary"
-                  onClick={() => {
-                    toggleSelect(preview.beatIndex, preview.media);
-                    setPreview(null);
-                  }}
-                >
-                  {state.beats[preview.beatIndex]?.selectedClips.some((c) => c.media.id === preview.media.id) ? "Unselect" : "Select this"}
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "10px" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+                <button className="btn btn-secondary" onClick={() => stepPreview(-1)} title="Previous (←)">
+                  ‹
                 </button>
+                <button className="btn btn-secondary" onClick={() => stepPreview(1)} title="Next (→)">
+                  ›
+                </button>
+                {(() => {
+                  const b = state.beats[preview.beatIndex];
+                  const hasTiming = Boolean(narrationUrl) && b && b.end > b.start;
+                  return (
+                    <button
+                      className="btn btn-secondary"
+                      onClick={toggleBeatAudio}
+                      disabled={!hasTiming}
+                      title={hasTiming ? "Play this beat's narration (space)" : "Upload a voiceover to hear the beat"}
+                    >
+                      {beatAudioOn ? "⏸ Narration" : "▶ Narration"}
+                    </button>
+                  );
+                })()}
+                <span style={{ fontSize: "12px", color: "#9295a0" }}>
+                  {preview.media.source}
+                  {(() => {
+                    const beat = state.beats[preview.beatIndex];
+                    const gallery = [...(beat?.videos || []), ...(beat?.images || [])];
+                    const i = gallery.findIndex((m) => m.id === preview.media.id);
+                    return gallery.length > 1 ? ` · ${i + 1}/${gallery.length} · use ← →` : "";
+                  })()}
+                </span>
+              </div>
+              <div style={{ display: "flex", gap: "8px" }}>
+                {(() => {
+                  const b = state.beats[preview.beatIndex];
+                  const isSel = b?.selectedClips.some((c) => c.media.id === preview.media.id);
+                  const left = b ? remainingTime(b) : 0;
+                  const noRoom = !isSel && left <= 0;
+                  return (
+                    <button
+                      className="btn btn-primary"
+                      disabled={noRoom}
+                      title={noRoom ? "This beat is full — unselect a clip to free time" : ""}
+                      onClick={() => toggleSelect(preview.beatIndex, preview.media)}
+                    >
+                      {isSel ? "Unselect" : noRoom ? "Beat is full" : "Select this"}
+                    </button>
+                  );
+                })()}
                 <button className="btn btn-secondary" onClick={() => setPreview(null)}>Close</button>
               </div>
             </div>
+
+            {(() => {
+              const b = state.beats[preview.beatIndex];
+              if (!b) return null;
+              const used = usedTime(b);
+              const left = remainingTime(b);
+              const pct = Math.min(100, (used / b.duration) * 100);
+              // Videos take what they have (capped by remaining); images default to 4s
+              const nextLen = preview.media.kind === "image" ? 4 : Math.min(preview.media.duration, left);
+              const roomFor = nextLen > 0 ? Math.floor(left / Math.max(1, Math.min(nextLen, left || 1))) : 0;
+              return (
+                <div style={{ marginTop: "10px" }}>
+                  <div style={{ height: "6px", background: "#2a2c32", borderRadius: "3px", overflow: "hidden" }}>
+                    <div style={{ height: "100%", width: `${pct}%`, background: left > 0 ? "var(--accent-blue)" : "#ff8a65" }} />
+                  </div>
+                  <div style={{ display: "flex", justifyContent: "space-between", marginTop: "5px", fontSize: "11px", color: "#9295a0" }}>
+                    <span>
+                      Beat {preview.beatIndex + 1} · {b.selectedClips.length} clip{b.selectedClips.length === 1 ? "" : "s"} selected · {used.toFixed(1)}s of {b.duration.toFixed(1)}s used
+                    </span>
+                    <span style={{ color: left > 0 ? "#4ade80" : "#ff8a65" }}>
+                      {left > 0
+                        ? `${left.toFixed(1)}s left · room for ~${Math.max(1, roomFor)} more`
+                        : "beat full"}
+                    </span>
+                  </div>
+                </div>
+              );
+            })()}
           </div>
         </div>
       )}
