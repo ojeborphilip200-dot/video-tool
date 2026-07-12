@@ -11,7 +11,7 @@ export default function Inspector() {
     return (
       <div style={{ padding: "16px" }}>
         <h3 style={{ fontSize: "13px", margin: "0 0 8px" }}>Properties</h3>
-        <p style={{ fontSize: "12px", color: "#5c5f68", lineHeight: 1.5 }}>
+        <p style={{ fontSize: "12px", color: "var(--ed-text-3)", lineHeight: 1.5 }}>
           Select a clip on the timeline to edit its trim and duration.
         </p>
       </div>
@@ -24,7 +24,7 @@ export default function Inspector() {
   if (!beat || !clip) {
     return (
       <div style={{ padding: "16px" }}>
-        <p style={{ fontSize: "12px", color: "#5c5f68" }}>Selection no longer exists.</p>
+        <p style={{ fontSize: "12px", color: "var(--ed-text-3)" }}>Selection no longer exists.</p>
       </div>
     );
   }
@@ -119,15 +119,15 @@ export default function Inspector() {
     setRegenerating(false);
   }
 
-  const label = { fontSize: "10px", color: "#5c5f68", margin: "10px 0 3px" } as const;
+  const label = { fontSize: "10px", color: "var(--ed-text-3)", margin: "10px 0 3px" } as const;
   const input = { width: "100%", fontSize: "12px" } as const;
 
   if (isGap) {
     return (
       <div style={{ padding: "16px" }}>
         <h3 style={{ fontSize: "13px", margin: "0 0 2px" }}>EMPTY SLOT</h3>
-        <p style={{ fontSize: "10px", color: "#5c5f68", margin: "0 0 10px" }}>Beat {beatIndex + 1}</p>
-        <div style={{ aspectRatio: "16/9", borderRadius: "6px", border: "1px dashed #5c5f68", background: "repeating-linear-gradient(45deg,#141519,#141519 6px,#1b1c21 6px,#1b1c21 12px)" }} />
+        <p style={{ fontSize: "10px", color: "var(--ed-text-3)", margin: "0 0 10px" }}>Beat {beatIndex + 1}</p>
+        <div style={{ aspectRatio: "16/9", borderRadius: "6px", border: "1px dashed var(--ed-text-3)", background: "repeating-linear-gradient(45deg,var(--ed-bg-2),var(--ed-bg-2) 6px,var(--ed-bg-3) 6px,var(--ed-bg-3) 12px)" }} />
         <p style={label}>Slot length (s)</p>
         <input
           type="number"
@@ -141,7 +141,7 @@ export default function Inspector() {
           }}
           style={input}
         />
-        <p style={{ fontSize: "11px", color: "#9295a0", marginTop: "12px", lineHeight: 1.5 }}>
+        <p style={{ fontSize: "11px", color: "var(--ed-text-2)", marginTop: "12px", lineHeight: 1.5 }}>
           Open the <strong>Media</strong> tab and click any clip to drop it into this slot.
         </p>
         <button
@@ -174,7 +174,7 @@ export default function Inspector() {
   return (
     <div style={{ padding: "16px" }}>
       <h3 style={{ fontSize: "13px", margin: "0 0 2px" }}>{isImage ? "IMAGE" : "VIDEO"}</h3>
-      <p style={{ fontSize: "10px", color: "#5c5f68", margin: "0 0 8px" }}>
+      <p style={{ fontSize: "10px", color: "var(--ed-text-3)", margin: "0 0 8px" }}>
         Beat {beatIndex + 1} · {clip.media.source}
       </p>
 
@@ -225,7 +225,7 @@ export default function Inspector() {
             }}
             style={input}
           />
-          <p style={{ fontSize: "10px", color: "#5c5f68", marginTop: "6px" }}>
+          <p style={{ fontSize: "10px", color: "var(--ed-text-3)", marginTop: "6px" }}>
             Source length: {clip.media.duration}s · playing {(clip.trimEnd - clip.trimStart).toFixed(1)}s
           </p>
         </>

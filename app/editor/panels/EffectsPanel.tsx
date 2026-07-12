@@ -15,7 +15,7 @@ export default function EffectsPanel() {
   return (
     <div style={{ padding: "14px" }}>
       <h3 style={{ fontSize: "13px", margin: "0 0 4px" }}>Effects</h3>
-      <p style={{ fontSize: "11px", color: "#9295a0", margin: "0 0 10px" }}>Number count-up overlays</p>
+      <p style={{ fontSize: "11px", color: "var(--ed-text-2)", margin: "0 0 10px" }}>Number count-up overlays</p>
 
       {LEVELS.map((o) => (
         <div
@@ -26,12 +26,12 @@ export default function EffectsPanel() {
             padding: "8px 12px",
             borderRadius: "8px",
             marginBottom: "6px",
-            border: state.settings.countupLevel === o.id ? "2px solid var(--accent-blue)" : "1px solid var(--border-subtle)",
-            background: "var(--bg-elevated)",
+            border: state.settings.countupLevel === o.id ? "2px solid var(--ed-accent)" : "1px solid var(--ed-border)",
+            background: "var(--ed-bg-2)",
           }}
         >
           <div style={{ fontSize: "12px" }}>{o.label}</div>
-          <div style={{ fontSize: "10px", color: "#5c5f68" }}>{o.tip}</div>
+          <div style={{ fontSize: "10px", color: "var(--ed-text-3)" }}>{o.tip}</div>
         </div>
       ))}
     </div>

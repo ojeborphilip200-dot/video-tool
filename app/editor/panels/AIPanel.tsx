@@ -74,7 +74,7 @@ export default function AIPanel() {
     setSegmenting(false);
   }
 
-  const label = { fontSize: "11px", color: "#9295a0", margin: "14px 0 6px" } as const;
+  const label = { fontSize: "11px", color: "var(--ed-text-2)", margin: "14px 0 6px" } as const;
 
   return (
     <div style={{ padding: "14px" }}>
@@ -82,7 +82,7 @@ export default function AIPanel() {
 
       <p style={label}>Voiceover (auto-transcribes)</p>
       <input type="file" accept="audio/*" onChange={handleAudioUpload} style={{ fontSize: "11px", width: "100%" }} />
-      {transcribing && <p style={{ fontSize: "11px", color: "#5c5f68" }}>Transcribing...</p>}
+      {transcribing && <p style={{ fontSize: "11px", color: "var(--ed-text-3)" }}>Transcribing...</p>}
 
       <p style={label}>Script</p>
       <textarea
@@ -104,8 +104,8 @@ export default function AIPanel() {
               padding: "4px 10px",
               borderRadius: "999px",
               fontSize: "11px",
-              border: state.settings.mediaPref === m ? "1px solid var(--accent-blue)" : "1px solid var(--border-subtle)",
-              color: state.settings.mediaPref === m ? "#eceef1" : "#9295a0",
+              border: state.settings.mediaPref === m ? "1px solid var(--ed-accent)" : "1px solid var(--ed-border)",
+              color: state.settings.mediaPref === m ? "var(--ed-text-1)" : "var(--ed-text-2)",
             }}
           >
             {m === "both" ? "Video + Images" : m === "video" ? "Video only" : "Images only"}
@@ -122,8 +122,8 @@ export default function AIPanel() {
           borderRadius: "999px",
           fontSize: "11px",
           display: "inline-block",
-          border: state.settings.autoFill ? "1px solid var(--accent-blue)" : "1px solid var(--border-subtle)",
-          color: state.settings.autoFill ? "#eceef1" : "#9295a0",
+          border: state.settings.autoFill ? "1px solid var(--ed-accent)" : "1px solid var(--ed-border)",
+          color: state.settings.autoFill ? "var(--ed-text-1)" : "var(--ed-text-2)",
         }}
       >
         Auto 2-img

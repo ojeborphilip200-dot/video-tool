@@ -34,8 +34,8 @@ export default function TimelineDock() {
     if (!waveRef.current || !state.audioFile) return;
     const ws = WaveSurfer.create({
       container: waveRef.current,
-      waveColor: "#3a3d45",
-      progressColor: "#3a3d45",
+      waveColor: "var(--ed-text-3)",
+      progressColor: "var(--ed-text-3)",
       cursorWidth: 0,
       height: 20,
       interact: false,
@@ -117,11 +117,11 @@ export default function TimelineDock() {
   for (let x = 0; x <= timelineDur; x += step) ticks.push(x);
 
   const lane = (label: string, children: React.ReactNode, h = 26) => (
-    <div style={{ display: "flex", alignItems: "stretch" }}>
-      <div style={{ width: `${LABEL_W}px`, flexShrink: 0, fontSize: "9px", color: "#5c5f68", fontFamily: "var(--font-mono)", display: "flex", alignItems: "center", paddingLeft: "8px" }}>
+    <div style={{ display: "flex", alignItems: "stretch", borderBottom: "1px solid var(--ed-border)" }}>
+      <div style={{ width: `${LABEL_W}px`, flexShrink: 0, fontSize: "9px", letterSpacing: "0.08em", color: "var(--ed-text-3)", display: "flex", alignItems: "center", paddingLeft: "10px" }}>
         {label}
       </div>
-      <div style={{ position: "relative", height: `${h}px`, width: `${contentW}px`, background: "#141519", borderRadius: "4px", marginBottom: "3px" }}>
+      <div style={{ position: "relative", height: `${h + 8}px`, width: `${contentW}px`, margin: "4px 0" }}>
         {children}
       </div>
     </div>
@@ -132,21 +132,34 @@ export default function TimelineDock() {
       {audioUrl && <audio ref={audioRef} src={audioUrl} />}
 
       {/* Transport */}
-      <div style={{ height: "36px", display: "flex", alignItems: "center", gap: "14px", padding: "0 14px", borderBottom: "1px solid var(--border-subtle, #2a2c32)", flexShrink: 0 }}>
+      <div style={{ height: "44px", position: "relative", display: "flex", alignItems: "center", padding: "0 14px", borderBottom: "1px solid var(--ed-border)", flexShrink: 0 }}>
         <button
           onClick={() => dispatch({ type: "SET_PLAYING", playing: !state.playing })}
-          className="btn btn-secondary"
-          style={{ padding: "4px 14px", fontSize: "12px" }}
           disabled={timelineDur <= 1}
+          title="Play/Pause (Enter)"
+          style={{
+            position: "absolute",
+            left: "50%",
+            transform: "translateX(-50%)",
+            background: "transparent",
+            border: "none",
+            color: "var(--ed-text-1)",
+            fontSize: "20px",
+            lineHeight: 1,
+            cursor: timelineDur <= 1 ? "not-allowed" : "pointer",
+            opacity: timelineDur <= 1 ? 0.3 : 1,
+          }}
         >
           {state.playing ? "⏸" : "▶"}
         </button>
-        <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "#9295a0" }}>
-          {fmt(state.currentTime)} / {fmt(timelineDur)}
-        </span>
-        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "8px" }}>
-          <span style={{ fontSize: "10px", color: "#5c5f68" }}>Zoom</span>
-          <input type="range" min={0.4} max={5} step={0.1} value={zoom} onChange={(e) => setZoom(parseFloat(e.target.value))} />
+        <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: "14px" }}>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "11px", color: "var(--ed-text-1)", background: "var(--ed-bg-2)", border: "1px solid var(--ed-border)", borderRadius: "999px", padding: "4px 12px" }}>
+            {fmt(state.currentTime)} / {fmt(timelineDur)}
+          </span>
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <span style={{ fontSize: "10px", color: "var(--ed-text-3)" }}>Zoom</span>
+            <input type="range" min={0.4} max={5} step={0.1} value={zoom} onChange={(e) => setZoom(parseFloat(e.target.value))} />
+          </div>
         </div>
       </div>
 
@@ -174,7 +187,7 @@ export default function TimelineDock() {
             <div style={{ width: `${LABEL_W}px`, flexShrink: 0 }} />
             <div style={{ position: "relative", height: "14px", width: `${contentW}px` }}>
               {ticks.map((x) => (
-                <span key={x} style={{ position: "absolute", left: `${x * pxPerSec}px`, fontSize: "8px", color: "#5c5f68", fontFamily: "var(--font-mono)" }}>
+                <span key={x} style={{ position: "absolute", left: `${x * pxPerSec}px`, fontSize: "8px", color: "var(--ed-text-3)", fontFamily: "var(--font-mono)" }}>
                   {Math.floor(x / 60)}:{String(Math.floor(x % 60)).padStart(2, "0")}
                 </span>
               ))}
@@ -182,7 +195,7 @@ export default function TimelineDock() {
           </div>
 
           {lane("SCRIPT", beatWindows.map((w) => (
-            <div key={w.beatIndex} title={w.text} style={{ position: "absolute", left: `${w.start * pxPerSec}px`, width: `${(w.end - w.start) * pxPerSec - 2}px`, top: "2px", bottom: "2px", borderRadius: "3px", background: "rgba(146,149,160,0.15)", fontSize: "8px", color: "#9295a0", paddingLeft: "4px", overflow: "hidden", whiteSpace: "nowrap", lineHeight: "20px" }}>
+            <div key={w.beatIndex} title={w.text} style={{ position: "absolute", left: `${w.start * pxPerSec}px`, width: `${(w.end - w.start) * pxPerSec - 2}px`, top: "2px", bottom: "2px", borderRadius: "6px", background: "rgba(146,149,160,0.12)", fontSize: "8px", color: "var(--ed-text-2)", paddingLeft: "4px", overflow: "hidden", whiteSpace: "nowrap", lineHeight: "20px" }}>
               B{w.beatIndex + 1} {w.text.slice(0, 40)}
             </div>
           )))}
@@ -202,35 +215,39 @@ export default function TimelineDock() {
                   width: `${(c.end - c.start) * pxPerSec - 2}px`,
                   top: "2px",
                   bottom: "2px",
-                  borderRadius: "4px",
+                  borderRadius: "8px",
                   overflow: "hidden",
                   cursor: "pointer",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   outline: isSel
-                    ? "2px solid var(--accent-blue)"
+                    ? "2px solid var(--ed-accent)"
                     : c.gap
-                    ? "1px dashed #5c5f68"
-                    : c.kind === "image"
-                    ? "1px solid rgba(255,138,101,0.5)"
-                    : "1px solid rgba(79,124,255,0.5)",
-                  background: c.gap ? "repeating-linear-gradient(45deg,#141519,#141519 6px,#1b1c21 6px,#1b1c21 12px)" : `url(${c.thumbnail}) center/cover, #17181c`,
+                    ? "1px dashed var(--ed-text-3)"
+                    : "1px solid var(--ed-border-strong)",
+                  background: c.gap ? "repeating-linear-gradient(45deg,var(--ed-bg-2),var(--ed-bg-2) 6px,var(--ed-bg-3) 6px,var(--ed-bg-3) 12px)" : `url(${c.thumbnail}) center/cover, var(--ed-bg-2)`,
                 }}
               >
                 {c.gap && (
-                  <span style={{ fontSize: "8px", color: "#5c5f68", fontFamily: "var(--font-mono)" }}>EMPTY</span>
+                  <span style={{ fontSize: "8px", color: "var(--ed-text-3)", fontFamily: "var(--font-mono)" }}>EMPTY</span>
+                )}
+                {!c.gap && (
+                  <>
+                    <span style={{ position: "absolute", left: "3px", top: "50%", transform: "translateY(-50%)", width: "3px", height: "55%", borderRadius: "2px", background: "rgba(255,255,255,0.85)" }} />
+                    <span style={{ position: "absolute", right: "3px", top: "50%", transform: "translateY(-50%)", width: "3px", height: "55%", borderRadius: "2px", background: "rgba(255,255,255,0.85)" }} />
+                  </>
                 )}
               </div>
             );
           }), 40)}
 
-          {lane("TEXT", <span style={{ fontSize: "8px", color: "#3a3d45", paddingLeft: "6px", lineHeight: "22px" }}>computed at render (callouts & count-ups)</span>)}
-          {lane("BACKGROUND", <span style={{ fontSize: "8px", color: "#3a3d45", paddingLeft: "6px", lineHeight: "22px" }}>{state.settings.background === "none" ? "off" : "windows chosen at render"}</span>)}
+          {lane("TEXT", <span style={{ fontSize: "8px", color: "var(--ed-text-3)", paddingLeft: "6px", lineHeight: "22px" }}>computed at render (callouts & count-ups)</span>)}
+          {lane("BACKGROUND", <span style={{ fontSize: "8px", color: "var(--ed-text-3)", paddingLeft: "6px", lineHeight: "22px" }}>{state.settings.background === "none" ? "off" : "windows chosen at render"}</span>)}
 
           {lane("CAPTIONS", state.settings.captionsEnabled ? chunks.map((c, i) => (
             <div key={i} title={c.text} style={{ position: "absolute", left: `${c.start * pxPerSec}px`, width: `${Math.max((c.end - c.start) * pxPerSec - 1, 2)}px`, top: "3px", bottom: "3px", borderRadius: "2px", background: "rgba(79,124,255,0.3)" }} />
-          )) : <span style={{ fontSize: "8px", color: "#3a3d45", paddingLeft: "6px", lineHeight: "22px" }}>off</span>)}
+          )) : <span style={{ fontSize: "8px", color: "var(--ed-text-3)", paddingLeft: "6px", lineHeight: "22px" }}>off</span>)}
 
           {lane("VOICE", <div ref={waveRef} style={{ position: "absolute", inset: "2px 0" }} />, 24)}
 
@@ -238,7 +255,7 @@ export default function TimelineDock() {
             <div style={{ position: "absolute", inset: "2px", borderRadius: "3px", background: "rgba(74,222,128,0.2)", fontSize: "8px", color: "#4ade80", paddingLeft: "6px", lineHeight: "18px" }}>
               {state.musicFile.name} · loops + auto-ducks
             </div>
-          ) : <span style={{ fontSize: "8px", color: "#3a3d45", paddingLeft: "6px", lineHeight: "22px" }}>none</span>)}
+          ) : <span style={{ fontSize: "8px", color: "var(--ed-text-3)", paddingLeft: "6px", lineHeight: "22px" }}>none</span>)}
 
           {/* Playhead */}
           <div
@@ -260,11 +277,11 @@ export default function TimelineDock() {
             <div
               style={{
                 position: "absolute",
-                left: "2px",
+                left: "3px",
                 top: "-2px",
-                width: "12px",
-                height: "12px",
-                borderRadius: "3px",
+                width: "10px",
+                height: "10px",
+                borderRadius: "999px",
                 background: "#ff8a65",
                 boxShadow: "0 1px 3px rgba(0,0,0,0.5)",
               }}

@@ -27,8 +27,8 @@ const NAV = [
 function Placeholder({ title, note }: { title: string; note: string }) {
   return (
     <div style={{ padding: "16px" }}>
-      <h3 style={{ fontSize: "13px", color: "#eceef1", margin: "0 0 8px" }}>{title}</h3>
-      <p style={{ fontSize: "12px", color: "#5c5f68", lineHeight: 1.5 }}>{note}</p>
+      <h3 style={{ fontSize: "13px", color: "var(--ed-text-1)", margin: "0 0 8px" }}>{title}</h3>
+      <p style={{ fontSize: "12px", color: "var(--ed-text-3)", lineHeight: 1.5 }}>{note}</p>
     </div>
   );
 }
@@ -76,6 +76,7 @@ function Editor() {
 
   return (
     <div
+      className="ed-root"
       style={{
         height: "100vh",
         display: "grid",
@@ -86,8 +87,8 @@ function Editor() {
           "rail panel stage inspector"
           "dock dock dock dock"
         `,
-        background: "#0d0e12",
-        color: "#eceef1",
+        background: "var(--ed-bg-0)",
+        color: "var(--ed-text-1)",
       }}
     >
       {/* Top bar */}
@@ -98,12 +99,12 @@ function Editor() {
           alignItems: "center",
           justifyContent: "space-between",
           padding: "0 14px",
-          borderBottom: "1px solid var(--border-subtle, #2a2c32)",
+          borderBottom: "1px solid var(--ed-border)",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <span style={{ fontWeight: 700, fontSize: "14px" }}>My Video Tool</span>
-          <span style={{ fontSize: "11px", color: "#5c5f68" }}>Untitled project</span>
+          <span style={{ fontSize: "11px", color: "var(--ed-text-3)" }}>Untitled project</span>
         </div>
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
           <button
@@ -126,10 +127,10 @@ function Editor() {
           </button>
           {status.rendering && (
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-              <div style={{ width: "120px", height: "5px", background: "#2a2c32", borderRadius: "3px", overflow: "hidden" }}>
-                <div style={{ height: "100%", width: `${status.progress}%`, background: "var(--accent-blue)", transition: "width 0.4s" }} />
+              <div style={{ width: "120px", height: "5px", background: "var(--ed-bg-3)", borderRadius: "3px", overflow: "hidden" }}>
+                <div style={{ height: "100%", width: `${status.progress}%`, background: "var(--ed-accent)", transition: "width 0.4s" }} />
               </div>
-              <span style={{ fontSize: "11px", color: "#9295a0" }}>{status.message}</span>
+              <span style={{ fontSize: "11px", color: "var(--ed-text-2)" }}>{status.message}</span>
             </div>
           )}
           <button
@@ -147,7 +148,7 @@ function Editor() {
       <div
         style={{
           gridArea: "rail",
-          borderRight: "1px solid var(--border-subtle, #2a2c32)",
+          borderRight: "1px solid var(--ed-border)",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -170,7 +171,7 @@ function Editor() {
               justifyContent: "center",
               cursor: "pointer",
               background: nav === n.id ? "rgba(79,124,255,0.15)" : "transparent",
-              color: nav === n.id ? "#4f7cff" : "#9295a0",
+              color: nav === n.id ? "#4f7cff" : "var(--ed-text-2)",
               fontSize: "14px",
             }}
           >
@@ -181,7 +182,7 @@ function Editor() {
       </div>
 
       {/* Contextual left panel */}
-      <div style={{ gridArea: "panel", borderRight: "1px solid var(--border-subtle, #2a2c32)", overflowY: "auto" }}>
+      <div style={{ gridArea: "panel", borderRight: "1px solid var(--ed-border)", overflowY: "auto" }}>
         {nav === "ai" ? <AIPanel />
           : nav === "media" ? <MediaPanel />
           : nav === "audio" ? <AudioPanel />
@@ -230,12 +231,12 @@ function Editor() {
       </div>
 
       {/* Inspector */}
-      <div style={{ gridArea: "inspector", borderLeft: "1px solid var(--border-subtle, #2a2c32)", overflowY: "auto" }}>
+      <div style={{ gridArea: "inspector", borderLeft: "1px solid var(--ed-border)", overflowY: "auto" }}>
         <Inspector />
       </div>
 
       {/* Timeline dock */}
-      <div style={{ gridArea: "dock", borderTop: "1px solid var(--border-subtle, #2a2c32)", display: "flex", flexDirection: "column", minHeight: 0 }}>
+      <div style={{ gridArea: "dock", borderTop: "1px solid var(--ed-border)", display: "flex", flexDirection: "column", minHeight: 0 }}>
         <TimelineDock />
       </div>
     </div>

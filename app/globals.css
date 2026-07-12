@@ -199,3 +199,100 @@ input:focus {
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-subtle);
 }
+
+
+/* ============ Editor design tokens (sleek/minimal, dark) ============ */
+.ed-root {
+  --ed-bg-0: #0b0c0f;
+  --ed-bg-1: #101216;
+  --ed-bg-2: #171a1f;
+  --ed-bg-3: #202429;
+  --ed-border: rgba(255, 255, 255, 0.07);
+  --ed-border-strong: rgba(255, 255, 255, 0.14);
+  --ed-text-1: #f1f2f4;
+  --ed-text-2: #a3a7b0;
+  --ed-text-3: #676c76;
+  --ed-accent: #5b8cff;
+  --ed-accent-soft: rgba(91, 140, 255, 0.16);
+  --ed-playhead: #ff8a65;
+  --ed-r-sm: 6px;
+  --ed-r: 10px;
+  --ed-r-lg: 14px;
+  letter-spacing: 0.005em;
+}
+
+/* Buttons: pill-shaped, quiet by default, one solid accent for primary */
+.ed-root .btn {
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border: 1px solid transparent;
+  transition: background 0.12s ease, border-color 0.12s ease, opacity 0.12s ease;
+}
+.ed-root .btn-secondary {
+  background: transparent;
+  border-color: var(--ed-border-strong);
+  color: var(--ed-text-1);
+}
+.ed-root .btn-secondary:hover:not(:disabled) {
+  background: var(--ed-bg-3);
+}
+.ed-root .btn-primary {
+  background: var(--ed-accent);
+  border-color: var(--ed-accent);
+  color: #fff;
+}
+.ed-root .btn-primary:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+.ed-root .btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+/* Inputs: flat, hairline, no chrome */
+.ed-root input[type="text"],
+.ed-root input[type="number"],
+.ed-root textarea,
+.ed-root input[type="file"] {
+  background: var(--ed-bg-2);
+  border: 1px solid var(--ed-border);
+  border-radius: var(--ed-r-sm);
+  color: var(--ed-text-1);
+  padding: 7px 9px;
+  font-size: 12px;
+  outline: none;
+}
+.ed-root input[type="number"]:focus,
+.ed-root textarea:focus {
+  border-color: var(--ed-accent);
+}
+.ed-root textarea {
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* Sliders: thin track, round knob (like the reference) */
+.ed-root input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--ed-bg-3);
+  outline: none;
+  width: 110px;
+}
+.ed-root input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ed-text-1);
+  cursor: pointer;
+}
+
+/* Checkboxes */
+.ed-root input[type="checkbox"] {
+  accent-color: var(--ed-accent);
+}

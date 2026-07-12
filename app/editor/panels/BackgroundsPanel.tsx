@@ -3,9 +3,9 @@
 import { useProject } from "../store";
 
 const PRESETS = [
-  { id: "none", label: "None", bg: "#17181c" },
+  { id: "none", label: "None", bg: "var(--ed-bg-2)" },
   { id: "black", label: "Pure Black", bg: "#000" },
-  { id: "grid", label: "Dark Grid", bg: "repeating-linear-gradient(0deg,#0d0e12,#0d0e12 9px,#2a2c32 10px),repeating-linear-gradient(90deg,#0d0e12,#0d0e12 9px,#2a2c32 10px)" },
+  { id: "grid", label: "Dark Grid", bg: "repeating-linear-gradient(0deg,var(--ed-bg-0),var(--ed-bg-0) 9px,var(--ed-bg-3) 10px),repeating-linear-gradient(90deg,var(--ed-bg-0),var(--ed-bg-0) 9px,var(--ed-bg-3) 10px)" },
   { id: "blue-gradient", label: "Blue", bg: "linear-gradient(#1a2c5b,#05070d)" },
   { id: "green-gradient", label: "Green", bg: "linear-gradient(#14532d,#04100a)" },
   { id: "vintage", label: "Vintage", bg: "linear-gradient(#e8dfc8,#c9bfa5)" },
@@ -26,17 +26,17 @@ export default function BackgroundsPanel() {
                 aspectRatio: "16 / 10",
                 borderRadius: "6px",
                 background: p.bg,
-                border: state.settings.background === p.id ? "2px solid var(--accent-blue)" : "1px solid var(--border-subtle)",
+                border: state.settings.background === p.id ? "2px solid var(--ed-accent)" : "1px solid var(--ed-border)",
               }}
             />
-            <div style={{ fontSize: "9px", color: "#9295a0", marginTop: "3px" }}>{p.label}</div>
+            <div style={{ fontSize: "9px", color: "var(--ed-text-2)", marginTop: "3px" }}>{p.label}</div>
           </div>
         ))}
       </div>
 
       {state.settings.background !== "none" && (
         <>
-          <p style={{ fontSize: "11px", color: "#9295a0", margin: "12px 0 6px" }}>Appearances</p>
+          <p style={{ fontSize: "11px", color: "var(--ed-text-2)", margin: "12px 0 6px" }}>Appearances</p>
           {(["2-3", "3-5", "always"] as const).map((f) => (
             <div
               key={f}
@@ -46,12 +46,12 @@ export default function BackgroundsPanel() {
                 padding: "8px 12px",
                 borderRadius: "8px",
                 marginBottom: "6px",
-                border: state.settings.bgFrequency === f ? "2px solid var(--accent-blue)" : "1px solid var(--border-subtle)",
-                background: "var(--bg-elevated)",
+                border: state.settings.bgFrequency === f ? "2px solid var(--ed-accent)" : "1px solid var(--ed-border)",
+                background: "var(--ed-bg-2)",
               }}
             >
               <div style={{ fontSize: "12px" }}>{f === "always" ? "Throughout" : `${f} times`}</div>
-              <div style={{ fontSize: "10px", color: "#5c5f68" }}>
+              <div style={{ fontSize: "10px", color: "var(--ed-text-3)" }}>
                 {f === "2-3" ? "Good for 8-15 min videos" : f === "3-5" ? "Good for 30 min+ videos" : "Frames the entire video"}
               </div>
             </div>

@@ -8,7 +8,7 @@ export default function CaptionsPanel() {
   return (
     <div style={{ padding: "14px" }}>
       <h3 style={{ fontSize: "13px", margin: "0 0 10px" }}>Captions</h3>
-      <label style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "#9295a0" }}>
+      <label style={{ display: "flex", alignItems: "center", gap: "8px", fontSize: "12px", color: "var(--ed-text-2)" }}>
         <input
           type="checkbox"
           checked={state.settings.captionsEnabled}
@@ -16,7 +16,7 @@ export default function CaptionsPanel() {
         />
         Burn word-synced captions into the video
       </label>
-      <p style={{ fontSize: "10px", color: "#5c5f68", marginTop: "10px", lineHeight: 1.5 }}>
+      <p style={{ fontSize: "10px", color: "var(--ed-text-3)", marginTop: "10px", lineHeight: 1.5 }}>
         Captions use the theme selected in the Text tab and sync to your voiceover's word timestamps.
       </p>
     </div>

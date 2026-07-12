@@ -26,16 +26,16 @@ export default function TextPanel() {
             padding: "10px 12px",
             borderRadius: "8px",
             marginBottom: "6px",
-            border: state.settings.textStyle === t.id ? "2px solid var(--accent-blue)" : "1px solid var(--border-subtle)",
-            background: "var(--bg-elevated)",
+            border: state.settings.textStyle === t.id ? "2px solid var(--ed-accent)" : "1px solid var(--ed-border)",
+            background: "var(--ed-bg-2)",
           }}
         >
           <div style={{ fontSize: "14px", fontFamily: t.font, fontWeight: t.weight }}>{t.label}</div>
-          <div style={{ fontSize: "10px", color: "#5c5f68", marginTop: "2px" }}>{t.desc}</div>
+          <div style={{ fontSize: "10px", color: "var(--ed-text-3)", marginTop: "2px" }}>{t.desc}</div>
         </div>
       ))}
 
-      <label style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "12px", fontSize: "12px", color: "#9295a0" }}>
+      <label style={{ display: "flex", alignItems: "center", gap: "8px", marginTop: "12px", fontSize: "12px", color: "var(--ed-text-2)" }}>
         <input
           type="checkbox"
           checked={state.settings.calloutsEnabled}

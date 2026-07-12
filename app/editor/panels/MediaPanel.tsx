@@ -217,7 +217,7 @@ export default function MediaPanel() {
     return (
       <div style={{ padding: "14px" }}>
         <h3 style={{ fontSize: "13px", margin: "0 0 8px" }}>Media</h3>
-        <p style={{ fontSize: "12px", color: "#5c5f68" }}>Generate beats in the AI tab first.</p>
+        <p style={{ fontSize: "12px", color: "var(--ed-text-3)" }}>Generate beats in the AI tab first.</p>
       </div>
     );
   }
@@ -258,7 +258,7 @@ export default function MediaPanel() {
                     </button>
                   );
                 })()}
-                <span style={{ fontSize: "12px", color: "#9295a0" }}>
+                <span style={{ fontSize: "12px", color: "var(--ed-text-2)" }}>
                   {preview.media.source}
                   {(() => {
                     const beat = state.beats[preview.beatIndex];
@@ -300,10 +300,10 @@ export default function MediaPanel() {
               const roomFor = nextLen > 0 ? Math.floor(left / Math.max(1, Math.min(nextLen, left || 1))) : 0;
               return (
                 <div style={{ marginTop: "10px" }}>
-                  <div style={{ height: "6px", background: "#2a2c32", borderRadius: "3px", overflow: "hidden" }}>
-                    <div style={{ height: "100%", width: `${pct}%`, background: left > 0 ? "var(--accent-blue)" : "#ff8a65" }} />
+                  <div style={{ height: "6px", background: "var(--ed-bg-3)", borderRadius: "3px", overflow: "hidden" }}>
+                    <div style={{ height: "100%", width: `${pct}%`, background: left > 0 ? "var(--ed-accent)" : "#ff8a65" }} />
                   </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", marginTop: "5px", fontSize: "11px", color: "#9295a0" }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", marginTop: "5px", fontSize: "11px", color: "var(--ed-text-2)" }}>
                     <span>
                       Beat {preview.beatIndex + 1} · {b.selectedClips.length} clip{b.selectedClips.length === 1 ? "" : "s"} selected · {used.toFixed(1)}s of {b.duration.toFixed(1)}s used
                     </span>
@@ -337,7 +337,7 @@ export default function MediaPanel() {
             style={{
               marginBottom: "16px",
               paddingBottom: "12px",
-              borderBottom: "1px solid var(--border-subtle)",
+              borderBottom: "1px solid var(--ed-border)",
               background:
                 state.selected?.type === "clip" && state.selected.beatIndex === i
                   ? "rgba(79,124,255,0.06)"
@@ -348,7 +348,7 @@ export default function MediaPanel() {
             <div style={{ fontSize: "10px", color: "#ff8a65", fontFamily: "var(--font-mono)", marginBottom: "4px" }}>
               B{i + 1} · {beat.duration.toFixed(1)}S · {remaining.toFixed(1)}S LEFT
             </div>
-            <p style={{ fontSize: "11px", color: "#9295a0", margin: "0 0 6px", lineHeight: 1.4 }}>
+            <p style={{ fontSize: "11px", color: "var(--ed-text-2)", margin: "0 0 6px", lineHeight: 1.4 }}>
               {beat.text.length > 90 ? beat.text.slice(0, 90) + "..." : beat.text}
             </p>
             <div style={{ display: "flex", gap: "6px", marginBottom: "8px" }}>
@@ -381,11 +381,11 @@ export default function MediaPanel() {
                           state.selected.clipId === m.id
                             ? "0 0 0 3px #ff8a65"
                             : "none",
-                        outline: isSel ? "2px solid var(--accent-blue)" : "1px solid var(--border-subtle)",
+                        outline: isSel ? "2px solid var(--ed-accent)" : "1px solid var(--ed-border)",
                         borderRadius: "6px",
                         overflow: "hidden",
                         aspectRatio: "16 / 9",
-                        background: `url(${m.thumbnail}) center/cover, #17181c`,
+                        background: `url(${m.thumbnail}) center/cover, var(--ed-bg-2)`,
                       }}
                     >
                       <button

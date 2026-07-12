@@ -39,7 +39,7 @@ export default function PreviewStage() {
         aspectRatio: "16 / 9",
         background: "#000",
         borderRadius: "8px",
-        border: "1px solid var(--border-subtle, #2a2c32)",
+        border: "1px solid var(--ed-border)",
         position: "relative",
         overflow: "hidden",
         display: "flex",
@@ -48,13 +48,13 @@ export default function PreviewStage() {
       }}
     >
       {!active && (
-        <span style={{ fontSize: "12px", color: "#5c5f68" }}>
+        <span style={{ fontSize: "12px", color: "var(--ed-text-3)" }}>
           {clips.length === 0 ? "Select clips in the Media tab to preview" : ""}
         </span>
       )}
 
       {active && active.gap && (
-        <span style={{ fontSize: "12px", color: "#3a3d45", fontFamily: "var(--font-mono)" }}>EMPTY SLOT</span>
+        <span style={{ fontSize: "12px", color: "var(--ed-text-3)", fontFamily: "var(--font-mono)" }}>EMPTY SLOT</span>
       )}
 
       {active && !active.gap && active.kind === "video" && (
