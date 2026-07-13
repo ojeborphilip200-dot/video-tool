@@ -123,7 +123,9 @@ async function rankMedia(
   beatText: string,
   entities: string[],
   queries: string[],
-  items: MediaItem[]
+  items: MediaItem[],
+  priorityProviders: string[] = [],
+  beatEra: string = ""
 ): Promise<MediaItem[]> {
   if (items.length <= 1) return items;
 
@@ -179,6 +181,23 @@ Respond ONLY with a JSON array, no other text: [{"id":"...","score":87}, ...]`,
     );
 
     // Reject weak candidates (score < 35) as long as enough strong ones remain
+    // Prioritized archives get a ranking bonus: best-ranked first, then the rest.
+    // A wrong-subject archival image still can't outrank a right-subject one -
+    // the bonus only breaks ties between comparable candidates.
+    if (priorityProviders.length > 0) {
+      for (const m of ranked) {
+        const rank = priorityProviders.indexOf(m.source);
+        if (rank >= 0) {
+          const bonus = 12 - rank * 3; // 1st choice +12, 2nd +9, 3rd +6, 4th +3
+          scoreMap.set(m.id, (scoreMap.get(m.id) ?? 0) + Math.max(3, bonus));
+        }
+      }
+      ranked.sort((a, b) => (scoreMap.get(b.id) ?? 0) - (scoreMap.get(a.id) ?? 0));
+      console.log(
+        `DEBUG - provider routing${beatEra ? ` (${beatEra})` : ""}: prioritized ${priorityProviders.join(" > ")}`
+      );
+    }
+
     const strong = ranked.filter((m) => (scoreMap.get(m.id) ?? 0) >= 40);
     if (strong.length >= 6) ranked = strong;
 
@@ -294,6 +313,11 @@ export async function POST(req: NextRequest) {
     const { beatText, keywords, entities, page: rawPage } = body;
     const page = Math.max(1, parseInt(rawPage) || 1);
     const excludeIds: string[] = Array.isArray(body.excludeIds) ? body.excludeIds : [];
+    // Provider-aware routing: the planner ranks which archives should hold real
+    // imagery for this beat (LOC for American history, Europeana for European,
+    // Met/Smithsonian/Wikimedia for antiquity, NASA for space...)
+    const priorityProviders: string[] = Array.isArray(body.providers) ? body.providers : [];
+    const beatEra: string = typeof body.era === "string" ? body.era : "";
     const mediaType: string =
       body.mediaType === "video" || body.mediaType === "image" ? body.mediaType : "both";
     const wantV = mediaType !== "image";
@@ -402,7 +426,9 @@ export async function POST(req: NextRequest) {
         beatText,
         entities || keywords || [],
         queryList,
-        [...videos, ...images]
+        [...videos, ...images],
+        priorityProviders,
+        beatEra
       );
       videos = ranked.filter((m) => m.kind === "video");
       images = ranked.filter((m) => m.kind === "image");

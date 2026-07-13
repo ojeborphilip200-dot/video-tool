@@ -58,9 +58,12 @@ export async function getCachedMedia(url: string, kind: "video" | "image"): Prom
     Accept: "*/*",
   };
   let res = await fetch(url, { headers });
-  // Some IIIF servers (e.g. Art Institute) refuse certain size variants - retry smaller
+  // IIIF servers (e.g. Art Institute) refuse some size variants - walk a chain
   if (!res.ok && url.includes("/iiif/") && url.includes("/full/843,")) {
-    res = await fetch(url.replace("/full/843,", "/full/600,"), { headers });
+    for (const variant of ["/full/600,", "/full/!800,800", "/full/full", "/full/max"]) {
+      res = await fetch(url.replace("/full/843,", variant), { headers });
+      if (res.ok) break;
+    }
   }
   if (!res.ok) {
     throw new Error(`Failed to download media: ${res.status} ${url}`);

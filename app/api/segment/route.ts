@@ -40,6 +40,9 @@ For each beat provide:
   4th (only if genuinely useful): accurate symbolic B-roll that communicates the idea without misleading the viewer
 - "keywords": 2-4 short display terms summarizing the visual direction
 - "treatment": "video" (motion suits this beat) or "image" (a still suits it better - historical references, documents, static subjects)
+- "era": short label for the historical period and place when the beat is historical (e.g. "1930s America", "WWI Europe", "Ancient Rome"), or "" for present-day/generic beats
+- "providers": ranked list of the archives most likely to hold real imagery for THIS beat, best first. Choose from: "loc" (American political, military, social and cultural history - Civil War, Depression, presidents, US wars), "europeana" (European history and culture, WWI/WWII Europe), "smithsonian" (American culture, aviation, space, natural history, artifacts), "wikimedia" (global subjects, anything not covered above), "met" and "artic" (art, antiquity, artifacts, paintings), "nasa" (space, astronomy, spaceflight). Give 2-4 providers, or [] when the beat is present-day/generic and stock footage is the right answer.
+- when "era" is set, make the "queries" archival in flavour: include the date/era, the named subject, and words a photo archive would use (e.g. "Great Depression unemployed Americans 1932", "breadlines 1932 America photograph"), not modern stock phrasing
 - "map": include ONLY when geographic movement, spread, migration, military campaigns, travel routes, expansion, territorial change, or regional comparison is CENTRAL to understanding the beat - never for incidental location mentions ("she was born in Chicago" gets NO map). Score the geographic importance 0-100; only include the field at all if it scores 75+. Choose the best "template":
   "route" = travel/movement from origin through stops to destination (2-5 locations in travel order)
   "spread" = a phenomenon expanding outward from an origin into surrounding places (origin first, then affected places)
@@ -60,7 +63,7 @@ ${script}`,
 
     const rawText = message.content[0].type === "text" ? message.content[0].text : "[]";
     const cleaned = rawText.replace(/```json|```/g, "").trim();
-    const aiBeats: { text: string; entities: string[]; queries: string[]; keywords: string[]; treatment: "video" | "image"; map?: { template: string; score: number; region?: string; locations: { name: string; lat: number; lon: number }[] } }[] =
+    const aiBeats: { text: string; entities: string[]; queries: string[]; keywords: string[]; treatment: "video" | "image"; era?: string; providers?: string[]; map?: { template: string; score: number; region?: string; locations: { name: string; lat: number; lon: number }[] } }[] =
       JSON.parse(cleaned);
 
     // Map beats to narration timings sequentially: beats are verbatim and in

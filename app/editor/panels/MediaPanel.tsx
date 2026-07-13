@@ -72,6 +72,8 @@ export default function MediaPanel() {
           page,
           excludeIds,
           mediaType: state.settings.mediaPref,
+          era: beat.era || "",
+          providers: beat.providers || [],
         }),
       });
       const data = await res.json();
@@ -109,9 +111,7 @@ export default function MediaPanel() {
   }
 
   async function findAll() {
-    for (let i = 0; i < state.beats.length; i++) {
-      await findMedia(i);
-    }
+    await Promise.all(state.beats.map((_, i) => findMedia(i)));
   }
 
   function toggleSelect(index: number, media: MediaItem) {

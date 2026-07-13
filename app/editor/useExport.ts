@@ -33,12 +33,28 @@ export function useExport() {
 
     // Same payload shape the render route already consumes. Empty slots become
     // black frames of the same length, so the render matches the preview exactly.
-    const payload = clips.map((c) => ({
-      url: c.gap ? "black:" : c.previewUrl,
-      kind: c.gap ? ("image" as const) : c.kind,
-      trimStart: c.gap ? 0 : c.trimStart,
-      trimEnd: c.gap ? c.end - c.start : c.trimEnd,
-    }));
+    const payload = clips.map((c) => {
+      // Same-kind backups from this beat's gallery, in rank order - the render
+      // falls back to these if the chosen source refuses to download
+      const beat = state.beats[c.beatIndex];
+      const chosenIds = new Set(beat?.selectedClips.map((s) => s.media.id) || []);
+      const pool = c.kind === "image" ? beat?.images || [] : beat?.videos || [];
+      const alts =
+        c.gap || c.previewUrl.startsWith("map:")
+          ? []
+          : pool
+              .filter((m) => !chosenIds.has(m.id))
+              .slice(0, 3)
+              .map((m) => ({ url: m.previewUrl, kind: m.kind }));
+
+      return {
+        url: c.gap ? "black:" : c.previewUrl,
+        kind: c.gap ? ("image" as const) : c.kind,
+        trimStart: c.gap ? 0 : c.trimStart,
+        trimEnd: c.gap ? c.end - c.start : c.trimEnd,
+        alts,
+      };
+    });
 
     const formData = new FormData();
     formData.append("clips", JSON.stringify(payload));

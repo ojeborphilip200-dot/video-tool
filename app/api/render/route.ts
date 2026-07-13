@@ -173,13 +173,48 @@ async function runRenderJob(jobId: string, input: RenderInput) {
 
     tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "video-tool-"));
     const downloadedFiles: string[] = [];
+    const failedClips: number[] = [];
+    const recoveredClips: number[] = [];
 
     for (let i = 0; i < clips.length; i++) {
       updateJob(jobId, {
         progress: 5 + Math.round((i / clips.length) * 35),
         message: "Adding Edits",
       });
-      const cachedPath = await getCachedMedia(clips[i].url, clips[i].kind || "video");
+      let cachedPath: string;
+      try {
+        cachedPath = await getCachedMedia(clips[i].url, clips[i].kind || "video");
+      } catch (e: any) {
+        // The chosen source refused - try this beat's next-ranked candidates
+        // before giving up on the slot entirely
+        console.log(`WARNING - clip ${i} download failed (${e.message}) - trying alternates`);
+        const alts: { url: string; kind: string }[] = (clips[i] as any).alts || [];
+        let recovered: string | null = null;
+        for (const alt of alts) {
+          try {
+            recovered = await getCachedMedia(alt.url, (alt.kind as any) || "image");
+            console.log(`DEBUG - clip ${i} recovered with alternate (${alt.kind}) from the same beat`);
+            clips[i] = { ...clips[i], url: alt.url, kind: alt.kind as any };
+            break;
+          } catch {
+            // try the next one
+          }
+        }
+        if (recovered) {
+          cachedPath = recovered;
+          recoveredClips.push(i);
+        } else {
+          console.log(`WARNING - clip ${i}: no alternate downloaded either - using black frame`);
+          failedClips.push(i);
+          cachedPath = await getCachedMedia("black:", "image");
+          clips[i] = {
+            ...clips[i],
+            kind: "image",
+            trimStart: 0,
+            trimEnd: clips[i].trimEnd - clips[i].trimStart,
+          };
+        }
+      }
       downloadedFiles.push(cachedPath);
       // DEBUG: compare assumed trim window vs the file's real duration
       try {
@@ -624,7 +659,12 @@ async function runRenderJob(jobId: string, input: RenderInput) {
     const finalPath = path.join(outDir, `${jobId}.mp4`);
     await fs.copyFile(outputPath, finalPath);
 
-    updateJob(jobId, { status: "done", progress: 100, message: "Done", outputPath: finalPath });
+    updateJob(jobId, { status: "done", progress: 100, message: (() => {
+              const parts: string[] = [];
+              if (recoveredClips.length > 0) parts.push(`${recoveredClips.length} clip${recoveredClips.length === 1 ? "" : "s"} auto-replaced`);
+              if (failedClips.length > 0) parts.push(`${failedClips.length} left black`);
+              return parts.length > 0 ? `Done - ${parts.join(", ")}` : "Done";
+            })(), outputPath: finalPath });
   } catch (err: any) {
     console.error(err);
     updateJob(jobId, { status: "error", error: err.message, message: "Render failed" });
