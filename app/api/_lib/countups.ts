@@ -58,9 +58,9 @@ IMPORTANCE TEST: score 0-100 based on whether the number is central to the meani
 If a sentence has multiple qualifying numbers, keep only the most significant one unless they form a meaningful comparison.
 
 For each qualifying number provide:
-- "phrase": the number as it appears VERBATIM in the script (e.g. "8.2%", "$25 million", "500 people") - I match it to word timestamps
-- "value": the numeric target (e.g. 8.2, 25000000, 500)
-- "prefix": display prefix or "" (e.g. "$")
+- "phrase": the number as it appears VERBATIM in the script INCLUDING its unit/scale words (e.g. "8.2%", "25 billion dollars", "500 people") - I match it to word timestamps
+- "value": the FULL numeric target with magnitude applied. Be exact: "25 billion dollars" -> 25000000000 (NOT 25 or 25000000). "3.5 million" -> 3500000. "eight hundred thousand" -> 800000. "8.2 percent" -> 8.2. Double-check the zeros.
+- "prefix": display prefix or "" - "$" whenever the script says dollars or uses a $ sign
 - "suffix": display suffix or "" (e.g. "%", " PEOPLE", " JOBS")
 - "decimals": decimal places to show (e.g. 1 for 8.2%)
 - "compact": true if it should display compactly (25M, 1.5B), false otherwise
@@ -88,8 +88,65 @@ ${script}`,
   const specs: CountupSpec[] = [];
   let cursor = 0;
 
+  // Deterministic verification: the phrase is verbatim script text, so its own
+  // digits + scale words are ground truth. Re-derive the value and override the
+  // model's parse whenever they disagree - the script always wins.
+  const SCALES: [RegExp, number][] = [
+    [/trillion/i, 1e12],
+    [/billion|\bbn\b/i, 1e9],
+    [/million/i, 1e6],
+    [/thousand/i, 1e3],
+  ];
+  const WORD_NUMS: Record<string, number> = {
+    one: 1, two: 2, three: 3, four: 4, five: 5, six: 6, seven: 7,
+    eight: 8, nine: 9, ten: 10, eleven: 11, twelve: 12, twenty: 20,
+    thirty: 30, forty: 40, fifty: 50, sixty: 60, seventy: 70,
+    eighty: 80, ninety: 90, hundred: 100, half: 0.5,
+  };
+  function deriveFromPhrase(phrase: string): number | null {
+    const digitMatch = phrase.match(/([0-9][0-9,]*(?:\.[0-9]+)?)/);
+    let base: number | null = null;
+    if (digitMatch) {
+      base = parseFloat(digitMatch[1].replace(/,/g, ""));
+    } else {
+      // spelled-out simple numbers ("eight billion", "twenty five million")
+      const toks = phrase.toLowerCase().split(/[\s-]+/);
+      let acc = 0;
+      let found = false;
+      for (const t of toks) {
+        const c = t.replace(/[^a-z]/g, "");
+        if (c in WORD_NUMS) {
+          found = true;
+          acc = WORD_NUMS[c] === 100 && acc > 0 ? acc * 100 : acc + WORD_NUMS[c];
+        }
+      }
+      if (found) base = acc;
+    }
+    if (base === null || isNaN(base)) return null;
+    for (const [re, mult] of SCALES) {
+      if (re.test(phrase)) return base * mult;
+    }
+    return base;
+  }
+
   for (const item of items) {
     if (!item.phrase || typeof item.value !== "number" || (item.importance ?? 0) < 70) continue;
+
+    const derived = deriveFromPhrase(String(item.phrase));
+    if (derived !== null && derived > 0) {
+      const ratio = item.value > 0 ? derived / item.value : Infinity;
+      if (ratio < 0.995 || ratio > 1.005) {
+        console.log(
+          `DEBUG - countup value corrected: "${item.phrase}" model=${item.value} -> script=${derived}`
+        );
+        item.value = derived;
+        // A magnitude fix usually means compact display is wanted
+        if (derived >= 1e4) item.compact = true;
+      }
+    }
+    const pl = String(item.phrase).toLowerCase();
+    if ((pl.includes("$") || pl.includes("dollar")) && item.prefix !== "$") item.prefix = "$";
+    if ((pl.includes("%") || pl.includes("percent")) && !String(item.suffix || "").includes("%")) item.suffix = "%";
 
     const phraseTokens = String(item.phrase)
       .toLowerCase()

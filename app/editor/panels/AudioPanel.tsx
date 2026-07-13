@@ -28,6 +28,25 @@ export default function AudioPanel() {
       <p style={{ fontSize: "10px", color: "var(--ed-text-3)", marginTop: "10px", lineHeight: 1.5 }}>
         Music auto-ducks under narration during render (sidechain compression) — no manual volume needed.
       </p>
+
+      <p style={label}>Sound effects</p>
+      {([
+        { key: "sfxShutter" as const, name: "Camera shutter", tip: "Clicks when a background frame snaps in" },
+        { key: "sfxCountup" as const, name: "Number roll", tip: "Soft ticking under count-up animations" },
+      ]).map((fx) => (
+        <label key={fx.key} style={{ display: "flex", alignItems: "flex-start", gap: "8px", marginBottom: "8px", fontSize: "12px", color: "var(--ed-text-2)", cursor: "pointer" }}>
+          <input
+            type="checkbox"
+            checked={state.settings[fx.key]}
+            onChange={(e) => dispatch({ type: "SET_SETTING", key: fx.key, value: e.target.checked })}
+            style={{ marginTop: "2px" }}
+          />
+          <span>
+            {fx.name}
+            <span style={{ display: "block", fontSize: "10px", color: "var(--ed-text-3)" }}>{fx.tip}</span>
+          </span>
+        </label>
+      ))}
     </div>
   );
 }

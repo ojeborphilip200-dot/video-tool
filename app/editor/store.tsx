@@ -55,6 +55,8 @@ export type ProjectSettings = {
   bgFrequency: "2-3" | "3-5" | "always";
   mediaPref: "both" | "video" | "image" | null;
   autoFill: boolean;
+  sfxShutter: boolean;
+  sfxCountup: boolean;
 };
 
 export type TextEventCallout = { id: string; text: string; start: number; end: number };
@@ -76,6 +78,7 @@ export type SelectedTimelineItem =
   | { type: "clip"; beatIndex: number; clipId: string }
   | { type: "beat"; beatIndex: number }
   | { type: "text"; eventId: string }
+  | { type: "caption"; wordStart: number; wordEnd: number }
   | null;
 
 export type ProjectState = {
@@ -106,6 +109,8 @@ export const initialState: ProjectState = {
     bgFrequency: "2-3",
     mediaPref: null,
     autoFill: false,
+    sfxShutter: true,
+    sfxCountup: true,
   },
   textEvents: null,
   currentTime: 0,
@@ -124,6 +129,7 @@ export type Action =
   | { type: "SELECT"; item: SelectedTimelineItem }
   | { type: "SET_TIME"; t: number }
   | { type: "SET_PLAYING"; playing: boolean }
+  | { type: "EDIT_CAPTION"; wordStart: number; wordEnd: number; text: string }
   | { type: "SET_TEXT_EVENTS"; events: TextEvents }
   | { type: "REMOVE_TEXT_EVENT"; eventId: string }
   | { type: "UNDO" }
@@ -154,6 +160,27 @@ function reducer(state: ProjectState, action: Action): ProjectState {
       return { ...state, currentTime: action.t };
     case "SET_PLAYING":
       return { ...state, playing: action.playing };
+    case "EDIT_CAPTION": {
+      const { wordStart, wordEnd, text } = action;
+      if (wordStart < 0 || wordEnd >= state.words.length || wordEnd < wordStart) return state;
+      const tokens = text.trim().split(/\s+/).filter(Boolean);
+      if (tokens.length === 0) return state;
+      // New text spreads evenly across the chunk's original time span -
+      // caption timing stays glued to the narration
+      const spanStart = state.words[wordStart].start;
+      const spanEnd = state.words[wordEnd].end;
+      const per = (spanEnd - spanStart) / tokens.length;
+      const replaced = tokens.map((tok, i) => ({
+        word: tok,
+        start: spanStart + i * per,
+        end: spanStart + (i + 1) * per,
+      }));
+      return {
+        ...state,
+        words: [...state.words.slice(0, wordStart), ...replaced, ...state.words.slice(wordEnd + 1)],
+        selected: null,
+      };
+    }
     case "SET_TEXT_EVENTS":
       return { ...state, textEvents: action.events };
     case "REMOVE_TEXT_EVENT": {
@@ -186,6 +213,7 @@ const UNDOABLE = new Set([
   "SET_BEATS",
   "PATCH_BEAT",
   "SET_SETTING",
+  "EDIT_CAPTION",
   "SET_TEXT_EVENTS",
   "REMOVE_TEXT_EVENT",
 ]);

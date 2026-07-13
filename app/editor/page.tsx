@@ -43,6 +43,26 @@ export default function EditorPage() {
 
 function Editor() {
   const [nav, setNav] = useState<string>("ai");
+  const [dockH, setDockH] = useState(230);
+  const [panelW, setPanelW] = useState(280);
+  const [inspW, setInspW] = useState(260);
+
+  function startDrag(
+    e: React.MouseEvent,
+    onMove: (dx: number, dy: number) => void
+  ) {
+    e.preventDefault();
+    const sx = e.clientX;
+    const sy = e.clientY;
+    const move = (ev: MouseEvent) => onMove(ev.clientX - sx, ev.clientY - sy);
+    const up = () => {
+      window.removeEventListener("mousemove", move);
+      window.removeEventListener("mouseup", up);
+    };
+    window.addEventListener("mousemove", move);
+    window.addEventListener("mouseup", up);
+  }
+  const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
   const { status, exportVideo, canExport, clearResult } = useExport();
   const { state, dispatch, canUndo, canRedo } = useProject();
 
@@ -79,9 +99,12 @@ function Editor() {
       className="ed-root"
       style={{
         height: "100vh",
+        overflow: "hidden",
+        position: "relative",
+        ["--ed-dock-h" as any]: `${dockH}px`,
         display: "grid",
-        gridTemplateRows: "48px 1fr 230px",
-        gridTemplateColumns: "56px 280px 1fr 260px",
+        gridTemplateRows: `48px 1fr ${dockH}px`,
+        gridTemplateColumns: `56px ${panelW}px 1fr ${inspW}px`,
         gridTemplateAreas: `
           "top top top top"
           "rail panel stage inspector"
@@ -201,11 +224,13 @@ function Editor() {
           alignItems: "center",
           justifyContent: "center",
           padding: "20px",
+          minHeight: 0,
+          overflow: "hidden",
         }}
       >
         {status.videoUrl ? (
           <div style={{ width: "100%", maxWidth: "820px" }}>
-            <video src={status.videoUrl} controls autoPlay style={{ width: "100%", borderRadius: "8px", background: "#000" }} />
+            <video id="rendered-video" src={status.videoUrl} controls autoPlay style={{ width: "100%", maxHeight: "calc(100vh - 420px)", borderRadius: "8px", background: "#000" }} />
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "10px" }}>
               <a href={status.videoUrl} download="final-video.mp4" className="btn btn-primary" style={{ textDecoration: "none" }}>
                 Download MP4
@@ -239,6 +264,32 @@ function Editor() {
       <div style={{ gridArea: "dock", borderTop: "1px solid var(--ed-border)", display: "flex", flexDirection: "column", minHeight: 0 }}>
         <TimelineDock />
       </div>
+
+      {/* Drag handles: resize the dock, left panel, and inspector */}
+      <div
+        onMouseDown={(e) => {
+          const h0 = dockH;
+          startDrag(e, (_dx, dy) => setDockH(clamp(h0 - dy, 140, 520)));
+        }}
+        title="Drag to resize the timeline"
+        style={{ position: "absolute", left: 0, right: 0, bottom: `${dockH - 3}px`, height: "7px", cursor: "row-resize", zIndex: 30 }}
+      />
+      <div
+        onMouseDown={(e) => {
+          const w0 = panelW;
+          startDrag(e, (dx) => setPanelW(clamp(w0 + dx, 200, 500)));
+        }}
+        title="Drag to resize the panel"
+        style={{ position: "absolute", top: "48px", bottom: `${dockH}px`, left: `${56 + panelW - 3}px`, width: "7px", cursor: "col-resize", zIndex: 30 }}
+      />
+      <div
+        onMouseDown={(e) => {
+          const w0 = inspW;
+          startDrag(e, (dx) => setInspW(clamp(w0 - dx, 180, 440)));
+        }}
+        title="Drag to resize the inspector"
+        style={{ position: "absolute", top: "48px", bottom: `${dockH}px`, right: `${inspW - 3}px`, width: "7px", cursor: "col-resize", zIndex: 30 }}
+      />
     </div>
   );
 }

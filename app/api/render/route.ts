@@ -32,11 +32,12 @@ function kenBurnsFilter(durationSec: number): string {
   return `${pre},${pick},setsar=1`;
 }
 
-// Picks background-frame beats, GUARANTEEING the promised count whenever the
-// video has enough beats: restricted to the middle-to-near-end stretch (never
-// the opening, never the final beat), never consecutive.
+// Picks background-frame beats: ONLY beats whose footage is all images
+// (video never plays inside the frame), restricted to the middle-to-near-end
+// stretch, never the opening, never the final beat, never consecutive -
+// delivering the promised count whenever enough eligible beats exist.
 function pickBackgroundWindows(
-  windows: { start: number; end: number }[],
+  windows: { start: number; end: number; imagesOnly?: boolean }[],
   frequency: string = "2-3"
 ): { start: number; end: number }[] {
   // "always" = frame the whole video: no windows means the full-video compositing path
@@ -49,39 +50,50 @@ function pickBackgroundWindows(
   const hi = n - 2; // exclude the final beat
   if (hi < lo) return [];
 
-  const span = hi - lo + 1;
+  // Eligible = image-only beats in the allowed stretch (missing flag = eligible,
+  // for payloads that predate the flag)
+  const eligible: number[] = [];
+  for (let i = lo; i <= hi; i++) {
+    if (windows[i].imagesOnly !== false) eligible.push(i);
+  }
+  if (eligible.length === 0) {
+    console.log("DEBUG - background frames: no image-only beats in the eligible stretch, skipping");
+    return [];
+  }
+
   const desired =
     frequency === "3-5"
       ? 3 + Math.floor(Math.random() * 3) // 3, 4, or 5
       : 2 + (Math.random() < 0.5 ? 1 : 0); // 2 or 3
-  // Non-consecutive picks in a span of S allow at most ceil(S/2) selections
-  const count = Math.min(desired, Math.ceil(span / 2));
+  const count = Math.min(desired, Math.ceil(eligible.length / 2) + (eligible.length % 2 === 0 ? 0 : 0), eligible.length);
 
   const chosen: number[] = [];
 
-  // Pass 1: evenly spaced with jitter, pushed forward on collisions
+  // Pass 1: spread across the eligible list, skipping picks adjacent in the video
+  const sectionSize = eligible.length / count;
   for (let s = 0; s < count; s++) {
-    let idx = lo + Math.round(((s + 0.2 + Math.random() * 0.6) * span) / count);
-    idx = Math.max(lo, Math.min(hi, idx));
-    if (chosen.length > 0 && idx <= chosen[chosen.length - 1] + 1) {
-      idx = chosen[chosen.length - 1] + 2;
+    let k = Math.floor((s + 0.2 + Math.random() * 0.6) * sectionSize);
+    k = Math.max(0, Math.min(eligible.length - 1, k));
+    let idx = eligible[k];
+    if (chosen.length > 0 && Math.abs(idx - chosen[chosen.length - 1]) < 2) {
+      const next = eligible.find((e) => e > chosen[chosen.length - 1] + 1);
+      if (next === undefined) continue;
+      idx = next;
     }
-    if (idx > hi) break;
-    chosen.push(idx);
+    if (!chosen.includes(idx)) chosen.push(idx);
   }
 
-  // Pass 2 (guarantee): fill any shortfall from remaining valid slots
+  // Pass 2 (guarantee): fill any shortfall from remaining eligible slots
   if (chosen.length < count) {
-    for (let idx = lo; idx <= hi && chosen.length < count; idx++) {
-      if (chosen.every((c) => Math.abs(c - idx) >= 2)) {
-        chosen.push(idx);
-      }
+    for (const idx of eligible) {
+      if (chosen.length >= count) break;
+      if (chosen.every((c) => Math.abs(c - idx) >= 2)) chosen.push(idx);
     }
-    chosen.sort((a, b) => a - b);
   }
+  chosen.sort((a, b) => a - b);
 
   console.log(
-    `DEBUG - background frames: requested ${frequency} (target ${desired}), delivering ${chosen.length}`
+    `DEBUG - background frames: requested ${frequency} (target ${desired}), ${eligible.length} image-only candidates, delivering ${chosen.length}`
   );
 
   return chosen.map((i) => windows[i]);
@@ -109,8 +121,10 @@ type RenderInput = {
   captionsEnabled: boolean;
   calloutsEnabled: boolean;
   countupLevel: string;
-  beatWindows: { start: number; end: number }[];
+  beatWindows: { start: number; end: number; imagesOnly?: boolean }[];
   textEventsOverride: { callouts: Callout[]; countups: CountupSpec[] } | null;
+  sfxShutter: boolean;
+  sfxCountup: boolean;
 };
 
 export async function POST(req: NextRequest) {
@@ -141,6 +155,8 @@ export async function POST(req: NextRequest) {
     countupLevel: (formData.get("countupLevel") as string | null) || "medium",
     beatWindows: JSON.parse((formData.get("beatWindows") as string | null) || "[]"),
     textEventsOverride: JSON.parse((formData.get("textEvents") as string | null) || "null"),
+    sfxShutter: (formData.get("sfxShutter") as string | null) !== "false",
+    sfxCountup: (formData.get("sfxCountup") as string | null) !== "false",
   };
 
   const job = createJob();
@@ -446,6 +462,46 @@ async function runRenderJob(jobId: string, input: RenderInput) {
     const narrationIndex = downloadedFiles.length;
     const musicIndex = downloadedFiles.length + (audioPath ? 1 : 0);
 
+    // Background windows hoisted: needed by both the audio SFX plan and the video bg filter
+    const bgWindowsForRender = useBackground
+      ? pickBackgroundWindows(input.beatWindows || [], input.bgFrequency)
+      : [];
+
+    // SFX plan: camera shutter on each background-frame snap-in, number-roll under each count-up
+    type SfxEvent = { file: string; at: number; kind: "shutter" | "roll"; dur?: number };
+    const sfxEvents: SfxEvent[] = [];
+    const shutterPath = path.join(process.cwd(), "public", "sfx", "camera-shutter.mp3");
+    const rollPath = path.join(process.cwd(), "public", "sfx", "number-roll.mp3");
+    let haveShutter = false;
+    let haveRoll = false;
+    if (input.sfxShutter) {
+      try { await fs.access(shutterPath); haveShutter = true; } catch {}
+    }
+    if (input.sfxCountup) {
+      try { await fs.access(rollPath); haveRoll = true; } catch {}
+    }
+    if (haveShutter) {
+      for (const w of bgWindowsForRender) sfxEvents.push({ file: shutterPath, at: w.start, kind: "shutter" });
+    }
+    if (haveRoll) {
+      for (const cu of countups) {
+        sfxEvents.push({
+          file: rollPath,
+          at: Math.max(0, cu.animStart - 0.25),
+          kind: "roll",
+          dur: Math.min(Math.max(cu.land - cu.animStart + 0.25, 1), 6),
+        });
+      }
+    }
+    const sfxBase = ovBase + textOverlays.length;
+    const sfxInputs = sfxEvents.map((s) => `-i "${s.file}"`).join(" ");
+    const sfxCount = sfxEvents.length;
+    if (sfxCount > 0) {
+      console.log(
+        `DEBUG - sfx: ${sfxEvents.filter((s) => s.kind === "shutter").length} shutter, ${sfxEvents.filter((s) => s.kind === "roll").length} roll`
+      );
+    }
+
     let audioFilter = "";
     let audioMapArgs = "";
 
@@ -456,18 +512,44 @@ async function runRenderJob(jobId: string, input: RenderInput) {
         `[${narrationIndex}:a:0]asplit=2[narrmix][narrkey]; ` +
         `[${musicIndex}:a:0]volume=0.55[musicpre]; ` +
         `[musicpre][narrkey]sidechaincompress=threshold=0.03:ratio=8:attack=50:release=500[ducked]; ` +
-        `[narrmix][ducked]amix=inputs=2:duration=first:dropout_transition=2[aout]`;
+        `[narrmix][ducked]amix=inputs=2:duration=first:dropout_transition=2[amain]`;
       audioMapArgs = `-map "[aout]"`;
     } else if (audioPath) {
-      audioMapArgs = `-map ${narrationIndex}:a:0`;
+      if (sfxCount > 0) {
+        audioFilter = `[${narrationIndex}:a:0]anull[amain]`;
+        audioMapArgs = `-map "[aout]"`;
+      } else {
+        audioMapArgs = `-map ${narrationIndex}:a:0`;
+      }
     } else if (musicPath) {
-      audioFilter = `[${musicIndex}:a:0]volume=0.5[aout]`;
+      audioFilter = `[${musicIndex}:a:0]volume=0.5[amain]`;
       audioMapArgs = `-map "[aout]"`;
+    }
+
+    if (audioFilter) {
+      if (sfxCount > 0) {
+        const parts = sfxEvents
+          .map((s, i) => {
+            const ms = Math.round(s.at * 1000);
+            if (s.kind === "roll") {
+              const d = s.dur || 2;
+              // First 3s at gentle presence, then ramp down to a whisper so the
+              // roll never competes with the on-screen number or narration
+              return `[${sfxBase + i}:a:0]atrim=0:${d.toFixed(2)},volume='if(lt(t,1.5),0.22,if(lt(t,2.5),0.22-0.14*(t-1.5),0.08))':eval=frame,afade=t=out:st=${Math.max(0, d - 0.45).toFixed(2)}:d=0.45,adelay=${ms}:all=1[sfx${i}]`;
+            }
+            return `[${sfxBase + i}:a:0]atrim=0:1.1,volume=0.35,adelay=${ms}:all=1[sfx${i}]`;
+          })
+          .join("; ");
+        const labels = sfxEvents.map((_, i) => `[sfx${i}]`).join("");
+        audioFilter += `; ${parts}; [amain]${labels}amix=inputs=${1 + sfxCount}:duration=first:normalize=0[aout]`;
+      } else {
+        audioFilter = audioFilter.replace("[amain]", "[aout]");
+      }
     }
 
     let bgFilter = "";
     if (useBackground) {
-      const bgWindows = pickBackgroundWindows(input.beatWindows || [], input.bgFrequency);
+      const bgWindows = bgWindowsForRender;
       assemblyFilter = assemblyFilter.replace(`[${concatLabel}]`, "[asm]");
       if (bgWindows.length === 0) {
         bgFilter = `[${bgIndex}:v]${bgPreset.filter},fps=25,settb=AVTB[bgready]; [asm]scale=1024:576,setsar=1[smallv]; [bgready][smallv]overlay=(W-w)/2:(H-h)/2:shortest=1[${concatLabel}]`;
@@ -517,9 +599,9 @@ async function runRenderJob(jobId: string, input: RenderInput) {
     let cmd: string;
 
     if (hasAudio) {
-      cmd = `ffmpeg -y ${videoInputs} ${audioInput} ${musicInput} ${bgInput} ${overlayInputs} -filter_complex "${filterComplex}" -map "[outv]" ${audioMapArgs} -c:v libx264 -c:a aac -shortest "${outputPath}"`;
+      cmd = `ffmpeg -y ${videoInputs} ${audioInput} ${musicInput} ${bgInput} ${overlayInputs} ${sfxInputs} -filter_complex "${filterComplex}" -map "[outv]" ${audioMapArgs} -c:v libx264 -c:a aac -shortest "${outputPath}"`;
     } else {
-      cmd = `ffmpeg -y ${videoInputs} ${bgInput} ${overlayInputs} -filter_complex "${filterComplex}" -map "[outv]" -c:v libx264 "${outputPath}"`;
+      cmd = `ffmpeg -y ${videoInputs} ${bgInput} ${overlayInputs} ${sfxInputs} -filter_complex "${filterComplex}" -map "[outv]" -c:v libx264 "${outputPath}"`;
     }
 
     updateJob(jobId, { progress: 45, message: "Rendering" });

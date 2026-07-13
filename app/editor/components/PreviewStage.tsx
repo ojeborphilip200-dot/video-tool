@@ -35,8 +35,7 @@ export default function PreviewStage() {
   return (
     <div
       style={{
-        width: "100%",
-        maxWidth: "820px",
+        width: "min(100%, 820px, calc((100vh - 110px - var(--ed-dock-h, 230px)) * 16 / 9))",
         aspectRatio: "16 / 9",
         background: "#000",
         borderRadius: "8px",

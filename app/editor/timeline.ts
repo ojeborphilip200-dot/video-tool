@@ -59,8 +59,8 @@ export function deriveTimeline(beats: Beat[]): {
 // Word-synced caption chunks (5 words), same grouping the ASS generator uses
 export function deriveCaptionChunks(
   words: { word: string; start: number; end: number }[]
-): { text: string; start: number; end: number }[] {
-  const chunks: { text: string; start: number; end: number }[] = [];
+): { text: string; start: number; end: number; wordStart: number; wordEnd: number }[] {
+  const chunks: { text: string; start: number; end: number; wordStart: number; wordEnd: number }[] = [];
   for (let i = 0; i < words.length; i += 5) {
     const slice = words.slice(i, i + 5);
     if (slice.length === 0) continue;
@@ -68,6 +68,8 @@ export function deriveCaptionChunks(
       text: slice.map((w) => w.word).join(" "),
       start: slice[0].start,
       end: slice[slice.length - 1].end,
+      wordStart: i,
+      wordEnd: i + slice.length - 1,
     });
   }
   return chunks;

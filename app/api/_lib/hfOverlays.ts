@@ -32,6 +32,9 @@ const CALLOUT_POSITIONS: Record<string, string> = {
 function calloutHtml(id: string, text: string, theme: string, dur: number, pos: string): string {
   const d = Math.min(Math.max(dur, 1.2), 5.5);
   const posCss = CALLOUT_POSITIONS[pos] || CALLOUT_POSITIONS["top-left"];
+  // Long phrases scale down gently so they keep a clean one-or-two-line layout
+  const chars = text.length;
+  const fontSize = chars <= 14 ? 62 : chars <= 22 ? 56 : chars <= 32 ? 50 : 44;
   return `<div id="root" data-composition-id="${id}" data-start="0" data-width="1280" data-height="720" data-fps="25">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=block" rel="stylesheet">
@@ -39,7 +42,7 @@ function calloutHtml(id: string, text: string, theme: string, dur: number, pos: 
        style="position: absolute; ${posCss} left: 50%; transform: translate(-50%, 0);
               width: 94%; text-align: center; opacity: 0;">
     <span id="txt" style="font-family: 'Montserrat', 'Arial Black', 'Helvetica Neue', sans-serif;
-                          font-weight: 800; font-size: 62px; line-height: 1.12;
+                          font-weight: 800; font-size: ${fontSize}px; line-height: 1.12;
                           letter-spacing: 2px; color: #ffffff;
                           text-shadow: 0 3px 10px rgba(0,0,0,0.55), 0 1px 2px rgba(0,0,0,0.6);">${esc(text.toUpperCase())}</span>
   </div>

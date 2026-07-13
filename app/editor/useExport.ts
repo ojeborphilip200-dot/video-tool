@@ -42,7 +42,20 @@ export function useExport() {
 
     const formData = new FormData();
     formData.append("clips", JSON.stringify(payload));
-    formData.append("beatWindows", JSON.stringify(beatWindows.map((w) => ({ start: w.start, end: w.end }))));
+    formData.append(
+      "beatWindows",
+      JSON.stringify(
+        beatWindows.map((w) => ({
+          start: w.start,
+          end: w.end,
+          imagesOnly:
+            state.beats[w.beatIndex]?.selectedClips.length > 0 &&
+            state.beats[w.beatIndex].selectedClips.every(
+              (c) => c.gap === true || c.media.kind === "image"
+            ),
+        }))
+      )
+    );
     formData.append("words", JSON.stringify(state.words));
     formData.append("script", state.script);
     formData.append("captionsEnabled", String(withCaptions));
@@ -54,6 +67,8 @@ export function useExport() {
     }
     formData.append("background", state.settings.background);
     formData.append("bgFrequency", state.settings.bgFrequency);
+    formData.append("sfxShutter", String(state.settings.sfxShutter));
+    formData.append("sfxCountup", String(state.settings.sfxCountup));
     if (state.audioFile) formData.append("audio", state.audioFile);
     if (state.musicFile) formData.append("music", state.musicFile);
 

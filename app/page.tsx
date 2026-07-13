@@ -299,7 +299,11 @@ export default function Home() {
     for (const b of beats) {
       const dur = b.selectedClips.reduce((s, c) => s + (c.trimEnd - c.trimStart), 0);
       if (dur > 0) {
-        beatWindows.push({ start: winCursor, end: winCursor + dur });
+        beatWindows.push({
+          start: winCursor,
+          end: winCursor + dur,
+          imagesOnly: b.selectedClips.every((c) => c.media.kind === "image"),
+        } as any);
         winCursor += dur;
       }
     }

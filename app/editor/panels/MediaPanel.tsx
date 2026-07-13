@@ -216,7 +216,7 @@ export default function MediaPanel() {
       } else if (e.key === "ArrowLeft") {
         e.preventDefault();
         stepPreview(-1);
-      } else if (e.key === " ") {
+      } else if (e.key === " " || e.key === "Enter") {
         e.preventDefault();
         toggleBeatAudio();
       } else if (e.key === "Escape") {
@@ -240,6 +240,7 @@ export default function MediaPanel() {
     <div style={{ padding: "14px" }}>
       {preview && (
         <div
+          id="media-preview-overlay"
           onClick={() => setPreview(null)}
           style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.88)", zIndex: 1000, display: "flex", alignItems: "center", justifyContent: "center", padding: "30px" }}
         >

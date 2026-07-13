@@ -1,11 +1,58 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useProject, makeGapMedia, MediaItem } from "../store";
 
 export default function Inspector() {
   const { state, dispatch } = useProject();
   const [regenerating, setRegenerating] = useState(false);
+  const [capDraft, setCapDraft] = useState("");
+
+  const capSel = state.selected?.type === "caption" ? state.selected : null;
+  useEffect(() => {
+    if (capSel) {
+      setCapDraft(
+        state.words
+          .slice(capSel.wordStart, capSel.wordEnd + 1)
+          .map((w) => w.word)
+          .join(" ")
+      );
+    }
+  }, [capSel?.wordStart, capSel?.wordEnd]);
+
+  if (capSel) {
+    const original = state.words
+      .slice(capSel.wordStart, capSel.wordEnd + 1)
+      .map((w) => w.word)
+      .join(" ");
+    return (
+      <div style={{ padding: "16px" }}>
+        <h3 style={{ fontSize: "13px", margin: "0 0 2px" }}>CAPTION</h3>
+        <p style={{ fontSize: "10px", color: "var(--ed-text-3)", margin: "0 0 10px" }}>
+          {state.words[capSel.wordStart].start.toFixed(1)}s · edit to fix misspellings
+        </p>
+        <textarea
+          value={capDraft}
+          onChange={(e) => setCapDraft(e.target.value)}
+          rows={3}
+          style={{ width: "100%", fontSize: "13px", lineHeight: 1.5 }}
+        />
+        <button
+          className="btn btn-primary"
+          disabled={capDraft.trim().length === 0 || capDraft.trim() === original}
+          style={{ marginTop: "10px", width: "100%", fontSize: "12px" }}
+          onClick={() =>
+            dispatch({ type: "EDIT_CAPTION", wordStart: capSel.wordStart, wordEnd: capSel.wordEnd, text: capDraft })
+          }
+        >
+          Save caption
+        </button>
+        <p style={{ fontSize: "10px", color: "var(--ed-text-3)", marginTop: "10px", lineHeight: 1.5 }}>
+          The fix flows through the preview and the final render automatically. Cmd+Z undoes.
+        </p>
+      </div>
+    );
+  }
 
   const selT = state.selected;
   if (selT?.type === "text") {
