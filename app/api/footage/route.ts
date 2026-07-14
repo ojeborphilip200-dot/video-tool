@@ -119,6 +119,67 @@ async function searchPixabayImages(query: string, page = 1): Promise<MediaItem[]
   }
 }
 
+// ---------------------------------------------------------------------------
+// PROVIDER REGISTRY - the single source of truth for footage sources.
+// To add a new API: write its searchX function, then add ONE entry here.
+// It is then automatically covered by all retrieval rounds, vision ranking,
+// weak-beat reformulation, provider-aware routing, and History mode. Nothing
+// else needs editing.
+//   kind  : "video" | "image"  (what the provider returns)
+//   stock : true  = modern stock library (skipped when History mode is on)
+//           false = archive/museum (always searched)
+// ---------------------------------------------------------------------------
+type Provider = {
+  name: string;
+  fn: (query: string, page?: number) => Promise<MediaItem[]>;
+  kind: "video" | "image";
+  stock: boolean;
+};
+
+const PROVIDERS: Provider[] = [
+  { name: "pexels",      fn: searchPexelsVideos,          kind: "video", stock: true  },
+  { name: "pixabay",     fn: searchPixabayVideos,         kind: "video", stock: true  },
+  { name: "pexels",      fn: searchPexelsImages,          kind: "image", stock: true  },
+  { name: "pixabay",     fn: searchPixabayImages,         kind: "image", stock: true  },
+  { name: "unsplash",    fn: searchUnsplash,              kind: "image", stock: true  },
+  { name: "inaturalist", fn: searchINaturalist,           kind: "image", stock: true  },
+  { name: "openverse",   fn: searchOpenverse,             kind: "image", stock: false },
+  { name: "wikimedia",   fn: searchWikimedia,             kind: "image", stock: false },
+  { name: "nasa",        fn: searchNasa,                  kind: "image", stock: false },
+  { name: "artic",       fn: searchArtInstitute,          kind: "image", stock: false },
+  { name: "met",         fn: searchMet,                   kind: "image", stock: false },
+  { name: "loc",         fn: searchLoc,                   kind: "image", stock: false },
+  { name: "europeana",   fn: searchEuropeana,             kind: "image", stock: false },
+  { name: "smithsonian", fn: searchSmithsonian,           kind: "image", stock: false },
+  { name: "nasavideo",   fn: searchNasaVideos,            kind: "video", stock: false },
+  { name: "archive",     fn: searchInternetArchiveVideos, kind: "video", stock: false },
+];
+
+// Fan a single query across every provider allowed by the current toggles,
+// returning normalized {videos, images}. `imageOnly` restricts to a subset of
+// providers (used by the reformulation loop to stay cheap).
+async function fanOut(
+  query: string,
+  page: number,
+  opts: { wantV: boolean; wantI: boolean; historyMode: boolean; subset?: string[] }
+): Promise<{ videos: MediaItem[]; images: MediaItem[] }> {
+  const active = PROVIDERS.filter((p) => {
+    if (opts.subset && !opts.subset.includes(p.name)) return false;
+    if (p.kind === "video" && !opts.wantV) return false;
+    if (p.kind === "image" && !opts.wantI) return false;
+    if (p.stock && opts.historyMode) return false; // History mode: archives only
+    return true;
+  });
+  const results = await Promise.all(active.map((p) => p.fn(query, page).catch(() => [] as MediaItem[])));
+  const videos: MediaItem[] = [];
+  const images: MediaItem[] = [];
+  active.forEach((p, idx) => {
+    if (p.kind === "video") videos.push(...results[idx]);
+    else images.push(...results[idx]);
+  });
+  return { videos, images };
+}
+
 // Rubric-based ranking: scores every candidate 0-100 like a documentary researcher.
 async function rankMedia(
   beatText: string,
@@ -347,56 +408,26 @@ export async function POST(req: NextRequest) {
     let videos: MediaItem[] = [];
     let images: MediaItem[] = [];
 
-    // Round 1: the exact (Tier 1) query across all 14 providers
-    const q0 = queryList[0];
-    const r1 = await Promise.all([
-      stockV ? searchPexelsVideos(q0, page) : none,
-      stockV ? searchPixabayVideos(q0, page) : none,
-      stockI ? searchPexelsImages(q0, page) : none,
-      stockI ? searchPixabayImages(q0, page) : none,
-      wantI ? searchOpenverse(q0, page) : none,
-      wantI ? searchWikimedia(q0, page) : none,
-      wantI ? searchNasa(q0, page) : none,
-      wantI ? searchArtInstitute(q0, page) : none,
-      wantI ? searchMet(q0, page) : none,
-      wantI ? searchLoc(q0, page) : none,
-      stockI ? searchINaturalist(q0, page) : none,
-      stockI ? searchUnsplash(q0, page) : none,
-      wantI ? searchEuropeana(q0, page) : none,
-      wantI ? searchSmithsonian(q0, page) : none,
-      wantV ? searchNasaVideos(q0, page) : none,
-      wantV ? searchInternetArchiveVideos(q0, page) : none,
-    ]);
-    videos.push(...r1[0], ...r1[1], ...r1[14], ...r1[15]);
-    for (const arr of r1.slice(2, 14)) images.push(...arr);
+    // Round 1: the exact query across every allowed provider
+    {
+      const { videos: v, images: i } = await fanOut(queryList[0], page, {
+        wantV, wantI, historyMode: body.historyMode === true,
+      });
+      videos.push(...v);
+      images.push(...i);
+    }
 
-    // Rounds 2+: EVERY remaining query across the FULL provider set. Retrieval
-    // breadth is what picture research lives on - you cannot rank your way to a
-    // good image that was never fetched.
+    // Rounds 2+: EVERY remaining query across the full provider set. Retrieval
+    // breadth is what picture research lives on.
     for (let qi = 1; qi < queryList.length; qi++) {
       if (videos.length + images.length >= 70) break;
-      const q = queryList[qi];
-      const rN = await Promise.all([
-        stockV ? searchPexelsVideos(q, page) : none,
-        stockV ? searchPixabayVideos(q, page) : none,
-        stockI ? searchPexelsImages(q, page) : none,
-        stockI ? searchPixabayImages(q, page) : none,
-        wantI ? searchOpenverse(q, page) : none,
-        wantI ? searchWikimedia(q, page) : none,
-        wantI ? searchNasa(q, page) : none,
-        wantI ? searchArtInstitute(q, page) : none,
-        wantI ? searchMet(q, page) : none,
-        wantI ? searchLoc(q, page) : none,
-        stockI ? searchINaturalist(q, page) : none,
-        stockI ? searchUnsplash(q, page) : none,
-        wantI ? searchEuropeana(q, page) : none,
-        wantI ? searchSmithsonian(q, page) : none,
-        wantV ? searchNasaVideos(q, page) : none,
-        wantV ? searchInternetArchiveVideos(q, page) : none,
-      ]);
-      videos.push(...rN[0], ...rN[1], ...rN[14], ...rN[15]);
-      for (const arr of rN.slice(2, 14)) images.push(...arr);
+      const { videos: v, images: i } = await fanOut(queryList[qi], page, {
+        wantV, wantI, historyMode: body.historyMode === true,
+      });
+      videos.push(...v);
+      images.push(...i);
     }
+
 
     // Hard filters first: cross-beat exclusions, dedupe, resolution minimums
     const seen = new Set<string>(excludeIds);
@@ -515,27 +546,17 @@ export async function POST(req: NextRequest) {
             const reQueries: string[] = JSON.parse(reRaw.replace(/\`\`\`json|\`\`\`/g, "").trim());
             console.log(`DEBUG - reformulated: ${reQueries.join(" | ")}`);
 
-            // Re-search the full provider set with the fresh angles
+            // Re-search with the fresh angles. A lean subset keeps the retry cheap.
             let v2: MediaItem[] = [];
             let i2: MediaItem[] = [];
+            const RETRY_SUBSET = ["pexels", "pixabay", "unsplash", "openverse", "wikimedia", "artic", "met", "loc", "europeana", "smithsonian"];
             for (const q of reQueries.slice(0, 4)) {
               if (v2.length + i2.length >= 50) break;
-              const rr = await Promise.all([
-                stockV ? searchPexelsVideos(q, page) : none,
-                stockV ? searchPixabayVideos(q, page) : none,
-                stockI ? searchPexelsImages(q, page) : none,
-                stockI ? searchPixabayImages(q, page) : none,
-                wantI ? searchOpenverse(q, page) : none,
-                wantI ? searchWikimedia(q, page) : none,
-                wantI ? searchArtInstitute(q, page) : none,
-                wantI ? searchMet(q, page) : none,
-                wantI ? searchLoc(q, page) : none,
-                stockI ? searchUnsplash(q, page) : none,
-                wantI ? searchEuropeana(q, page) : none,
-                wantI ? searchSmithsonian(q, page) : none,
-              ]);
-              v2.push(...rr[0], ...rr[1]);
-              for (const arr of rr.slice(2)) i2.push(...arr);
+              const { videos: rv, images: ri } = await fanOut(q, page, {
+                wantV, wantI, historyMode: body.historyMode === true, subset: RETRY_SUBSET,
+              });
+              v2.push(...rv);
+              i2.push(...ri);
             }
 
             const seen2 = new Set<string>(excludeIds);
