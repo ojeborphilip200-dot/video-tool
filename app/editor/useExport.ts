@@ -10,6 +10,8 @@ export type ExportStatus = {
   message: string;
   videoUrl: string | null;
   renderedWithCaptions: boolean;
+  etaSeconds: number | null;
+  jobId: string | null;
 };
 
 export function useExport() {
@@ -20,6 +22,8 @@ export function useExport() {
     message: "",
     videoUrl: null,
     renderedWithCaptions: true,
+    etaSeconds: null,
+    jobId: null,
   });
 
   const { clips, beatWindows, total } = deriveTimeline(state.beats, state.words.length > 0 ? state.words[state.words.length - 1].end : undefined);
@@ -29,7 +33,15 @@ export function useExport() {
     if (state.audioFile === null || clips.length === 0 || status.rendering) return;
     const withCaptions =
       captionsOverride === undefined ? state.settings.captionsEnabled : captionsOverride;
-    setStatus({ rendering: true, progress: 0, message: "Received", videoUrl: null, renderedWithCaptions: withCaptions });
+    setStatus({
+      rendering: true,
+      progress: 0,
+      message: "Received",
+      videoUrl: null,
+      renderedWithCaptions: withCaptions,
+      etaSeconds: null,
+      jobId: null,
+    });
 
     // Same payload shape the render route already consumes. Empty slots become
     // black frames of the same length, so the render matches the preview exactly.
@@ -120,6 +132,7 @@ export function useExport() {
         return;
       }
       const { jobId } = await res.json();
+      setStatus((s) => ({ ...s, jobId }));
 
       const poll = async (): Promise<void> => {
         try {
@@ -129,6 +142,10 @@ export function useExport() {
           if (job.status === "error") {
             setStatus((s) => ({ ...s, rendering: false, progress: 0, message: "", videoUrl: null }));
             alert("Error: " + (job.error || "Render failed"));
+            return;
+          }
+          if (job.status === "cancelled") {
+            setStatus((s) => ({ ...s, rendering: false, progress: 0, message: "", videoUrl: null, etaSeconds: null, jobId: null }));
             return;
           }
           if (job.status === "done") {
@@ -143,7 +160,12 @@ export function useExport() {
             }));
             return;
           }
-          setStatus((s) => ({ ...s, progress: job.progress || 0, message: job.message || "Working..." }));
+          setStatus((s) => ({
+            ...s,
+            progress: job.progress || 0,
+            message: job.message || "Working...",
+            etaSeconds: typeof job.etaSeconds === "number" ? job.etaSeconds : s.etaSeconds,
+          }));
         } catch {
           // transient - keep polling
         }
@@ -156,9 +178,19 @@ export function useExport() {
     }
   }
 
+  async function cancelExport() {
+    if (!status.jobId) return;
+    try {
+      await fetch(`/api/render-cancel?id=${status.jobId}`, { method: "POST" });
+    } catch {
+      // the poll will settle it either way
+    }
+    setStatus((s) => ({ ...s, rendering: false, progress: 0, message: "", etaSeconds: null, jobId: null }));
+  }
+
   function clearResult() {
     setStatus((s) => ({ ...s, videoUrl: null }));
   }
 
-  return { status, exportVideo, canExport, clearResult, totalDuration: total };
+  return { status, exportVideo, canExport, clearResult, cancelExport, totalDuration: total };
 }

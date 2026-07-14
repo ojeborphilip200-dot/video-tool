@@ -10,9 +10,22 @@ import { detectCountups, CountupSpec } from "../_lib/countups";
 import { buildTextOverlay } from "../_lib/hfOverlays";
 import { buildImageSequenceClip } from "../_lib/slideshow";
 import { getCachedMedia } from "../_lib/cache";
-import { createJob, updateJob } from "../_lib/jobs";
+import { createJob, getJob, updateJob, setPrior, registerProc, unregisterProc, isCancelled } from "../_lib/jobs";
 
 const execAsync = promisify(exec);
+
+// Runs FFmpeg while keeping a handle on the child process, so a Cancel from the
+// editor can actually kill it instead of leaving it grinding in the background.
+function runCancellable(jobId: string, cmd: string): Promise<{ stdout: string; stderr: string }> {
+  return new Promise((resolve, reject) => {
+    const child = exec(cmd, { maxBuffer: 1024 * 1024 * 50 }, (err, stdout, stderr) => {
+      unregisterProc(jobId);
+      if (err) reject(Object.assign(err, { stderr }));
+      else resolve({ stdout, stderr });
+    });
+    registerProc(jobId, child);
+  });
+}
 
 
 // Ken Burns: animates a virtual camera over a still image.
@@ -169,6 +182,23 @@ async function runRenderJob(jobId: string, input: RenderInput) {
 
   try {
     updateJob(jobId, { status: "processing", progress: 3, message: "Creating" });
+
+    // Estimate from the actual work ahead: media to fetch/normalize, overlays to
+    // build (the expensive part), and the encode itself (scales with narration).
+    {
+      const narrSec =
+        Array.isArray(input.words) && input.words.length > 0
+          ? input.words[input.words.length - 1].end
+          : 60;
+      const clipCount = input.clips.length;
+      const overlayCount = input.textEventsOverride
+        ? (input.textEventsOverride.callouts?.length || 0) + (input.textEventsOverride.countups?.length || 0)
+        : 3;
+      const mapCount = input.clips.filter((c) => String(c.url).startsWith("map:")).length;
+      const estimate =
+        clipCount * 1.8 + overlayCount * 30 + mapCount * 18 + narrSec * 0.45 + 10;
+      setPrior(jobId, estimate);
+    }
     const { clips, words, scriptText, background } = input;
 
     tempDir = await fs.mkdtemp(path.join(os.tmpdir(), "video-tool-"));
@@ -645,11 +675,12 @@ async function runRenderJob(jobId: string, input: RenderInput) {
       cmd = `ffmpeg -y ${videoInputs} ${bgInput} ${overlayInputs} ${sfxInputs} -filter_complex "${filterComplex}" -map "[outv]" -c:v libx264 "${outputPath}"`;
     }
 
+    if (isCancelled(jobId)) return;
     updateJob(jobId, { progress: 45, message: "Rendering" });
     await fs.writeFile(path.join(process.cwd(), "last-render-cmd.txt"), cmd);
     let renderResult: { stdout: string; stderr: string };
     try {
-      renderResult = await execAsync(cmd, { maxBuffer: 1024 * 1024 * 50 });
+      renderResult = await runCancellable(jobId, cmd);
     } catch (e: any) {
       const full = String(e?.stderr || e?.message || "");
       await fs.writeFile(path.join(process.cwd(), "ffmpeg-error.txt"), full).catch(() => {});
@@ -688,6 +719,10 @@ async function runRenderJob(jobId: string, input: RenderInput) {
       await fs.writeFile(path.join(process.cwd(), "ffmpeg-error.txt"), full);
       console.log("=== render failed - full error written to ffmpeg-error.txt ===");
     } catch {}
+    if (isCancelled(jobId)) {
+      console.log("DEBUG - render cancelled by user");
+      return;
+    }
     updateJob(jobId, { status: "error", error: err.message, message: "Render failed" });
   } finally {
     if (tempDir) {

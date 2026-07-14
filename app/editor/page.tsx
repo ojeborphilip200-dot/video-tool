@@ -63,7 +63,7 @@ function Editor() {
     window.addEventListener("mouseup", up);
   }
   const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
-  const { status, exportVideo, canExport, clearResult } = useExport();
+  const { status, exportVideo, canExport, clearResult, cancelExport } = useExport();
   const { state, dispatch, canUndo, canRedo, saveState, newProject } = useProject();
 
   // Selecting a clip on the timeline reveals it in the Media panel
@@ -165,7 +165,19 @@ function Editor() {
               <div style={{ width: "120px", height: "5px", background: "var(--ed-bg-3)", borderRadius: "3px", overflow: "hidden" }}>
                 <div style={{ height: "100%", width: `${status.progress}%`, background: "var(--ed-accent)", transition: "width 0.4s" }} />
               </div>
-              <span style={{ fontSize: "11px", color: "var(--ed-text-2)" }}>{status.message}</span>
+              <span style={{ fontSize: "11px", color: "var(--ed-text-2)", fontFamily: "var(--font-mono)" }}>
+                {status.etaSeconds !== null && status.etaSeconds > 0
+                  ? `≈ ${Math.floor(status.etaSeconds / 60)}:${String(status.etaSeconds % 60).padStart(2, "0")} left`
+                  : status.message}
+              </span>
+              <button
+                className="btn btn-secondary"
+                onClick={cancelExport}
+                title="Stop this render"
+                style={{ fontSize: "11px", padding: "3px 10px" }}
+              >
+                Cancel
+              </button>
             </div>
           )}
           <button
