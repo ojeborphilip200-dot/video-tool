@@ -8,6 +8,7 @@ import { generateAss, Callout } from "../_lib/ass";
 import { detectYearCallouts, detectLocationCallouts } from "../_lib/captions";
 import { detectCountups, CountupSpec } from "../_lib/countups";
 import { buildTextOverlay } from "../_lib/hfOverlays";
+import { buildSegment } from "../_lib/segments";
 import { buildImageSequenceClip } from "../_lib/slideshow";
 import { getCachedMedia } from "../_lib/cache";
 import { createJob, getJob, updateJob, setPrior, registerProc, unregisterProc, isCancelled } from "../_lib/jobs";
@@ -497,7 +498,7 @@ async function runRenderJob(jobId: string, input: RenderInput) {
       console.log(`DEBUG - ASS file written with ${words.length} words, ${callouts.length} callouts`);
     }
 
-    const videoInputs = downloadedFiles.map((f) => `-i "${f}"`).join(" ");
+    let videoInputs = downloadedFiles.map((f) => `-i "${f}"`).join(" ");
     const audioInput = audioPath ? `-i "${audioPath}"` : "";
     const musicInput = musicPath ? `-stream_loop -1 -i "${musicPath}"` : "";
 
@@ -546,21 +547,63 @@ async function runRenderJob(jobId: string, input: RenderInput) {
       }
     }
 
-    const scaleFilters = downloadedFiles
-      .map((_, i) => {
-        const isLast = i === downloadedFiles.length - 1;
-        // Pad every clip except the last with a clone of its final frame,
-        // so the crossfade overlap eats padding instead of real content
-        const padDur = isLast ? lastClipExtraPad : useXfade ? FADE_DUR : 0;
-        const pad = padDur > 0 ? `,tpad=stop_mode=clone:stop_duration=${padDur.toFixed(3)}` : "";
-        if (clips[i].kind === "image") {
-          const dur = clips[i].trimEnd - clips[i].trimStart;
-          return `[${i}:v:0]${kenBurnsFilter(dur)}${pad},format=yuv420p,fps=25,settb=AVTB[v${i}]`;
+    // SEGMENT CACHING: pre-render each clip into a finished, concat-ready segment
+    // (trim, Ken Burns, scaling and padding all baked in). Segments build in
+    // PARALLEL - unlike one monolithic filter graph - and are cached by content,
+    // so re-renders skip this stage entirely and only re-assemble.
+    {
+      const t0 = Date.now();
+      const SEG_CONCURRENCY = 4;
+      const segPaths: string[] = new Array(downloadedFiles.length).fill("");
+      let built = 0;
+      const queue = downloadedFiles.map((f, i) => ({ f, i }));
+
+      const worker = async () => {
+        while (queue.length > 0) {
+          if (isCancelled(jobId)) return;
+          const item = queue.shift();
+          if (!item) return;
+          const isLast = item.i === downloadedFiles.length - 1;
+          const padAfter = isLast ? lastClipExtraPad : useXfade ? FADE_DUR : 0;
+          const seg = await buildSegment({
+            file: item.f,
+            kind: clips[item.i].kind === "image" ? "image" : "video",
+            trimStart: clips[item.i].trimStart,
+            trimEnd: clips[item.i].trimEnd,
+            padAfter,
+          });
+          segPaths[item.i] = seg.path;
+          built++;
+          updateJob(jobId, {
+            progress: 42 + Math.round((built / downloadedFiles.length) * 8),
+            message: `Preparing clips ${built}/${downloadedFiles.length}`,
+          });
         }
-        const s = clips[i].trimStart;
-        const e = clips[i].trimEnd;
-        return `[${i}:v:0]trim=start=${s}:end=${e},setpts=PTS-STARTPTS${pad},format=yuv420p,fps=25,settb=AVTB[v${i}]`;
-      })
+      };
+
+      await Promise.all(
+        Array.from({ length: Math.min(SEG_CONCURRENCY, downloadedFiles.length) }, worker)
+      );
+      if (isCancelled(jobId)) return;
+
+      downloadedFiles.length = 0;
+      downloadedFiles.push(...segPaths);
+      videoInputs = downloadedFiles.map((f) => `-i "${f}"`).join(" ");
+      console.log(
+        `DEBUG - prepared ${segPaths.length} segments in ${((Date.now() - t0) / 1000).toFixed(1)}s (concurrency ${SEG_CONCURRENCY})`
+      );
+      try {
+        const fsp = await import("fs/promises");
+        await fsp.appendFile(
+          path.join(process.cwd(), "render-timing.txt"),
+          `segments: ${segPaths.length} in ${((Date.now() - t0) / 1000).toFixed(1)}s\n`
+        );
+      } catch {}
+    }
+
+    // Segments are already 1280x720 @ 25fps yuv420p - assembly is now trivial
+    const scaleFilters = downloadedFiles
+      .map((_, i) => `[${i}:v:0]settb=AVTB[v${i}]`)
       .join("; ");
 
 
@@ -735,7 +778,7 @@ async function runRenderJob(jobId: string, input: RenderInput) {
     // the chip has been sitting idle. Typically 3-8x faster than libx264; it is
     // slightly less bit-efficient, so we hand it a generous bitrate to keep the
     // picture equivalent. Falls back to software automatically on failure.
-    const HW_ENC = `-c:v h264_videotoolbox -b:v 10M -pix_fmt yuv420p`;
+    const HW_ENC = `-c:v h264_videotoolbox -b:v 4M -maxrate 5M -bufsize 8M -pix_fmt yuv420p`;
     const SW_ENC = `-c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p`;
     const videoEnc = HW_ENC;
 
@@ -755,6 +798,15 @@ async function runRenderJob(jobId: string, input: RenderInput) {
       const t0 = Date.now();
       renderResult = await runCancellable(jobId, cmd);
       console.log(`DEBUG - encode (hardware) took ${((Date.now() - t0) / 1000).toFixed(1)}s`);
+      try {
+        const fsp = await import("fs/promises");
+        await fsp.appendFile(
+          path.join(process.cwd(), "render-timing.txt"),
+          `ffmpeg: ${((Date.now() - t0) / 1000).toFixed(1)}s | ${
+            (String(renderResult.stderr || "").match(/frame=[^\r\n]*speed=[^\r\n]*/g) || []).pop()?.slice(0, 140) || "no speed line"
+          }\n---\n`
+        );
+      } catch {}
     } catch (hwErr: any) {
       if (isCancelled(jobId)) return;
       console.log("DEBUG - hardware encode failed, retrying with libx264");
