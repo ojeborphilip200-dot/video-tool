@@ -88,5 +88,22 @@ export async function getCachedMedia(url: string, kind: "video" | "image"): Prom
     await fs.rename(rawPath, cachedPath);
   }
 
+  // Validate before trusting it: a truncated download or an HTML error page
+  // saved as .jpg would poison every future render from cache. Throwing here
+  // routes into the render's alternate-candidate fallback.
+  try {
+    const { stdout } = await execAsync(
+      `ffprobe -v error -select_streams v:0 -show_entries stream=width,height -of csv=p=0 "${cachedPath}"`
+    );
+    const [w, h] = stdout.trim().split(",").map((n) => parseInt(n, 10));
+    if (!w || !h || isNaN(w) || isNaN(h)) {
+      throw new Error("no usable video stream");
+    }
+  } catch (e: any) {
+    await fs.unlink(cachedPath).catch(() => {});
+    await fs.unlink(rawPath).catch(() => {});
+    throw new Error(`Corrupt media file (${e.message}): ${url}`);
+  }
+
   return cachedPath;
 }

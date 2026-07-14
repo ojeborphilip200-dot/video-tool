@@ -175,6 +175,7 @@ async function runRenderJob(jobId: string, input: RenderInput) {
     const downloadedFiles: string[] = [];
     const failedClips: number[] = [];
     const recoveredClips: number[] = [];
+    let narrationDur = NaN; // measured voiceover length - the video's hard ceiling
 
     for (let i = 0; i < clips.length; i++) {
       updateJob(jobId, {
@@ -435,6 +436,7 @@ async function runRenderJob(jobId: string, input: RenderInput) {
           audioDur = parseInt(last[0]) * 3600 + parseInt(last[1]) * 60 + parseFloat(last[2]);
         }
         const totalVideo = clips.reduce((s, c) => s + (c.trimEnd - c.trimStart), 0);
+        if (!isNaN(audioDur)) narrationDur = audioDur;
         if (!isNaN(audioDur) && audioDur > totalVideo + 0.05) {
           lastClipExtraPad = audioDur - totalVideo;
           console.log(`DEBUG - padding last clip by ${lastClipExtraPad.toFixed(2)}s to cover narration`);
@@ -634,14 +636,21 @@ async function runRenderJob(jobId: string, input: RenderInput) {
     let cmd: string;
 
     if (hasAudio) {
-      cmd = `ffmpeg -y ${videoInputs} ${audioInput} ${musicInput} ${bgInput} ${overlayInputs} ${sfxInputs} -filter_complex "${filterComplex}" -map "[outv]" ${audioMapArgs} -c:v libx264 -c:a aac -shortest "${outputPath}"`;
+      cmd = `ffmpeg -y ${videoInputs} ${audioInput} ${musicInput} ${bgInput} ${overlayInputs} ${sfxInputs} -filter_complex "${filterComplex}" -map "[outv]" ${audioMapArgs} -c:v libx264 -c:a aac -shortest ${!isNaN(narrationDur) && narrationDur > 0 ? `-t ${narrationDur.toFixed(3)}` : ""} "${outputPath}"`;
     } else {
       cmd = `ffmpeg -y ${videoInputs} ${bgInput} ${overlayInputs} ${sfxInputs} -filter_complex "${filterComplex}" -map "[outv]" -c:v libx264 "${outputPath}"`;
     }
 
     updateJob(jobId, { progress: 45, message: "Rendering" });
     await fs.writeFile(path.join(process.cwd(), "last-render-cmd.txt"), cmd);
-    const renderResult = await execAsync(cmd, { maxBuffer: 1024 * 1024 * 50 });
+    let renderResult: { stdout: string; stderr: string };
+    try {
+      renderResult = await execAsync(cmd, { maxBuffer: 1024 * 1024 * 50 });
+    } catch (e: any) {
+      const tail = String(e?.stderr || e?.message || "").slice(-2500);
+      console.log("=== FFMPEG FAILED - stderr tail ===\n" + tail + "\n=== end ===");
+      throw e;
+    }
     const errTail = String(renderResult.stderr || "").split("\n").slice(-25).join("\n");
     console.log("DEBUG - ffmpeg stderr tail:\n" + errTail);
 
