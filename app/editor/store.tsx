@@ -1,6 +1,7 @@
 "use client";
 
-import { createContext, useContext, useReducer, ReactNode, Dispatch } from "react";
+import { createContext, useContext, useReducer, useEffect, useRef, useState, ReactNode, Dispatch } from "react";
+import { saveProject, loadProject, clearProject } from "./persist";
 
 export type MediaItem = {
   id: string;
@@ -136,6 +137,7 @@ export type Action =
   | { type: "EDIT_CAPTION"; wordStart: number; wordEnd: number; text: string }
   | { type: "SET_TEXT_EVENTS"; events: TextEvents }
   | { type: "REMOVE_TEXT_EVENT"; eventId: string }
+  | { type: "HYDRATE"; state: ProjectState }
   | { type: "UNDO" }
   | { type: "REDO" };
 
@@ -247,6 +249,16 @@ type History = {
 };
 
 function historyReducer(h: History, action: Action): History {
+  if (action.type === "HYDRATE") {
+    return {
+      past: [],
+      present: { ...action.state, currentTime: 0, playing: false, selected: null },
+      future: [],
+      lastLabel: null,
+      lastAt: 0,
+    };
+  }
+
   if (action.type === "UNDO") {
     if (h.past.length === 0) return h;
     const previous = h.past[h.past.length - 1];
@@ -296,6 +308,8 @@ const ProjectContext = createContext<{
   dispatch: Dispatch<Action>;
   canUndo: boolean;
   canRedo: boolean;
+  saveState: "idle" | "saving" | "saved";
+  newProject: () => Promise<void>;
 } | null>(null);
 
 export function ProjectProvider({ children }: { children: ReactNode }) {
@@ -306,6 +320,35 @@ export function ProjectProvider({ children }: { children: ReactNode }) {
     lastLabel: null,
     lastAt: 0,
   });
+  const hydrated = useRef(false);
+  const [saveState, setSaveState] = useState<"idle" | "saving" | "saved">("idle");
+
+  // Restore the last project on load
+  useEffect(() => {
+    let alive = true;
+    loadProject<ProjectState>().then((saved) => {
+      if (alive && saved && (saved.beats?.length > 0 || saved.script)) {
+        dispatch({ type: "HYDRATE", state: { ...initialState, ...saved } });
+        setSaveState("saved");
+      }
+      hydrated.current = true;
+    });
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  // Autosave: debounced, skipping the transient playback fields
+  useEffect(() => {
+    if (!hydrated.current) return;
+    setSaveState("saving");
+    const t = setTimeout(async () => {
+      const { currentTime, playing, selected, ...persisted } = history.present;
+      await saveProject(persisted);
+      setSaveState("saved");
+    }, 800);
+    return () => clearTimeout(t);
+  }, [history.present]);
 
   return (
     <ProjectContext.Provider
@@ -314,6 +357,11 @@ export function ProjectProvider({ children }: { children: ReactNode }) {
         dispatch,
         canUndo: history.past.length > 0,
         canRedo: history.future.length > 0,
+        saveState,
+        newProject: async () => {
+          await clearProject();
+          dispatch({ type: "HYDRATE", state: initialState });
+        },
       }}
     >
       {children}

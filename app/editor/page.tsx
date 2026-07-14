@@ -64,7 +64,7 @@ function Editor() {
   }
   const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
   const { status, exportVideo, canExport, clearResult } = useExport();
-  const { state, dispatch, canUndo, canRedo } = useProject();
+  const { state, dispatch, canUndo, canRedo, saveState, newProject } = useProject();
 
   // Selecting a clip on the timeline reveals it in the Media panel
   useEffect(() => {
@@ -128,6 +128,18 @@ function Editor() {
         <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
           <span style={{ fontWeight: 700, fontSize: "14px" }}>My Video Tool</span>
           <span style={{ fontSize: "11px", color: "var(--ed-text-3)" }}>Untitled project</span>
+          <span style={{ fontSize: "11px", color: saveState === "saved" ? "#4ade80" : "var(--ed-text-3)" }}>
+            {saveState === "saving" ? "Saving…" : saveState === "saved" ? "● Saved" : ""}
+          </span>
+          <button
+            className="btn btn-secondary"
+            style={{ fontSize: "11px", padding: "3px 10px" }}
+            onClick={() => {
+              if (confirm("Start a new project? The current one will be cleared.")) newProject();
+            }}
+          >
+            New
+          </button>
         </div>
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
           <button
