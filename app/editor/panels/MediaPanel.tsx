@@ -72,6 +72,7 @@ export default function MediaPanel() {
           page,
           excludeIds,
           mediaType: state.settings.mediaPref,
+          historyMode: state.settings.historyMode,
           era: beat.era || "",
           providers: beat.providers || [],
         }),

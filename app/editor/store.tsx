@@ -59,6 +59,7 @@ export type ProjectSettings = {
   autoFill: boolean;
   sfxShutter: boolean;
   sfxCountup: boolean;
+  historyMode: boolean;
 };
 
 export type TextEventCallout = { id: string; text: string; start: number; end: number };
@@ -113,6 +114,7 @@ export const initialState: ProjectState = {
     autoFill: false,
     sfxShutter: true,
     sfxCountup: true,
+    historyMode: false,
   },
   textEvents: null,
   currentTime: 0,

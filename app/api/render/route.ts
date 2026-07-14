@@ -255,6 +255,10 @@ async function runRenderJob(jobId: string, input: RenderInput) {
         if (clips[gi].kind === "image") {
           let gj = gi;
           while (gj < clips.length && clips[gj].kind === "image") gj++;
+          // Cap each slideshow at 6 images: one giant filter graph of 30+ huge
+          // archival scans exhausts FFmpeg's scaler (History mode makes every
+          // beat images, so runs can be enormous)
+          if (gj - gi > 6) gj = gi + 6;
           if (gj - gi >= 2) {
             const groupFiles = downloadedFiles.slice(gi, gj);
             const groupDurs = clips.slice(gi, gj).map((c) => c.trimEnd - c.trimStart);
@@ -647,8 +651,9 @@ async function runRenderJob(jobId: string, input: RenderInput) {
     try {
       renderResult = await execAsync(cmd, { maxBuffer: 1024 * 1024 * 50 });
     } catch (e: any) {
-      const tail = String(e?.stderr || e?.message || "").slice(-2500);
-      console.log("=== FFMPEG FAILED - stderr tail ===\n" + tail + "\n=== end ===");
+      const full = String(e?.stderr || e?.message || "");
+      await fs.writeFile(path.join(process.cwd(), "ffmpeg-error.txt"), full).catch(() => {});
+      console.log("=== FFMPEG FAILED - see ffmpeg-error.txt ===");
       throw e;
     }
     const errTail = String(renderResult.stderr || "").split("\n").slice(-25).join("\n");
@@ -676,6 +681,13 @@ async function runRenderJob(jobId: string, input: RenderInput) {
             })(), outputPath: finalPath });
   } catch (err: any) {
     console.error(err);
+    // Capture the FULL error for diagnosis - Node truncates console dumps
+    try {
+      const anyErr: any = err;
+      const full = String(anyErr?.stderr || "") + "\n\n--- message ---\n" + String(anyErr?.message || anyErr);
+      await fs.writeFile(path.join(process.cwd(), "ffmpeg-error.txt"), full);
+      console.log("=== render failed - full error written to ffmpeg-error.txt ===");
+    } catch {}
     updateJob(jobId, { status: "error", error: err.message, message: "Render failed" });
   } finally {
     if (tempDir) {

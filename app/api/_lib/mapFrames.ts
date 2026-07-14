@@ -41,10 +41,16 @@ export async function buildMapClip(config: MapConfig): Promise<{ path: string; d
   }
 
   const tmpOut = `${outPath}.tmp.mp4`;
-  await execAsync(
+  try {
+    await execAsync(
     `ffmpeg -y -framerate ${FPS} -i "${tmpDir}/f-%04d.png" -c:v libx264 -pix_fmt yuv420p -preset fast "${tmpOut}"`,
     { maxBuffer: 1024 * 1024 * 50 }
   );
+  } catch (ffErr: any) {
+    const msg = String(ffErr?.stderr || ffErr?.message || '');
+    await fs.writeFile(path.join(process.cwd(), 'ffmpeg-error.txt'), '[app/api/_lib/mapFrames.ts]\n' + msg).catch(() => {});
+    throw ffErr;
+  }
   await fs.rename(tmpOut, outPath);
   await fs.rm(tmpDir, { recursive: true, force: true });
 

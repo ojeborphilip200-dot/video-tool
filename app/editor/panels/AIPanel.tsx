@@ -149,6 +149,31 @@ export default function AIPanel() {
         Auto 2-img
       </div>
 
+      <div
+        onClick={() => dispatch({ type: "SET_SETTING", key: "historyMode", value: !state.settings.historyMode })}
+        title="Source only from history archives and art museums (Library of Congress, Wikimedia, the Met, Art Institute, Europeana, Smithsonian) — no modern stock"
+        style={{
+          cursor: "pointer",
+          marginTop: "8px",
+          marginLeft: "6px",
+          padding: "4px 10px",
+          borderRadius: "999px",
+          fontSize: "11px",
+          display: "inline-block",
+          border: state.settings.historyMode ? "1px solid var(--ed-accent)" : "1px solid var(--ed-border)",
+          color: state.settings.historyMode ? "var(--ed-text-1)" : "var(--ed-text-2)",
+          background: state.settings.historyMode ? "var(--ed-accent-soft)" : "transparent",
+        }}
+      >
+        🏛 History
+      </div>
+
+      {state.settings.historyMode && (
+        <p style={{ fontSize: "10px", color: "var(--ed-text-3)", marginTop: "6px", lineHeight: 1.5 }}>
+          Archives &amp; museums only — paintings, photographs, documents, artifacts. Modern stock is skipped.
+        </p>
+      )}
+
       <button
         onClick={handleGenerateBeats}
         disabled={!state.script || segmenting || !state.settings.mediaPref}

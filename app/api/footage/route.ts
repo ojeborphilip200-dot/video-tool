@@ -313,15 +313,24 @@ export async function POST(req: NextRequest) {
     const { beatText, keywords, entities, page: rawPage } = body;
     const page = Math.max(1, parseInt(rawPage) || 1);
     const excludeIds: string[] = Array.isArray(body.excludeIds) ? body.excludeIds : [];
+    if (body.historyMode === true) console.log("DEBUG - HISTORY MODE: archives and museums only, stock skipped");
     // Provider-aware routing: the planner ranks which archives should hold real
     // imagery for this beat (LOC for American history, Europeana for European,
     // Met/Smithsonian/Wikimedia for antiquity, NASA for space...)
-    const priorityProviders: string[] = Array.isArray(body.providers) ? body.providers : [];
+    // History mode: source ONLY from history archives and art museums -
+    // modern stock libraries are skipped entirely
+    const historyMode = body.historyMode === true;
+    let priorityProviders: string[] = Array.isArray(body.providers) ? body.providers : [];
+    if (historyMode && priorityProviders.length === 0) {
+      priorityProviders = ["loc", "wikimedia", "met", "artic", "europeana", "smithsonian"];
+    }
     const beatEra: string = typeof body.era === "string" ? body.era : "";
     const mediaType: string =
       body.mediaType === "video" || body.mediaType === "image" ? body.mediaType : "both";
     const wantV = mediaType !== "image";
     const wantI = mediaType !== "video";
+    const stockV = wantV && body.historyMode !== true;
+    const stockI = wantI && body.historyMode !== true;
     const none: Promise<MediaItem[]> = Promise.resolve([]);
 
     const queryList: string[] = (
@@ -340,18 +349,18 @@ export async function POST(req: NextRequest) {
     // Round 1: the exact (Tier 1) query across all 14 providers
     const q0 = queryList[0];
     const r1 = await Promise.all([
-      wantV ? searchPexelsVideos(q0, page) : none,
-      wantV ? searchPixabayVideos(q0, page) : none,
-      wantI ? searchPexelsImages(q0, page) : none,
-      wantI ? searchPixabayImages(q0, page) : none,
+      stockV ? searchPexelsVideos(q0, page) : none,
+      stockV ? searchPixabayVideos(q0, page) : none,
+      stockI ? searchPexelsImages(q0, page) : none,
+      stockI ? searchPixabayImages(q0, page) : none,
       wantI ? searchOpenverse(q0, page) : none,
       wantI ? searchWikimedia(q0, page) : none,
       wantI ? searchNasa(q0, page) : none,
       wantI ? searchArtInstitute(q0, page) : none,
       wantI ? searchMet(q0, page) : none,
       wantI ? searchLoc(q0, page) : none,
-      wantI ? searchINaturalist(q0, page) : none,
-      wantI ? searchUnsplash(q0, page) : none,
+      stockI ? searchINaturalist(q0, page) : none,
+      stockI ? searchUnsplash(q0, page) : none,
       wantI ? searchEuropeana(q0, page) : none,
       wantI ? searchSmithsonian(q0, page) : none,
       wantV ? searchNasaVideos(q0, page) : none,
@@ -364,11 +373,11 @@ export async function POST(req: NextRequest) {
     if (queryList[1]) {
       const q1 = queryList[1];
       const r2 = await Promise.all([
-        wantV ? searchPexelsVideos(q1, page) : none,
-        wantV ? searchPixabayVideos(q1, page) : none,
-        wantI ? searchPexelsImages(q1, page) : none,
-        wantI ? searchPixabayImages(q1, page) : none,
-        wantI ? searchUnsplash(q1, page) : none,
+        stockV ? searchPexelsVideos(q1, page) : none,
+        stockV ? searchPixabayVideos(q1, page) : none,
+        stockI ? searchPexelsImages(q1, page) : none,
+        stockI ? searchPixabayImages(q1, page) : none,
+        stockI ? searchUnsplash(q1, page) : none,
         wantI ? searchOpenverse(q1, page) : none,
         wantV ? searchNasaVideos(q1, page) : none,
         wantV ? searchInternetArchiveVideos(q1, page) : none,
@@ -381,11 +390,11 @@ export async function POST(req: NextRequest) {
     if (((wantV && videos.length < 4) || (wantI && images.length < 6)) && queryList[2]) {
       const q2 = queryList[2];
       const r3 = await Promise.all([
-        wantV ? searchPexelsVideos(q2, page) : none,
-        wantV ? searchPixabayVideos(q2, page) : none,
-        wantI ? searchPexelsImages(q2, page) : none,
-        wantI ? searchPixabayImages(q2, page) : none,
-        wantI ? searchUnsplash(q2, page) : none,
+        stockV ? searchPexelsVideos(q2, page) : none,
+        stockV ? searchPixabayVideos(q2, page) : none,
+        stockI ? searchPexelsImages(q2, page) : none,
+        stockI ? searchPixabayImages(q2, page) : none,
+        stockI ? searchUnsplash(q2, page) : none,
         wantI ? searchOpenverse(q2, page) : none,
       ]);
       videos.push(...r3[0], ...r3[1]);

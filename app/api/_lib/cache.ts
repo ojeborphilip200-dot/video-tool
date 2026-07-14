@@ -46,9 +46,15 @@ export async function getCachedMedia(url: string, kind: "video" | "image"): Prom
       return blackPath;
     } catch {
       await fs.mkdir(CACHE_DIR, { recursive: true });
-      await execAsync(
+      try {
+        await execAsync(
         `ffmpeg -y -f lavfi -i color=c=black:s=1280x720 -frames:v 1 "${blackPath}"`
       );
+      } catch (ffErr: any) {
+        const msg = String(ffErr?.stderr || ffErr?.message || '');
+        await fs.writeFile(path.join(process.cwd(), 'ffmpeg-error.txt'), '[app/api/_lib/cache.ts]\n' + msg).catch(() => {});
+        throw ffErr;
+      }
       return blackPath;
     }
   }
