@@ -207,6 +207,38 @@ async function runRenderJob(jobId: string, input: RenderInput) {
     const recoveredClips: number[] = [];
     let narrationDur = NaN; // measured voiceover length - the video's hard ceiling
 
+    // PARALLEL PREFETCH: downloading and normalizing clips one at a time is the
+    // single biggest chunk of wall-clock time in a render, and it is almost pure
+    // waiting. Warm the cache concurrently first; the loop below then finds
+    // everything cached and keeps all its fallback logic intact.
+    {
+      const CONCURRENCY = 6;
+      let done = 0;
+      const queue = clips.map((c, i) => ({ c, i }));
+      const worker = async () => {
+        while (queue.length > 0) {
+          if (isCancelled(jobId)) return;
+          const item = queue.shift();
+          if (!item) return;
+          try {
+            await getCachedMedia(item.c.url, item.c.kind || "video");
+          } catch {
+            // leave it to the main loop (alternates / black frame / validation)
+          }
+          done++;
+          updateJob(jobId, {
+            progress: 5 + Math.round((done / clips.length) * 30),
+            message: `Fetching media ${done}/${clips.length}`,
+          });
+        }
+      };
+      const t0 = Date.now();
+      await Promise.all(Array.from({ length: Math.min(CONCURRENCY, clips.length) }, worker));
+      console.log(
+        `DEBUG - prefetched ${clips.length} clips in ${((Date.now() - t0) / 1000).toFixed(1)}s (concurrency ${CONCURRENCY})`
+      );
+    }
+
     for (let i = 0; i < clips.length; i++) {
       updateJob(jobId, {
         progress: 5 + Math.round((i / clips.length) * 35),
@@ -384,30 +416,25 @@ async function runRenderJob(jobId: string, input: RenderInput) {
     const textOverlays: { file: string; start: number }[] = [];
     const totalEvents = callouts.length + countups.length;
     let eventIdx = 0;
-    // Five distinct spots, assigned round-robin - top-center stays reserved for
-    // count-ups, so simultaneous events can never stack on the same pixels
+    // Overlays are independent headless-browser renders (~30s each), so running
+    // them one after another is pure queueing. Build them 3 at a time.
     const CALLOUT_POS = ["top-left", "top-right", "mid-left", "low-center", "mid-right"];
-    let posIdx = 0;
-    for (const c of callouts) {
-      eventIdx++;
-      updateJob(jobId, { progress: 42, message: `Creating text animations ${eventIdx}/${totalEvents}` });
-      try {
-        const file = await buildTextOverlay("callout", {
+
+    type OvTask = { kind: "callout" | "countup"; vars: Record<string, any>; start: number };
+    const tasks: OvTask[] = [
+      ...callouts.map((c, i) => ({
+        kind: "callout" as const,
+        vars: {
           text: c.text,
           theme: input.textStyle,
           dur: Math.min(Math.max(c.end - c.start, 1.2), 5.5),
-          pos: CALLOUT_POS[posIdx++ % CALLOUT_POS.length],
-        });
-        textOverlays.push({ file, start: Math.max(0, c.start - 0.25) });
-      } catch (e) {
-        console.error("Callout overlay failed, skipping:", e);
-      }
-    }
-    for (const cu of countups) {
-      eventIdx++;
-      updateJob(jobId, { progress: 42, message: `Creating text animations ${eventIdx}/${totalEvents}` });
-      try {
-        const file = await buildTextOverlay("countup", {
+          pos: CALLOUT_POS[i % CALLOUT_POS.length],
+        },
+        start: Math.max(0, c.start - 0.25),
+      })),
+      ...countups.map((cu) => ({
+        kind: "countup" as const,
+        vars: {
           value: cu.value,
           prefix: cu.prefix,
           suffix: cu.suffix,
@@ -416,12 +443,49 @@ async function runRenderJob(jobId: string, input: RenderInput) {
           countDur: Math.min(Math.max(cu.land - cu.animStart, 1), 5),
           hold: 1.5,
           theme: input.textStyle,
-        });
-        textOverlays.push({ file, start: cu.animStart });
-      } catch (e) {
-        console.error("Countup overlay failed, skipping:", e);
+        },
+        start: cu.animStart,
+      })),
+    ];
+
+    if (tasks.length > 0) {
+      const t0 = Date.now();
+      const OV_CONCURRENCY = 3;
+      const results: ({ file: string; start: number } | null)[] = new Array(tasks.length).fill(null);
+      let finished = 0;
+      const queue = tasks.map((t, i) => ({ t, i }));
+
+      const worker = async () => {
+        while (queue.length > 0) {
+          if (isCancelled(jobId)) return;
+          const item = queue.shift();
+          if (!item) return;
+          try {
+            const file = await buildTextOverlay(item.t.kind, item.t.vars);
+            results[item.i] = { file, start: item.t.start };
+          } catch (e) {
+            console.error(`${item.t.kind} overlay failed, skipping:`, e);
+          }
+          finished++;
+          updateJob(jobId, {
+            progress: 42,
+            message: `Creating text animations ${finished}/${tasks.length}`,
+          });
+        }
+      };
+
+      await Promise.all(
+        Array.from({ length: Math.min(OV_CONCURRENCY, tasks.length) }, worker)
+      );
+
+      for (const r of results) {
+        if (r) textOverlays.push(r);
       }
+      console.log(
+        `DEBUG - built ${textOverlays.length}/${tasks.length} overlays in ${((Date.now() - t0) / 1000).toFixed(1)}s (concurrency ${OV_CONCURRENCY})`
+      );
     }
+
     if (textOverlays.length > 0) {
       console.log(`DEBUG - text overlays: ${textOverlays.length} composited via HyperFrames`);
     }
