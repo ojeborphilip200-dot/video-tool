@@ -1,0 +1,2823 @@
+
+=== BEAT: You've just figured out agriculture, you're storing grain, you built s
+    4 [artic] Greek black-figure vase, wrong period/culture
+    4 [artic] Greek red-figure battle vase, wrong period
+    4 [artic] Greek red-figure warrior vase, wrong period
+
+=== BEAT: and a dead rat at your feet in the morning.
+    6 [artic] Abstract painting, no rat or settlement
+    6 [artic] Portrait of man, no rat or settlement
+    6 [artic] Bald man portrait, completely irrelevant
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Right. Let's imagine you're a farmer in the ancient Near East, around 
+   26 [met] Metal artifact, wrong period, no agriculture
+    8 [artic] Greek/Seleucid coin, wrong period entirely
+    8 [artic] Hellenistic coin, centuries too late
+    8 [artic] Another Seleucid coin, wrong era
+    2 [loc] Book spine, completely unusable
+
+=== BEAT: By 1932, millions of Americans were unemployed as the Great Depression
+   96 [wikimedia] breadline queue classic Depression-era photograph
+   92 [wikimedia] soup kitchen feeding unemployed men 1930s
+   52 [artic] Depression-era street scene painting somewhat relevant
+    8 [artic] rural landscape etching no Depression context
+    5 [artic] portrait watercolor unrelated to Depression
+    4 [loc] placeholder graphic no actual image
+    4 [loc] book title page wrong era unusable
+
+=== BEAT: In Europe, the trenches of the Great War had already reshaped a genera
+   89 [europeana] soldiers sheltering in WWI dugout trench
+   82 [europeana] WWI soldiers in shell-damaged muddy forest
+   66 [europeana] WWI troops at collapsed bridge war zone
+   42 [loc] stereoview too small to read clearly
+   26 [loc] prominent baked-in text and stereoview borders
+   22 [wikimedia] collage composite multiple images with borders
+    4 [loc] placeholder graphic no actual content
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: You didn't invite this animal, you didn't train it, you didn't domesti
+   46 [wikimedia] Cat present but modern context only
+   42 [wikimedia] Cat and human interaction, too modern
+   28 [met] Cat barely visible, wrong period
+   25 [met] Cat marginal, Dutch interior wrong period
+    2 [artic] No cat, no relevant subject
+    2 [artic] No cat, bathing scene irrelevant
+    2 [artic] No cat, bathing scene irrelevant
+    2 [met] No cat, religious scene irrelevant
+
+=== BEAT: It moved into your civilization, uninvited, started doing something us
+   12 [artic] Bronze lion statue, not a cat
+    9 [loc] Illustrated newspaper cover, no cat depicted
+    9 [met] Renaissance portrait, no cat or domestication
+    9 [met] Asian bronze vessel, no cat shown
+    9 [met] Mesoamerican ceramic figure, no cat
+    9 [artic] WWI human formation photo, no cat
+    9 [artic] Gandharan Bodhisattva sculpture, no cat
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: You've just figured out agriculture, you're storing grain, you built s
+   52 [met] grain harvest scene, wrong period medieval
+   46 [met] ancient storage vessel, too late period
+   44 [wikimedia] plowing with animal, wrong period woodcut
+   42 [met] ancient pottery vessel, wrong period
+   39 [met] ancient storage jar, wrong culture
+   34 [artic] ancient black pottery, wrong period
+   29 [artic] ancient Near East head sculpture, late
+   24 [met] ancient Near East figure, too late
+
+=== BEAT: and then one night you notice a pair of eyes watching you from the dar
+   26 [artic] rat catcher engraving, wrong period/context
+   24 [artic] figure at window at night, atmospheric but wrong subject
+   22 [artic] abstract art, no relevant subject
+   19 [artic] modern bronze lion sculpture, wrong context
+   16 [artic] ancient vessel artifact, no wildcat or rodent
+    9 [artic] abstract expressionist print, irrelevant
+    9 [loc] 19th century newspaper cover, irrelevant
+    9 [loc] 19th century newspaper, boats scene
+
+=== BEAT: By 1932, millions of Americans were unemployed as the Great Depression
+   96 [wikimedia] breadline queue classic Great Depression photograph
+   92 [wikimedia] soup kitchen mission feeding unemployed men
+   62 [artic] 1930s street scene painting Depression-era feel
+   10 [artic] 1932 watercolor portrait unrelated to Depression
+    5 [artic] elegant interior wrong subject wrong context
+    5 [artic] Art Deco room model unrelated to Depression
+    5 [artic] rural landscape print no Depression content
+    5 [artic] interior painting flowers irrelevant to narration
+
+=== BEAT: It moved into your civilization, uninvited, started doing something us
+   92 [artic] Ancient Egyptian cat sculpture, perfect match
+   22 [artic] Ancient relief but no cat depicted
+   19 [artic] Modern bronze lion, wrong context
+   16 [met] Asian bronze vessel, no cat
+   16 [artic] Ancient Gandharan statue, no cat
+   14 [artic] Still life painting, no cat
+    9 [met] Religious crucifixion painting, irrelevant
+    9 [met] Medieval religious scene, no cat
+
+=== BEAT: In Europe, the trenches of the Great War had already reshaped a genera
+   96 [wikimedia] WWI soldiers marching through Western Front trench
+   86 [wikimedia] soldiers with gas masks in WWI sandbag trench
+   82 [europeana] British soldiers resting in WWI trench dugout
+   68 [smithsonian] period WWI artwork soldiers in snow trench
+   66 [europeana] WWI soldiers in shell-destroyed woodland terrain
+   62 [europeana] WWI soldiers at sandbag fortification position
+   59 [europeana] WWI officers at dugout entrance, Eastern Front likely
+   54 [europeana] WWI military logistics, bridge collapse scene
+
+=== BEAT: You didn't invite this animal, you didn't train it, you didn't domesti
+   86 [wikimedia] African wildcat, direct ancestor of domestic cat
+   82 [wikimedia] African wildcat grooming, domestication origin story
+   76 [artic] Ancient Egyptian cat artifact, early domestication era
+   59 [artic] Painting shows human with domestic cat
+   34 [artic] Decorative cat jewel, too ornate and unclear
+    9 [met] Hunt scene, no cats, wrong subject entirely
+    9 [artic] Bronze lion statue, not domestic cat
+    9 [artic] Beach scene, no cats visible
+
+=== BEAT: Right. Let's imagine you're a farmer in the ancient Near East, around 
+   26 [artic] Ancient Near East sculpture but wrong period
+   14 [artic] Egyptian shabti, wrong period and context
+   14 [artic] Roman mosaic, wrong period entirely
+   12 [artic] Monet haystacks, wrong period and style
+   12 [artic] Hellenistic coin, wrong period entirely
+   12 [artic] Seleucid coin, wrong period entirely
+   12 [artic] Egyptian scarab ring, wrong period
+    9 [met] Gold plate artifact, wrong culture/period
+
+=== BEAT: Let's imagine you're a farmer in the ancient Near East, around 10,000 
+   22 [met] Egyptian stele, wrong period and region
+   19 [met] Egyptian hieroglyphic stele, wrong era
+    9 [wikimedia] Modern Turkish monument inscription, irrelevant
+    9 [met] Medieval Christian ivory cross, wrong period
+    6 [wikimedia] Modern electric Rhodes piano, completely irrelevant
+    6 [wikimedia] Modern concert venue with stage lighting
+    6 [artic] Cartoon dog illustration, entirely irrelevant
+    2 [openverse/flickr] Colorful toy animation scene, irrelevant
+
+=== BEAT: You didn't invite this animal, you didn't train it, you didn't domesti
+   42 [artic] Cat visible in domestic scene artwork
+    8 [artic] Human figure sketch; no animal
+    7 [met] Mother and child painting; no animal
+    6 [artic] Abstract etching; no animal depicted
+    6 [met] Degas dancer pastel; no animal
+    5 [europeana] Handwritten letter; completely irrelevant
+    5 [europeana] Hebrew manuscript text; irrelevant
+    5 [openverse/flickr] Convention crowd scene; no wild animal
+
+=== BEAT: You've just figured out agriculture, you're storing grain, you built s
+   19 [artic] Still life with grain/food, loosely relevant
+   16 [artic] Greek vase, unrelated to narration
+   14 [smithsonian] Greek pottery warrior, irrelevant
+   12 [met] Ancient figurine, no agriculture/cat context
+   12 [met] Ancient figurine, unrelated subject matter
+   10 [artic] Renaissance engraving of fighting figures
+    9 [met] Baroque allegorical ceiling painting, irrelevant
+    2 [openverse/flickr] LEGO sci-fi set, completely wrong
+
+=== BEAT: It domesticated itself, it moved into your civilization uninvited, sta
+   88 [openverse/flickr] cat on laptop, civilized cohabitation perfectly
+   72 [openverse/flickr] cat in box, uninvited domestic presence
+   65 [openverse/flickr] stray cat lounging, domestication theme fits
+   42 [met] dog wandering church interior, loosely relevant
+   14 [artic] woman at window painting, no animal
+   12 [wikimedia] newborn bird chick, wrong animal entirely
+   12 [wikimedia] baby pigeon in hand, irrelevant subject
+   12 [artic] mother bathing child, unrelated to narration
+
+=== BEAT: Insert themselves into human civilization and reshape it from the insi
+   56 [artic] humans forming symbol suggests organized integration into society
+   42 [artic] religious figure spread across civilizations loosely relevant
+   39 [artic] religious relic suggests faith reshaping civilization loosely
+   26 [wikimedia] anatomical diagram unrelated to civilization reshaping
+   26 [wikimedia] anatomical diagram unrelated to civilization reshaping
+   19 [wikimedia] medical eye diagram irrelevant to narration
+   12 [openverse/flickr] plain book cover offers nothing relevant
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The watchers.
+   82 [artic] two figures watching waterscape quietly
+   76 [artic] lone figure watching sea, painterly watcher
+   66 [europeana] crowd gazing upward, collective watchers
+   55 [openverse/flickr] silhouette figure watching sunset landscape
+   45 [openverse/flickr] woman shielding eyes scanning distance
+    7 [europeana] fish trap object, unrelated to watchers
+    6 [europeana] blank notebook page, nothing relevant
+    5 [nasa] lunar surface texture, no watchers
+
+=== BEAT: The Book of Enoch is a real ancient Jewish text, written between rough
+   86 [europeana] Ancient Greek papyrus manuscript fragment, period-appropriate
+   82 [europeana] Ancient papyrus Greek text, relevant period
+   82 [europeana] Ancient papyrus manuscript, correct era
+   22 [artic] Medieval illuminated manuscript, wrong period
+    9 [artic] 19th-century portrait, entirely irrelevant
+    7 [artic] Japanese woodblock print, entirely irrelevant
+    2 [openverse/flickr] Modern event poster, completely irrelevant
+    2 [openverse/flickr] Book cover projection, completely irrelevant
+
+=== BEAT: There's a word for what the Book of Enoch calls beings who descend uni
+   38 [nasa] Cosmonauts in suits evoke beings descending from elsewhere
+   30 [nasa] Aerial view evokes descent from above vaguely
+   25 [nasa] Alien Mars surface suggests otherworldly origin weakly
+   24 [wikimedia] Cartoon references devil concept but wrong context
+   22 [met] Holy Family painting, unrelated to Enoch/Watchers
+   22 [openverse/flickr] Word scraps loosely evoke naming concept but unusable
+   19 [europeana] Cryptic seal symbol, too abstract and tiny
+   16 [artic] Text-heavy body art, wrong subject entirely
+
+=== BEAT: It doesn't mention cats, but it describes something that the actual sc
+   59 [artic] decorative cat object, tangential domestication link
+   52 [met] Egyptian-looking woman, Near East cat domestication origin
+   46 [artic] painting shows human with cat, loosely relevant
+   26 [artic] lion statue, no cat domestication relevance
+   22 [met] candlestick, no connection to cats
+   22 [met] candlestick, no connection to cats
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: This isn't a conspiracy theory.
+   42 [openverse/flickr] masked figure suggests hidden identity/conspiracy
+   42 [artic] concentric squares suggest tunnel/rabbit-hole thinking
+   24 [artic] historical battle engraving unrelated
+   16 [artic] Renaissance religious scene unrelated
+   15 [openverse/flickr] black cat irrelevant to narration
+   14 [met] Madonna and Child painting unrelated
+   14 [met] Van Gogh self-portrait unrelated
+   14 [met] ancient bronze head unrelated
+
+=== BEAT: It's a structural parallel between two genuinely strange true stories,
+   66 [artic] Surreal dreamlike landscape evokes structural parallel weirdness
+   56 [met] Religious painting suggests theological strangeness
+   44 [met] Scholarly collector portrait, intellectual tone
+   42 [artic] Ancient artifact, vaguely strange but generic
+   26 [artic] Book spread with text, catalogue plate
+   26 [europeana] Decaying building exterior, no relevant connection
+   20 [openverse/flickr] Abstract close-up ropes/rods, irrelevant
+   19 [met] Ornate guitar, unrelated to narration
+
+=== BEAT: So let's start with what Enoch actually says.
+   26 [artic] old engraved portrait, vaguely ancient-figure feel
+   12 [met] woman with books, loosely bookish
+    9 [artic] generic landscape etching, no relevance
+    9 [met] baroque equestrian portrait, unrelated
+    9 [europeana] watermarked group photo, unrelated
+    7 [met] Gauguin Tahiti painting, unrelated
+    7 [europeana] generic vintage group photo, unrelated
+    7 [europeana] damaged vintage photo, unrelated
+
+=== BEAT: Watch.
+   86 [europeana] antique pocket watch face dramatically lit
+   82 [europeana] classic silver pocket watch with chain
+   79 [europeana] gold open-face pocket watch face clear
+   76 [met] ornate antique watch with sundial opened
+   69 [met] grand ornate longcase clock in gallery
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: According to the text, the watchers were 200 angels, assigned by God t
+   66 [met] Angels with wings in religious painting
+   14 [met] Crucifixion scene, no angels watching
+    9 [met] Sculpture of wrestling figures, irrelevant
+    9 [europeana] Man on rocky shore, irrelevant
+    9 [artic] Satirical animal-pope illustration, irrelevant
+    6 [artic] Nude figure at door, irrelevant
+    6 [artic] Text-only date graphic, irrelevant
+    6 [europeana] Fishing harbor scene, irrelevant
+
+=== BEAT: The heart of the Book of Enoch is the story of the watchers.
+   16 [met] medieval saint painting, wrong subject
+   15 [nasa] cosmic nebula evokes heavens vaguely
+   14 [europeana] anatomical heart illustration, literal mismatch
+   12 [met] romantic landscape, no Enoch connection
+   12 [europeana] anatomical heart drawing, literal mismatch
+   12 [artic] abstract Klee print, no relevance
+   10 [nasa] planetary surface craters, irrelevant
+    9 [met] Egyptian scarab amulet, unrelated to Watchers
+
+=== BEAT: Their purpose was clearly defined.
+   62 [nasa] astronauts working with focused mission equipment
+   58 [nasa] shuttle on pad, mission-ready defined purpose
+   58 [nasa] duplicate shuttle image, same moderate relevance
+   34 [smithsonian] metal case object, unclear defined purpose
+   32 [met] medieval hunting manuscript, unrelated context
+   29 [artic] decorative cabinet, purpose not clearly communicated
+   24 [met] Victorian portrait, no defined purpose shown
+   19 [met] leisure garden painting, no defined purpose
+
+=== BEAT: Don't descend.
+   76 [wikimedia] Riders descending steep canyon trail
+   66 [artic] Woman descending stairs, visually matches warning
+   49 [artic] Abstract lines suggesting descent or depth
+   34 [artic] Birds flying, unrelated to descending warning
+   22 [europeana] Vintage car scene, unrelated to descending
+   20 [openverse/flickr] Fallen leaves on ground, unrelated
+   15 [openverse/flickr] Grave marker, unrelated to descending
+   14 [wikimedia] Road sign with text, wrong subject
+
+=== BEAT: Their leader, Semjaza, knew what they were contemplating was forbidden
+   19 [artic] Pre-Columbian figurine unrelated to fallen angels
+   16 [artic] Mesoamerican artifact unrelated to Semjaza narrative
+   12 [artic] 19th-century battle scene wrong context entirely
+
+=== BEAT: Don't make contact.
+   76 [artic] fingers prying eye open—contact warning
+   66 [europeana] avoid contact health poster, relevant theme
+   49 [artic] cats grooming—physical contact depicted ironically
+   42 [artic] art installation, figure touching throat loosely
+   24 [wikimedia] park bench unrelated to no-contact
+   19 [wikimedia] road signs irrelevant to narration
+   16 [europeana] Olympics diploma unrelated to no-contact
+   14 [europeana] church interior completely unrelated
+
+=== BEAT: Don't interfere.
+   89 [europeana] police cartoon captioned we don't interfere
+   86 [europeana] Punch cartoon explicitly says don't interfere
+   82 [europeana] Punch cartoon captioned about interference directly
+   59 [artic] 19th-century political cartoon about confrontation
+   42 [openverse/flickr] prohibition signs imply do-not-interfere warning
+   26 [artic] small sketch too tiny to read clearly
+   24 [artic] text artwork; wrong baked-in text penalty
+   14 [wikimedia] man by overturned boat; unrelated
+
+=== BEAT: Then they looked down, saw the daughters of men, and decided the assig
+   66 [europeana] group of young women, daughters of men
+   42 [openverse/flickr] men on elevated balcony looking down
+   38 [openverse/flickr] women on street, loosely relevant
+   34 [artic] surreal figures, loosely mythic but illustration
+   26 [europeana] elderly mixed group, wrong context
+   25 [openverse/flickr] baked-in text overlay, single woman
+   12 [artic] Valentine cartoon unrelated to narration
+    9 [europeana] cycling cartoon, completely unrelated
+
+=== BEAT: And for a while, that's what they did.
+   76 [europeana] soldiers gathered doing routine wartime activity
+   62 [openverse/flickr] group relaxing together over time
+   56 [europeana] people standing around, ambiguous activity
+   49 [artic] 19th century illustration of group activity
+   39 [artic] 19th century illustration, unclear relevance
+   38 [openverse/flickr] scenic landscape, minimal human activity
+   22 [europeana] Mughal miniature painting, unrelated subject
+   16 [artic] cartoon illustration with baked-in text
+
+=== BEAT: He was afraid he'd be the only one blamed, so he made all 200 of them 
+   16 [artic] Period sketch of figure, loosely ancient
+    9 [europeana] Punch magazine page, unrelated content
+    8 [europeana] Punch cartoon of policeman, irrelevant
+    7 [artic] Bathers cartoon, unrelated to narration
+    7 [europeana] Handwritten German letter, unrelated
+    6 [wikimedia] Pigeon photo, completely irrelevant
+    6 [wikimedia] Modern winery patio, wrong context
+    6 [artic] Decorative handbag, completely irrelevant
+
+=== BEAT: Azazel taught humans to forge swords and shields, the technology of wa
+   26 [artic] Surrealist Dalí painting, no swords/shields
+   22 [met] Egyptian statue, unrelated to weaponry
+   14 [artic] Hanging anatomy sketch, no weapons shown
+    9 [artic] Neon text art, completely irrelevant
+
+=== BEAT: Shem Ha'zai taught sorcery, and the cutting of roots.
+   66 [artic] Period woodcut showing figures gathering plants/roots outdoors
+   49 [artic] Figure passing something to child, vaguely teaching
+    6 [artic] Modern MAD Magazine cartoon, completely irrelevant
+
+=== BEAT: The watchers didn't just arrive, they taught.
+   42 [artic] two figures by water, ambiguous interaction
+   36 [met] pastoral landscape, tiny figures scattered
+   34 [artic] lone watcher on shore, no teaching
+   32 [artic] wrestling figures, not teaching scene
+   22 [openverse/flickr] deep sky galaxy, no teaching figures
+   16 [met] dark forest, no figures or teaching
+    5 [openverse/flickr] toy dolls irrelevant to narration
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The name Herman, the text notes, puns on the Hebrew word for oath.
+   46 [europeana] Document mentions name Herman, loosely relevant
+   42 [artic] Arabic script amulet; Semitic language adjacent but not Hebrew oath
+   22 [europeana] 19th-century military portrait, no Hebrew connection
+   16 [met] Egyptian museum gallery, unrelated to Hebrew oath
+   14 [europeana] Medieval church exterior, unrelated to Hebrew
+   14 [met] Bruegel harvest painting, entirely unrelated
+   12 [artic] South Asian gold collar, completely unrelated
+   12 [met] Gauguin Tahitian scene, completely unrelated
+
+=== BEAT: Barakiel revealed astrology.
+   76 [artic] Engraving labeled 'ASTROLOGIA' with celestial globe
+   42 [artic] Angel figures on clouds, vaguely celestial
+    9 [artic] Abstract dots, no astrological content
+
+=== BEAT: What happened next is the part the early church found so disturbing, t
+   46 [met] Papal portrait suggests church authority decisions
+   42 [europeana] Ancient inscribed tablet, vaguely early-text relevant
+   39 [artic] Distressed figure, vaguely apocryphal tone
+   16 [met] Medieval fairy-tale illustration, wrong context
+    9 [wikimedia] Children's illustration, no canon relevance
+    6 [artic] Victorian fashion plate, completely irrelevant
+    6 [artic] Modern pop art poster, entirely wrong
+    6 [met] Degas ballet rehearsal, no relevance
+
+=== BEAT: Kokobiel shared the secrets of the constellations.
+   12 [met] Medieval saint landscape, no celestial content
+   10 [met] Renaissance portrait with baked-in text inscription
+    9 [met] 19th-century collector portrait, no astronomy
+    8 [artic] Japanese mother and child, no constellations
+    8 [artic] Same Japanese print, unrelated subject matter
+
+=== BEAT: To him ascribe all sin.
+   69 [artic] Dark brooding figure suits sin attribution
+   66 [artic] Weathered sinister figure evokes attributed sin
+    9 [artic] Abstract minimal marks, no relevant content
+    8 [openverse/flickr] Prominent baked-in text, wrong subject matter
+   -1 [openverse/wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Knowledge that was supposed to stay in heaven came down to earth, and 
+   66 [met] Medieval Islamic manuscript; esoteric celestial machinery descending
+   59 [artic] Knowledge transmission scene; writing taught to child
+   48 [openverse/flickr] Open book generic; knowledge spread loosely implied
+   46 [artic] Collage artwork; tree-of-knowledge feel but cluttered
+   44 [met] Persian manuscript hunting scene; unrelated to theme
+   42 [artic] Sketched figures; no clear forbidden-knowledge theme
+   26 [europeana] Title page with prominent baked-in text overlay
+   22 [europeana] Monasterium.net watermark; medieval deed off-topic
+
+=== BEAT: The watchers are chained and imprisoned, but the knowledge they left b
+   42 [artic] Dark surreal figure hints at imprisonment theme
+   26 [artic] Beach scene unrelated to watchers/imprisonment
+   14 [artic] Men fishing with motorcycle; completely unrelated
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: It stays.
+   76 [artic] titled The Stays, period illustration exact match
+   69 [europeana] old building standing firm, permanence implied
+   66 [artic] ceramic vessel permanently displayed, enduring object
+   59 [europeana] figures standing still at monument
+   52 [openverse/flickr] child seated still, staying in place
+   49 [artic] title references staying, dark etching
+   39 [europeana] flower spike stays upright, loosely relevant
+   38 [nasa] planets/rings stay but too abstract
+
+=== BEAT: God looks at the result and says, "In the text, the whole earth has be
+   76 [europeana] Eden corruption scene with celestial diagrams above
+   59 [europeana] Engraving shows idol worship and corruption themes
+   52 [smithsonian] Renaissance engraving showing mythological corruption battle
+   46 [met] Ancient relief shows divine figures ancient world
+   38 [openverse/flickr] Medieval manuscript page loosely biblical
+   34 [met] Christian painting wrong deity wrong narrative
+   26 [europeana] Cartoon sketch with watermark wrong subject
+   24 [met] Headless ancient figurine irrelevant to narration
+
+=== BEAT: The mechanism the book of Enoch is describing is this, beings who were
+   66 [met] Angel descending to human—Watcher/descent theme relevant
+   24 [artic] Abstract animal-like bronze, vaguely feline
+   22 [met] Medieval harvest scene unrelated to narration
+   19 [artic] Surreal sculpture unrelated to cats or Enoch
+   16 [artic] Abstract etching irrelevant to subject
+   14 [met] Decorative porcelain clock unrelated
+   12 [europeana] Electrical diagram unrelated to narration
+   12 [europeana] Industrial printing workers unrelated
+
+=== BEAT: It spreads.
+   59 [artic] crowd spreading outward in confrontation
+   42 [nasa] Saturn planet spreading rings loosely fits
+   24 [europeana] stuck vehicle in mud, irrelevant
+   22 [nasa] heavy baked-in text overlays, diagram collage
+   22 [europeana] watermarked camp scene, no spreading
+   20 [nasa] heavy baked-in text overlays, diagram collage
+   19 [artic] rural landscape sketch, no spreading concept
+   19 [met] ornate fireplace interior, irrelevant
+
+=== BEAT: DNA evidence, published across multiple major studies, confirms that d
+    8 [artic] Manet Olympia etching, unrelated to cats
+    7 [met] Medieval religious painting, no relevance
+    7 [met] Ancient bronze head sculpture, irrelevant
+    6 [artic] Abstract black artwork, irrelevant to narration
+    6 [artic] Abstract golden artwork, no relevant content
+    6 [met] Renaissance portrait, completely unrelated
+
+=== BEAT: Humans chose those animals.
+   62 [openverse/flickr] domesticated cat, classic human-chosen animal
+   46 [artic] human with horse, but sculpture not selection
+   34 [artic] surrealist painting, animals incidental not chosen
+   19 [artic] bronze lion statue, not animal selection
+   14 [met] decorative cup, no animal selection depicted
+    9 [met] Van Gogh portrait, no animals present
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/wikimedia] (not inspected)
+
+=== BEAT: That is normal domestication.
+   72 [openverse/flickr] Dog collar indoors shows clear domestication
+   70 [openverse/flickr] Cat sleeping at home, classic domestication
+   65 [openverse/flickr] Collared dog resting, domesticated animal
+   16 [artic] Mother bathing child, unrelated to domestication
+   14 [artic] Figure at window, unrelated to domestication
+   14 [artic] Woman washing, unrelated to animal domestication
+
+=== BEAT: Cats did something different.
+   76 [met] old master painting children with cat
+   69 [artic] Picasso painting figure with black cat
+   62 [openverse/flickr] domestic kitten held by person
+   59 [artic] decorative cat figurine, unusual angle
+   38 [openverse/flickr] wild leopard not domestic cat
+   19 [artic] bronze lion statue not a cat
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Humans selected them, bred them, shaped them for human purposes over g
+   72 [openverse/flickr] domesticated crop bred by humans over generations
+   68 [openverse/flickr] yellow carrot cultivar shows selective breeding results
+   22 [artic] hanging carcasses sketch partially relevant but unclear
+   12 [openverse/flickr] informational sign in garden, wrong subject
+   12 [artic] neon art sculpture contradicts narration context
+    9 [artic] surrealist painting unrelated to selective breeding
+    9 [met] dark forest painting entirely unrelated
+
+=== BEAT: It becomes part of human civilization permanently.
+   69 [met] Dürer Christ painting, permanent religious civilization icon
+   59 [met] Classical bronze bust, enduring human artifact
+   46 [met] 19th-century collector portrait, cultural record
+   38 [openverse/flickr] Escalator tunnel, loosely modern civilization infrastructure
+   34 [europeana] Skull badge artifact, morbid and unclear context
+   30 [nasa] Astronauts examining hardware, niche context
+   30 [nasa] Astronauts reviewing equipment, niche context
+   28 [nasa] Lunar surface craters, not human civilization
+
+=== BEAT: The cat assessed the situation, recognized an opportunity, and moved i
+   76 [wikimedia] Cat alert, poised, assessing surroundings
+   59 [artic] Cats moving on rooftop, illustration only
+   24 [artic] Picasso painting, human figure dominates
+   14 [artic] Japanese woodblock woman, tiny cat irrelevant
+    4 [europeana] Metal ring artifact, completely unrelated
+    4 [europeana] Preserved snake specimen, wrong subject
+    4 [europeana] Archaeological diagram drawing, unrelated
+    0 [openverse/flickr] Military personnel on tarmac, no cat
+
+=== BEAT: Wild cats self-domesticated roughly 10,000 years ago, when spotted fel
+   46 [met] Small white cat visible near figures
+   26 [met] Medieval Islamic manuscript, hunters and boars
+   12 [artic] Modern bronze lion sculpture, irrelevant
+    9 [met] Renaissance portrait, no cats or agriculture
+    8 [artic] Near-blank white landscape drawing, unusable
+    7 [artic] Portrait of painter, completely irrelevant
+
+=== BEAT: Humans provided the grain.
+   66 [artic] ancient coin depicts grain stalk clearly
+   59 [artic] engraving shows humans handling grain pile
+   49 [wikimedia] grain stalk at sunset, no human
+   34 [artic] ceramic granary model, indirect grain reference
+    5 [nasa] Mars rock samples, unrelated to grain
+    5 [nasa] Mars terrain panorama, completely irrelevant
+    2 [nasa] Enceladus moon imagery, totally wrong subject
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: The grain attracted the rodents.
+   34 [artic] Coin shows grain stalk, no rodents
+   26 [artic] Ancient granary model, no rodents visible
+   10 [nasa] Birds on water, not rodents
+   10 [nasa] Duplicate bird image, not rodents
+    9 [artic] Abstract dark artwork, completely irrelevant
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: No human decided to domesticate the cat.
+   22 [met] Eden expulsion painting; no cats shown
+   14 [met] Egyptian mummy; ancient Egypt cat connection weak
+    8 [openverse/flickr] Question mark prop; tangentially philosophical only
+    6 [artic] WWI soldiers forming Liberty Bell; irrelevant
+    6 [europeana] Text-only graphic; hard penalty applies
+    6 [artic] Gandharan Buddhist statue; irrelevant
+    6 [europeana] Screenshot of email text; hard penalty applies
+    6 [met] Tribal ceremonial fly whisk; irrelevant
+
+=== BEAT: No human selectively bred early cats for tameness the way farmers shap
+   65 [openverse/flickr] Selectively bred toy dog breed shown
+   65 [openverse/flickr] Fluffy bred dog, complements narration
+   55 [openverse/flickr] Domestic cat, loosely relevant subject
+   26 [wikimedia] Genetics diagram, text-heavy illustration
+   16 [wikimedia] Zebras; unrelated to cats or dogs
+   14 [wikimedia] Zoo exhibit, unrelated to narration
+    9 [artic] WWI soldiers formation, completely unrelated
+    9 [artic] Ancient Buddhist sculpture, unrelated
+
+=== BEAT: Used to fight vermin on Egyptian trade ships, cats traveled to large p
+   16 [artic] Historic port scene, ships vaguely relevant
+   12 [artic] Medieval engraving, small animal visible but wrong context
+    9 [wikimedia] Magazine masthead, no cats depicted
+    7 [wikimedia] Dog on leash, not a cat
+    7 [wikimedia] Birds in marsh, unrelated subject
+    6 [artic] Anti-fascism poster, completely unrelated
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: A 2017 genetic study out of KU Louvin tracked the DNA of over 200 anci
+   18 [openverse/flickr] phylogeny diagram unrelated to cat genetics study
+   12 [openverse/flickr] archive storage room, no cat or archaeology connection
+   12 [openverse/flickr] same archive storage room, different angle
+    9 [artic] winter landscape art installation, completely irrelevant
+    8 [artic] abstract pop art painting, entirely irrelevant
+    8 [artic] protest artwork, completely unrelated to narration
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: The rodents attracted the cats, and at some point, the cats stopped le
+   72 [openverse/flickr] group of rats in natural setting
+   28 [openverse/flickr] studio white background too sterile
+   22 [wikimedia] trash bin irrelevant to narration
+   22 [openverse/flickr] studio hamster wrong context entirely
+   14 [artic] dark window painting irrelevant
+   12 [artic] abstract figures unrelated to subject
+   12 [artic] portrait artwork completely unrelated
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: Bones of cats with an Egyptian genetic signature have even been found 
+   16 [artic] 19th-century cat illustration, wrong context
+   14 [europeana] Carved ivory cat netsuke, not Viking
+   12 [artic] Picasso painting with cat, wrong context
+    9 [europeana] Paris siege souvenir plaque, wrong subject
+    6 [artic] Japanese woodblock print, wrong culture
+    6 [europeana] Aboriginal bark painting, completely irrelevant
+    2 [openverse/flickr] Halloween pumpkins, completely irrelevant
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: But the Egypt chapter of this story is where it gets theologically str
+   86 [met] Flight to Egypt painting directly relevant
+   82 [artic] Napoleon en Egypte illustration directly relevant
+   76 [met] Egyptian pharaoh head evokes Egypt chapter
+   66 [artic] Ptolemaic Egyptian coin fits Egypt chapter
+   59 [met] Rest on Flight to Egypt, loosely relevant
+   54 [europeana] Egyptian shabti figurine with hieroglyphs
+   49 [europeana] Historical map shows Exodus route region
+   44 [wikimedia] Islamic manuscript, theological but not Egypt-specific
+
+=== BEAT: They spread themselves across the known world, on ships, following hum
+   26 [met] Renaissance merchant portrait, no ships or trade
+   24 [europeana] ancient silver cuff, possibly traded artifact
+   18 [openverse/flickr] ancient inscription, no ships or trade routes
+   16 [europeana] plain ivory ring, no trade route context
+   14 [artic] rural farm scene, no maritime trade context
+   12 [met] pre-Columbian vessel, wrong culture and context
+    9 [europeana] tiny artifact fragment, unidentifiable, unusable
+    9 [artic] nude figure study, completely irrelevant
+
+=== BEAT: Around 1950 BCE, someone painted an unusual creature on the back wall 
+   16 [met] Egyptian stele, no cat painting visible
+   12 [met] Bronze figurine, unrelated to tomb cat
+   10 [met] Greek marble athlete, wrong culture period
+    9 [artic] Abstract modern painting, completely irrelevant
+    8 [artic] Rocket launch sketch, entirely wrong subject
+    8 [artic] Rocket launch with blue border, irrelevant
+
+=== BEAT: In the centuries that followed, cats became a fixture of Egyptian pain
+    4 [europeana] Modern religious figure, no Egypt connection
+    4 [europeana] Modern religious figure, completely irrelevant
+    4 [artic] Bridge construction etching, no Egypt cats
+    4 [artic] Modern planetarium building, irrelevant
+    4 [europeana] WWII-era flying boats, stock watermark visible
+    4 [artic] Circus or outdoor event crowd, irrelevant
+    2 [openverse/flickr] Ancient sculpture but human face, not Egyptian cat
+    0 [openverse/flickr] DVD cover product shot, wrong subject
+
+=== BEAT: Because once cats arrived in ancient Egypt, what happened to them is n
+   22 [artic] Modern Western painting, no Egypt connection
+   19 [met] European Baroque painting, wrong period entirely
+   12 [artic] Modern bronze lion statue, wrong subject
+    9 [met] Baroque figures, no cat or Egypt content
+    9 [met] Handwritten letter with fruit sketch, irrelevant
+    9 [artic] Monet train station painting, entirely unrelated
+    5 [openverse/flickr] Caged mountain lion, completely irrelevant
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The goddess Bastet, initially depicted as a lioness, gradually transfo
+   92 [met] Lioness-headed seated goddess, early Bastet depiction
+   80 [openverse/flickr] Domestic cat and lioness statues show transformation
+   78 [openverse/flickr] Two cat sculptures showing seated and lioness forms
+   76 [artic] Small feline-headed Egyptian deity figurine
+   56 [met] Headless Egyptian figure, cat-head held in hand
+   49 [met] Egyptian relief with deities, no clear cat-head
+   19 [artic] Crude figurine, unidentifiable as Bastet
+    9 [artic] Greek coin, wrong culture and subject
+
+=== BEAT: An entire major deity in the Egyptian pantheon reshaped herself in the
+   10 [openverse/flickr] Greek sculpture, not Egyptian deity
+    9 [met] Persian manuscript, wrong culture entirely
+    9 [met] Persian battle scene, unrelated
+    9 [met] Renaissance Madonna, wrong culture/period
+    9 [artic] Renaissance portrait engraving, unrelated
+    8 [openverse/flickr] tomb diagram, no deity or animal
+    7 [artic] Modern Easter bus poster, irrelevant
+    7 [artic] Decorative quilt, entirely unrelated
+
+=== BEAT: Over the millennia, cats in Egypt evolved from useful village predator
+   38 [openverse/flickr] Dark bronze cat figurine, Egyptian-ish but unclear
+   36 [artic] Gold cat jewel, not Egyptian divine context
+   12 [artic] Picasso painting, wrong period entirely
+    9 [artic] Modern bronze lion, not Egyptian cats
+    6 [met] Christian crucifixion scene, completely unrelated
+    6 [met] Flemish harvest scene, entirely wrong subject
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Here's where you'd expect a clean story.
+   76 [europeana] formal family portrait implies clean story
+   59 [artic] text wall subverts clean narrative idea
+   49 [europeana] padlock hints at hidden or locked story
+   46 [artic] abstract print, ambiguous expectation theme
+   42 [europeana] plain house, generic, weak narrative fit
+   34 [artic] cluttered archival plate with baked-in labels
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: And the level of devotion ancient Egyptians showed toward their cats w
+    6 [met] Chinese landscape painting, no Egyptian content
+    6 [met] Christian crucifixion painting, wrong culture
+    6 [europeana] German alchemical engraving, unrelated subject
+    6 [europeana] Duplicate alchemical engraving, still irrelevant
+    6 [europeana] Third duplicate alchemical plate, irrelevant
+    6 [met] American appliqué quilt, no Egyptian relevance
+    6 [artic] 19th-century stereoview of desert mounds
+    6 [artic] Wooden drafting triangle, entirely unrelated
+
+=== BEAT: Humans appreciated them.
+   32 [europeana] Museum watermark; carved bird objects, ambiguous context
+   19 [artic] Surrealist painting, no clear appreciation depicted
+   14 [artic] Hanging carcasses sketch, contradicts appreciation theme
+    9 [artic] Neon text art, no humans appreciating anything
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Cats proved useful.
+   46 [artic] decorative cat object, no utility shown
+   42 [artic] cat present but no useful role depicted
+   19 [artic] lion statue, not a cat
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Mass sacrifices of cats tied to a religious cult may have instilled ta
+   26 [artic] cat illustration but no sacrifice or cult
+   19 [artic] Picasso painting, unrelated to cat sacrifice
+   14 [artic] Japanese woodblock, wrong culture and subject
+   12 [openverse/flickr] modern domestic cat, no religious context
+    5 [openverse/flickr] licence sign, completely unrelated subject
+    2 [openverse/flickr] snowy trees, entirely irrelevant
+
+=== BEAT: Worship was a natural extension of gratitude.
+   84 [met] Ancient bronze shows figure kneeling in worship
+   82 [artic] Religious ceremony scene, worship depicted clearly
+   76 [met] Ancient votive figure in prayer/worship posture
+   74 [europeana] Hindu deity image depicting devotional worship
+   66 [artic] Nature goddess figure with worshippers attending
+   62 [met] Holy Family devotional image, worship adjacent
+   24 [europeana] Forest landscape, no worship content visible
+   14 [artic] Artist painting outdoors, unrelated to worship
+
+=== BEAT: A 2025 study from the University of Exeter, corroborated by a second s
+    7 [europeana] Abstract diagram, no relevance whatsoever
+    6 [met] Dutch portrait, irrelevant to Egypt/cats
+    6 [met] Renaissance religious painting, entirely irrelevant
+    6 [met] Bronze bust, no Egypt or cat connection
+    6 [artic] Glassware drawing, entirely irrelevant
+    6 [artic] Abstract black sculpture, no relevance
+    6 [europeana] Botanical specimen sheet, irrelevant
+    4 [artic] Blank white frame, completely unusable
+
+=== BEAT: But the most recent genetic research has complicated the narrative in 
+   46 [europeana] ancient stone tools loosely evoke prehistory
+   38 [openverse/nasa] cosmic imagery loosely evokes ancient mysterious themes
+   19 [met] crucifixion painting unrelated to genetics or Enoch
+   16 [met] medieval bishop statue irrelevant to narration
+   15 [nasa] snowy mountain render unrelated to topic
+   14 [met] Dutch landscape painting irrelevant here
+   14 [europeana] film strip photo unrelated; topfoto watermark
+   12 [europeana] modern art installation completely unrelated
+
+=== BEAT: And that's part of it.
+   46 [met] patchwork quilt parts making whole concept
+   45 [openverse/flickr] workers building structure part of whole
+   44 [artic] dramatic interior scene vaguely illustrative
+   44 [met] full suit of armour assembled from parts
+   42 [europeana] archival photo unrelated to vague narration
+   42 [europeana] historical map loosely fits abstract narration
+   39 [artic] etching of trees loosely illustrative only
+   39 [met] medieval wooden sculpture loosely relevant
+
+=== BEAT: What one researcher at the University of Oxford called "the murder pat
+   22 [artic] Dog portrait painting, loosely animal-related only
+   16 [artic] 19th-century engraving, wrong subject matter
+   12 [artic] Modern lion statue, unrelated to Egypt
+   10 [openverse/flickr] Modern researcher at microscope, wrong context
+    9 [europeana] Modern wooden church interior, irrelevant
+    8 [europeana] Turkish dictionary book cover, irrelevant
+    7 [europeana] Abstract modern painting, completely irrelevant
+    5 [nasa] Modern surgical procedure, unrelated subject
+
+=== BEAT: Cats killed and offered as religious gifts to the goddess.
+   92 [openverse/flickr] Egyptian cat mummy, religious votive offering
+   66 [met] Ancient Egyptian bronze cat deity statue
+   49 [met] Egyptian cat artwork, not sacrificial context
+   34 [artic] Egyptian relief, no cats or offerings visible
+    8 [openverse/flickr] Japanese shrine ritual, wrong culture entirely
+    6 [artic] Modern museum lion statue, irrelevant
+    6 [artic] Pigs with snake painting, completely irrelevant
+    6 [met] Ornate revolver, completely irrelevant
+
+=== BEAT: The cat was tamed, possibly, by being repeatedly killed inside a syste
+   92 [met] Egyptian bronze cat votive figure, worship context
+   91 [met] Ancient Egyptian sacred cat bronze figurine
+   89 [met] Egyptian bronze cat cult offering statue
+   38 [openverse/flickr] Modern wild cat, no worship context
+   26 [artic] Baked-in text; wrong subject and period
+   24 [artic] Japanese woodblock, wrong culture entirely
+
+=== BEAT: The researcher's argument is that the repeated large-scale capture and
+   16 [artic] dog portrait, wrong animal entirely
+   12 [artic] violent mob scene, no cats involved
+    9 [artic] guillotine drawing, no cats or temples
+    8 [met] Christian crucifixion painting, irrelevant
+    8 [met] medieval religious diptych, no cats
+    8 [met] Annunciation painting, completely unrelated
+    6 [openverse/flickr] stacked books, loosely suggests research
+    2 [openverse/flickr] text-only activist poster, unusable
+
+=== BEAT: Domestication achieved not through kindness, but through ritual.
+   76 [met] Annunciation ritual controls Mary's submission
+   66 [met] Christ subdued via ritual suffering—usable
+   59 [artic] Formal garden plan—nature tamed by ritual order
+   42 [met] Scholar with bust—loose ritual connection
+   29 [artic] Diner scene unrelated to ritual domestication
+   24 [artic] Nude figure unrelated to domestication ritual
+
+=== BEAT: And the result, regardless of the method, was the same.
+   49 [met] biblical judgment scene matches outcome narrative
+   48 [openverse/flickr] homelessness as end result resonates with narration
+   46 [met] historical painting of judgment scene fits outcome theme
+   42 [artic] poverty imagery loosely fits consequence theme
+   39 [met] armor suit suggests conflict consequence loosely
+   34 [europeana] mechanical diagram, too abstract
+   29 [wikimedia] single portrait, no outcome depicted
+   26 [wikimedia] academic chart, not documentary footage
+
+=== BEAT: An animal that could live alongside humans permanently.
+   56 [wikimedia] Iguana shown, not typical human companion animal
+   48 [openverse/flickr] Opossums are urban wildlife near humans
+   22 [openverse/flickr] Mini zoo sign with baked-in text
+   14 [artic] Decorative quilt with animal motifs only
+    9 [artic] Abstract artwork unrelated to animals
+    7 [artic] Abstract Miró artwork, no real animals
+    6 [europeana] Portrait of human, no animal present
+    4 [europeana] Text-only graphic, completely irrelevant
+
+=== BEAT: An integration that could not be undone.
+   76 [wikimedia] Mathematical integration diagram, literally undoable
+   46 [europeana] Diverse group painting together, community integration
+   42 [wikimedia] Woven Star of David, abstract integration symbol
+   30 [openverse/flickr] Engine schematic diagram, mechanical not conceptual
+   25 [nasa] Rocket engine test, irrelevant to integration
+   20 [nasa] CGI drone simulation render, wrong medium
+   20 [nasa] Electronic hardware units, unrelated subject matter
+   19 [europeana] Foggy manor house, unrelated to integration
+
+=== BEAT: Once the watchers descended and transferred their knowledge, God punis
+   46 [wikimedia] Ancient Holy Land landscape, biblical context
+   16 [artic] Woman on beach, no angelic relevance
+   12 [artic] Modern blurred woman, completely irrelevant
+   10 [artic] Men fishing with motorcycle, unrelated
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: Here's the part that the Book of Enoch gets at and that the science co
+   65 [nasa] Nebula imagery evokes cosmic convergence of knowledge
+   62 [nasa] Saturn rings suggest cosmic scientific discovery
+   45 [nasa] Mars surface, loosely scientific but off-topic
+   14 [artic] Surrealist sculpture, unrelated to subject
+   12 [artic] Victorian indoor scene, wrong subject entirely
+   12 [artic] Catalog plate with baked-in text and borders
+    9 [wikimedia] European city waterfront, completely irrelevant
+    9 [europeana] 1970s couple at dock, entirely irrelevant
+
+=== BEAT: The astrology stayed.
+   82 [artic] engraving explicitly labeled ASTROLOGIA persisting
+   66 [wikimedia] occult/mystical practice scene, night ritual
+   30 [openverse/flickr] starry sky but modern road scene
+   16 [artic] warriors with shields, no astrology
+    9 [artic] ceramic vase, completely unrelated
+    5 [openverse/flickr] film set dormitory, unrelated
+    5 [openverse/flickr] R.W. trunk prop, unrelated
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: The swords stayed.
+   72 [openverse/flickr] close sword raised high, statue remaining
+   62 [openverse/flickr] bronze statue brandishing sword aloft
+   59 [artic] sword prominently held, staying in place
+   49 [wikimedia] swords present but chaotic battle scene
+   42 [artic] abstract figures with sword-like weapon
+   34 [smithsonian] decorative textile, no clear swords
+   24 [artic] no sword visible, portrait only
+   22 [openverse/flickr] child with toy sword, modern setting
+
+=== BEAT: The corruption, as the text puts it, spread across the whole earth and
+   76 [europeana] engraving fire judgment spreads across land
+   69 [artic] Blake flood figures spreading across waters
+   66 [artic] Blake biblical corruption fire spreads earth
+   49 [artic] allegorical engraving but wrong theme
+   19 [europeana] collage grid with baked-in text labels
+    8 [openverse/flickr] Nintendo game ad with baked-in text
+    6 [europeana] flower photograph completely unrelated
+    5 [openverse/flickr] cartoon text overlay wrong subject entirely
+
+=== BEAT: Egyptian cats were mummified by the millions.
+   82 [openverse/flickr] genuine wrapped animal mummy on display
+   72 [openverse/flickr] actual cat mummies with wrapped linen bandaging
+   59 [artic] ancient Egyptian wooden cat sculpture, not mummy
+   46 [met] small Egyptian cat faience amulet, loosely related
+   39 [met] tiny Egyptian animal amulet, only loosely relevant
+   14 [met] ceramic bowl with bird motif, unrelated
+   12 [artic] Egyptian scarab ring, unrelated to cat mummies
+    6 [artic] modern bronze lion sculpture, wrong subject
+
+=== BEAT: The punishment fell on the beings who brought it, not on what they lef
+   86 [wikimedia] Loki punished, not his deeds' victims
+   59 [met] punishment sculpture, aggressor receives judgment
+   44 [artic] fallen soldiers, punishment on perpetrators ambiguous
+   38 [openverse/flickr] fortress remains after occupiers departed
+   36 [europeana] colonial parade, wrong subject matter
+   35 [openverse/flickr] building standing after owners gone
+   34 [europeana] soldiers at structure, unclear punishment context
+   32 [artic] punished son scene, baked-in label text
+
+=== BEAT: The parallel in cat history is almost absurd in how precisely it maps.
+   66 [wikimedia] two cats side by side, parallel positioning
+   56 [artic] Picasso painting with black cat
+   55 [openverse/flickr] two cats lying parallel together
+   49 [artic] Japanese print with small cat figure
+   38 [openverse/flickr] cat with shadow, atmospheric but vague
+   22 [artic] illustrated book pages, no cats visible
+   12 [met] portrait of man, no cats
+    9 [europeana] street café scene, no cats
+
+=== BEAT: Many of them kittens.
+   66 [europeana] small black kitten held by woman
+   52 [openverse/flickr] cats visible but adults not kittens
+   45 [openverse/flickr] adult cat not kitten specifically
+   30 [openverse/flickr] blurry adult black cat unusable
+    4 [artic] Japanese woodblock print unrelated
+    4 [europeana] women marching parade unrelated
+    4 [artic] painting of gardeners unrelated
+    4 [artic] charcoal portrait of man unrelated
+
+=== BEAT: DNA analysis of these mummies confirms that many were killed specifica
+   38 [openverse/flickr] Generic lab setting, loosely DNA analysis related
+   26 [artic] Historical engraving with Egyptian artifacts depicted
+    9 [artic] Abstract dark image, completely unrelated
+    9 [europeana] Woven textile, unrelated to mummies or DNA
+    8 [nasa] Space station lab work, wrong context
+    8 [nasa] Space station experiment, wrong context
+    5 [openverse/flickr] DNA model sculpture, no mummy context
+    2 [openverse/flickr] Performance event, totally unrelated
+
+=== BEAT: In the late period an estimated 300,000 to 700,000 cat mummies were pr
+   22 [artic] Egyptian scarab amulet, not cat mummy
+   12 [openverse/flickr] Bronze ibis figurine, wrong animal entirely
+    8 [openverse/flickr] Ancient pottery vessels, no cat connection
+    8 [europeana] Roman agora map diagram, completely unrelated
+    8 [europeana] Archaeological site plan, no cat relevance
+    8 [europeana] Archaeological grid map, completely unrelated
+    7 [artic] English period interior room, wrong subject
+    7 [artic] European baroque interior, completely irrelevant
+
+=== BEAT: The cats were processed and discarded.
+   59 [met] Egyptian cat statue, processed/ritual context possible
+   44 [artic] Manet cats illustration, text labels visible
+   35 [openverse/flickr] live cat walking, no processing shown
+   34 [artic] Picasso painting, cat present but artistic
+   20 [openverse/flickr] decorative border overlay, generic live cat
+   14 [artic] Japanese woodblock, no cats visible
+    9 [met] ancient Mesopotamian figure, no cats
+    9 [met] Bruegel harvest scene, no cats
+
+=== BEAT: And yet the cats remained.
+   76 [artic] two cats persisting on rooftop, archival print
+   70 [openverse/flickr] cat peering from cage, stubborn persistence implied
+   62 [openverse/flickr] cat hiding but remaining, cute not documentary
+   59 [artic] black cat present alongside figure, painterly
+   45 [openverse/flickr] generic kitten, no contextual staying power
+   42 [artic] cats barely visible, mainly figure artwork
+
+=== BEAT: The cats were the offering.
+   96 [met] Egyptian bronze cat votive offering artifact
+   76 [met] ancient votive statue, offering pose, no cats
+   66 [europeana] multiple cats gathered together, plural offering read
+   55 [openverse/flickr] cat on ancient stones, atmospheric but generic
+   52 [artic] Manet print shows two cats, baked-in text
+   42 [europeana] multiple kittens huddled, loosely plural cats
+   39 [artic] Picasso painting, boy with black cat
+   34 [artic] Japanese print, woman with small cat, unrelated
+
+=== BEAT: In every granary in the known world.
+   76 [artic] Ancient ceramic granary model, directly relevant
+   66 [artic] Workers digging into snow-covered storage pit
+   55 [openverse/flickr] Ancient storage pit structure, loosely granary-related
+   18 [openverse/flickr] Modern silos with prominent Jamestown signage
+    9 [artic] 19th-century pharmacy scene, wrong subject entirely
+   -1 [openverse/wikimedia] (not inspected)
+
+=== BEAT: On every trade ship.
+   66 [artic] sailing vessels on calm waterway scene
+   59 [artic] Hokusai wave with small boats visible
+   39 [europeana] cartoon boat scene, wrong tone
+   34 [artic] cubist boats, too abstract for narration
+    9 [europeana] wooden artifact, no trade ship connection
+    9 [europeana] wooden tool, unrelated to ships
+
+=== BEAT: In every city.
+   62 [openverse/flickr] Urban mural on city building wall
+   62 [europeana] Aerial cityscape illustration with text
+   59 [europeana] City street map overhead view
+   55 [nasa] Community gathering urban neighborhood setting
+   52 [openverse/flickr] People on urban street viewing boards
+   44 [europeana] Caption mentions city but illustration
+   20 [openverse/flickr] WWI poster prominent baked-in text
+   19 [artic] Abstract painting unrelated to cities
+
+=== BEAT: The individual cat was nothing to the system.
+   82 [openverse/flickr] single cat face, vulnerable individual subject
+   66 [met] cat dwarfed by humans, system analogy
+   59 [met] lone cat in nature, archival painting
+   42 [artic] decorative cat object, cold systemic feel
+   16 [europeana] microscopy image, no cat content
+   14 [europeana] abstract microscopy, irrelevant to narration
+   14 [europeana] biological tissue scan, no cat
+
+=== BEAT: The cats were not.
+   82 [artic] two cats depicted, archival illustration
+   72 [openverse/flickr] single cat visible, not plural cats
+   68 [openverse/flickr] single cat close-up, not plural
+   66 [artic] painting with cat and figure
+   45 [openverse/flickr] extreme close-up single cat face
+   34 [artic] Japanese print, tiny cat barely visible
+   24 [europeana] soldiers with dogs not cats
+    9 [europeana] man at board game, no cats
+
+=== BEAT: The cat as a category had already made itself permanent.
+   94 [met] Egyptian bronze cat statue, timeless permanence
+   94 [met] Egyptian bronze cat, embodies permanent cat category
+   92 [met] ancient Egyptian bronze cat, permanent cultural category
+   76 [artic] Manet cat print conveys cat as archetype
+   49 [artic] Picasso painting, cat incidental to figure
+   42 [artic] Japanese print, cat barely visible
+   42 [openverse/flickr] modern cat photo, no historical permanence conveyed
+   32 [europeana] fabric novelty pin, trivial cat object
+
+=== BEAT: By the time Egypt's religious institutions that had organized their ma
+   69 [europeana] Ancient Egyptian temple ruins, correct period
+   62 [openverse/flickr] Ancient Egyptian religious artifact, relevant period
+   26 [europeana] Old map, unclear region, not relevant
+   22 [europeana] Islamic Cairo mosque, wrong era entirely
+   14 [met] Medieval Christian illumination, completely wrong
+   12 [met] Medieval Christian painting, wrong subject
+   12 [artic] Post-impressionist coastal scene, irrelevant
+    9 [met] Garden design diagrams, totally irrelevant
+
+=== BEAT: The system that used them was gone.
+   52 [openverse/flickr] obsolete control panel suggests defunct system
+   52 [europeana] archival photo of obsolete early vehicle
+   42 [artic] stormy sunset evokes end or passing
+   34 [europeana] women at desk, no system collapse context
+   26 [met] crucifixion painting, wrong subject matter
+   22 [met] Bruegel harvest painting, unrelated system
+   20 [nasa] active ISS, system still operational
+   20 [nasa] active space station, not gone system
+
+=== BEAT: The Book of Enoch ends with the watchers imprisoned, chained in a dark
+   76 [europeana] Ancient Greek manuscript fragment, Book of Enoch
+   72 [europeana] Ancient papyrus manuscript fragment, relevant period
+   72 [europeana] Ancient papyrus text fragment, appropriate context
+   24 [artic] Medieval illuminated manuscript, wrong subject matter
+    6 [artic] 19th century portrait, completely irrelevant
+    6 [artic] Japanese woodblock print, completely irrelevant
+    2 [openverse/flickr] Modern lecture slide, completely irrelevant
+    2 [openverse/flickr] Event poster with baked-in text, irrelevant
+
+=== BEAT: That's the theological horror the early church found in this text.
+   66 [met] Early church carved cross, theologically resonant
+   34 [met] Hindu/Buddhist deity, wrong tradition entirely
+   24 [artic] Decorative reliquary box, wrong subject
+   19 [met] Renaissance portrait, unrelated to narration
+    9 [artic] Architectural floor plan, completely irrelevant
+
+=== BEAT: But the world they altered doesn't go back to what it was.
+   82 [openverse/flickr] early world map; cartographic record of altered knowledge
+   78 [openverse/flickr] Blue Marble Earth; the world itself unchanging
+   76 [europeana] war-damaged bridge; world altered by conflict
+   66 [met] expulsion from Eden; world irreversibly changed
+   59 [europeana] Punch 1919 peace angel; post-WWI altered world
+   48 [nasa] barren Mars landscape; altered world concept
+   45 [nasa] cratered moon surface; permanent change implied
+   42 [met] crucifixion painting; theologically adjacent but vague
+
+=== BEAT: The knowledge they brought, metallurgy, astrology, the technology of w
+   46 [met] Bronze combat sculpture hints war technology
+   29 [artic] Medieval feast scene, loosely period but irrelevant
+   26 [met] Harvest scene, no metallurgy or war technology
+   22 [artic] Vague sketch, no metallurgy/war/astrology relevance
+   19 [europeana] Hebrew document, no depicted knowledge transfer
+   16 [met] Crucifixion painting, unrelated to narration
+   14 [europeana] Baroque palace exterior, nothing relevant
+   12 [artic] Modern collage with text overlays, irrelevant
+
+=== BEAT: The corruption, as God says in Enoch, has spread to the whole earth.
+   66 [europeana] War destruction evokes widespread earthly corruption
+   49 [met] Biblical crucifixion painting, religious but off-topic
+   46 [met] Medieval biblical figure in barren landscape
+   39 [artic] Ancient coin, vaguely period-adjacent but irrelevant
+   38 [openverse/flickr] Generic sky, loosely heavenly but vague
+   37 [artic] Roman coin, ancient but unrelated to Enoch
+   36 [artic] Gauguin painting, wrong subject entirely
+   34 [met] Annunciation scene, unrelated to corruption theme
+
+=== BEAT: Binding the watchers doesn't uncorrupted.
+   16 [wikimedia] Newspaper collage with baked-in text
+   14 [artic] Men by river, no relevant connection
+   12 [artic] Beach scene, no relevant connection
+    9 [artic] Decorative book cover, unrelated content
+
+=== BEAT: The idea that beings could intervene in human civilization, be punishe
+   76 [met] Crucifixion: divine being punished, irreversible legacy
+   42 [artic] ancient deity amulet, loosely mythological
+   42 [artic] similar Egyptian deity figurine, generic
+   22 [met] harvest scene, no intervention or punishment
+   14 [smithsonian] bureaucratic resignation letter, unrelated
+    9 [met] decorative chair, entirely irrelevant
+    8 [nasa] masked woman at Capitol, unrelated
+    6 [artic] blank white canvas, unusable
+
+=== BEAT: The cat's version of this is quieter but structurally identical.
+   82 [wikimedia] cat interacting quietly with lizard
+   76 [wikimedia] cat sitting quietly, calm demeanor shown
+   72 [europeana] quiet cat observing, archival photo
+   69 [wikimedia] cat moving quietly through snow
+   49 [artic] painting of person with small cat
+   24 [artic] illustration with baked-in text overlay
+   19 [artic] Japanese print, small cat detail only
+   10 [openverse/flickr] cat-shaped crackers in soup, irrelevant
+
+=== BEAT: The Roman Empire, which used cats for pest control across its entire i
+   76 [artic] Roman Forum ruins engraving, period-appropriate
+   49 [europeana] panoramic city view, possibly Rome, unclear
+   42 [europeana] medieval illuminated manuscript, wrong period
+   34 [artic] faint sketch, Roman column visible but unclear
+   19 [europeana] empty field, no Roman subject matter
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: Every attempt to remove cats from human civilization has failed comple
+   82 [openverse/flickr] Large feral cat colony in garden
+   14 [wikimedia] Anatomical jaw illustration, no cats
+   12 [artic] Soviet WWII propaganda poster, no cats
+    9 [artic] Stone Ganesha sculpture, no cats
+    9 [artic] Pre-Columbian figurines, no cats
+    9 [europeana] Book cover text page, no cats
+    9 [europeana] Decorative flower badges on cards
+    8 [openverse/flickr] Animal carcass in rocks, disturbing
+
+=== BEAT: Medieval European campaigns against cats, particularly in periods when
+   42 [met] Medieval weapon loosely evokes persecution campaigns
+   26 [met] Medieval figures but no cats or witchcraft
+   22 [artic] Religious illumination, no cats depicted
+   16 [artic] Church interior, irrelevant to cat persecution
+   14 [artic] Decorative box, completely unrelated subject
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: The cats were already everywhere.
+   82 [openverse/flickr] three cats visible in outdoor setting
+   76 [artic] Manet print shows cats everywhere on rooftops
+   65 [openverse/flickr] two cats together, generic indoor shot
+   34 [met] single bronze sculpture, not real cats
+   25 [openverse/flickr] single cat, focus on chipmunk outside
+   24 [artic] Japanese print, woman with tiny cat
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: Cats had spread to Viking sites near the Baltic Sea, to Mediterranean 
+   59 [met] old master painting with cat, loosely period-relevant
+   52 [openverse/flickr] outdoor feral cat, suggests roaming independence
+   48 [openverse/flickr] modern tabby cat, generic but not wrong
+   46 [artic] gold cat artifact, historically interesting but tiny
+   34 [artic] Picasso modern art, wrong era entirely
+   12 [met] medieval portrait diptych, no cat present
+   10 [openverse/flickr] dog paw close-up, wrong animal entirely
+    9 [artic] bronze lion statue, wrong animal entirely
+
+=== BEAT: Today there are an estimated 600 million domestic and feral cats world
+    6 [artic] date text artwork; no cats
+    6 [europeana] elderly woman indoors; no cats
+    6 [artic] abstract painting; no cats
+    6 [artic] portrait photography collage; no cats
+    6 [europeana] insect specimen; no cats
+    6 [europeana] people at camp; no cats
+    6 [smithsonian] coin artifact; no cats
+    6 [smithsonian] coin artifact; no cats
+
+=== BEAT: The cats did not.
+   76 [wikimedia] multiple cats walking away, not doing something
+   66 [artic] two cats in Manet print, archival
+   59 [artic] cat present but painting focuses on person
+   55 [openverse/flickr] cat with baked-in meme text overlay
+   40 [openverse/flickr] cat illustrated but prominent ad text
+   22 [artic] Japanese print, woman, no clear cats
+    6 [europeana] white flowers, no cats at all
+    6 [smithsonian] biplane aircraft, no cats
+
+=== BEAT: The Book of Enoch says the watchers descended without permission, tran
+   76 [europeana] ancient Greek manuscript fragment, Book of Enoch
+   74 [europeana] ancient papyrus manuscript, early religious text
+   74 [europeana] ancient papyrus fragment, scriptural manuscript
+   42 [artic] medieval illuminated manuscript, angelic figures loosely relevant
+    6 [artic] 19th century portrait, completely irrelevant
+    6 [artic] Japanese woodblock print, entirely unrelated
+    2 [openverse/flickr] modern event poster, completely irrelevant
+    2 [openverse/flickr] book presentation slide, totally unrelated
+
+=== BEAT: Whatever they came here to do, they appear to be continuing to do it.
+   76 [met] Harvesters continuing their fieldwork activity
+   59 [europeana] Two people walking, continuing their journey
+   49 [artic] Woman engaged in seated grooming activity
+   35 [openverse/flickr] Person listening, some sense of ongoing action
+   29 [europeana] Static portrait, no activity depicted
+   26 [europeana] Building exterior, no ongoing activity shown
+   24 [artic] Single figure, unclear ongoing purpose
+   22 [met] Static portrait, no ongoing activity
+
+=== BEAT: They are found on every continent except Antarctica.
+   19 [europeana] WWI soldiers, not about global distribution
+   18 [openverse/flickr] Puppy photo, animals found widely but too generic
+   16 [europeana] Abstract cell diagram, unrelated to continents
+   14 [artic] Mexican broadsheet with skeletons, irrelevant
+   12 [artic] Surrealist sculpture object, irrelevant
+   12 [artic] Ancient gold ring artifact, irrelevant
+    8 [openverse/flickr] 1970s man portrait, completely irrelevant
+    8 [openverse/flickr] Roller coaster ride, irrelevant
+
+=== BEAT: The science says cats moved into human civilization without invitation
+   28 [openverse/flickr] cat shown but heavy text overlays present
+   24 [met] decorative bowl, no cat content
+   22 [openverse/flickr] prehistoric large cat skeleton, wrong era
+   22 [artic] modern lion statue, not cat history
+    9 [artic] figurative sculpture, irrelevant subject
+    9 [artic] abstract artwork, completely irrelevant
+    9 [met] Renaissance religious painting, no cats
+    9 [met] decorative chair, irrelevant subject
+
+=== BEAT: Thanks for watching, and if you want to see another case of a civiliza
+   22 [artic] Abstract map-like artwork, loosely suggestive
+   16 [europeana] Archaeological dig, wrong region entirely
+   14 [europeana] European excavation site, not Amazon
+    9 [europeana] Snowy trench, wrong continent entirely
+    8 [openverse/flickr] Generic landscape, no Amazon geoglyphs
+    8 [artic] Japanese woodblock print, unrelated
+    8 [met] Ornate pocket watch, unrelated
+    7 [met] Gold medallion artifact, unrelated
+
+=== BEAT: In August of 1492, three ships left a harbor in southern Spain and sai
+   92 [europeana] Columbus departing Spain with ships visible
+   59 [europeana] period sailing ship model, loosely relevant
+   56 [smithsonian] correct event but card format with text
+   22 [europeana] portrait engraving of wrong person
+   16 [artic] medieval helmet unrelated to voyage
+   14 [met] Islamic helmet unrelated to narration
+   12 [met] 18th-century bust, wrong period entirely
+   12 [artic] Renaissance religious figure, unrelated
+
+=== BEAT: Not a camp, not a seasonal shelter, a town built of stone with narrow 
+    9 [artic] Civil War camp engraving, wrong culture
+    9 [artic] military camp engraving labeled Le Camp
+    9 [artic] Civil War camp illustration, wrong subject
+    7 [europeana] botanical specimen sheet, unrelated
+    6 [wikimedia] Holocaust prisoners, completely wrong subject
+    6 [wikimedia] WWII concentration camp facility, wrong
+    6 [met] decorative quilt, utterly unrelated
+    6 [met] Renaissance religious painting, wrong period
+
+=== BEAT: Families were already living in houses their great-great-grandparents 
+   76 [artic] elderly couple inside rustic historic interior
+   42 [europeana] elderly woman, period portrait, no house shown
+   24 [europeana] mid-20th century couple, no multigenerational home
+   22 [met] decorative quilt, no house or family
+   19 [artic] antique furniture object, no dwelling context
+   16 [europeana] cropped child portrait, no house or family
+   14 [met] Renaissance religious painting, wrong context
+    9 [wikimedia] food price chart, completely unrelated
+
+=== BEAT: That voyage is where most people begin the story of America.
+   76 [artic] Period etching of small boat crossing water
+   19 [smithsonian] Handwritten manuscript, no voyage imagery
+   12 [artic] French book page, wrong subject entirely
+    9 [europeana] Book cover, African/Asian voyages, wrong
+    9 [europeana] Africa travels title page, wrong subject
+    6 [met] Decorative furniture, completely irrelevant
+    6 [wikimedia] Mid-century film still, wrong era entirely
+    6 [artic] Modern gallery text installation, irrelevant
+
+=== BEAT: But on the morning those ships left port, on a windswept mesa in what 
+   66 [europeana] period sailing ships leaving port, stormy
+   59 [met] Dutch town on flat windswept plain, ships
+   19 [met] 18th-century European gentlemen portrait, wrong
+   16 [europeana] European town street scene, wrong context
+   14 [europeana] pastoral meadow at sunset, irrelevant
+   12 [artic] autumn woodland path, wrong subject entirely
+   12 [artic] autumn woodland path, wrong subject entirely
+   12 [smithsonian] impressionist woodland landscape, irrelevant
+
+=== BEAT: Clans were already keeping histories of migrations that had ended gene
+   42 [artic] Wandering figure on crutches evokes migration loosely
+   34 [met] Peasant harvest scene, settled community not migration
+   26 [met] Classical relief sculpture, no migration history context
+   19 [met] Late 18th-century portrait, wrong subject entirely
+   14 [artic] Early 20th-century woman portrait, irrelevant
+   12 [artic] Modern abstract art installation, completely irrelevant
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: It is the date printed in textbooks, the moment the map is said to hav
+   30 [nasa] planetary map with coordinates, loosely evokes cartography
+   26 [europeana] stone block artifact, no historical map context
+   24 [europeana] medieval castle, no specific date or map
+   24 [met] Islamic helmet artifact, no map context
+   22 [met] 19th-century portrait, unrelated to map/date
+   22 [artic] ancient coins, no textbook date connection
+   19 [wikimedia] currency note, wrong subject entirely
+   18 [met] religious crucifixion painting, no map relevance
+
+=== BEAT: Children were being taught songs that were already ancient.
+   52 [openverse/flickr] Children in classroom setting being taught
+   46 [met] Old master painting of children with adults
+   42 [europeana] Children with adults but no singing/teaching
+   39 [artic] Historical genre scene with children and adults
+   34 [met] Children depicted but no teaching or song
+   14 [europeana] Single child portrait, no teaching context
+    9 [met] Marble sculpture unrelated to narration
+    9 [europeana] Single adult woman portrait, irrelevant
+
+=== BEAT: By the time Columbus set sail, that town had been continuously occupie
+   66 [wikimedia] Columbus landing scene, right era
+   62 [wikimedia] Columbus portrait anchors narration reference
+   49 [europeana] aboriginal America map, loosely relevant context
+   14 [wikimedia] unclear figure, oval collage overlay unusable
+   12 [europeana] Quebec battle map, wrong subject entirely
+   12 [europeana] Charleston harbor map, wrong subject entirely
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Most people know it as "Old Oribi." And it may be the oldest continuou
+   12 [nasa] Satellite view, wrong region for topic
+    9 [met] African ivory mask, unrelated to US settlement
+    9 [met] African wooden figure, wrong subject entirely
+    9 [artic] Small animal artifact, no settlement relevance
+    9 [artic] Patchwork garment, unrelated to Old Oribi
+    9 [europeana] Modern family photo, irrelevant to narration
+    9 [europeana] Gaza protest signs, wrong subject entirely
+    9 [europeana] Illustration of crowd, wrong subject entirely
+
+=== BEAT: Today, we're looking at how a village on a waterless rock in the deser
+   46 [met] Ancient desert stone structure, museum context
+   22 [europeana] WWII bunker, wrong subject entirely
+   16 [artic] Painter on rooftop, no desert village
+   14 [met] Medieval nativity painting, wrong subject
+    9 [artic] Japanese portrait photo, unrelated
+    9 [met] Victorian clown portrait, irrelevant
+    9 [artic] Text-only date graphic, unusable
+    9 [europeana] English equestrians, completely unrelated
+
+=== BEAT: To understand Oribi, you first have to understand where it sits.
+   14 [met] Ancient Egyptian stele, wrong subject entirely
+   14 [met] Flemish religious painting, no geographic link
+   12 [artic] Abstract brown print, no geographic relevance
+   12 [met] Medieval Islamic manuscript, unrelated content
+    9 [artic] Soviet WWII propaganda poster, unrelated
+    9 [artic] Baked-in text overlay, close-up drapery
+
+=== BEAT: And why the people who live there now would rather you didn't come see
+   45 [nasa] guarded young woman, unwelcoming demeanor fits
+   42 [wikimedia] private home interior, family keeping private
+   42 [nasa] resident standing outside, protective body language
+   26 [artic] violent woodcut illustration, wrong subject
+   14 [artic] medieval painting, unrelated to narration
+   14 [met] sculpture bust, unrelated to place or residents
+   14 [met] terracotta bust sculpture, irrelevant
+    9 [europeana] medieval manuscript, watermarked, irrelevant
+
+=== BEAT: Northern Arizona is a landscape of mesas, flat-topped fingers of rock 
+   30 [nasa] satellite view too abstract, split-panel format
+   24 [wikimedia] urban campus aerial, no mesas visible
+   22 [nasa] CGI 3D terrain render, not real photography
+    9 [artic] Navajo silver turquoise bracelet, no landscape
+    9 [artic] Native American silver necklace, no landscape
+    9 [artic] Navajo silver turquoise cuff, no landscape
+    9 [europeana] Native American feathered headdress artifact
+    6 [met] Ethiopian bronze cross, completely unrelated
+
+=== BEAT: Oribi sits on Third Mesa, near its southern tip, where the rock ends a
+    9 [artic] Surrealist painting, no mesa or landscape
+    7 [met] Renaissance religious painting, no connection
+    7 [met] Chinese manuscript illustration, unrelated
+    7 [smithsonian] Chinoiserie pagoda drawing, irrelevant
+    6 [artic] Decorative circular pattern, entirely irrelevant
+    6 [artic] Portrait of woman indoors, irrelevant
+    6 [smithsonian] Classical decorative frieze drawing, irrelevant
+    6 [met] Degas ballet rehearsal painting, irrelevant
+
+=== BEAT: Which raises the obvious question.
+   46 [artic] surreal face image suggests questioning mood abstractly
+   22 [europeana] decorative shield unrelated to question concept
+   16 [artic] medieval helmet irrelevant to question concept
+   16 [artic] ancient helmet unrelated to narration line
+   15 [nasa] Saturn rings unrelated to narration concept
+   12 [europeana] archaeological artifacts catalogue plate with ruler
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The rainfall in this part of Arizona averages somewhere between six an
+   29 [europeana] Arid mountains visible but wrong region
+   24 [europeana] Lush green waterfront, not Arizona desert
+   22 [nasa] Scientific collage with baked-in text labels
+   19 [europeana] Flood scene contradicts minimal rainfall narration
+   18 [nasa] Satellite hurricane image, not Arizona dryness
+   18 [nasa] Tropical storm satellite view, irrelevant
+    6 [met] Bronze sculpture, completely unrelated
+    6 [met] Religious painting, completely unrelated
+
+=== BEAT: The nearest reliable water was down at the base of the Mesa, meaning t
+   16 [met] Mesoamerican relief, no water carrying
+   14 [europeana] Stone carving figure, wrong context
+   12 [artic] Greek vase, unrelated to mesa water
+   10 [artic] Monet water lilies, wrong subject
+    9 [smithsonian] Coastal rock seascape, irrelevant
+    9 [artic] Monet bridge painting, irrelevant
+    8 [met] Flemish portrait, completely unrelated
+    8 [smithsonian] Decorative engraving border, unusable
+
+=== BEAT: Why here?
+   76 [artic] Gauguin Tahiti painting evokes existential 'why here'
+   22 [artic] Goya capricho, wrong subject entirely
+   16 [artic] catalogue page with text overlays, unrelated
+   14 [europeana] tiny artifact image, unclear and unusable
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The wind never stops.
+   46 [artic] Draped figures suggest wind-blown fabric loosely
+   16 [artic] Abstract painting, no wind depicted
+   12 [artic] Bronze sculpture, static, no wind
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: If you were choosing a place to build a town that you wanted to last, 
+   42 [nasa] Mars crater—inhospitable but wrong planet
+   16 [europeana] Soviet ration coupons, unrelated to surveying
+   14 [artic] Gauguin painting, unrelated to surveying/settlement
+    9 [artic] Abstract art piece with baked-in text
+    9 [artic] Abstract collage artwork, entirely irrelevant
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The land is not generous, the winters are cold, and the summers are br
+   22 [artic] coastal cliff scene, not harsh land/seasons
+   12 [artic] classical ruins painting, unrelated
+   12 [europeana] urban street crowd, unrelated
+    9 [europeana] medieval manuscript illustration, unrelated
+    9 [europeana] Israeli billboard, unrelated subject
+    9 [artic] sketchy figures scene, unrelated
+    2 [nasa] Saturn rings, completely irrelevant
+    2 [nasa] planetary surface image, irrelevant
+
+=== BEAT: According to Hopi tradition, the site was not chosen because it was ea
+   66 [artic] Hopi kachina doll directly relevant culturally
+   56 [artic] Native American archival photo, loosely relevant
+   42 [europeana] Southwestern Native textile, generic connection
+   34 [europeana] Indigenous textile, unclear Hopi connection
+   34 [europeana] Indigenous textile, unclear Hopi connection
+    6 [artic] Nude figure completely unrelated to narration
+    6 [met] European religious painting, entirely wrong subject
+    6 [met] Flemish altarpiece painting, entirely wrong subject
+
+=== BEAT: Hopi oral history describes the ancestors arriving into this world and
+   76 [artic] Hopi kachina doll figure, relevant
+   49 [artic] Hopi ceramic vessel, loosely related
+   22 [met] Mesoamerican relief, wrong culture entirely
+    6 [artic] Gallery wall text, completely irrelevant
+    6 [met] European religious painting, wrong context
+    6 [met] European ivory casket, wrong culture
+
+=== BEAT: And yet this is precisely the point.
+   66 [artic] NOT YET text art suggests counterpoint idea
+   42 [europeana] allegorical engraving loosely fits rhetorical moment
+   39 [artic] satirical cartoon implies a point being made
+   36 [artic] emotional photo unrelated to narration concept
+   32 [met] religious triptych painting unrelated
+   24 [europeana] abstract sculpture irrelevant to narration
+   22 [nasa] Saturn atmosphere image unrelated
+   22 [europeana] fortress park scene unrelated
+
+=== BEAT: It was chosen because it was hard.
+   55 [nasa] NASA spherical tank, technical difficulty implied
+   45 [nasa] Astronauts working hard in spacecraft
+   24 [artic] Plain white ceramic jar, unrelated
+   16 [smithsonian] Small decorative flag, unrelated
+   16 [smithsonian] Small arrow pennant, unrelated
+   15 [nasa] Abstract satellite image strip, unclear
+   14 [artic] Medieval religious woodcut, unrelated
+   14 [artic] Korean decorative screens, unrelated
+
+=== BEAT: The Hopi were offered something else, a short ear of corn, a planting 
+   66 [artic] archival photo Pueblo woman hardship life
+   59 [artic] Hopi kachina figure, ceremonial prayer object
+   49 [artic] Hopi pottery vessel, water storage context
+   39 [europeana] Native weaving, generic Southwest textile artifact
+   34 [europeana] textile artifact, no direct Hopi corn connection
+   34 [europeana] similar textile, wrong subject matter entirely
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Other peoples, according to the tradition, were offered abundance, lon
+   26 [europeana] fibrous husk vaguely resembles corn husk
+   22 [europeana] decorated gourd vessel, loosely abundance theme
+   16 [europeana] outdoor crowd gathering, no corn/abundance
+   14 [artic] small animal figurine, irrelevant
+   12 [artic] patchwork garment, unrelated to narration
+    2 [openverse/flickr] comic strip panels, completely wrong
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: They accepted it.
+   66 [artic] Title text references accepting an offering directly
+   59 [artic] Victorian card reads 'accept this offering' — loosely relevant
+   24 [europeana] Family photo, no acceptance theme visible
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: They would be stewards of the land.
+   32 [met] needlework sampler with house and land scene
+   16 [met] decorative stained glass, unrelated
+   14 [artic] sketch of two figures, no land context
+   12 [europeana] catalogue plate, baked-in labels
+    9 [artic] anthropomorphic animal illustration, irrelevant
+    7 [europeana] nearly blank with tiny fragment
+    6 [europeana] blank page scan, nothing visible
+    6 [artic] mouse cartoon poster, irrelevant
+
+=== BEAT: And in accepting it, they entered into a covenant.
+   66 [europeana] illuminated manuscript evokes sacred covenant text
+   46 [met] friendship quilt involves communal pledge tradition
+   42 [artic] decorative card, acceptance theme but too generic
+   34 [artic] 19th-century satirical scene, wrong context entirely
+   29 [met] Buddhist deity statue, no covenant connection
+   24 [artic] abstract expressionist print, unclear covenant imagery
+   16 [europeana] strongman photo unrelated to covenant theme
+   14 [met] ornate revolver irrelevant to covenant theme
+
+=== BEAT: In Hopi understanding, it is the reason for it.
+   76 [artic] Hopi kachina doll, spiritual cultural object
+   69 [artic] Hopi pottery with ceremonial symbolic design
+   59 [artic] Native American portrait, not specifically Hopi
+   -1 [openverse/flickr] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: And they would live a life demanding enough that the ceremonies could 
+   12 [artic] sketch of figures unrelated to rain ceremonies
+    9 [artic] miniature room diorama unrelated to ceremonies
+    9 [artic] colonial interior diorama irrelevant to subject
+    8 [europeana] nurses at train window irrelevant
+    7 [wikimedia] fairy door on tree trunk irrelevant
+    7 [europeana] lab scientists with watermark irrelevant
+    6 [europeana] screenshot of email text unusable
+    6 [wikimedia] construction site fencing completely irrelevant
+
+=== BEAT: The village is not built beside water.
+   82 [europeana] Hillside village with no visible water
+   59 [artic] Inland village scene, no water visible
+   16 [europeana] Village clearly built beside water
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Corn planted more than a foot deep into the sand, deep enough to reach
+   18 [openverse/flickr] Woman in sari, not deep sand planting
+   12 [smithsonian] Herbarium specimen, not corn in sand
+    9 [europeana] Native beaded artifact, not farming
+    6 [met] Renaissance religious painting, completely unrelated
+    6 [met] Crucifixion painting, totally unrelated
+    6 [artic] Old portrait engraving, completely unrelated
+    6 [artic] Genre scene interior, completely unrelated
+    6 [artic] Portrait engraving, completely unrelated
+
+=== BEAT: That is not a footnote to the founding of Oribi.
+    9 [artic] 17th-century portrait engraving, unrelated
+    9 [artic] 19th-century painter portrait, unrelated
+    9 [artic] Landscape etching, no connection to Oribi
+    6 [europeana] AIDS health poster, unrelated to Oribi
+    6 [europeana] Spanish AIDS awareness poster, irrelevant
+    6 [europeana] Soviet postcard, unrelated to Oribi
+    2 [nasa] Baseball game, Columbia team shirts, irrelevant
+    2 [nasa] Robotics competition, no Oribi connection
+
+=== BEAT: Varieties of corn bred over centuries, specifically for this soil, thi
+    8 [europeana] Decorative textile, no corn or farming
+    6 [artic] Renaissance painting, no corn whatsoever
+    6 [artic] Portrait etching, no agricultural content
+    6 [artic] Genre scene figures, no corn depicted
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: Fields placed carefully at the mouths of washes, where runoff would sp
+   42 [europeana] Flat landscape with stormy sky, loosely relevant
+   26 [artic] Abstract painting, no agricultural fields visible
+    6 [met] 18th-century wedding scene, completely irrelevant
+    6 [met] Egyptian sculpture, unrelated to narration
+    6 [smithsonian] Book cover, wrong subject entirely
+    6 [met] Bronze pin artifact, unrelated to fields
+    6 [artic] 19th-century portrait, unrelated to subject
+    6 [artic] Portrait miniature, completely irrelevant
+
+=== BEAT: Farmers from anywhere else in the world would have looked at that grou
+   66 [artic] Farmer working field, harvesting crops depicted
+   46 [artic] Sharecropper woman, no impossible ground shown
+   26 [met] Interior genre painting, no farming or land
+   19 [wikimedia] Small town street, no farming context
+    9 [met] Religious crucifixion painting, completely irrelevant
+    9 [artic] Egyptian funerary figurine, entirely irrelevant
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: It is built where survival requires ceremony.
+   76 [met] ancient votive statue embodies ritual survival necessity
+   59 [europeana] church built where community gathers for ceremony
+   42 [europeana] WWI trench survival structure, no ceremony shown
+   26 [artic] battlefield dead, survival failed, no ceremony
+   24 [met] colonial interior, domestic not ceremonial survival
+   22 [europeana] rider at outpost, utilitarian not ceremonial
+   18 [artic] contemporary text art, wrong context entirely
+   16 [smithsonian] faint landscape sketch, no ceremonial content
+
+=== BEAT: Hopi tradition holds that Oribi was founded by the Bear Clan, whose le
+   62 [openverse/flickr] Hopi people in traditional ceremonial dress
+   49 [artic] Hopi kachina doll, loosely relevant
+    4 [artic] Nude figure, completely irrelevant
+    4 [met] Mughal painting, wrong culture entirely
+    4 [met] Medieval ivory carving, wrong subject
+    4 [met] Ancient blue faience artifact, irrelevant
+    4 [artic] Japanese interior, wrong culture entirely
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: This is where oral tradition and modern science end up, remarkably, in
+   59 [europeana] scientific microscopy image, modern science half
+   59 [europeana] blue scientific scan, suggests modern analysis
+   52 [artic] indigenous ceramic vessel, oral tradition culture
+   46 [met] ancient artifact, oral tradition possible but vague
+   42 [met] ancient winged figure, mythological not convergent
+   26 [artic] text wall art, contradicts narration visually
+   22 [artic] Civil War battlefield dead, wrong subject
+   16 [europeana] modern institutional building, irrelevant
+
+=== BEAT: The Bear Clan arrived after a long migration, settled the Mesa, and es
+   12 [artic] Bear and tiger sketch, not Native settlement
+    9 [artic] Abstract figure sketches, no clan or mesa
+    8 [artic] Dürer Christian Passion scene, wrong culture
+    8 [met] European Baroque fortune-teller painting, irrelevant
+    7 [met] Islamic decorative mandala, entirely wrong context
+    7 [met] 16th-century European portrait, wrong subject
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: So how old is Oribi exactly?
+    9 [artic] Old person portrait unrelated to Oribi
+    9 [europeana] Dutch genre painting unrelated to Oribi
+    9 [met] Chinese landscape scroll unrelated to Oribi
+    9 [europeana] Abandoned room interior unrelated to Oribi
+    9 [met] Ancient sphinx artifact unrelated to Oribi
+    9 [europeana] Old map illustration unrelated to Oribi
+    9 [met] Medieval ivory carving unrelated to Oribi
+    9 [artic] Colorful dancing figures unrelated to Oribi
+
+=== BEAT: Over time, other clans arrived from other directions, each one carryin
+   66 [artic] Multiple robed figures arriving across open landscape
+   16 [artic] Single person balancing on beach, irrelevant
+   12 [met] Ornate interior room, no clans arriving
+   11 [met] European carved interior, irrelevant to narration
+    9 [artic] Gallery video projection, completely unrelated
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The Hopi have been growing food in it for something close to a thousan
+   74 [europeana] Moqui village mesa engraving, Hopi homeland
+   69 [europeana] Hopi pueblo ruins on mesa, archival engraving
+   66 [europeana] Moqui/Hopi maiden archival engraving, relevant
+   49 [artic] Native American mother and child, archival photo
+   42 [artic] Hopi kachina doll, culturally relevant artifact
+    6 [artic] Greek/Roman decorative urn, wrong culture
+    6 [met] European religious painting, entirely wrong subject
+    6 [met] Ancient silver cup, wrong culture entirely
+
+=== BEAT: Clans arriving at Oribi were not automatically admitted.
+   34 [artic] arrival scene but train station, wrong context
+   26 [artic] Japanese procession scene, wrong culture/context
+    9 [artic] collage artwork unrelated to clan arrivals
+
+=== BEAT: And here, Hopi tradition preserves a detail that tells you a great dea
+   76 [artic] Hopi kachina doll embodies village tradition
+   58 [openverse/flickr] Hopi ceremonial dancer near pueblo wall
+   49 [europeana] Native American textile, possibly Hopi/Navajo
+   49 [europeana] Striped Native weaving, loosely relevant context
+    4 [artic] Unrelated nude figure, wrong subject
+    4 [artic] 19th-century French illustration, wrong culture
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: And what they offered in exchange was not labor or tribute.
+   66 [artic] Ancient relief shows offering scene, not labor
+   59 [artic] Decorative gift card suggests non-labor exchange
+   20 [nasa] Trade show exchange, too modern and generic
+   14 [europeana] Modern group photo, irrelevant to narration
+   12 [europeana] Mid-century portrait couple, no context
+   12 [europeana] Vintage group photo, no relevant context
+    9 [artic] Modern art poster, wrong subject entirely
+    5 [nasa] Space nebula image, completely irrelevant
+
+=== BEAT: It was ceremony.
+   72 [nasa] oath-swearing ceremony with raised hands
+   59 [europeana] costumed figures at ceremonial pouring event
+   56 [artic] ritual figurine suggests ceremonial culture
+   49 [artic] ceremonial carved stone artifact
+   42 [artic] lone figure with staff, vaguely ceremonial
+   42 [nasa] formal group photo post-ceremony
+   40 [nasa] NASA presentation event, not ceremony
+   24 [europeana] casual social gathering, not ceremonial
+
+=== BEAT: A clan that carried a ritual capable of bringing rain, of protecting t
+   42 [europeana] Native ritual bag, loosely ceremonial but generic
+   32 [artic] Domestic scene, no ritual or clan relevance
+   26 [europeana] European village scene, no ritual connection
+    9 [artic] Heavy baked-in text, wrong subject entirely
+    4 [europeana] blank placeholder image, unusable
+   -1 [openverse/wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: They had to be granted permission to stay.
+   56 [europeana] soldier and civilian, possible border/permission context
+   42 [europeana] couple outside home, vague residency theme
+   14 [artic] classical illustration, unrelated to narration
+   12 [europeana] nightclub scene, irrelevant to permission/stay
+    9 [artic] cartoon collage, wrong subject entirely
+    9 [artic] abstract art print, completely unrelated
+    8 [smithsonian] postal tag artifact, no relevance
+    2 [nasa] planetary surface, wrong subject entirely
+
+=== BEAT: The village was assembled, piece by piece, out of the ceremonies its p
+   66 [artic] woodcut village scene with church, evocative
+   59 [artic] sketch of village church with figures
+   26 [europeana] ruined stone structure, no village life
+   24 [europeana] empty farmland field, no village ceremony
+   22 [europeana] wooden boat hull, no village ceremony
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Then there is the archaeological record.
+   26 [met] Medieval tapestry, no archaeological record
+   19 [met] Renaissance portrait diptych, irrelevant
+   16 [artic] Baroque portrait engraving, irrelevant
+   14 [artic] 19th-century painter portrait, irrelevant
+   12 [artic] Landscape etching, no archaeological content
+    9 [europeana] Watermarked camp photo, irrelevant
+    9 [europeana] Watermarked picnic photo, irrelevant
+    9 [europeana] Watermarked outdoor gathering, irrelevant
+
+=== BEAT: The most commonly cited figure is around 1100 AD.
+   42 [europeana] Stone-age flint tools, wrong era entirely
+   39 [europeana] Metal ring artifact, no clear medieval dating
+   34 [met] Renaissance Annunciation painting, 15th century style
+   29 [met] 17th-century Baroque crucifixion painting, wrong era
+   24 [met] Baroque alabaster sculpture, wrong period entirely
+    6 [artic] Text-only artwork, completely irrelevant content
+    6 [artic] Text-only artwork, completely irrelevant content
+    6 [artic] Abstract striped artwork, no historical relevance
+
+=== BEAT: Archaeologists working in the southwest use tree ring dating, dendroch
+   22 [europeana] construction site workers, not dendrochronology
+   16 [europeana] brass armillary sphere, not wood dating
+   15 [nasa] satellite aerial view, archaeological site maybe
+   14 [europeana] aerial group photo, unrelated to tree rings
+   12 [met] ornate grandfather clock, wrong subject
+    9 [artic] decorative textile with birds, irrelevant
+    9 [artic] printed fabric pattern, entirely irrelevant
+    9 [met] Buddhist bronze sculpture, wrong subject
+
+=== BEAT: When that method was applied to Oribi and the surrounding area, the re
+   46 [europeana] ceramic sherds suggest archaeological dating context
+   46 [europeana] ceramic artifacts relevant to archaeological site dating
+   30 [nasa] lab work too modern for medieval archaeology narration
+   24 [europeana] rope and needles unrelated to site occupation dating
+   22 [nasa] aerial mine survey loosely evokes landscape analysis
+   12 [met] Bruegel harvest painting wrong century and context
+    9 [artic] Victorian interior scene unrelated to archaeology
+    6 [artic] faint portrait sketch, unrelated to archaeology
+
+=== BEAT: The southwest is one of the best-dated regions on the planet because o
+   46 [artic] Southwest brochure cover, illustrative not documentary
+   34 [europeana] Arid landscape stereoview, possibly Southwest region
+   22 [nasa] Scientists examining small specimens closely
+   22 [nasa] Lab analysis, possibly dendrochronology samples
+   20 [nasa] Lab scientists, possibly dating samples
+   12 [smithsonian] Military ribbon Southwest Asia, wrong context
+    9 [europeana] German museum hat, unrelated to narration
+    9 [europeana] Old leather cap, museum catalog overlay
+
+=== BEAT: Genghis Khan had not been born.
+   56 [artic] Armored warrior on horseback, loosely relevant
+   42 [artic] Child portrait evokes birth concept weakly
+   14 [artic] Abstract modern art, no relevant connection
+   -1 [openverse/wikimedia] (not inspected)
+   -1 [openverse/wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Angkor Wat had not been built.
+   62 [nasa] Aerial view of Angkor Wat complex
+   59 [artic] Khmer stone head pre-Angkor Wat period
+   56 [artic] Khmer sandstone figure pre-construction era
+    6 [artic] Unrelated portrait of modern child
+    6 [smithsonian] Tiny unidentifiable specimen image
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Around the year 1100, the Norman conquest of England was still within 
+   56 [artic] Medieval silver casket, plausibly Norman era
+   26 [europeana] Modern photograph of farm barn, irrelevant
+   24 [europeana] 20th-century photo of Swedish church, wrong
+   22 [europeana] Featureless leather book cover, unusable
+   19 [met] Italian Renaissance Nativity, wrong period
+   14 [met] 1532 portrait, four centuries too late
+   12 [met] 17th-century genre painting, wrong period
+    9 [artic] Pre-Columbian gold artifact, wrong culture
+
+=== BEAT: The first stone of Notre Dame de Paris would not be laid for another 6
+   14 [artic] Abstract sketch of ruins, vaguely medieval but irrelevant
+    9 [europeana] Modern religious ceremony, unrelated to Notre Dame
+    9 [europeana] Late 19th century crowd, no Notre Dame relevance
+    9 [europeana] Camden Town Station, wrong country and subject
+    9 [artic] Abstract yellow artwork, no relevant subject matter
+    5 [nasa] Satellite coastal view, completely unrelated
+    2 [nasa] Modern NASA presenter, entirely wrong subject
+    2 [nasa] Same NASA presenter, entirely wrong subject
+
+=== BEAT: Sit with that number for a moment.
+   66 [artic] wooden block with number 1 visible
+   55 [nasa] vast cosmic scale invites contemplative pause
+   46 [artic] abstract grid art suggests contemplation loosely
+   42 [europeana] quiet woodland scene suggests sitting/stillness
+   40 [nasa] birds sitting still suggests pause moment
+   35 [nasa] stark planetary surface evokes silent reflection
+   34 [artic] landscape sketch unrelated to number concept
+   22 [europeana] nude figure painting unrelated to narration
+
+=== BEAT: It genuinely helps the channel and lets me keep researching stories li
+   19 [met] Ancient papyrus loosely suggests research/documents
+   16 [artic] German war charity print unrelated to narration
+   14 [met] Medieval portrait diptych unrelated to topic
+   14 [artic] Goya war etching unrelated to channel support
+   12 [artic] Decorative textile pattern completely irrelevant
+   12 [met] Ancient bronze pin completely irrelevant
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: Before we continue, if you enjoy documentaries that explore forgotten 
+   46 [europeana] ancient bronze artifacts loosely suggest archaeology
+   12 [europeana] generic portrait, no historical-documentary relevance
+   10 [artic] modern portrait of unknown man, irrelevant
+    9 [artic] baked-in text overlay, unrelated artwork
+    9 [artic] modern painting, completely unrelated subject
+    6 [europeana] road race, totally irrelevant to narration
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: And a group of families climbed a rock in the Arizona desert and start
+   10 [artic] soldiers on rocks but European medieval setting
+    9 [europeana] old sketch of figures, wrong context entirely
+    8 [europeana] European period sketch, no desert relevance
+    8 [europeana] period sketch of group, no Arizona desert
+    6 [artic] toy figurines, no desert or stonework
+    6 [wikimedia] Greek classical sculpture, completely unrelated
+    6 [artic] urban fountain sculpture, no desert context
+    3 [nasa] NASA astronaut group photo, wrong subject
+
+=== BEAT: Because what happens next is where this village stops being merely old
+   26 [artic] Goya etching dramatic but no village context
+   24 [met] 19th-century horse fair, no village connection
+   22 [met] Renaissance religious panel unrelated to village
+   19 [met] Degas ballet rehearsal unrelated to village
+   16 [wikimedia] children's illustration unrelated to village history
+   14 [europeana] decorative pins object shot irrelevant
+   14 [nasa] modern portrait unrelated to village history
+   12 [artic] fashion plate catalogue irrelevant to narration
+
+=== BEAT: They are still there.
+   62 [nasa] Mars surface still present, enduring landscape
+   58 [nasa] Asteroid floating in space, still there
+   55 [nasa] Sun still burns, celestial permanence implied
+   26 [europeana] Topfoto watermark; children group photo
+   19 [wikimedia] Cubist painting, unrelated to narration
+   19 [artic] Gauguin portrait painting, wrong context
+   16 [europeana] Dense text page, no visual subject
+   16 [artic] Decorative ceramic plate, irrelevant subject
+
+=== BEAT: There was a confrontation.
+   66 [wikimedia] Armed soldiers in active military operation
+   59 [artic] Armored warrior suggests battle confrontation
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: A line of cornmeal was reportedly drawn on the ground.
+   22 [artic] Abstract lines on surface, loosely suggests line drawing
+   16 [artic] Storm landscape, no cornmeal line visible
+   14 [artic] Battle scene, no cornmeal line depicted
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: In the summer of 1540, 440 years or so after Oribi was founded, a grou
+   19 [artic] Pastoral landscape, no horsemen visible
+   16 [europeana] Old tree photo, no horsemen
+   16 [europeana] Old tree photo, no horsemen
+   16 [europeana] Single tree, no period relevance
+   14 [wikimedia] Modern summer field, irrelevant
+   12 [artic] Monet haystacks, wrong subject
+    9 [artic] Expressionist nudes, completely irrelevant
+    0 [openverse/flickr] Abstract digital art, entirely wrong
+
+=== BEAT: What they found instead were stone villages on high mesas, farmed by p
+    7 [europeana] map fragments, unrelated content
+    6 [europeana] bone artifact, no mesa villages
+    6 [europeana] stone sherds, not village scenes
+    6 [artic] Mexican broadsheet, wrong subject entirely
+    5 [artic] surrealist sculpture, completely irrelevant
+    5 [artic] gold ring artifact, no relevance
+    2 [nasa] Mars aerial, not pueblo mesas
+    0 [openverse/flickr] animated cartoon scene, totally wrong
+
+=== BEAT: They had been sent north by Francisco Vasquez de Coronado under the co
+   12 [europeana] Arctic ships, wrong era and subject
+    9 [artic] Classical figures, unrelated to Coronado
+    9 [artic] 19th-century French caricature, irrelevant
+    8 [artic] Ancient urn, no connection to narration
+    7 [europeana] Eastern European town square, irrelevant
+    7 [europeana] Modern harbor scene, completely wrong
+    6 [smithsonian] 1991 Gulf War letter, completely wrong
+    6 [smithsonian] Ledger document, unreadable and irrelevant
+
+=== BEAT: A boundary the Spanish were told not to cross.
+   76 [europeana] Period Spanish territorial boundary map fits well
+   22 [nasa] Modern aerial coastline no Spanish context
+   19 [met] 1532 portrait wrong subject matter
+   16 [artic] Medieval religious panel unrelated to boundary
+   12 [artic] Terracotta angel sculpture unrelated
+   12 [met] Italian Renaissance Holy Family painting irrelevant
+   12 [artic] Medieval crucifix sculpture unrelated
+    9 [europeana] Textile artifact completely unrelated
+
+=== BEAT: Consider what this moment actually is.
+   82 [artic] engraving titled 'L'Heureux Moment' perfectly literal
+   76 [artic] multiple screens freeze moments in time
+   66 [met] woman pauses in garden, contemplative moment
+   59 [met] harvest scene captures a passing moment
+   56 [artic] abstract figure with heart, symbolic moment
+   42 [europeana] photo-in-wallet mundane, unclear relevance
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: It ended quickly.
+   72 [nasa] spacecraft descending into atmosphere, final moments
+   66 [artic] dejected warrior on horse suggests defeat/end
+   45 [nasa] structure vanishing into darkness, ending feel
+   35 [nasa] spacecraft hardware, ambiguous end context
+   34 [artic] peaceful canoe scene, no ending implied
+   32 [europeana] birthday party scene, no ending depicted
+   29 [met] Egyptian mummy board, death but not quick end
+   26 [met] Egyptian coffin, unrelated to narration
+
+=== BEAT: There was fighting.
+   92 [europeana] Soldiers in ruined building, active combat zone
+   66 [europeana] Destroyed bridge implies wartime fighting aftermath
+   59 [met] Medieval manuscript battle scene with combatants clashing
+   42 [artic] War debris close-up, too abstract for fighting
+   34 [met] Medieval manuscript hunting scene, not battle fighting
+   26 [artic] Anti-fascism poster, text-heavy, not fighting imagery
+   24 [europeana] Decorative sculpture, not documentary fighting footage
+   22 [artic] Medieval engraving of domestic quarrel, wrong context
+
+=== BEAT: Two histories touching for the very first time.
+   66 [europeana] Two women touching, intimate contact, archival
+   62 [europeana] Two women seated together, touching hands
+   59 [met] Mythic creature and human touching dramatically
+   44 [met] Two figures leaning together over object
+   39 [artic] Medieval knight meets figure, archival print
+   34 [europeana] Family group, not two distinct histories
+   32 [artic] Solo figure on horizon, no meeting
+   29 [artic] Crowd scene, no clear meeting moment
+
+=== BEAT: And on the day the first European laid eyes on that village, the villa
+   14 [europeana] Mid-20th century BBQ scene, wrong era
+   12 [met] Ornate sword, no village or exploration context
+   12 [met] Jeweled sword detail, no relevant context
+    9 [met] Religious crucifixion painting, irrelevant subject
+    9 [artic] Impressionist haystacks, wrong subject entirely
+    9 [artic] Modern park scene, wrong subject entirely
+    9 [europeana] Naval ceremony photo, watermark present, irrelevant
+    9 [europeana] Naval ceremony photo, watermark present, irrelevant
+
+=== BEAT: It was older than the Spanish nation state that had sent them.
+   56 [met] medieval ivory Madonna, pre-Spanish nation era
+   49 [europeana] ancient stone structure, pre-Spanish era plausible
+   42 [europeana] architectural sketch, vaguely ancient but unclear
+   26 [met] Islamic manuscript, wrong culture entirely
+   14 [artic] baroque mythological painting, irrelevant
+   12 [artic] 18th-century domestic scene, irrelevant
+   12 [artic] sketch of male face, no historical context
+    9 [met] 19th-century portrait, wrong context entirely
+
+=== BEAT: Then the Spanish left, and Oribi went back to farming.
+   16 [artic] Medieval religious altarpiece, unrelated to farming
+   14 [europeana] Framed photo of Spanish steps, irrelevant
+   14 [europeana] Formal group portrait, unrelated to farming
+   12 [artic] Religious sculpture, no farming connection
+   12 [artic] Crucifix sculpture, wrong subject entirely
+   12 [smithsonian] Military ribbons, unrelated to farming
+    9 [europeana] Movie poster with baked-in text overlay
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: They returned.
+   76 [artic] Retour de Russie engraving depicts soldiers returning
+   66 [europeana] group arriving via vehicles suggests return
+   59 [europeana] Red Cross van arrival scene, loosely fits
+   44 [europeana] men seated at press conference, generic
+    9 [artic] abstract painting unrelated to narration
+    9 [artic] abstract artwork irrelevant to return theme
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: In 1629, Franciscan missionaries established a mission at Oribi and be
+   59 [met] Franciscan mission cross artifact, right era
+   19 [artic] Classical allegory engraving, wrong subject
+   16 [met] 17th-century equestrian portrait, wrong subject
+   14 [artic] Classical figures, unrelated to missions
+   14 [artic] Portrait etching, unrelated to missions
+   12 [met] Baroque Madonna painting, unrelated
+
+=== BEAT: At Hopi, the missionaries were killed and the churches were pulled dow
+   36 [artic] Hopi kachina doll, unrelated to revolt
+   34 [artic] Pueblo pottery, no connection to churches
+   32 [artic] Portrait of Native woman, not Hopi destruction
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: A rebellion planned across enormous distances and executed almost simu
+   66 [artic] powerful figure of enslaved rebellion leader
+   12 [artic] architectural floor plan, no rebellion content
+   12 [artic] circular building plan, no rebellion content
+    8 [met] Renaissance religious triptych, unrelated
+    8 [met] 17th-century family portrait, unrelated
+    8 [met] medieval portrait of woman, unrelated
+    5 [openverse/flickr] modern fracking protest, wrong subject entirely
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The Spanish were driven out of the region entirely.
+   26 [europeana] Native American jewelry, loosely post-Spanish era
+   22 [europeana] Indigenous silver bracelet, no Spanish expulsion
+   22 [europeana] Turquoise cuff bracelet, wrong subject matter
+   16 [artic] Medieval religious panel painting, unrelated
+   14 [artic] Angel sculpture, no expulsion relevance
+   12 [artic] Crucifix sculpture, wrong subject entirely
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: It lasted about 50 years.
+   46 [artic] Civil War era photo, duration unclear
+   42 [artic] Period room, no duration reference
+   39 [europeana] 1920s family photo, vague temporal
+   26 [met] 18th century portrait, wrong context
+   19 [met] Medieval portrait, wrong century entirely
+   18 [nasa] Satellite imagery, no duration relevance
+   16 [met] Medieval religious diptych, wrong context
+   15 [nasa] Mars lander, no duration relevance
+
+=== BEAT: In 1680, the Pueblo peoples of the southwest rose in a coordinated rev
+   46 [europeana] Pueblo textile artifact, loosely relevant culturally
+   12 [europeana] European town sketch, wrong continent and subject
+    9 [artic] European baroque interior, completely irrelevant
+    9 [artic] Dutch church interior painting, wrong subject
+    9 [europeana] European figure sketch, wrong subject entirely
+    7 [met] European silverware, wrong subject entirely
+    7 [met] Decorative glass goblet, entirely irrelevant
+    7 [artic] Asian Buddhist sculpture, wrong culture entirely
+
+=== BEAT: What followed is one of the harder chapters of the story, forced labor
+    7 [artic] Dutch portrait, unrelated to narration
+    7 [artic] Italian courtyard painting, irrelevant
+    7 [met] decorative ceramic dish, unrelated subject
+    7 [met] natural history bat illustration, irrelevant
+    6 [europeana] webpage screenshot, unusable for documentary
+    6 [europeana] artifact catalogue with ruler, irrelevant
+    6 [europeana] small artifact fragments, irrelevant
+    6 [artic] modern designer chair, completely irrelevant
+
+=== BEAT: When Spain reconquered New Mexico in the 1690s, they never truly regai
+   26 [met] Spanish colonial religious sculpture, marginal relevance
+   22 [met] Spanish nobleman portrait, wrong context entirely
+   16 [met] Portrait of woman, no Hopi/New Mexico relevance
+   12 [artic] Modern beach photo, completely irrelevant
+    9 [artic] Person on beach, zero historical relevance
+    7 [artic] Decorative vases, entirely irrelevant
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Oribi had faced the Spanish empire at the height of its power in the A
+   42 [met] Renaissance portrait diptych, generic period painting
+   29 [met] Medieval religious icon, unrelated to subject
+   16 [artic] Bronze Lincoln death mask, wrong subject
+   14 [artic] Ancient red amulet, wrong era entirely
+   14 [artic] Ancient marble face fragment, irrelevant
+   -1 [openverse/wikimedia] (not inspected)
+
+=== BEAT: The Hopi were too far, too high, too dry, and too determined.
+   82 [artic] Hopi kachina doll, directly relevant artifact
+   79 [artic] Pueblo ceramic vessel, likely Hopi origin
+   76 [artic] archival photo of Native American woman and child
+   49 [europeana] Native American textile, possibly Hopi or Navajo
+    6 [met] Italian Renaissance painting, completely wrong subject
+    6 [met] 16th-century European portrait, entirely irrelevant
+    6 [met] European decorative chair, completely wrong subject
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: And here is the detail that separates Hopi from nearly every other Pue
+    6 [met] Decorated guitar, unrelated to Hopi Pueblo
+    6 [met] American quilt, no Pueblo connection
+    6 [artic] 19th-century French caricature, irrelevant
+    6 [artic] French salon painting cartoon, irrelevant
+    6 [europeana] Child at beach, no Hopi relevance
+    6 [europeana] Parent and child at beach, irrelevant
+    6 [europeana] Rocky waterfall landscape, unrelated
+    5 [artic] Modern graphic design poster, wrong subject
+
+=== BEAT: Oribi is often called the oldest continuously inhabited settlement in 
+   16 [artic] Dutch maritime painting, unrelated to settlement
+   14 [artic] El Greco religious painting, wrong subject
+   12 [artic] El Greco Assumption, irrelevant to narration
+
+=== BEAT: The mission was never successfully reestablished.
+   38 [nasa] Jupiter image suggests space mission context
+   30 [nasa] NASA setting but wrong specific context
+   28 [nasa] NASA presentation, no failed mission link
+   26 [europeana] Grand estate, no mission context
+   22 [artic] Empty wall suggests abandonment loosely
+   19 [europeana] Archival school photo, no mission link
+   16 [artic] Surrealist sculpture, no mission relevance
+   14 [europeana] Two men embracing, entirely unrelated
+
+=== BEAT: But Acoma Pueblo in New Mexico, known as Sky City, makes a similar cla
+   96 [wikimedia] Adobe pueblo buildings atop dramatic mesa cliffs
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: There is an argument that surfaces every time Oribi is discussed, and 
+   76 [artic] two figures debating captures argument theme
+   59 [artic] animated argument between figures, relevant mood
+   42 [europeana] seated wise figure, loosely fits deliberation theme
+   34 [artic] townspeople talking, too generic and unrelated
+   32 [wikimedia] webpage screenshot with baked-in text overlay
+    9 [europeana] webpage screenshot, unreadable, unusable
+    9 [wikimedia] showgirls entirely unrelated to narration
+    9 [europeana] archaeological artifacts unrelated to argument
+
+=== BEAT: So the honest answer is this.
+   39 [europeana] Handwritten letter suggests honest personal statement
+   34 [artic] Archival portrait engraving, generic but vaguely usable
+   29 [europeana] Anonymous woman photo, no narrative connection
+   26 [artic] Old master etching, unrelated to honesty narration
+   26 [europeana] Damaged family snapshot, no thematic relevance
+   19 [artic] Surreal grotesque illustration, wrong tone entirely
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: All three have deep unbroken histories, and the precise founding dates
+   36 [artic] boat at sea, vaguely ancient/exploratory mood
+   26 [europeana] small artifact fragment, no settlement context
+   26 [europeana] corroded medallion objects, no settlement relevance
+   24 [europeana] ancient brooch artifact, irrelevant to narration
+   22 [artic] atmospheric forest, no historical settlement content
+    9 [artic] white paper sculpture, completely irrelevant
+    5 [nasa] radio telescope, contradicts historical narration
+    5 [nasa] modern aerospace facility, wrong subject entirely
+
+=== BEAT: Oribi is one of a very small number of places in North America, with a
+    9 [artic] Chicago Art Institute lion, unrelated
+    6 [artic] Modern furniture chair, completely irrelevant
+    6 [artic] 19th-century French illustration, unrelated
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: The competition, if you can even call it that, is between villages tha
+   26 [artic] Polynesian painting, not pre-Columbian Americas
+   22 [europeana] evocative archival mood but wrong subject
+   19 [wikimedia] modern surfing, unrelated to ancient villages
+   16 [europeana] modern cycling race, wrong subject entirely
+   14 [wikimedia] modern athletics competition, wrong context
+   14 [europeana] modern cyclists socializing, no relevance
+   12 [artic] abstract print, no ancient village content
+    9 [artic] baked-in text overlay, extreme close-up, irrelevant
+
+=== BEAT: Not which one wins, that there is more than one, because continuously 
+   56 [europeana] historic architectural drawing suggests long-standing structure
+   32 [artic] dark door suggests dwelling but too abstract
+   29 [europeana] modern crowd scene, no settlement context
+   26 [artic] figurative painting irrelevant to continuous habitation
+   22 [artic] three women outdoors, no habitation theme
+    9 [europeana] lottery ticket product shot with bold text overlay
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: That is the real story.
+   66 [artic] broadsheet headline 'terrible and true story' fits
+   59 [europeana] soldier amid ruins conveys harsh reality
+   49 [europeana] archival inscription tablet suggests record/truth
+   34 [artic] Toulouse-Lautrec sketch, loosely relevant
+   32 [artic] text-only artwork, baked-in text dominates
+   26 [wikimedia] Iberian lynx wildlife photo, unrelated
+   24 [europeana] Soviet anti-religion cartoon, unrelated
+   22 [nasa] Saturn planetary image, unrelated
+
+=== BEAT: It does not mean a ruin that was later reoccupied.
+   12 [europeana] Ancient artifact but not a reoccupied ruin
+   12 [europeana] Ancient coins, not ruins context
+    6 [europeana] Concert crowd, no ruins or archaeology
+    6 [artic] Woman sewing, unrelated to ruins
+    6 [met] Portrait of man, no ruins
+    6 [artic] Animal sketch, irrelevant to narration
+    6 [artic] Abstract animal print, no ruins
+    6 [met] Decorative chair, no ruins
+
+=== BEAT: Which brings us to the strangest day in Oribi's history, and it is not
+   46 [europeana] strange archival photo suits odd historical day
+   36 [artic] rural genre painting, vaguely historical but wrong
+   26 [artic] dark abstract painting, no historical relevance
+   22 [artic] surrealist artwork, unrelated to narration
+   19 [europeana] modern gallery sculpture, irrelevant
+    9 [europeana] ukulele catalogue image, completely irrelevant
+    8 [nasa] Obama at podium, wrong context entirely
+    8 [nasa] Obama speaking, wrong context entirely
+
+=== BEAT: No interruption.
+   55 [nasa] lone moon floating uninterrupted in space
+   52 [nasa] solitary moon, unbroken quiet space scene
+   50 [nasa] isolated moon in undisturbed dark space
+   46 [artic] peaceful undisturbed mountain landscape scene
+   32 [artic] Japanese woodblock, no interruption theme
+   26 [artic] collage of cartoon panels, wrong subject
+   22 [europeana] technical diagram with baked-in text labels
+   14 [europeana] tiny artifact fragment, nearly unreadable frame
+
+=== BEAT: By the turn of the 20th century, Oribi was the largest Hopi village, h
+    9 [artic] English waterway scene, no Hopi relevance
+    9 [artic] French Impressionist painting, no Hopi relevance
+    9 [europeana] European stone building, wrong subject entirely
+    6 [europeana] German greeting card, wrong subject entirely
+    6 [europeana] 1937-38 cartoon, wrong subject entirely
+    6 [artic] Modern abstract interior artwork, irrelevant
+    2 [nasa] Planetary surface photo, completely irrelevant
+    2 [nasa] Mars rover image, completely irrelevant
+
+=== BEAT: One faction, later called the friendlies, argued for accommodation, se
+    8 [artic] Religious painting; unrelated to Native American factions
+    8 [artic] Dutch maritime scene; entirely irrelevant
+    8 [artic] Assumption painting; no connection to narration
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: It means that in every single generation, without a gap for roughly 90
+   22 [met] Ancient pin artifact, vaguely indigenous but wrong
+   14 [europeana] Tropical jungle photo, wrong region entirely
+   12 [europeana] Watermarked Roman bust, wrong culture entirely
+   12 [europeana] Ancient coins on string, no Pueblo connection
+    9 [artic] European woman knitting, no Pueblo connection
+    8 [artic] Dark fantastical print, no relevance
+    7 [met] 19th-century European man, irrelevant
+    7 [met] Faint figure sketch, no Pueblo relevance
+
+=== BEAT: It is a day when the village broke itself in half.
+   22 [europeana] Historical engraving, storage scene, irrelevant
+   16 [artic] Haystacks painting, rural but no conflict
+   12 [artic] Pastoral river scene, no village division
+    9 [smithsonian] Faint landscape sketch, no village content
+    9 [europeana] Beatles record cover, wrong subject entirely
+    9 [europeana] Beatles record cover, wrong subject entirely
+    6 [artic] Nude figure sketch, completely irrelevant
+    5 [nasa] NASA rocket event, unrelated to narration
+
+=== BEAT: The United States government was pushing assimilation policy hard.
+   16 [europeana] WWI savings stamps poster, unrelated to assimilation
+   14 [europeana] Liberty Loan bond poster, wrong topic
+   14 [europeana] Liberty Loan bond poster, wrong topic
+   12 [artic] WWII farm volunteer poster, unrelated
+    9 [artic] Benjamin Franklin medal, irrelevant
+    9 [met] 19th-century European portrait painting, irrelevant
+    8 [nasa] Modern NASA press conference, wrong era
+    8 [nasa] Modern NASA panel, wrong era and topic
+
+=== BEAT: Children were to be taken to boarding schools, haircut, language forbi
+   46 [artic] Migrant mother, children present but wrong context
+   29 [europeana] Period family photo but wrong ethnic/cultural context
+   26 [europeana] Early 20th-century European portrait, wrong context
+   24 [europeana] Watermarked stock photo, unrelated subject
+   22 [met] 18th-century painting, wrong period entirely
+   16 [artic] European genre painting, unrelated village scene
+    9 [artic] Pastel interior sketch, entirely irrelevant
+    8 [nasa] Modern children at SWAT vehicle, wrong context
+
+=== BEAT: The other faction, the hostiles, a label given to them by outsiders, n
+   14 [artic] Old folk print, horse imagery, marginally period
+   12 [europeana] Modern Israeli man, wrong context entirely
+   10 [europeana] Israeli press conference, completely irrelevant
+    9 [europeana] Close-up portrait, wrong subject entirely
+    8 [artic] Still life painting, no relevance whatsoever
+    7 [artic] Urban watercolor, entirely wrong subject
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Both sides believed they were protecting the same thing.
+   19 [artic] Pastoral landscape, no opposing sides depicted
+   16 [artic] Rural etching, no conflict or opposing factions
+   14 [artic] Landscape drawing, no opposing sides shown
+    9 [europeana] Archaeological artifacts, no conflict relevance
+    9 [europeana] Corroded coin artifact, completely irrelevant
+    8 [europeana] Single artifact on white background, irrelevant
+    8 [nasa] Space nebula, no human conflict depicted
+    5 [nasa] Mars surface imagery, entirely off-topic
+
+=== BEAT: That is what makes it so painful.
+   56 [europeana] charity scene suggests emotional human pain
+   34 [artic] comic illustration, loosely melancholic mood
+   26 [met] neutral portrait diptych, no pain expressed
+    9 [europeana] webpage screenshot, unusable with text overlay
+    6 [europeana] student ID card, completely irrelevant
+    6 [artic] museum poster, no connection to pain
+    5 [nasa] planetary surface, no human relevance
+    2 [nasa] scientific graph, entirely irrelevant
+
+=== BEAT: On the 7th of September 1906, the two factions faced each other, and w
+   32 [met] Dutch landscape painting, wrong period wrong subject
+   26 [met] Islamic helmet artifact, wrong context entirely
+   19 [europeana] Medieval manuscript page, wrong era entirely
+   19 [europeana] Illuminated manuscript, medieval period wrong
+   19 [europeana] Medieval manuscript text page, irrelevant
+   16 [artic] Mid-20th century street photo, unrelated
+   14 [met] Religious crucifixion painting, completely irrelevant
+   14 [artic] Abstract artwork of seated figure, irrelevant
+
+=== BEAT: It was not a battle.
+   59 [europeana] soldiers with civilians, peaceful wartime interaction
+   46 [europeana] political cartoon suggests non-battle confrontation
+   29 [met] medieval hunt scene, not battle
+   22 [nasa] robot competition, loosely competitive not battle
+   20 [nasa] baseball game, no battle connection
+   19 [europeana] street scene unrelated to battle context
+   16 [met] portrait of seated man, irrelevant
+   16 [artic] pastoral landscape etching, irrelevant
+
+=== BEAT: It was a pushing contest.
+   66 [artic] two figures physically struggling/pushing each other
+   59 [artic] push-pin game, pushing theme present
+   34 [artic] two figures but abstract art piece
+   14 [europeana] crowd scene, no pushing contest visible
+    9 [europeana] WWI destruction, no pushing contest
+    6 [met] decorative quilt, completely irrelevant
+    6 [met] ancient door fragment, irrelevant
+    6 [met] Renaissance Madonna painting, irrelevant
+
+=== BEAT: Whichever side could physically force the other back across that line 
+   22 [met] Horse fair painting; no conflict depicted
+    6 [artic] Nude figure sketch; irrelevant to narration
+    6 [met] Medieval portrait diptych; unrelated subject
+    6 [artic] Decorative chair; completely irrelevant
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: A line was scratched into the rock.
+   46 [smithsonian] scratched/stamped text on metal surface
+   42 [europeana] engraved metal artifact, not rock scratching
+   34 [artic] lines on surface but modern art panel
+   26 [europeana] stone fragments and mold, no scratched line
+   14 [europeana] metal bells, unrelated to scratched rock
+   12 [artic] stormy landscape painting, no rock line
+    9 [artic] battle scene painting, irrelevant subject
+    9 [met] Renaissance religious painting, irrelevant
+
+=== BEAT: Hours later, the traditionalist faction was pushed across the line, an
+   19 [artic] gallery installation, vaguely political but unrelated
+   16 [artic] WWII Soviet propaganda poster, wrong context
+   14 [artic] Regency-era portrait painting, unrelated
+   12 [met] medieval manuscript illumination, unrelated
+   12 [met] religious crucifixion painting, unrelated
+    9 [met] decorative clock sculpture, completely irrelevant
+
+=== BEAT: The losers would leave.
+   26 [met] harvest scene, no departure depicted
+   22 [met] fortune telling scene, unrelated to leaving
+   19 [met] single portrait, no departure context
+    9 [artic] decorative mirror, completely irrelevant
+    9 [artic] floral painting, entirely unrelated
+    9 [artic] silver sculpture, completely irrelevant
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The two groups gathered on either side, packed shoulder to shoulder, a
+   46 [met] Two figures grappling together physically
+   29 [artic] Ancient figures in motion, too small
+   24 [artic] Medieval combat scene, wrong context
+   22 [nasa] Group gathered together but celebrating
+   20 [nasa] Crowd celebrating, not two opposing sides
+   19 [europeana] Religious scene, groups gathered but mourning
+   14 [smithsonian] Shipyard workers, no opposing groups
+   12 [smithsonian] People gathering nuts, no pushing
+
+=== BEAT: The words carved onto that rock afterward have become one of the most 
+   46 [wikimedia] Stone fragment with carved markings visible
+   42 [wikimedia] Stone shard with inscribed script, dark
+   12 [artic] Gallery wall text, not Hopi rock
+    9 [artic] Magritte pipe painting, no Hopi connection
+    9 [europeana] African drum instrument, wrong subject
+    8 [artic] Modern artwork with text, not Hopi
+    6 [wikimedia] Modern British street scene, irrelevant
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Its population never recovered." More villages formed in the aftermath
+   12 [artic] Surrealist sculpture, unrelated to pueblo ruins
+    9 [artic] Abstract colorful artwork, completely irrelevant
+    8 [artic] Cartoon sketch, no connection to subject
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The split gutted Oribi.
+   76 [artic] house literally split down middle
+   12 [artic] city nightscape unrelated to Oribi
+    9 [artic] watercolor seascape unrelated to Oribi
+
+=== BEAT: The inscription reads, "In part, that it would have to be done this wa
+   76 [europeana] Stone slab with readable Latin inscription lines
+   66 [europeana] Stone tablet with visible inscriptions carved
+   59 [smithsonian] Embroidered memorial inscription textile piece
+   19 [europeana] WWI trench soldier, no inscription visible
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: They walked away from a village their families had occupied for 800 ye
+   59 [met] medieval village agricultural scene, usable period
+   54 [artic] Giacometti walking man evokes leaving theme
+   52 [artic] walking figure sculpture suggests departure
+   49 [smithsonian] lone figure walking away, sparse sketch
+   46 [smithsonian] travelers walking in rain, wrong culture
+   42 [europeana] early 20th century family, wrong context
+   34 [met] medieval portraits, no migration or settlement
+   26 [europeana] collage postcard format, wrong subject
+
+=== BEAT: The mark is still there.
+   76 [smithsonian] worn wood surface with visible mark/stain
+   72 [artic] dark surface shows faint persistent mark
+   66 [met] ancient helmet with visible damage marks
+   59 [met] crucifixion wounds are enduring marks
+   49 [artic] abstract brushstrokes suggest marks remaining
+   42 [smithsonian] bronze plaque, no visible mark remaining
+   34 [artic] decorated plate, no persistent mark
+   20 [nasa] astronaut interior, unrelated to marks
+
+=== BEAT: You can find it on the rock north of the village.
+   52 [nasa] Rocky surface but Mars rover, no village
+   12 [met] Carved cross artifact, no rock or village
+    9 [artic] Portrait with baked-in text, unrelated
+    9 [artic] Abstract print artwork, unrelated
+    6 [artic] Indoor studio scene, totally unrelated
+    6 [europeana] Crowd scene, no rock or village
+    6 [europeana] Magazine page with text, unusable
+    6 [met] 18th-century portrait painting, unrelated
+
+=== BEAT: You cannot photograph Oribi.
+   76 [artic] photographer with camera, photography theme direct
+   24 [artic] particle physics tracks, unrelated to photography
+   19 [artic] abstract still life print, no photography connection
+
+=== BEAT: Walk through it and you will see collapsed walls, roofless rooms, ston
+   16 [artic] Watercolor painting, wrong subject entirely
+   14 [artic] Landscape sketch, no ruins or dwellings
+   12 [artic] Portrait painting, no ruins or homes
+    9 [europeana] Prominent watermarks, wrong subject matter
+    9 [europeana] Prominent watermarks, wrong subject matter
+    9 [europeana] Prominent watermarks, indoor airport scene
+    9 [met] Circus sketch, completely wrong subject
+    9 [met] Medieval portrait diptych, wrong subject
+
+=== BEAT: Here is the last thing, and it is the part most documentaries leave ou
+   76 [europeana] Punch cartoon literally titled 'The Last Word'
+   59 [artic] antique print titled 'The Last Seat' loosely relevant
+   24 [europeana] Bull and Last pub, no narrative connection
+   22 [europeana] generic pub building, no narrative relevance
+   19 [artic] marble sculpture, unrelated to narration
+   16 [artic] garish collage art, wrong subject entirely
+   12 [nasa] CGI terrain render, penalized and irrelevant
+   10 [nasa] planetary imagery, irrelevant to narration
+
+=== BEAT: Today, only a small number of people live in old Oribi.
+   42 [europeana] Elderly resident in modest home, plausible
+   26 [europeana] Medical scene, unrelated to settlement topic
+   16 [artic] European landscape sketch, not Oribi settlement
+   14 [artic] Classical architectural painting, wrong context
+    9 [artic] Abstract expressionist print, irrelevant
+    9 [europeana] Abstract figure drawing, completely unrelated
+    9 [met] Renaissance religious painting, irrelevant
+    9 [met] Bronze horse sculpture, irrelevant
+
+=== BEAT: You cannot film it.
+   76 [artic] book cover about film with camera imagery
+   49 [europeana] movie poster with prominent text overlay
+   42 [artic] split house photo, abstract photography concept
+   22 [europeana] political figures speaking, unrelated
+   19 [europeana] politician portrait unrelated to filming
+   16 [met] classical painting wrong century wrong subject
+   14 [met] ancient Egyptian relief wrong subject entirely
+   14 [artic] abstract print unrelated to filming concept
+
+=== BEAT: Visitors are restricted, and many parts of the Hopi Mesa's are closed 
+    6 [europeana] WWI-era women soldiers, unrelated
+    6 [artic] Japanese ukiyo-e print, unrelated
+    6 [artic] Museum interior, unrelated subject
+    6 [met] Renaissance portrait painting, unrelated
+    6 [artic] Picasso sketch, unrelated subject
+    6 [met] Renaissance religious painting, unrelated
+    6 [met] Renaissance triptych altarpiece, unrelated
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Ceremonies that were once open have been closed, one by one, over the 
+   38 [nasa] Formal ceremony with flags, generic but usable
+   26 [europeana] Ceremonial textile, distant thematic connection
+   24 [europeana] Native ceremonial object, vaguely relevant culture
+   19 [artic] Pre-Columbian artifact, no ceremony closure
+   16 [artic] African wooden sculpture, unrelated to narration
+   12 [artic] Abstract painting, no ceremonial relevance
+   10 [nasa] Modern award ceremony, wrong context entirely
+    9 [europeana] Surreal collage artwork, wholly irrelevant
+
+=== BEAT: A direct response to a hundred years of visitors who came to consume, 
+   26 [europeana] Rifles suggest taking/hunting, loosely relevant
+   16 [artic] Victorian portrait; no conservation context
+   14 [artic] 19th-century portrait; wrong subject matter
+   12 [artic] Dark daguerreotype; unreadable, wrong subject
+    9 [europeana] Political diplomats; irrelevant to narration
+    9 [europeana] Diplomatic meeting; unrelated to theme
+    5 [nasa] Mars dunes; completely unrelated
+    5 [nasa] Spacecraft capsule; irrelevant to narration
+
+=== BEAT: Almost every ancient site on Earth has been converted into a product.
+   76 [europeana] ancient ruined site, not commercialized
+   46 [artic] ancient site architectural plan overhead
+   42 [met] ancient artifact in museum, decontextualized
+   34 [artic] ancient jewelry object, no site context
+   32 [artic] ancient figurine, no site or commerce
+   14 [met] medieval helmet, wrong subject entirely
+    9 [met] Degas ballet painting, completely unrelated
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Think about how unusual that is.
+   59 [artic] Comedic reaction scene suits unusual moment
+   56 [europeana] Quirky novelty student cap item feels unusual
+   48 [nasa] Alien planetary surface evokes unusual terrain
+   46 [artic] Pastoral scene, mildly whimsical but generic
+   39 [met] Family portrait, nothing notably unusual
+   38 [nasa] Scientific data map, abstract and technical
+   29 [artic] Religious crucifixion scene, wrong context
+   24 [met] Plain Renaissance portrait, irrelevant
+
+=== BEAT: There is no gift shop, there is no interpretive center, there is no pl
+   49 [smithsonian] Luggage tag plaque-like inscription loosely relevant
+   26 [artic] Museum statue contradicts no interpretive center
+   18 [nasa] Space mission gift items, not relevant
+   16 [artic] Goya etching unrelated to absent commemoration
+   14 [artic] Baroque engravings unrelated to narration
+   12 [europeana] Vintage typesetting machine, unrelated
+   12 [europeana] Ceramic artifact unrelated to narration
+   10 [nasa] ISS crew photo unrelated to narration
+
+=== BEAT: Machu Picchu has ticket tiers.
+   66 [artic] Aerial Machu Picchu view, right location
+   49 [artic] Machu Picchu stones, no ticket context
+   14 [artic] Abstract painting, not documentary footage
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Even sacred sites have become attractions with turnstiles.
+   76 [met] Ancient temple relocated inside museum attraction
+   24 [artic] Architectural plan, no visible sacred site
+   14 [artic] Allegorical painting, no sacred tourism context
+   12 [artic] Abstract landscape painting, completely irrelevant
+    5 [nasa] Satellite terrain view, no sacred site
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The Colosseum has a queue.
+   42 [artic] Piranesi engraving, Colosseum interior, no queue
+   36 [artic] Red chalk drawing, Colosseum ruins, no queue
+   34 [artic] Painting with ornate frame border, no queue
+   26 [europeana] Watermark-covered photo, no queue visible
+   16 [europeana] Book page with text header, wrong format
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: It lasts by knowing exactly what it will and will not give away.
+   76 [met] reserved scholar guarding knowledge deliberately
+   69 [met] Madonna's guarded gaze withholds divine mystery
+   59 [artic] figure clutches self, suggests selective disclosure
+   44 [met] religious offering scene loosely relevant
+   42 [nasa] eroded landscape suggests slow careful revelation
+   38 [nasa] nebula partially veiled in cosmic opacity
+   32 [artic] chaotic scene contradicts controlled restraint theme
+   20 [nasa] CGI render of spacecraft, wrong context
+
+=== BEAT: The Spanish wanted gold, then souls.
+   76 [met] Gold and religious icon fused—Spanish colonial jewel
+   69 [met] Gold reliquary with crucifix—gold and souls merged
+   62 [artic] Crucifix symbolizes missionary soul-saving mission
+   59 [artic] Religious sculpture, conquest imagery but vague
+   42 [artic] Medieval religious panels, too early/generic
+   14 [met] Flemish harvest scene, unrelated to Spain/conquest
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The missionaries wanted converts, the government wanted children, the 
+   76 [wikimedia] missionary conversion of Native American documented
+   22 [artic] modern painting, unrelated domestic scene
+    4 [wikimedia] tiny logo strip, no usable content
+    4 [artic] WWII gun crate design, irrelevant
+    4 [artic] IBM laptop, completely irrelevant
+    4 [europeana] metal tool object, no relevance
+   -1 [wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: A place does not last 900 years by opening itself to everything that c
+   46 [artic] 19th-century urban etching, vaguely relevant
+   42 [artic] Impressionist city square, generic urban scene
+   34 [artic] Pirate figure with blade, loosely defensive
+   26 [met] Renaissance bronze sculpture, unrelated subject
+   24 [met] Renaissance hunting scene, no thematic fit
+   19 [met] Religious Renaissance painting, irrelevant
+   18 [nasa] Mars landscape aerial, completely unrelated
+   14 [europeana] Watermarked street photo, no thematic connection
+
+=== BEAT: And there is a kind of logic in it that is hard to argue with.
+   56 [europeana] resistance poster implies logical argument visually
+   54 [europeana] similar resistance poster, baked-in text present
+   40 [nasa] robot competition crowd implies systematic logic
+   35 [nasa] group action scene loosely suggests logic
+   26 [europeana] child in chair unrelated to logic narration
+   24 [met] decorative cabinet unrelated to narration
+   24 [artic] painter portrait unrelated to logic theme
+   22 [met] ornate furniture piece irrelevant to logic
+
+=== BEAT: Oribi said no to all of them, and it is still there.
+    9 [artic] ancient urn unrelated to Oribi
+    9 [met] blue artifact unrelated to Oribi
+    9 [artic] bronze bust unrelated to Oribi
+    9 [met] Japanese calligraphy scroll irrelevant
+    9 [met] religious painting unrelated to Oribi
+    9 [artic] gold ring unrelated to Oribi
+
+=== BEAT: In 1492, three ships sailed west, and the world was told a new one had
+   92 [wikimedia] period engraving shows Columbus ships landing
+   76 [europeana] Columbus commemorative medal with ships
+   32 [met] Renaissance tondo unrelated to voyage
+   26 [met] Gothic altar unrelated to discovery
+   24 [artic] period helmet but no voyage connection
+   22 [met] Native basket loosely related at best
+   19 [artic] Renaissance female figure unrelated
+   16 [artic] Renaissance sketch entirely unrelated
+
+=== BEAT: But there was no new world.
+   46 [artic] Desolate landscape etching, vaguely fits emptiness
+   22 [europeana] Boer War postcard mentions Afrika, tangential
+   14 [europeana] Group portrait unrelated to new world
+   12 [artic] Portrait of painter, no thematic connection
+   12 [artic] Baroque portrait unrelated to narration
+    9 [europeana] Dog photo completely unrelated to narration
+    5 [nasa] Baseball stadium scene, irrelevant
+    5 [nasa] Robotics competition, no relevance
+
+=== BEAT: So back to where we started.
+   66 [europeana] race start line suggests returning to start
+   56 [artic] text about origin/return loosely relevant
+   19 [europeana] snowy house unrelated to starting point
+   15 [nasa] NASA ship at sea unrelated
+   14 [artic] abstract painting unrelated to narration
+   14 [europeana] postcard back irrelevant to narration
+   12 [met] musical instrument unrelated to narration
+   12 [met] ancient collar artifact unrelated
+
+=== BEAT: And on a rock in the Arizona desert, 400 years into an unbroken story,
+   32 [europeana] close-up rock face, no human context
+   26 [europeana] coastal watercolor, figures on cliff, wrong context
+   22 [artic] European landscape painting, wrong region
+   12 [artic] surrealist painting, wrong subject entirely
+    9 [europeana] Mughal miniature painting, wrong continent
+    6 [artic] heraldic engraving, entirely irrelevant
+    2 [nasa] planetary surface crater, not Arizona
+    2 [nasa] NASA astronaut speaking to audience
+
+=== BEAT: There was only a world that had already been lived in, farmed, mapped,
+   10 [artic] 19th-century labor cartoon, wrong context
+   10 [nasa] Solar eclipse image, wrong subject entirely
+    9 [artic] Candlestick photo unrelated to narration
+    9 [europeana] WWI-era Punch magazine page, irrelevant
+    8 [artic] Abstract symbolist print, no relevance
+    8 [nasa] Atmospheric planetary image, not relevant
+    7 [europeana] Modern cartoon sketch, completely irrelevant
+    6 [europeana] Sports merchandise hat, totally wrong
+
+=== BEAT: As a Tuesday, thank you for watching.
+   56 [artic] Sculpture base reads 'Suitor Tuesday' loosely relevant
+   24 [europeana] Pink charity run unrelated to Tuesday farewell
+   19 [artic] Date text artwork unrelated to farewell
+   16 [europeana] German handwritten letter with watermark
+   16 [europeana] Another German letter with watermark overlay
+   14 [artic] Abstract textile artwork irrelevant to narration
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: They are still doing it, not as a museum, not as a reenactment, not as
+   79 [europeana] authentic military training jump, candid action
+   76 [europeana] soldiers genuinely training on jump platform
+   66 [europeana] real paratrooper landing, authentic active practice
+   15 [nasa] astronaut working, unrelated to narration
+    6 [artic] decorative ceramic plate, completely irrelevant
+    6 [artic] near-blank dark canvas, unusable
+    6 [artic] abstract painting, no documentary relevance
+    2 [nasa] abstract aerial image, unrelated
+
+=== BEAT: If you enjoy documentaries that explore forgotten history through hist
+   69 [met] archaeological artifact with historical decoration
+   66 [met] historical manuscript illustration with text fits
+   59 [met] historical East Asian scroll painting usable
+   49 [artic] Gauguin painting, indigenous loosely relevant
+   24 [artic] abstract modern print, not relevant
+   19 [wikimedia] unidentified modern portrait, irrelevant
+    9 [artic] baked-in text overlay, wrong subject
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: We talk constantly about the fall of ancient civilizations, Rome, Egyp
+   16 [artic] Close-up statue with baked-in text overlay
+   12 [artic] 20th-century farm workers, unrelated to topic
+    9 [artic] Modern illustration, no ancient civilization relevance
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: And before you go, I want to hear your thoughts.
+   46 [europeana] group conversation scene but historical illustration
+   42 [artic] pensive figure at table, loosely thoughtful
+   29 [europeana] cartoon illustration with text overlay
+   24 [met] Renaissance portrait, wrong context entirely
+   24 [artic] abstract print, unclear subject matter
+   22 [met] Renaissance male portrait, unrelated context
+   14 [met] ancient Egyptian relief, wrong context
+    9 [europeana] religious hand engraving with watermark text
+
+=== BEAT: Why do you think we talk so rarely about the ones that never fell at a
+   62 [nasa] Craters that never fell; impact scars
+   30 [nasa] Portrait of person standing firm, loosely metaphorical
+   26 [artic] Gauguin painting unrelated to narration theme
+   22 [europeana] Barber shop cartoon, irrelevant context
+   19 [europeana] Punch magazine cartoon, wrong subject
+   18 [artic] Abstract print, no clear thematic link
+   14 [europeana] Dense handwritten text, unreadable frame
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Let me know in the comments, and I'll see you in the next documentary.
+   14 [europeana] Archival portrait unrelated to closing line
+   12 [europeana] Vintage fashion photo irrelevant to narration
+   12 [europeana] Vintage portrait unrelated to sign-off
+   10 [nasa] NASA portrait unrelated to documentary sign-off
+    9 [artic] Art installation unrelated to closing narration
+    9 [artic] Renaissance painting irrelevant to narration
+    8 [nasa] Generic portrait unrelated to narration
+    7 [artic] Abstract illustration irrelevant to narration

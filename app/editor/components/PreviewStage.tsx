@@ -10,7 +10,7 @@ export default function PreviewStage() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [portrait, setPortrait] = useState<Record<string, boolean>>({});
 
-  const { clips, total } = useMemo(() => deriveTimeline(state.beats), [state.beats]);
+  const { clips, total } = useMemo(() => deriveTimeline(state.beats, state.words.length > 0 ? state.words[state.words.length - 1].end : undefined), [state.beats]);
   const chunks = useMemo(() => deriveCaptionChunks(state.words), [state.words]);
 
   const t = state.currentTime;
@@ -76,6 +76,14 @@ export default function PreviewStage() {
         <img
           src={active.previewUrl}
           alt=""
+          referrerPolicy="no-referrer"
+          onError={(e) => {
+            // Archives often refuse hotlinked full-size files - fall back to the
+            // thumbnail so the preview never shows a broken/black frame. The
+            // render is unaffected (the server downloads with proper headers).
+            const el = e.currentTarget;
+            if (active.thumbnail && el.src !== active.thumbnail) el.src = active.thumbnail;
+          }}
           onLoad={(e) => {
             const el = e.currentTarget;
             const isPortrait = el.naturalHeight > el.naturalWidth;

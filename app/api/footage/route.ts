@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { visionRank } from "../_lib/visionRank";
 import { searchOpenverse, searchWikimedia, searchNasa, searchArtInstitute, searchMet, searchLoc, searchINaturalist, searchUnsplash, searchEuropeana, searchSmithsonian, searchNasaVideos, searchInternetArchiveVideos } from "../_lib/providers";
 
 type MediaItem = {
@@ -337,7 +338,7 @@ export async function POST(req: NextRequest) {
       Array.isArray(body.queries) && body.queries.length > 0 ? body.queries : [body.query]
     )
       .filter(Boolean)
-      .slice(0, 4);
+      .slice(0, 6);
 
     if (queryList.length === 0) {
       return NextResponse.json({ error: "No query provided" }, { status: 400 });
@@ -369,36 +370,32 @@ export async function POST(req: NextRequest) {
     videos.push(...r1[0], ...r1[1], ...r1[14], ...r1[15]);
     for (const arr of r1.slice(2, 14)) images.push(...arr);
 
-    // Round 2: the contextual-variation query across the high-volume providers
-    if (queryList[1]) {
-      const q1 = queryList[1];
-      const r2 = await Promise.all([
-        stockV ? searchPexelsVideos(q1, page) : none,
-        stockV ? searchPixabayVideos(q1, page) : none,
-        stockI ? searchPexelsImages(q1, page) : none,
-        stockI ? searchPixabayImages(q1, page) : none,
-        stockI ? searchUnsplash(q1, page) : none,
-        wantI ? searchOpenverse(q1, page) : none,
-        wantV ? searchNasaVideos(q1, page) : none,
-        wantV ? searchInternetArchiveVideos(q1, page) : none,
+    // Rounds 2+: EVERY remaining query across the FULL provider set. Retrieval
+    // breadth is what picture research lives on - you cannot rank your way to a
+    // good image that was never fetched.
+    for (let qi = 1; qi < queryList.length; qi++) {
+      if (videos.length + images.length >= 70) break;
+      const q = queryList[qi];
+      const rN = await Promise.all([
+        stockV ? searchPexelsVideos(q, page) : none,
+        stockV ? searchPixabayVideos(q, page) : none,
+        stockI ? searchPexelsImages(q, page) : none,
+        stockI ? searchPixabayImages(q, page) : none,
+        wantI ? searchOpenverse(q, page) : none,
+        wantI ? searchWikimedia(q, page) : none,
+        wantI ? searchNasa(q, page) : none,
+        wantI ? searchArtInstitute(q, page) : none,
+        wantI ? searchMet(q, page) : none,
+        wantI ? searchLoc(q, page) : none,
+        stockI ? searchINaturalist(q, page) : none,
+        stockI ? searchUnsplash(q, page) : none,
+        wantI ? searchEuropeana(q, page) : none,
+        wantI ? searchSmithsonian(q, page) : none,
+        wantV ? searchNasaVideos(q, page) : none,
+        wantV ? searchInternetArchiveVideos(q, page) : none,
       ]);
-      videos.push(...r2[0], ...r2[1], ...r2[6], ...r2[7]);
-      for (const arr of r2.slice(2, 6)) images.push(...arr);
-    }
-
-    // Round 3: broaden ONLY if results are thin (Tier 3 behavior)
-    if (((wantV && videos.length < 4) || (wantI && images.length < 6)) && queryList[2]) {
-      const q2 = queryList[2];
-      const r3 = await Promise.all([
-        stockV ? searchPexelsVideos(q2, page) : none,
-        stockV ? searchPixabayVideos(q2, page) : none,
-        stockI ? searchPexelsImages(q2, page) : none,
-        stockI ? searchPixabayImages(q2, page) : none,
-        stockI ? searchUnsplash(q2, page) : none,
-        wantI ? searchOpenverse(q2, page) : none,
-      ]);
-      videos.push(...r3[0], ...r3[1]);
-      for (const arr of r3.slice(2)) images.push(...arr);
+      videos.push(...rN[0], ...rN[1], ...rN[14], ...rN[15]);
+      for (const arr of rN.slice(2, 14)) images.push(...arr);
     }
 
     // Hard filters first: cross-beat exclusions, dedupe, resolution minimums
@@ -429,9 +426,12 @@ export async function POST(req: NextRequest) {
       `DEBUG - sourcing: ${queryList.length} queries -> ${videos.length} videos, ${images.length} images before ranking`
     );
 
-    // Semantic rubric scoring on what survives the hard filters
+    // VISION-FIRST RANKING: captions are the worst signal in this pipeline
+    // (stock libraries keyword-spam, archives write catalog-speak), so the
+    // engine now JUDGES WHAT IT SEES. Metadata ranking is only a cheap pre-sort
+    // to decide which candidates get looked at.
     if (beatText) {
-      const ranked = await rankMedia(
+      const preRanked = await rankMedia(
         beatText,
         entities || keywords || [],
         queryList,
@@ -439,12 +439,73 @@ export async function POST(req: NextRequest) {
         priorityProviders,
         beatEra
       );
-      videos = ranked.filter((m) => m.kind === "video");
-      images = ranked.filter((m) => m.kind === "image");
 
-      const verified = await verifyTopCandidates(beatText, entities || [], videos, images);
-      videos = verified.videos;
-      images = verified.images;
+      const verdicts = await visionRank(
+        beatText,
+        entities || [],
+        beatEra,
+        preRanked.slice(0, 20).map((m) => ({
+          id: m.id,
+          kind: m.kind,
+          thumbnail: m.thumbnail,
+          source: m.source,
+          description: m.description,
+        })),
+        historyMode
+      );
+
+      if (verdicts.size > 0) {
+        const metaOrder = new Map(preRanked.map((m, i) => [m.id, i]));
+        const scoreOf = (m: MediaItem) => {
+          const v = verdicts.get(m.id);
+          if (!v) return -1; // never looked at (beyond the batch): behind everything seen
+          const bonus = priorityProviders.indexOf(m.source) >= 0 ? 4 : 0;
+          return v.score + bonus;
+        };
+
+        const scored = preRanked
+          .map((m) => ({ m, s: scoreOf(m) }))
+          .sort((a, b) => b.s - a.s || (metaOrder.get(a.m.id)! - metaOrder.get(b.m.id)!));
+
+        try {
+          const fsp = await import("fs/promises");
+          const nodePath = await import("path");
+          const lines =
+            `\n=== BEAT: ${beatText.slice(0, 70)}\n` +
+            scored
+              .slice(0, 8)
+              .map(({ m, s }) => `  ${String(s).padStart(3)} [${m.source}] ${verdicts.get(m.id)?.reason || "(not inspected)"}`)
+              .join("\n");
+          await fsp.appendFile(nodePath.join(process.cwd(), "vision-debug.txt"), lines + "\n");
+        } catch {}
+
+        console.log(
+          "DEBUG - vision ranking (top 6):\n" +
+            scored
+              .slice(0, 6)
+              .map(({ m, s }) => `   ${s >= 0 ? s : "--"} [${m.source}] ${verdicts.get(m.id)?.reason || "(not inspected)"}`)
+              .join("\n")
+        );
+
+        const rejected = scored.filter(({ s }) => s >= 0 && s < 35).length;
+        if (rejected > 0) console.log(`DEBUG - vision rejected ${rejected} candidate(s) below 35`);
+
+        // Drop what the eye rejected, as long as enough usable ones remain
+        const usable = scored.filter(({ s }) => s >= 35).map(({ m }) => m);
+        const ordered = usable.length >= 4 ? usable : scored.map(({ m }) => m);
+
+        videos = ordered.filter((m) => m.kind === "video");
+        images = ordered.filter((m) => m.kind === "image");
+
+        const best = scored[0]?.s ?? -1;
+        if (best < 60) {
+          console.log(`DEBUG - WEAK BEAT: best vision score only ${best} - retrieval needs a better query`);
+        }
+      } else {
+        // Vision unavailable: fall back to the metadata order
+        videos = preRanked.filter((m) => m.kind === "video");
+        images = preRanked.filter((m) => m.kind === "image");
+      }
     }
 
     videos = videos.slice(0, 4);

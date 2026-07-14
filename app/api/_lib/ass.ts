@@ -43,7 +43,7 @@ WrapStyle: 0
 
 [V4+ Styles]
 Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
-Style: Caption,${st.captionFont},${captionFontSize},${st.captionPrimary},&H000000FF,${st.captionOutlineColor},&H80000000,${st.captionBold},0,0,0,100,100,${st.captionSpacing},0,1,${st.captionOutline},1,2,40,40,50,1
+Style: Caption,Helvetica,${captionFontSize},&H00FFFFFF,&H000000FF,&H60404040,&H60404040,0,0,0,0,100,100,${st.captionSpacing},0,3,6,0,2,60,60,55,1
 Style: Callout,${st.calloutFont},${calloutFontSize},${st.calloutPrimary},&H000000FF,${st.calloutBox},${st.calloutBox},${st.calloutBold},0,0,0,100,100,${st.calloutSpacing},0,${st.calloutBorderStyle},${st.calloutOutline},0,8,60,60,60,1
 Style: Countup,${st.calloutFont},${Math.round(videoHeight * 0.09)},${st.calloutPrimary},&H000000FF,${st.calloutBox},${st.calloutBox},1,0,0,0,100,100,${st.calloutSpacing},0,${st.calloutBorderStyle},${st.calloutOutline + 2},0,8,60,60,80,1
 

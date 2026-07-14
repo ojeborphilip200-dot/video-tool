@@ -15,7 +15,7 @@ export default function TimelineDock() {
   const waveRef = useRef<HTMLDivElement>(null);
   const wsRef = useRef<WaveSurfer | null>(null);
 
-  const { clips, beatWindows, total } = useMemo(() => deriveTimeline(state.beats), [state.beats]);
+  const { clips, beatWindows, total } = useMemo(() => deriveTimeline(state.beats, state.words.length > 0 ? state.words[state.words.length - 1].end : undefined), [state.beats]);
   const chunks = useMemo(() => deriveCaptionChunks(state.words), [state.words]);
 
   const narrDur = state.words.length > 0 ? state.words[state.words.length - 1].end : 0;
@@ -126,6 +126,83 @@ export default function TimelineDock() {
     return () => window.removeEventListener("keydown", onKey);
   }, [state.selected, dispatch]);
 
+  // Fit the whole video into the visible timeline width
+  function fitToScreen() {
+    const el = scrollRef.current;
+    if (!el || timelineDur <= 0) return;
+    const avail = el.clientWidth - LABEL_W - 24;
+    if (avail <= 0) return;
+    const z = avail / (timelineDur * 12);
+    setZoom(Math.max(0.05, Math.min(5, z)));
+  }
+
+  // Non-destructive edge drag: only the trim window moves. The source file is
+  // untouched, so shortening and re-extending is always lossless. Clamped to the
+  // beat's narration window (visuals stay locked to the script) and, for videos,
+  // to the source's real length.
+  function startEdgeDrag(
+    e: React.MouseEvent,
+    beatIndex: number,
+    clipId: string,
+    edge: "start" | "end"
+  ) {
+    e.stopPropagation();
+    e.preventDefault();
+    dispatch({ type: "SET_PLAYING", playing: false });
+
+    const beat = state.beats[beatIndex];
+    const clip = beat?.selectedClips.find((c) => c.media.id === clipId);
+    if (!beat || !clip) return;
+
+    const others = beat.selectedClips
+      .filter((c) => c.media.id !== clipId)
+      .reduce((s, c) => s + (c.trimEnd - c.trimStart), 0);
+    const maxLen = Math.max(0.5, beat.duration - others);
+    const srcLen = clip.media.kind === "video" ? clip.media.duration : Infinity;
+
+    const startX = e.clientX;
+    const t0 = clip.trimStart;
+    const t1 = clip.trimEnd;
+
+    const move = (ev: MouseEvent) => {
+      const d = (ev.clientX - startX) / pxPerSec;
+      let ns = t0;
+      let ne = t1;
+
+      if (edge === "end") {
+        ne = t1 + d;
+        ne = Math.min(ne, ns + maxLen, srcLen === Infinity ? ns + maxLen : srcLen);
+        ne = Math.max(ne, ns + 0.5);
+      } else {
+        if (clip.media.kind === "video") {
+          ns = Math.max(0, t0 + d);
+          ns = Math.min(ns, t1 - 0.5);
+          if (t1 - ns > maxLen) ns = t1 - maxLen;
+        } else {
+          // Images have no source window: dragging the left edge changes length
+          ne = Math.max(0.5, Math.min(t1 - d, maxLen));
+        }
+      }
+
+      dispatch({
+        type: "PATCH_BEAT",
+        index: beatIndex,
+        patch: {
+          selectedClips: beat.selectedClips.map((c) =>
+            c.media.id === clipId ? { ...c, trimStart: ns, trimEnd: ne } : c
+          ),
+        },
+      });
+    };
+
+    const up = () => {
+      window.removeEventListener("mousemove", move);
+      window.removeEventListener("mouseup", up);
+    };
+    window.addEventListener("mousemove", move);
+    window.addEventListener("mouseup", up);
+  }
+
   function seekFromClientX(clientX: number) {
     const el = scrollRef.current;
     if (!el) return;
@@ -193,8 +270,17 @@ export default function TimelineDock() {
             {fmt(state.currentTime)} / {fmt(timelineDur)}
           </span>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-            <span style={{ fontSize: "10px", color: "var(--ed-text-3)" }}>Zoom</span>
-            <input type="range" min={0.4} max={5} step={0.1} value={zoom} onChange={(e) => setZoom(parseFloat(e.target.value))} />
+            <button
+            className="btn btn-secondary"
+            onClick={fitToScreen}
+            disabled={timelineDur <= 1}
+            title="Fit the whole video into view"
+            style={{ fontSize: "11px", padding: "4px 10px" }}
+          >
+            Fit
+          </button>
+          <span style={{ fontSize: "10px", color: "var(--ed-text-3)" }}>Zoom</span>
+            <input type="range" min={0.05} max={5} step={0.05} value={zoom} onChange={(e) => setZoom(parseFloat(e.target.value))} />
           </div>
         </div>
       </div>
@@ -265,8 +351,22 @@ export default function TimelineDock() {
                 )}
                 {!c.gap && (
                   <>
-                    <span style={{ position: "absolute", left: "3px", top: "50%", transform: "translateY(-50%)", width: "3px", height: "55%", borderRadius: "2px", background: "rgba(255,255,255,0.85)" }} />
-                    <span style={{ position: "absolute", right: "3px", top: "50%", transform: "translateY(-50%)", width: "3px", height: "55%", borderRadius: "2px", background: "rgba(255,255,255,0.85)" }} />
+                    <span
+                      data-clip="1"
+                      onMouseDown={(e) => startEdgeDrag(e, c.beatIndex, c.id, "start")}
+                      title="Drag to trim the start"
+                      style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "10px", cursor: "ew-resize", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2 }}
+                    >
+                      <span style={{ width: "3px", height: "55%", borderRadius: "2px", background: "rgba(255,255,255,0.85)" }} />
+                    </span>
+                    <span
+                      data-clip="1"
+                      onMouseDown={(e) => startEdgeDrag(e, c.beatIndex, c.id, "end")}
+                      title="Drag to extend or shorten"
+                      style={{ position: "absolute", right: 0, top: 0, bottom: 0, width: "10px", cursor: "ew-resize", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2 }}
+                    >
+                      <span style={{ width: "3px", height: "55%", borderRadius: "2px", background: "rgba(255,255,255,0.85)" }} />
+                    </span>
                   </>
                 )}
               </div>

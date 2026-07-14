@@ -22,7 +22,7 @@ export function useExport() {
     renderedWithCaptions: true,
   });
 
-  const { clips, beatWindows, total } = deriveTimeline(state.beats);
+  const { clips, beatWindows, total } = deriveTimeline(state.beats, state.words.length > 0 ? state.words[state.words.length - 1].end : undefined);
   const canExport = state.audioFile !== null && clips.length > 0 && !status.rendering;
 
   async function exportVideo(captionsOverride?: boolean) {
@@ -33,9 +33,10 @@ export function useExport() {
 
     // Same payload shape the render route already consumes. Empty slots become
     // black frames of the same length, so the render matches the preview exactly.
-    const payload = clips.map((c) => {
-      // Same-kind backups from this beat's gallery, in rank order - the render
-      // falls back to these if the chosen source refuses to download
+    // Each beat's clips are emitted inside that beat's narration window; any
+    // unfilled remainder becomes black. Visuals therefore land on the exact
+    // words they belong to, in the render as well as the preview.
+    const entry = (c: (typeof clips)[number]) => {
       const beat = state.beats[c.beatIndex];
       const chosenIds = new Set(beat?.selectedClips.map((s) => s.media.id) || []);
       const pool = c.kind === "image" ? beat?.images || [] : beat?.videos || [];
@@ -54,7 +55,29 @@ export function useExport() {
         trimEnd: c.gap ? c.end - c.start : c.trimEnd,
         alts,
       };
-    });
+    };
+
+    const payload: ReturnType<typeof entry>[] = [];
+    for (const w of beatWindows) {
+      const beatClips = clips
+        .filter((c) => c.beatIndex === w.beatIndex)
+        .sort((a, b) => a.start - b.start);
+      let used = 0;
+      for (const c of beatClips) {
+        payload.push(entry(c));
+        used += c.end - c.start;
+      }
+      const remainder = w.end - w.start - used;
+      if (remainder > 0.08) {
+        payload.push({
+          url: "black:",
+          kind: "image" as const,
+          trimStart: 0,
+          trimEnd: remainder,
+          alts: [],
+        });
+      }
+    }
 
     const formData = new FormData();
     formData.append("clips", JSON.stringify(payload));
