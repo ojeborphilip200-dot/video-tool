@@ -498,8 +498,80 @@ export async function POST(req: NextRequest) {
         images = ordered.filter((m) => m.kind === "image");
 
         const best = scored[0]?.s ?? -1;
-        if (best < 60) {
-          console.log(`DEBUG - WEAK BEAT: best vision score only ${best} - retrieval needs a better query`);
+        if (best < 55) {
+          console.log(`DEBUG - WEAK BEAT (best ${best}) - reformulating queries and re-searching`);
+          try {
+            const Anthropic = (await import("@anthropic-ai/sdk")).default;
+            const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+            const reMsg = await anthropic.messages.create({
+              model: "claude-sonnet-4-6",
+              max_tokens: 300,
+              messages: [{
+                role: "user",
+                content: `A stock/archive image search for this narration returned nothing usable:\n\n"${beatText}"\n\nThe queries I tried were: ${queryList.join("; ")}\n\nThose failed. Give me 4 COMPLETELY DIFFERENT search queries, each naming something a camera could physically photograph - concrete objects, settings, actions, not abstract concepts. Pivot the angle entirely from what failed. Respond ONLY with a JSON array of 4 strings.`,
+              }],
+            });
+            const reRaw = reMsg.content[0].type === "text" ? reMsg.content[0].text : "[]";
+            const reQueries: string[] = JSON.parse(reRaw.replace(/\`\`\`json|\`\`\`/g, "").trim());
+            console.log(`DEBUG - reformulated: ${reQueries.join(" | ")}`);
+
+            // Re-search the full provider set with the fresh angles
+            let v2: MediaItem[] = [];
+            let i2: MediaItem[] = [];
+            for (const q of reQueries.slice(0, 4)) {
+              if (v2.length + i2.length >= 50) break;
+              const rr = await Promise.all([
+                stockV ? searchPexelsVideos(q, page) : none,
+                stockV ? searchPixabayVideos(q, page) : none,
+                stockI ? searchPexelsImages(q, page) : none,
+                stockI ? searchPixabayImages(q, page) : none,
+                wantI ? searchOpenverse(q, page) : none,
+                wantI ? searchWikimedia(q, page) : none,
+                wantI ? searchArtInstitute(q, page) : none,
+                wantI ? searchMet(q, page) : none,
+                wantI ? searchLoc(q, page) : none,
+                stockI ? searchUnsplash(q, page) : none,
+                wantI ? searchEuropeana(q, page) : none,
+                wantI ? searchSmithsonian(q, page) : none,
+              ]);
+              v2.push(...rr[0], ...rr[1]);
+              for (const arr of rr.slice(2)) i2.push(...arr);
+            }
+
+            const seen2 = new Set<string>(excludeIds);
+            const dd = (arr: MediaItem[]) =>
+              arr.filter((m) => {
+                if (!m.previewUrl || seen2.has(m.id) || seen2.has(m.previewUrl)) return false;
+                seen2.add(m.id); seen2.add(m.previewUrl);
+                return true;
+              });
+            v2 = dd(v2); i2 = dd(i2);
+
+            if (v2.length + i2.length > 0) {
+              const pre2 = await rankMedia(beatText, entities || keywords || [], reQueries, [...v2, ...i2], priorityProviders, beatEra);
+              const verd2 = await visionRank(
+                beatText, entities || [], beatEra,
+                pre2.slice(0, 20).map((m) => ({ id: m.id, kind: m.kind, thumbnail: m.thumbnail, source: m.source, description: m.description })),
+                historyMode
+              );
+              const best2 = Math.max(-1, ...[...verd2.values()].map((v) => v.score));
+              console.log(`DEBUG - reformulation best score: ${best2} (was ${best})`);
+
+              // Keep the second attempt only if it genuinely beat the first
+              if (best2 > best) {
+                const scored2 = pre2
+                  .map((m) => ({ m, s: verd2.get(m.id)?.score ?? -1 }))
+                  .sort((a, b) => b.s - a.s);
+                const usable2 = scored2.filter(({ s }) => s >= 35).map(({ m }) => m);
+                const ordered2 = usable2.length >= 3 ? usable2 : scored2.map(({ m }) => m);
+                videos = ordered2.filter((m) => m.kind === "video");
+                images = ordered2.filter((m) => m.kind === "image");
+                console.log(`DEBUG - reformulation WON (${best2} > ${best}), using new pool`);
+              }
+            }
+          } catch (e) {
+            console.error("Reformulation failed, keeping original pool:", e);
+          }
         }
       } else {
         // Vision unavailable: fall back to the metadata order
