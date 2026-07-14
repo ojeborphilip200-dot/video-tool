@@ -33,7 +33,7 @@ function runCancellable(jobId: string, cmd: string): Promise<{ stdout: string; s
 function kenBurnsFilter(durationSec: number): string {
   const FPS = 25;
   const frames = Math.max(1, Math.round(durationSec * FPS));
-  const pre = `scale=w='if(lt(a,1),-2,if(lt(a,16/9),2560,-2))':h='if(lt(a,1),1309,if(lt(a,16/9),-2,1440))',crop=w='min(2560,iw)':h='min(1440,ih)',pad=2560:1440:(ow-iw)/2:(oh-ih)/2:color=white`;
+  const pre = `scale=w='if(lt(a,1),-2,if(lt(a,16/9),1920,-2))':h='if(lt(a,1),982,if(lt(a,16/9),-2,1080))',crop=w='min(1920,iw)':h='min(1080,ih)',pad=1920:1080:(ow-iw)/2:(oh-ih)/2:color=white`;
 
   const variants = [
     `zoompan=z='min(zoom+0.0005,1.10)':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d=${frames}:s=1280x720:fps=${FPS}`,
@@ -731,12 +731,20 @@ async function runRenderJob(jobId: string, input: RenderInput) {
 
     const hasAudio = Boolean(audioPath || musicPath);
 
+    // Hardware encode: this Mac's FFmpeg is built with --enable-videotoolbox and
+    // the chip has been sitting idle. Typically 3-8x faster than libx264; it is
+    // slightly less bit-efficient, so we hand it a generous bitrate to keep the
+    // picture equivalent. Falls back to software automatically on failure.
+    const HW_ENC = `-c:v h264_videotoolbox -b:v 10M -pix_fmt yuv420p`;
+    const SW_ENC = `-c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p`;
+    const videoEnc = HW_ENC;
+
     let cmd: string;
 
     if (hasAudio) {
-      cmd = `ffmpeg -y ${videoInputs} ${audioInput} ${musicInput} ${bgInput} ${overlayInputs} ${sfxInputs} -filter_complex "${filterComplex}" -map "[outv]" ${audioMapArgs} -c:v libx264 -c:a aac -shortest ${!isNaN(narrationDur) && narrationDur > 0 ? `-t ${narrationDur.toFixed(3)}` : ""} "${outputPath}"`;
+      cmd = `ffmpeg -y ${videoInputs} ${audioInput} ${musicInput} ${bgInput} ${overlayInputs} ${sfxInputs} -filter_complex "${filterComplex}" -map "[outv]" ${audioMapArgs} ${videoEnc} -c:a aac -shortest ${!isNaN(narrationDur) && narrationDur > 0 ? `-t ${narrationDur.toFixed(3)}` : ""} "${outputPath}"`;
     } else {
-      cmd = `ffmpeg -y ${videoInputs} ${bgInput} ${overlayInputs} ${sfxInputs} -filter_complex "${filterComplex}" -map "[outv]" -c:v libx264 "${outputPath}"`;
+      cmd = `ffmpeg -y ${videoInputs} ${bgInput} ${overlayInputs} ${sfxInputs} -filter_complex "${filterComplex}" -map "[outv]" ${videoEnc} "${outputPath}"`;
     }
 
     if (isCancelled(jobId)) return;
@@ -744,12 +752,23 @@ async function runRenderJob(jobId: string, input: RenderInput) {
     await fs.writeFile(path.join(process.cwd(), "last-render-cmd.txt"), cmd);
     let renderResult: { stdout: string; stderr: string };
     try {
+      const t0 = Date.now();
       renderResult = await runCancellable(jobId, cmd);
-    } catch (e: any) {
-      const full = String(e?.stderr || e?.message || "");
-      await fs.writeFile(path.join(process.cwd(), "ffmpeg-error.txt"), full).catch(() => {});
-      console.log("=== FFMPEG FAILED - see ffmpeg-error.txt ===");
-      throw e;
+      console.log(`DEBUG - encode (hardware) took ${((Date.now() - t0) / 1000).toFixed(1)}s`);
+    } catch (hwErr: any) {
+      if (isCancelled(jobId)) return;
+      console.log("DEBUG - hardware encode failed, retrying with libx264");
+      cmd = cmd.replace(HW_ENC, SW_ENC);
+      try {
+        const t1 = Date.now();
+        renderResult = await runCancellable(jobId, cmd);
+        console.log(`DEBUG - encode (software fallback) took ${((Date.now() - t1) / 1000).toFixed(1)}s`);
+      } catch (e: any) {
+        const full = String(e?.stderr || e?.message || "");
+        await fs.writeFile(path.join(process.cwd(), "ffmpeg-error.txt"), full).catch(() => {});
+        console.log("=== FFMPEG FAILED - see ffmpeg-error.txt ===");
+        throw e;
+      }
     }
     const errTail = String(renderResult.stderr || "").split("\n").slice(-25).join("\n");
     console.log("DEBUG - ffmpeg stderr tail:\n" + errTail);
