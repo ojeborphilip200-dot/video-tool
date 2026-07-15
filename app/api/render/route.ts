@@ -513,9 +513,12 @@ async function runRenderJob(jobId: string, input: RenderInput) {
       .join(" ");
 
     const FADE_DUR = 0.5;
-    // Crossfades disabled: xfade drops frames with mixed image/video inputs.
+    // Crossfades: safe now that every segment is a uniform 1280x720 25fps stream
+    // (segment caching eliminated the mixed-input bug). Each non-last clip gets a
+    // fade-length trailing pad, and the fade eats that pad - so no clip's START
+    // moves and visuals stay locked to their narration timestamps.
     // Flip to true to re-enable once that bug is solved.
-    const ENABLE_CROSSFADES = false;
+    const ENABLE_CROSSFADES = true;
     const useXfade = ENABLE_CROSSFADES && downloadedFiles.length > 1;
 
     // Ensure the video covers the full narration: if selected clips total less
@@ -624,15 +627,22 @@ async function runRenderJob(jobId: string, input: RenderInput) {
         assemblyFilter = `${concatInputs}concat=n=${downloadedFiles.length}:v=1:a=0[${concatLabel}]`;
       }
     } else {
+      // Each clip is (its window length + FADE_DUR of pad). We fade at the point
+      // where one clip's real content ends - so the NEXT clip's content still
+      // begins exactly on its narration moment. Offsets accumulate the true
+      // content lengths, and each fade overlaps into the trailing pad.
       const durs = clips.map((c) => c.trimEnd - c.trimStart);
       let chain = "";
       let prev = "v0";
-      let offset = 0;
+      let contentEnd = durs[0]; // where clip 0's real content ends
       for (let i = 1; i < downloadedFiles.length; i++) {
-        offset += durs[i - 1];
         const out = i === downloadedFiles.length - 1 ? concatLabel : `xf${i}`;
+        const offset = Math.max(0, contentEnd - FADE_DUR);
         chain += `[${prev}][v${i}]xfade=transition=fade:duration=${FADE_DUR}:offset=${offset.toFixed(3)}[${out}]; `;
         prev = out;
+        // After an xfade the timeline is shortened by FADE_DUR; the next content
+        // end sits FADE_DUR earlier than a naive sum
+        contentEnd = offset + FADE_DUR + durs[i];
       }
       assemblyFilter = chain.trim().replace(/;$/, "");
     }
