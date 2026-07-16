@@ -282,7 +282,7 @@ export function createMapRenderer(
       const dim = `<rect width="${width}" height="${height}" fill="rgba(0,0,0,${(hi * 0.3).toFixed(2)})"/>`;
 
       // Label scales + fades in over 50-70%, anchored near the country
-      const labelP = ease(clamp01((prog - 0.5) / 0.2));
+      const labelP = ease(clamp01((prog - 0.3) / 0.18));
       let lbl = "";
       if (config.region && labelP > 0) {
         const name = config.region.toUpperCase();

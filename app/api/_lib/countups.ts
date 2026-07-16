@@ -40,8 +40,9 @@ export async function detectCountups(
   const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
   const message = await anthropic.messages.create({
-    model: "claude-sonnet-4-6",
+    model: "claude-sonnet-5",
     max_tokens: 1500,
+    output_config: { effort: "low" },
     messages: [
       {
         role: "user",

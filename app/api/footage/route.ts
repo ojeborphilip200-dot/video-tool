@@ -200,8 +200,9 @@ async function rankMedia(
       .join("\n");
 
     const message = await anthropic.messages.create({
-      model: "claude-sonnet-4-6",
+      model: "claude-sonnet-5",
       max_tokens: 1800,
+      output_config: { effort: "medium" },
       messages: [
         {
           role: "user",
@@ -337,8 +338,9 @@ Respond ONLY with a JSON array, no other text: [{"id":"...","pass":true,"reason"
     });
 
     const message = await anthropic.messages.create({
-      model: "claude-sonnet-4-6",
+      model: "claude-sonnet-5",
       max_tokens: 600,
+      output_config: { effort: "low" },
       messages: [{ role: "user", content }],
     });
 
@@ -537,8 +539,9 @@ export async function POST(req: NextRequest) {
             const Anthropic = (await import("@anthropic-ai/sdk")).default;
             const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
             const reMsg = await anthropic.messages.create({
-              model: "claude-sonnet-4-6",
+              model: "claude-sonnet-5",
               max_tokens: 300,
+              output_config: { effort: "medium" },
               messages: [{
                 role: "user",
                 content: `A stock/archive image search for this narration returned nothing usable:\n\n"${beatText}"\n\nThe queries I tried were: ${queryList.join("; ")}\n\nThose failed. Give me 4 COMPLETELY DIFFERENT search queries, each naming something a camera could physically photograph - concrete objects, settings, actions, not abstract concepts. Pivot the angle entirely from what failed. Respond ONLY with a JSON array of 4 strings.`,

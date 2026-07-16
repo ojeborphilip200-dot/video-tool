@@ -17,8 +17,9 @@ export async function POST(req: NextRequest) {
     }
 
     const message = await anthropic.messages.create({
-      model: "claude-sonnet-4-6",
+      model: "claude-sonnet-5",
       max_tokens: 6000,
+      output_config: { effort: "medium" },
       messages: [
         {
           role: "user",
@@ -75,7 +76,29 @@ ${script}`,
     // first word within a small lookahead window, size it by word count - never
     // depends on last-word matching, so every beat gets a timestamp.
     let wordCursor = 0;
-    const beats = aiBeats.map((beat) => {
+    // Deterministic merge: the model sometimes over-splits (e.g. 175 beats from
+    // one script). Merge any beat under ~12 words into the previous one until
+    // each beat is a real ~5-10s shot. Halves-or-better the beat count, which
+    // proportionally cuts generation time (one vision pass per beat).
+    const MIN_WORDS = 12;
+    const mergedBeats: typeof aiBeats = [];
+    for (const b of aiBeats) {
+      const wc = (b.text || "").trim().split(/\s+/).filter(Boolean).length;
+      const prev = mergedBeats[mergedBeats.length - 1];
+      if (prev && wc < MIN_WORDS) {
+        // fold this fragment into the previous beat
+        prev.text = `${prev.text} ${b.text}`.trim();
+        prev.queries = [...(prev.queries || []), ...(b.queries || [])].slice(0, 6);
+        prev.entities = [...new Set([...(prev.entities || []), ...(b.entities || [])])];
+        prev.keywords = [...new Set([...(prev.keywords || []), ...(b.keywords || [])])];
+        // keep the previous beat's map/era/treatment (it's the dominant one)
+      } else {
+        mergedBeats.push({ ...b });
+      }
+    }
+    console.log(`DEBUG - merged ${aiBeats.length} raw beats -> ${mergedBeats.length} beats`);
+
+    const beats = mergedBeats.map((beat) => {
       const beatWords = beat.text
         .toLowerCase()
         .split(/\s+/)

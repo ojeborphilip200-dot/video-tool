@@ -23,8 +23,9 @@ export async function detectLocationCallouts(
   const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
   const message = await anthropic.messages.create({
-    model: "claude-sonnet-4-6",
+    model: "claude-haiku-4-5-20251001",
     max_tokens: 500,
+    output_config: { effort: "low" },
     messages: [
       {
         role: "user",

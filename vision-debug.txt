@@ -1,2633 +1,729 @@
 
-=== BEAT: Let's imagine you're a farmer in the ancient Near East, around 10,000 
-   80 [pexels] Göbekli Tepe monoliths, 10000 BCE Near East
-   78 [pexels] Göbekli Tepe T-pillars, exact Neolithic period
-   75 [pexels] Çatalhöyük Neolithic mud-brick settlement excavation
-   72 [pexels] Göbekli Tepe stone structures, Neolithic Near East
-   70 [pexels] Neolithic stone enclosures at Göbekli Tepe
-   68 [pexels] Neolithic Near East excavated mud-brick structures
-   66 [met] Neolithic flint tool, ancient Near East artifact
-   65 [pexels] Göbekli Tepe excavation under modern shelter
+=== BEAT: Some rooms were said to hold carefully stored grain, somehow still pre
+   14 [artic] Elegant drawing room, no grain storage
+   14 [artic] Grand interior room, not grain storage
+   14 [artic] Ornate bedroom, no grain visible
+   12 [smithsonian] Document/ledger, no grain depicted
+    9 [europeana] Portrait of couple, completely irrelevant
+    9 [europeana] Outdoor family photo, irrelevant
+    9 [europeana] Three people outdoors, irrelevant
+   -1 [openverse/flickr] (not inspected)
 
-=== BEAT: By 1932, millions of Americans were unemployed as the Great Depression
-   96 [wikimedia] Depression-era soup kitchen line, period-authentic
-   88 [unsplash] Depression-era families queuing with containers
-   85 [unsplash] Impoverished Depression-era family at sparse table
-   62 [pexels] FDR Memorial breadline sculpture, evocative reference
-   45 [unsplash] 1930s women working, loosely period-relevant
-   38 [artic] Illustration painting, not documentary photograph
-   28 [artic] Well-dressed women, contradicts unemployment hardship
-   12 [pixabay] Modern portrait, wrong period entirely
-
-=== BEAT: You've just figured out agriculture, you're storing grain, you built s
-   72 [pexels] ancient Near East amphorae in storage room
-   72 [pexels] rows of ancient grain storage jars, evocative
-   70 [pexels] large collection ancient storage jars, museum setting
-   66 [met] ancient Near East painted storage jar, animal motif
-   65 [pexels] pile of ancient clay storage vessels, usable
-   62 [met] ancient large storage jar, plausible Near East
-   62 [pexels] large ancient storage amphora on stand
-   60 [pexels] ancient Near East style amphorae on display
-
-=== BEAT: In Europe, the trenches of the Great War had already reshaped a genera
-   92 [europeana] WWI soldiers resting in frontline dugout trench
-   86 [europeana] WWI soldiers in shell-damaged woodland trench area
-   68 [pexels] Gravestone reads A Soldier of the Great War
-   66 [europeana] WWI Western Front military engineering scene
-   62 [pixabay] WWI Commonwealth war cemetery Flanders Belgium
-   58 [pexels] WWI grave markers close-up limited context
-   55 [pixabay] Ypres Cloth Hall WWI Belgium landmark
-   55 [pexels] European war cemetery crosses evokes WWI dead
-
-=== BEAT: and then one night you notice a pair of eyes watching you from the dar
-   88 [unsplash] true wildcat intense stare, perfect subject
-   85 [unsplash] tabby cat stalking at night outdoors
-   82 [pexels] cat with dead rodent prey in mouth
-   80 [pexels] single eye in darkness, narration match
-   78 [pexels] cat eyes glowing from dark vegetation
-   75 [pexels] wildcat-like tabby peering through undergrowth
-   75 [pexels] cat watching live rodent on floor
-   72 [pexels] dark cat watching from shadowy foliage
-
-=== BEAT: You didn't invite this animal, you didn't train it, you didn't domesti
-   88 [pexels] tabby cat at ancient site, wild-meets-human
-   85 [pexels] wild-looking tabby hiding in vegetation
-   82 [pexels] cat in ancient stone ruins, self-domestication
-   82 [pexels] wildcat-type tabby alert in natural habitat
-   80 [pexels] wildcat-type tabby stalking in nature
-   78 [unsplash] wild-looking cat lurking in tall grass
-   78 [unsplash] wary street tabby, self-domestication implied
-   76 [pexels] wildcat-like cat hidden in undergrowth
-
-=== BEAT: It moved into your civilization, uninvited, started doing something us
-   90 [unsplash] Ancient Egyptian cat statuette hieroglyphs perfect
-   88 [pexels] Egyptian Bastet statue cat ancient civilization
-   82 [pexels] Cat with mouse clear pest control depiction
-   80 [pexels] Cat hunting mouse excellent pest control shot
-   72 [pexels] Farm cat guarding grain store pest control
-   55 [unsplash] Small ancient-style cat figurine in hand
-   55 [pexels] Cat comfortably living with human never left
-   52 [met] Ancient cuneiform tablet civilization artifact only
-
-=== BEAT: The Elder described a place nearly 1,500 miles away, a vast inland lak
-   32 [loc] Generic prairie landscape, no lake or copper
-   19 [loc] Small building engraving, wrong subject
-   16 [met] European harvest painting, unrelated subject
-   14 [met] European forest road painting, irrelevant
-   14 [loc] Colonial building exterior, wrong context
-   12 [artic] Renaissance engraving of bathing figure, unrelated
-   12 [met] Renaissance martyrdom painting, completely unrelated
-   12 [europeana] Religious engraving, holy family, unrelated
-
-=== BEAT: They were not his people, he explained.
-   66 [artic] crowd of strangers meeting, outsider dynamic
-   55 [nasa] man explaining to mixed group of strangers
-   52 [nasa] man addressing audience, explaining something
-   49 [artic] solitary man portrait, outsider feeling conveyed
-   34 [loc] lone figure possibly distanced, too vague
-   26 [loc] graffiti text unrelated to narration
-   24 [artic] abstract face, no narrative connection
-   22 [met] harvest scene, no outsider narrative
-
-=== BEAT: They had arrived from across the water long before living memory.
-   86 [loc] small boat approaching ship across water, arrival scene
-   66 [met] Venetian painting with ships visible in background
-   49 [met] Flemish portrait pair, period migration era plausible
-   42 [met] Bruegel harvest scene, old-world peasant life period
-   24 [loc] soldiers by train, wrong context entirely
-   22 [artic] classical figures but no water or voyage
-   16 [loc] political cartoon interior, no maritime context
-   14 [artic] train station painting, no sea crossing
-
-=== BEAT: In 1894, a visitor sat with a Hopi Elder in the Arizona desert and hea
-   59 [smithsonian] Brass tag stamped APR 12-94, period date match
-   46 [loc] Late 19th-century outdoor scene, wrong region
-   32 [europeana] 1909 Swedish town photo, wrong location entirely
-   26 [artic] 1877 Paris street painting, wrong continent
-   22 [artic] European etching portraits, no desert connection
-   16 [met] Victorian interior room, no desert or Hopi context
-   12 [loc] Japanese woodblock print, wrong subject entirely
-   12 [loc] Japanese woodblock crowd scene, irrelevant
-
-=== BEAT: They worked the metal, loaded it onto vessels, and vanished, leaving b
-   46 [europeana] ancient metal tongs, metalworking tool artifact
-   42 [europeana] copper currency ring, traded metal object
-   22 [loc] decorative metal objects, no mining context
-   16 [loc] Victorian curiosity shop, no mining relevance
-   16 [europeana] WWI ambulance, no mining relevance
-   14 [artic] agricultural workers, unrelated to mining
-   14 [wikimedia] metal type printing blocks, irrelevant
-   12 [wikimedia] modern toy spring, wrong subject entirely
-
-=== BEAT: When miners reached Michigan's Lake Superior during the 19th century, 
-   22 [wikimedia] Columbia River scene, wrong location entirely
-   19 [loc] Frank Leslie's newspaper, industrial machinery scene
-   16 [loc] Illustrated newspaper cover, indoor banquet scene
-   12 [artic] Portrait miniature, no mining connection
-    9 [loc] Harper's Weekly cover, text-heavy magazine page
-    6 [met] Religious painting, completely unrelated subject
-    6 [met] Ancient Egyptian stele, wrong era entirely
-    6 [artic] Greek amphora, ancient artifact unrelated
-
-=== BEAT: At first hearing, it sounds like another piece of old folklore, except
-   56 [met] Biblical triptych; wounds and folklore adjacent
-   49 [artic] Medieval engraving; folkloric female figure
-   24 [met] 19th-century portrait; no wounds or folklore
-   22 [artic] Decorative ornament; no relevant content
-   16 [artic] Abstract sketch; no wounds or folklore
-   14 [europeana] Modern official meeting; no relevance
-   14 [europeana] Modern official gathering; irrelevant
-   14 [europeana] Modern formal meeting; irrelevant
-
-=== BEAT: Stone tools lay abandoned where they had been dropped.
-   12 [met] Stone relief carving, not abandoned tools
-   12 [met] Carved stone figurine, not tools
-    9 [met] Stone sculpture head, not tools
-    9 [artic] Stone Buddha sculpture, wrong subject
-    9 [artic] Stone carved stele, not tools
-    6 [loc] Book spine, no stone tools visible
-    6 [loc] Book spine, completely irrelevant
-    6 [loc] Book spine, no archaeological content
-
-=== BEAT: Enormous pits scarred the terrain in every direction.
-    8 [artic] figure on rack, no pits terrain
-    6 [artic] ceramic face vessel, no terrain
-    6 [met] Renaissance musicians painting, unrelated
-    6 [artic] scarred torso, not landscape pits
-    6 [smithsonian] open wallet, no terrain visible
-    4 [loc] book spine, completely irrelevant
-    4 [loc] book spine, completely irrelevant
-    4 [loc] book spine, completely irrelevant
-
-=== BEAT: They found thousands of ancient mines already there.
-   42 [nasa] Aerial terrain view, no visible mines
-   34 [loc] Stereoview town panorama, unrelated
-   29 [loc] Railroad bridge in canyon, not mines
-   24 [artic] Ancient gold ring, loosely ancient artifact
-   24 [europeana] 19th century British building engraving, unrelated
-   19 [loc] Waterfront building, unrelated to mines
-   19 [met] Bruegel harvest painting, not mining
-   14 [wikimedia] Asian temple incense burner, unrelated
-
-=== BEAT: And perhaps most striking of all, the richest modern mines were freque
-   46 [europeana] ancient flint tools, loosely mining-adjacent
-   44 [europeana] prehistoric stone tools, tangentially relevant
-   42 [europeana] ancient worked flint fragments, weak link
-   22 [nasa] aerial terrain, no visible ancient mines
-    9 [artic] ancient coins, wrong subject entirely
-    9 [artic] Roman gold coin, unrelated to mining
-    9 [met] Greek terracotta figurine, irrelevant
-    9 [met] decorative ceramic jar, irrelevant
-
-=== BEAT: Who opened those mines?
-   12 [artic] Tribune building competition drawing, unrelated
-    9 [artic] Ocean sunset scene, unrelated to mines
-    9 [met] Decorative wooden cabinet, unrelated to mines
-    9 [met] Ornate cabinet furniture, unrelated to mines
-    9 [met] Chinese scroll painting, unrelated to mines
-    3 [openverse/flickr] Airport tarmac scene, completely unrelated
+=== BEAT: Others contained pottery, copper tools, weapons, and carved objects, u
+   59 [artic] illustrated Southwest pottery catalog page, relevant subject
+   46 [artic] ancient decorated pottery vessel, wrong culture/region
+   42 [wikimedia] single corroded fragment, too close/ambiguous
+   39 [wikimedia] pottery sherds in tray, generic archaeological fragments
+   36 [wikimedia] pile of plain pottery sherds, unidentifiable
+   14 [artic] European fine china, completely wrong culture/period
    -1 [openverse/flickr] (not inspected)
    -1 [openverse/flickr] (not inspected)
 
-=== BEAT: How did they pull such staggering quantities of copper out of the eart
-    8 [artic] Dark painting of door, irrelevant
-    6 [artic] Decorative textile, no copper mining relevance
-    6 [europeana] Early 20th century family portrait, wrong
-    6 [artic] Modern Venus de Milo sculpture, irrelevant
-    2 [nasa] Space nebula, completely unrelated subject
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: Because this is not simply the story of ancient copper.
-   22 [artic] Blake illustration of hellfire, unrelated subject
-   20 [nasa] Planetary cratered surface, loosely ancient/elemental
-   19 [artic] Goya etching of seated woman, unrelated
-   18 [nasa] Bright crater on planetary body, unrelated
-   16 [europeana] Holocaust museum exhibit, wrong subject
-   12 [europeana] Book cover sketch of boy, unrelated
-    9 [europeana] AIDS awareness poster, wrong subject entirely
-    9 [artic] Text-only conceptual artwork, unrelated subject
-
-=== BEAT: The further you follow this mystery, the more disorienting it becomes.
-   72 [nasa] Saturn's cosmic mystery evokes disorientation well
-   59 [artic] Fragmented abstract print suggests disorientation visually
-   34 [artic] Pleasant courtyard scene, no mystery or disorientation
-   32 [artic] Generic portrait, no thematic connection to mystery
-   29 [met] Crucifixion scene, solemn but irrelevant to mystery
-   26 [met] Harvest scene, cheerful and grounded, not disorienting
-   24 [met] Museum altarpiece display, no mystery resonance
-   16 [europeana] Portrait engraving with heavy baked-in text overlay
-
-=== BEAT: And why were people living in the Arizona desert preserving a story ab
-   12 [artic] Small animal artifact, no relevant connection
-   10 [artic] Patchwork garment, no relevant connection
-    9 [met] Religious battle painting, no desert or miners
-    9 [europeana] Outdoors family snapshot, no relevant subject
-    8 [met] Decorative quilt, unrelated to narration
-    8 [europeana] Early 20th century portrait couple, unrelated
-    8 [europeana] Domestic indoor scene, no desert or miners
-    7 [met] Madonna and child painting, irrelevant
-
-=== BEAT: The first men who reached Lake Superior in search of copper believed t
-    9 [artic] Medieval engraving, period wrong context
-    6 [europeana] WWI soldiers, wrong subject entirely
-    6 [artic] Abstract modern painting, irrelevant
-    6 [artic] Decorative geometric print, irrelevant
-    6 [europeana] Arab dignitaries, wrong subject entirely
-    6 [europeana] Early motor racing, wrong subject
-    2 [nasa] NASA astronaut hall, wrong subject
-    2 [nasa] Astronaut Hall of Fame interior
-
-=== BEAT: It is the story of one of the oldest and largest mining operations eve
-   12 [artic] Renaissance engraving, no mining content
-    9 [artic] Decorative tapestry, unrelated to mining
-    9 [artic] Tapestry scene, no mining relevance
-    6 [europeana] Movie poster, completely unrelated
-    6 [europeana] Cartoon illustration, no mining connection
-    6 [europeana] Film poster, wholly irrelevant
-    4 [nasa] Mars rock strata, not terrestrial mining
-    3 [nasa] Planetary surface craters, not North America
-
-=== BEAT: By the middle of the 19th century, word of rich deposits had spread wi
-   26 [artic] embroidered map, wrong era/topic
-   22 [wikimedia] mountain wilderness, vaguely western US
-    9 [artic] Van Gogh sketch, irrelevant subject
-    9 [wikimedia] English castle, wrong subject entirely
-    9 [wikimedia] German castle, wrong subject entirely
-    9 [europeana] modern political figures, wrong era
-    9 [europeana] modern political ceremony, irrelevant
-    9 [europeana] modern political figures, wrong era
-
-=== BEAT: Investors committed large sums to mining ventures.
-    6 [artic] Bronze statue, no mining investment relevance
-    6 [artic] Decorative ceramic plate, unrelated subject
-    6 [artic] Classical marble sculpture, no relevance
-
-=== BEAT: Prospectors moved north into the forests of Michigan, persuaded that o
-    6 [artic] Medieval European painting, wrong era entirely
-    6 [artic] Religious medieval painting, completely irrelevant
-    6 [artic] Medieval religious panel, wrong subject entirely
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: They expected ground no one had ever broken.
-   30 [nasa] Storm debris on ground, loosely evokes broken terrain
-   22 [artic] Decorative tree print, no ground-breaking relevance
-   22 [nasa] NASA jet in flight, not ground-breaking context
-   20 [nasa] Cargo ship port, no pioneering ground connection
-   19 [europeana] Soccer practice, unrelated to breaking ground
-   19 [europeana] Soccer kick, no connection to narration
-   19 [europeana] Soccer field drill, irrelevant to narration
-   16 [artic] Nude figure print, unrelated to breaking ground
-
-=== BEAT: As crews cleared away accumulated decades of fallen timber and dense l
-   32 [artic] Dark forest engraving, no clearing crews
-   26 [artic] Inverted forest print, wrong subject
-   18 [nasa] Aerial coastal view, no timber clearing
-    9 [artic] Naval shipwreck scene, completely unrelated
-    2 [nasa] Portrait of man, entirely unrelated
-    2 [nasa] Man on phone, entirely unrelated
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: What they found instead was evidence that someone had reached the copp
-   66 [europeana] green corroded copper sheet fragments, prior extraction evidence
-   49 [europeana] green-patinated copper fragments with scale ruler
-   42 [europeana] small artifact with ruler, vaguely archaeological
-   26 [artic] gold ring, not copper or mining evidence
-    9 [artic] surrealist art object, completely irrelevant
-    9 [met] Bruegel harvest painting, wrong subject entirely
-    9 [artic] Mexican broadside print, unrelated topic
-    9 [met] classical marble sculpture, no relevance
-
-=== BEAT: At first these seemed unremarkable, just uneven ground scattered throu
-    6 [europeana] Beetle specimen, unrelated to forest ground
-    6 [artic] Decorative pattern, no forest relevance
-    6 [europeana] Indoor spinning wheel scene, irrelevant
-    6 [artic] Abstract painting, no forest ground shown
-    6 [artic] Medieval engraving of figure, irrelevant
-    6 [europeana] People in robes, no forest setting
-    2 [nasa] Astronaut in space station, irrelevant
-    2 [nasa] Rocket launch, completely unrelated
-
-=== BEAT: But the more the miners looked, the more impossible the pits became to
-   45 [nasa] aerial view of crater pits, suggestive
-   42 [nasa] aerial pit-like terrain, no mining
-   38 [nasa] colorized aerial craters, loosely pit-like
-   26 [artic] classical drawing, no mining depicted
-   16 [artic] art installation, no mining relevance
-   12 [europeana] unrelated crowd scene, no mining context
-   10 [europeana] Israeli truck protest, unrelated
-    9 [europeana] modern office scene, irrelevant
-
-=== BEAT: They were not random.
-   66 [europeana] hoard of coins suggests deliberate selection pattern
-   55 [nasa] patterned excavation craters suggest deliberate placement
-   49 [europeana] two artifacts with scale, loose relevance
-   44 [europeana] two stone tools with ruler, weak relevance
-   20 [nasa] NASA assembly facility, unrelated
-   19 [artic] romantic pastoral scene, unrelated
-   18 [nasa] NASA rocket assembly hall, unrelated
-   16 [artic] abstract surrealist print, unrelated
-
-=== BEAT: They stretched across hillsides in long deliberate lines, tracing the 
-   22 [artic] Vertical lines but abstract art context
-   16 [smithsonian] Hillside landscape but no mining traces
-   14 [smithsonian] Landscape sketch with horizon lines only
-   12 [smithsonian] Faint mountain sketch, no mining lines
-    9 [met] Japanese screen painting, unrelated subject
-    7 [met] Pre-Columbian vessel, unrelated to mining
-    6 [artic] Abstract art, no mining or hillside lines
-    6 [artic] Japanese woodblock print, completely unrelated
-
-=== BEAT: Whenever modern miners broke open one of these ancient excavations, th
-    6 [artic] Portrait miniature, no mining relevance
-    6 [artic] Hindu stone relief, unrelated to mining
-    6 [artic] Gothic reliquary, no copper mining connection
-
-=== BEAT: The same pattern appeared again and again across the landscape.
-   89 [europeana] identical spiral motifs repeated across entire vessel
-   82 [europeana] repeating decorative pattern across artifact surface
-   72 [nasa] repeated linear patterns across terrain landscape
-   45 [nasa] city lights pattern across broad landscape
-   25 [nasa] planetary surface but poor framing/borders
-   24 [artic] CGI cityscape render, not real landscape
-    9 [artic] illustration of two people, irrelevant
-    9 [artic] portrait of woman, no landscape pattern
-
-=== BEAT: The people who had opened these pits had somehow identified the most p
-   16 [artic] violent axe scene unrelated to mining geology
-   12 [artic] medieval court scene unrelated to pit mining
-    9 [europeana] 20th-century crowd on trucks, irrelevant
-    7 [europeana] heavy watermarks, street scene, irrelevant
-    7 [europeana] heavy watermarks, tourist scene, irrelevant
-    5 [nasa] two men with plaque, unrelated to geology
-    4 [nasa] modern portrait, no connection to subject
-    3 [nasa] young woman portrait, entirely irrelevant
-
-=== BEAT: Whoever created these workings understood the ground with a depth of k
-   46 [artic] Agricultural workers, not geological workings
-   42 [artic] Architectural drawings, not mining workings
-    9 [artic] Book cover with prominent text overlay
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: As the excavations continued, the finds grew more remarkable still.
-   82 [europeana] remarkable ancient helmet find displayed
-   66 [europeana] archaeological dig site entrance visible
-   59 [europeana] small artifact find with scale ruler
-   -1 [wikimedia] (not inspected)
-   -1 [wikimedia] (not inspected)
-   -1 [wikimedia] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: This was not fortune.
-   46 [artic] rococo social scene, vaguely fate/fortune theme
-   42 [europeana] stern portrait implies deliberate action
-   39 [artic] dramatic historical etching, loosely usable
-   34 [artic] religious scene, no fortune connection
-   22 [wikimedia] fishing boats, no thematic relevance
-   16 [europeana] family photo, no contextual relevance
-   15 [nasa] Mars surface dots, no relevance
-   14 [europeana] collage artwork, wrong tone entirely
-
-=== BEAT: Some mining districts contained so many of these tools that early fiel
-    6 [artic] Ocean sunset scene, no mining tools
-    6 [artic] Architecture rendering, unrelated to mining
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: Buried beneath layers of accumulated earth were enormous quantities of
-   16 [wikimedia] Aerial planetary layers, no stone hammers
-   12 [wikimedia] Mars terrain render, irrelevant entirely
-   12 [artic] Tropical figures etching, no stone tools
-   10 [nasa] False-color satellite imagery, no relevance
-   10 [nasa] Mars ice layers, not archaeological tools
-    9 [artic] Japanese writing tools illustration, irrelevant
-    9 [met] Flemish portrait painting, no connection
-    9 [met] Religious triptych painting, no connection
-
-=== BEAT: Many of them carefully shaped with grooves cut around their middles so
-    9 [europeana] Decorative animal figurine, no grooved tools
-    7 [artic] Japanese woodblock print, unrelated subject
-    6 [europeana] Hillside landscape with cross, irrelevant
-    6 [europeana] Rocky gorge landscape, completely unrelated
-    6 [artic] Contemporary painting of garden scene
-    6 [artic] Charcoal portrait drawing, unrelated subject
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: Thousands upon thousands of hammers had been left behind exactly where
-   16 [artic] Medieval martyrdom scene, no hammers
-   14 [europeana] NYC night skyline, unrelated to hammers
-   12 [artic] Composite art photo, baked-in text overlay
-    9 [artic] Chinese ink painting, completely unrelated
-    9 [europeana] Israeli protest, no labor or hammers
-    9 [europeana] Political demonstration, no hammers visible
-    5 [nasa] Mars rover landscape, no hammers
-    5 [nasa] Outdoor event tents at sunset, unrelated
-
-=== BEAT: There were no iron picks, no steel chisels, no mechanical equipment of
-   62 [nasa] Nazca lines made without modern equipment
-   49 [europeana] ancient tools but unclear iron/stone context
-   35 [nasa] raw rock/mineral sample, loosely relevant
-   34 [europeana] stone disc artifact, loose relevance only
-   26 [europeana] technical illustration unrelated to primitive tools
-   19 [artic] figurative print unrelated to ancient construction
-   16 [artic] decorative ceramic jar, wrong subject entirely
-   12 [artic] abstract modernist painting, completely irrelevant
-
-=== BEAT: Only stone, wood, and the unmistakable evidence of a massive workforce
-   66 [europeana] carved volcanic rock basin, workforce evidence
-   46 [europeana] stone tool but no quarrying context
-   46 [europeana] stone tool but no quarrying context
-   22 [artic] Buddhist statue, wrong culture and context
-   12 [artic] landscape painting, irrelevant to narration
-    9 [artic] American Gothic painting, completely wrong
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: The more 19th century engineers surveyed the region, the clearer the p
-   86 [europeana] 19th-century survey map of East Florida region
-   30 [nasa] Aerial region view, modern satellite not archival
-   12 [europeana] Portrait of Renaissance painter, wrong context
-    9 [artic] Bird illustration unrelated to surveying
-    9 [europeana] French theater publication cover, irrelevant
-    9 [artic] Medieval sculpture, unrelated to surveying
-    9 [artic] Japanese dragon figurine, completely irrelevant
-    5 [nasa] Austrian rocket mail stamps, wrong subject
-
-=== BEAT: Modern companies simply cleared out the soil that had settled back int
-    8 [artic] Forest scene; no mining or excavation
-    6 [artic] Nighthawks diner; completely unrelated
-    6 [artic] Figurative portrait painting; no relevance
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: They were not pioneering a new mining district.
-    6 [artic] Abstract cubist painting, no mining content
-    6 [artic] Symbolist print, no mining relevance
-    6 [artic] Surrealist lithograph, no mining content
-    6 [europeana] Landscape painting, no mining relevance
-    6 [europeana] Portrait painting, no mining relevance
-    6 [europeana] Portrait painting, no mining relevance
-    2 [nasa] NASA rocket launch, unrelated to mining
-    2 [nasa] Planetary astronomy images, no mining
-
-=== BEAT: They were reopening an ancient one.
-   26 [artic] Mythological illustration, ancient theme loosely
-   19 [artic] Surreal lithograph, no reopening depicted
-   16 [europeana] Modern city bridge, nothing ancient reopened
-   14 [artic] Abstract cubist painting, no connection
-   12 [europeana] Contemporary house exterior, no relevance
-    5 [nasa] NASA museum exhibit, no ancient reopening
-    5 [nasa] NASA cleanroom rover assembly, wrong context
-    4 [nasa] Man at podium, completely irrelevant
-
-=== BEAT: Some of the most productive copper mines of the industrial era existed
-   18 [nasa] Barren landscape, vaguely geological but irrelevant
-   16 [europeana] Southern hemisphere map, no mining relevance
-   12 [artic] Spanish broadside illustration, wrong subject
-    9 [europeana] WWII aircrew, completely wrong subject
-    9 [europeana] Underwater swimmers, unrelated to mining
-    6 [artic] Text-only artwork, no mining content
-    6 [artic] Text-only artwork, completely irrelevant
-    5 [nasa] Mars surface imagery, wrong planet entirely
-
-=== BEAT: That realization raised a question no one could satisfactorily answer.
-   36 [europeana] Old map evokes unanswered geographic questions
-   34 [europeana] Archaeological ruins suggest unanswered historical mystery
-   29 [europeana] Baroque angel sketch, no conceptual match
-   28 [nasa] Space shuttle render, vaguely scientific curiosity
-   26 [artic] Architectural drawing, no unanswered question depicted
-   24 [met] Harvest scene, unrelated to questioning realization
-   22 [artic] Medieval helmet artifact, no narrative relevance
-   22 [artic] Another helmet artifact, no narrative match
-
-=== BEAT: If these ancient miners possessed enough knowledge to locate the riche
-   46 [artic] ancient figure but wrong culture/region
-   19 [artic] Chinese landscape painting, irrelevant
-   14 [artic] 19th-century portrait miniature, wrong context
-    8 [nasa] Mars surface imagery, wrong planet/topic
-    5 [nasa] Mars geology with baked-in text labels
-    5 [nasa] modern laboratory scientist, completely irrelevant
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: And perhaps more critically, how had they accomplished work on such an
-   36 [wikimedia] 19th-century rural scene, no construction tools shown
-    9 [artic] Abstract figures, no engineering or construction context
-    8 [artic] Gas mask figures, wrong subject entirely
-    7 [wikimedia] Flower arrangement, completely irrelevant
-    7 [artic] Surreal eye illustration, completely irrelevant
-   -1 [wikimedia] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: In most places, copper does not occur as metal.
-   46 [europeana] ancient metal artifacts, not copper ore
-   44 [europeana] bronze/copper artifacts, processed not natural
-   42 [europeana] metal rings, processed copper not ore
-   34 [artic] bronze lion sculpture, processed metal
-    4 [artic] text artwork, completely irrelevant
-    4 [artic] text artwork, completely irrelevant
-   -1 [wikimedia] (not inspected)
+=== BEAT: Then the report grew stranger still.
+   59 [artic] figure examining document at desk, report feel
+   56 [artic] two men, one reading, report-like scenario
+   46 [artic] Soviet propaganda poster, strange wartime imagery
+   20 [nasa] satellite fire progression imagery, text overlaid
+   14 [wikimedia] satellite coastal view, no report connection
+   10 [nasa] medical microscopy slides, unrelated to narration
+   10 [nasa] nighttime satellite view, no report connection
    -1 [wikimedia] (not inspected)
 
-=== BEAT: To understand why these ancient workings astonished everyone who exami
-   12 [europeana] Coastal scenery but wrong location entirely
-    6 [met] Renaissance hunting scene, wholly irrelevant
-    6 [met] Decorative wall sconces, completely irrelevant
-    6 [met] Religious painting, no connection to subject
-    6 [europeana] Microscopy image, biologically irrelevant
-    6 [artic] 19th-century classroom cartoon, irrelevant
-    6 [europeana] Modern street protest, wholly irrelevant
-    6 [artic] Gauguin Tahiti painting, irrelevant
-
-=== BEAT: It exists locked inside rock as ore, and reaching it requires crushing
-   16 [artic] ornate door lock, not metal smelting
-   12 [artic] still life painting unrelated to smelting
-   10 [nasa] modern lab machinery, not smelting furnace
-    8 [artic] video art installation, completely irrelevant
-    6 [nasa] modern aerospace equipment, wrong context
-    5 [nasa] spacecraft interior wiring, totally irrelevant
-   -1 [wikimedia] (not inspected)
+=== BEAT: And the walls, the paper said, were covered with symbols and inscripti
+   46 [europeana] Wall inscriptions but modern French graffiti
+   42 [europeana] Ancient stone walls, no visible inscriptions
+   34 [europeana] Archaeological site plan, watermark visible
+   16 [artic] Tree and wall, irrelevant to narration
+   14 [artic] Modern gallery wall inscriptions, wrong context
+   12 [artic] Modern gallery wall with large text
+    9 [wikimedia] Nebula image, completely unrelated
    -1 [wikimedia] (not inspected)
 
-=== BEAT: Lake Superior was fundamentally different.
-   46 [artic] Large body of water visible, dramatic sky
-    9 [artic] Modern architecture, no lake connection
-    6 [artic] Nearly blank dark frame, unusable
-   -1 [wikimedia] (not inspected)
-   -1 [wikimedia] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: Here, nature had already completed most of the preparation.
-   66 [europeana] lush landscape painting suggests nature's readiness
-   45 [openverse/nasa] satellite view of natural terrain, too abstract
-   42 [europeana] rural scene but baked-in caption text visible
-   12 [artic] historical figure on crutches, unrelated subject
-    9 [artic] neon art installation with prominent text, irrelevant
-    9 [artic] abstract art installation, unrelated to narration
-    9 [europeana] handwritten letter document, completely irrelevant
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: Deep beneath the Keweenaw Peninsula and Isle Royale lay enormous depos
-   16 [artic] Sunset canoe scene, no copper geology
-   12 [artic] Tropical etching, no copper deposits
-    9 [artic] Japanese woodblock, completely unrelated
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: In certain locations, massive pieces of solid copper rested surprising
-    6 [artic] Large crowd ceremony, no copper masses
-    6 [artic] Military parade, completely unrelated subject
-    6 [artic] Illustrated book page, wrong subject entirely
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/nasa] (not inspected)
-
-=== BEAT: A person who knew where to search did not need a furnace to begin work
-    9 [artic] Greek pottery, no metal working relevance
-    9 [artic] Ancient Greek vase, unrelated to narration
-    9 [artic] Greek ceramic vessel, no metal context
-    9 [europeana] Mid-century portrait, no metal working shown
-    9 [europeana] Family gathering, no metal working relevance
-    9 [europeana] Outdoor picnic scene, unrelated to narration
-    5 [nasa] NASA facility portrait, no metal working
-    5 [nasa] Woman with dog outdoors, irrelevant
-
-=== BEAT: Once removed from the surrounding rock, copper could be cut, hammered,
-   19 [smithsonian] Pale stone figurine, not copper metalwork
-   14 [artic] Stone carving, wrong material and period
-   14 [artic] Stone carving, wrong material and period
-    6 [europeana] Modern tourists on rocks, irrelevant
-    6 [europeana] Modern tourists on rocks, irrelevant
-    6 [europeana] Modern urban construction, irrelevant
-    6 [artic] 19th-century Paris street, irrelevant
-    6 [smithsonian] Handwritten ledger page, irrelevant
-
-=== BEAT: That single geological circumstance changed the entire history of the 
-   16 [smithsonian] Text document about Exodus migration, not geological
-   14 [artic] Crowd illustration, no geological circumstance shown
-   12 [met] Persian equestrian drawing, no geological connection
-   12 [met] Religious diptych painting, unrelated to geology
-    9 [artic] Ancient ceramic vessel, no geological relevance
-    9 [artic] Decorative pottery artifact, unrelated to geology
-
-=== BEAT: It meant that people equipped with little beyond stone tools, wooden w
-   16 [artic] Modern woodcut violence, wrong subject
-   12 [artic] Medieval European scene, unrelated subject
-    6 [europeana] Contemporary portrait, completely irrelevant
-    6 [europeana] Modern photo of two men, irrelevant
-    6 [europeana] Modern press conference, completely irrelevant
-    2 [nasa] Modern woman portrait, irrelevant
-    2 [nasa] NASA spacesuit display, irrelevant
-    1 [openverse/flickr] Text badge on shirt, irrelevant
-
-=== BEAT: The richest deposits were locked inside some of the hardest basalt on 
-   62 [nasa] Aerial view of large open-pit mine
-    9 [europeana] Small artifact with label, wrong subject
-    6 [artic] Marble religious sculpture, irrelevant to mining
-    6 [artic] Religious painting, no geological relevance
-    6 [artic] Old Master drawing of crucifixion scene
-   -1 [wikimedia] (not inspected)
-   -1 [wikimedia] (not inspected)
+=== BEAT: Nearby stood statues and carved figures that, according to the article
+   76 [artic] Egyptian-style falcon statue clearly visible
+   24 [artic] Greek/Roman marble torso, not Egyptian/Asian
+   24 [artic] Greco-Roman headless marble statue, wrong style
+   22 [met] Medieval European ivory carving, wrong style
+   19 [met] European Baroque polychrome statue, wrong style
+   19 [met] Gothic Madonna ivory sculpture, wrong style
+    9 [smithsonian] Victorian illustration of people, completely irrelevant
    -1 [wikimedia] (not inspected)
 
-=== BEAT: But removing the copper was still an immense undertaking.
-   66 [wikimedia] copper mine ruins suggest mining undertaking
-   65 [nasa] aerial view of large copper mine operations
-   55 [nasa] workers handling large copper dome structure
-   26 [europeana] corroded copper fragments but catalog plate
-   22 [artic] engraving of printing workshop unrelated
-   22 [europeana] bronze artifact catalog shot unrelated
-   19 [europeana] small copper ring artifact catalog shot
-    9 [artic] mythological painting completely irrelevant
-
-=== BEAT: Without steel drills or explosive charges, the miners relied on a tech
-    9 [artic] Modern sculpture, no mining relevance
-    8 [artic] Military figures, unrelated to mining
-    7 [artic] Medieval armor, completely unrelated
-   -1 [wikimedia] (not inspected)
-   -1 [wikimedia] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [wikimedia] (not inspected)
-
-=== BEAT: It sounds straightforward.
-   46 [artic] Simple cake decoration suggests straightforward task
-   16 [artic] Abstract artwork unrelated to narration
-   12 [artic] CGI abstract visuals, no relevant content
-   -1 [openverse/flickr] (not inspected)
+=== BEAT: Four days later, on April 9th, the Arizona Gazette published a second 
+    6 [europeana] Israeli protest, unrelated to Arizona newspaper
+    6 [europeana] Israeli protest, unrelated to Arizona newspaper
+    6 [europeana] Israeli protest, unrelated to Arizona newspaper
+    6 [artic] Artistic portrait, unrelated to newspaper article
+    6 [artic] Marble sculpture, unrelated to newspaper discovery
+    6 [artic] Chinese painting, unrelated to Arizona Gazette
    -1 [openverse/flickr] (not inspected)
    -1 [openverse/flickr] (not inspected)
 
-=== BEAT: They built large fires directly against the rock face, heating the sto
-    8 [nasa] Rocky mountain face visible but no fire
-    6 [europeana] Rural barn, no fire or rock
-    6 [europeana] Wooden farmhouse, completely irrelevant
-    6 [europeana] Scandinavian farm buildings, no relevance
-    6 [artic] Bronze archer sculpture, unrelated
-    6 [artic] Bronze figure sculpture, unrelated
-    6 [artic] Bronze standing figure, unrelated
-    3 [nasa] Industrial aerial landscape, unrelated
-
-=== BEAT: Then they flooded it with cold water.
-   56 [europeana] urban street flood with vehicles and water
-   38 [nasa] aerial river flood, no cold water context
-   26 [artic] figure in flood water, but illustration
-   20 [nasa] flood mapping collage with heavy text overlays
-   16 [artic] cemetery excavation, no flooding visible
-   10 [openverse/nasa] satellite weather view, not flooding
-    9 [artic] abstract artwork, unrelated to flooding
-    9 [europeana] impressionist painting of woman on rocks
-
-=== BEAT: The violent change in temperature forced cracks through the rock, allo
-    9 [artic] Decorative textile print, unrelated scene
-    8 [artic] Bamboo ink painting, no rock splitting
-    6 [artic] Collage of perfume posters, irrelevant
-    6 [europeana] Abstract figure drawing, unrelated content
-    6 [europeana] Porcelain figurine, wrong subject entirely
-    6 [europeana] Watercolor figures, no rock or mining
-    2 [nasa] Rocket launch, completely wrong subject
-    2 [nasa] Rocket launch, completely wrong subject
-
-=== BEAT: In practice, it was exhausting and slow beyond modern reckoning.
-   16 [europeana] Period portrait, wrong subject entirely
-    5 [openverse/flickr] Modern gymnast, watermark, totally irrelevant
-   -1 [artic] (not inspected)
-   -1 [met] (not inspected)
-   -1 [met] (not inspected)
-   -1 [europeana] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [artic] (not inspected)
-
-=== BEAT: Every few inches of progress represented hours of coordinated labor.
-   66 [artic] industrial machinery suggests coordinated heavy labor
-   45 [nasa] cleanroom team shows coordinated precision work
-   22 [smithsonian] decorative textile pattern, no labor context
-   16 [artic] text art installation contradicts narration theme
-   12 [artic] minimalist sculpture, no labor depicted
-   12 [met] Degas dancer sketch, unrelated to labor
-   10 [nasa] space equipment panel, wrong subject entirely
-   10 [nasa] space biotechnology hardware, irrelevant subject
-
-=== BEAT: Water had to be carried to the site.
-   76 [europeana] workers handling water tank at construction site
-   42 [europeana] water container product, no carrying shown
-   14 [artic] Greek hydria water vessel, tangentially related
-    8 [artic] Monet water lilies painting, not relevant
-    8 [artic] Monet garden bridge painting, not relevant
-    6 [europeana] naval battle scene, unrelated
-    5 [nasa] satellite view of river, no water carrying
-    3 [nasa] false-color satellite image, irrelevant
-
-=== BEAT: Broken rock had to be lifted out of the pit by hand before the entire 
-   26 [smithsonian] small stones, no pit or lifting
-   20 [nasa] astronaut near rock, wrong context entirely
-   19 [europeana] single stone artifact, no excavation context
-   16 [europeana] flint fragments, catalogue scan format
-    9 [met] Renaissance painting, unrelated subject
-    9 [europeana] Japanese woodblock print, unrelated
-    8 [nasa] aerial dark terrain, no pit work visible
-    7 [met] ornate clock, completely irrelevant
-
-=== BEAT: That is precisely what the archaeological evidence indicates happened 
-   69 [europeana] prehistoric copper tools with scale ruler
-   66 [europeana] ancient copper artifact, archaeological find
-   64 [europeana] small ancient metal artifacts with scale
-   14 [wikimedia] modern fire scene, unrelated
-    9 [met] medieval religious painting, wrong subject
-    9 [artic] modern art sculpture, unrelated
-    4 [wikimedia] blank black frame, unusable
-    4 [artic] text-overlaid artwork, wrong subject
-
-=== BEAT: Ancient workers had already accomplished something that seemed almost 
-   46 [artic] workers depicted but modern era painting
-   32 [artic] beggar on crutches, not ancient workers
-   19 [europeana] woodpile and farm buildings, not ancient
-   16 [artic] abstract modern art installation, irrelevant
-   14 [europeana] modern Scandinavian farm building, wrong context
-   14 [europeana] modern rural outbuilding, no ancient relevance
-   -1 [openverse/flickr] (not inspected)
+=== BEAT: They measured what they could, photographed what they were able to rea
+   62 [nasa] Researchers reviewing aerial imagery on laptop
+   12 [europeana] Public parade, unrelated to site documentation
+   10 [europeana] Casual snapshot of people with cat
+   10 [europeana] Informal portrait of women outdoors
+    9 [artic] Modern sculpture installation, irrelevant
+    8 [artic] Abstract print artwork, no documentation
+    6 [wikimedia] CGI space illustration, completely irrelevant
    -1 [wikimedia] (not inspected)
 
-=== BEAT: One of the most remarkable individual discoveries came from a pit wher
-   16 [artic] Canyon landscape, no copper mining depicted
-    9 [wikimedia] Modern bridge, completely unrelated subject
-    9 [europeana] Portrait of aviator, no mining relevance
-    9 [artic] Bronze lion statue, unrelated to copper mining
-    9 [europeana] Religious wedding ceremony, no relevance
-    9 [europeana] People with fruit baskets, unrelated
-    8 [nasa] Aerial terrain scan, no mining relevance
-    6 [artic] Text artwork, wrong subject entirely
+=== BEAT: Rather than walking the story back or treating it as a rumor, the pape
+   14 [europeana] Vintage family photo; era plausible but irrelevant
+   12 [artic] Rainy city street; unrelated to newspaper reporting
+    9 [artic] Sculpture; no newspaper or journalism connection
+    9 [artic] Impressionist painting; no journalism relevance
+    9 [europeana] Cyclists on bridge; unrelated to news story
+    9 [europeana] Street walkers at mall; no newspaper connection
+    5 [nasa] NASA suit test; unrelated to journalism
+    5 [nasa] NASA spacesuit handling; no newspaper relevance
 
-=== BEAT: Now imagine that process repeated not over weeks, not over years, but 
-   82 [europeana] Aged frescoes embody centuries of sustained religious effort
-   76 [met] Bruegel harvest shows centuries of repetitive human labor
-   66 [artic] Classical landscape painting evokes ancient civilizations' endurance
-   62 [artic] Mughal miniature represents centuries of sustained artistic tradition
-   59 [met] Renaissance altarpiece suggests long artistic tradition
-   34 [europeana] Early photo street scene lacks centuries-spanning scope
-   16 [artic] Modern photo art irrelevant to centuries of effort
-    9 [europeana] Surrealist collage entirely irrelevant to narration
-
-=== BEAT: They had freed it from the surrounding rock and raised it onto a heavy
-   22 [met] Egyptian relief fragment, not quarrying
-   16 [met] Harvest scene, no stone quarrying
-   12 [artic] Neoclassical figures, unrelated scene
-   12 [europeana] Islamic manuscript illustration, unrelated
-    9 [met] Decorative porcelain vases, unrelated
-    9 [artic] Abstract modernist print, unrelated
-    9 [artic] Surrealist print, nothing relevant
-    9 [europeana] Medieval document with color swatches
-
-=== BEAT: The copper sat exactly where they left it.
-   66 [artic] engraving shows copper plate printing workshop
-   42 [europeana] small copper artifact left in place
-    9 [artic] mythological painting unrelated to copper
-    8 [artic] religious painting entirely unrelated
-   -1 [openverse/wikimedia] (not inspected)
-
-=== BEAT: Then, for reasons that remained completely unknown, they stopped.
-   46 [europeana] Stone monument suggests cessation, loosely usable
-   34 [europeana] Period portrait, studio text baked in
-   32 [europeana] Portrait with studio label watermark overlay
-   26 [artic] Artistic nude torso, unrelated to narration
-   22 [artic] Abstract painting, irrelevant to narration
-   22 [artic] Abstract sketch, irrelevant to narration
-    9 [wikimedia] Baked-in text overlay, unusable
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: When 19th century miners uncovered the mass, the ancient wooden suppor
-   22 [europeana] Elongated wooden object, vaguely evokes timber
-    6 [europeana] Blank placeholder image, unusable
-    6 [met] Ornate gilt mirror, completely irrelevant
-    6 [met] Gilt rococo mirror sconce, irrelevant
-    6 [artic] Bird illustration, no mining connection
-    6 [artic] Medieval carved bust, no relevance
-    6 [artic] Asian dragon sculpture, completely irrelevant
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: It is the kind of discovery that demands you pause.
-   76 [europeana] ancient Egyptian artifact demands contemplative pause
-   62 [nasa] dramatic space discovery visual, CGI render penalty
-   58 [nasa] planetary surface detail invites pausing examination
-   46 [europeana] archival etching, figures examining something faintly
-   42 [artic] period engraving but caption text visible on page
-   34 [europeana] generic construction scene, no discovery moment
-   32 [artic] casual sketch, no sense of discovery
-   20 [nasa] abstract stripes, no clear subject to discover
-
-=== BEAT: Someone invested enormous quantities of time, knowledge, and human eff
-    9 [artic] WWI war bond poster, unrelated topic
-    7 [artic] Goya etching, no mining connection
-    6 [artic] text-only artwork, completely irrelevant
-
-=== BEAT: That question has absorbed historians for generations because every an
-   16 [artic] Potatoes painting, no archaeological pits
-   12 [artic] Dark light-text installation, irrelevant
-    9 [artic] Blank beige canvas, nothing depicted
-    2 [nasa] Venus planet images, wrong subject
-    2 [nasa] Planetary body, completely unrelated
+=== BEAT: To readers in 1909, this did not read like fiction, it read like the a
+   16 [artic] 1909 Chicago Plan textile, wrong subject
+   14 [artic] Chicago city plan aerial, unrelated
+   12 [artic] 19th-century painter portrait, unrelated
+    9 [europeana] Modern woman, completely unrelated
    -1 [openverse/flickr] (not inspected)
    -1 [openverse/flickr] (not inspected)
    -1 [openverse/flickr] (not inspected)
 
-=== BEAT: People using only stone tools had raised more than a ton of solid meta
-   26 [europeana] aerial field patterns, no mining or metal
-   16 [europeana] historic town square fountain, wrong subject
-   14 [europeana] 19th-century peasants eating, wrong context
-   12 [artic] Buddhist stone sculpture, unrelated to mining
-   12 [artic] carved stone head, no metal extraction context
-   10 [artic] modern marble sculpture, completely unrelated
-    5 [nasa] Mars landscape, entirely wrong context
-   -1 [openverse/flickr] (not inspected)
+=== BEAT: It described the layout of the cave, the collection of artifacts, and 
+   22 [artic] Architectural floor plan, not cave layout
+   19 [europeana] Medieval woodcut with Greek alphabet chart
+   16 [artic] Decorative ceramic vase, unrelated to cave
+   14 [met] Portrait painting of seated man
+   14 [europeana] Engraving of Greek monasteries, not cave
+   14 [europeana] River scene engraving, no expedition
+   12 [artic] Etching of indoor audience gathering
+   12 [met] Dutch landscape painting, no cave context
 
-=== BEAT: The deeper archaeologists pushed their investigations across the Lake 
-    9 [artic] Abstract sculpture unrelated to excavation
-    6 [artic] Surrealist artwork unrelated to archaeology
-    6 [artic] Goya painting unrelated to archaeology
-    6 [met] Renaissance triptych unrelated to mines
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: It accumulates across generations, each one refining and passing forwa
-   46 [met] scholar amid books suggests knowledge accumulation
-   39 [met] ancient artifact hints at generational inheritance
-   32 [artic] decorative plate unrelated to knowledge transmission
-   26 [met] dark forest landscape irrelevant to narration
-   24 [artic] decorative plate with scenic transfer print
-    9 [wikimedia] modern fire trucks contradict narration entirely
-    9 [wikimedia] BLM fire vehicles completely irrelevant
-    4 [artic] blank white canvas unusable
-
-=== BEAT: That degree of coordination does not develop quickly.
-   22 [met] Decorative globe object, no coordination theme
-   22 [nasa] Aurora atmospheric phenomenon, loosely evokes slow natural development
-   16 [artic] Fetal skeleton unrelated to coordination
-   12 [artic] Card game art irrelevant to coordination
-   12 [europeana] Cassette tape, irrelevant subject matter
-   10 [nasa] Lunar surface photo, no coordination relevance
-   10 [nasa] Aerial landscape, no coordination theme
-    9 [artic] Text-only page, unusable as footage
-
-=== BEAT: This was not a loose group of individuals who wandered into the wilder
-   22 [artic] Wilderness landscape loosely evokes setting
-   12 [europeana] Political cartoon, unrelated to copper mining
-   12 [met] Bronze horse sculpture, unrelated
-    9 [met] Classical sculpture, wrong subject entirely
-    9 [europeana] Ship in dry dock, unrelated
-    9 [artic] Baroque portrait engraving, unrelated
-    9 [artic] 19th-century painter portrait, unrelated
-    8 [europeana] Engraved text panel, unrelated
-
-=== BEAT: This was an organized seasonal operation.
-   46 [artic] Medieval domestic work scene, loosely seasonal craft
-   46 [artic] Medieval interior work engraving, loosely relevant
-   38 [nasa] Organized group activity but indoor catering event
-   24 [artic] Faint architectural sketch, unclear subject matter
-   14 [met] Japanese hanging scrolls, irrelevant to narration
-   12 [europeana] Religious ceremony gathering, not seasonal operation
-   12 [europeana] Indoor religious event, unrelated to narration
-   12 [europeana] Jewish ritual ceremony, not seasonal operation
-
-=== BEAT: Every year, people had to plan and prepare for the crossing, navigate 
-   26 [artic] Small copper animal artifact, loosely relevant
-   22 [met] Wooden artifact, no copper or lake crossing
-    9 [artic] Textile garment, unrelated to copper extraction
-    6 [europeana] Polish folk dance event, completely irrelevant
-    6 [europeana] Outdoor group exercise, completely irrelevant
-    6 [europeana] Modern city street map, irrelevant
-   -1 [wikimedia] (not inspected)
-   -1 [wikimedia] (not inspected)
-
-=== BEAT: That changes how these miners have to be understood.
-   22 [met] harvest farmers not miners, wrong subject
-   16 [europeana] abandoned building, no mining connection
-   12 [artic] civil rights arrest, no mining relevance
-   12 [europeana] archaeological rings artifact, no miners
-   10 [nasa] CGI terrain render, no miners depicted
-    9 [artic] abstract textile artwork, irrelevant
-    9 [met] Gauguin Tahitian painting, no miners
-    9 [europeana] bicycle display product, irrelevant
-
-=== BEAT: Forests had grown back across the old workings, and centuries of accum
-   46 [artic] Trees reclaiming building, loosely relevant
-   22 [artic] Abstract painting, no forest or soil
-    6 [artic] Decorative cabinet, completely irrelevant
-   -1 [openverse/flickr] (not inspected)
+=== BEAT: And then, almost overnight, something happened.
+   46 [artic] moody landscape hints at change or transition
+   39 [europeana] archival photo, period feel but no clear event
+   26 [artic] decorative painting, no sense of sudden change
+   24 [smithsonian] sheet of stamps, repetitive and unrelated
+   22 [europeana] model airplane, no narrative relevance
+   16 [artic] gallery art installation, unrelated to narration
    -1 [openverse/flickr] (not inspected)
    -1 [openverse/flickr] (not inspected)
 
-=== BEAT: For many years, no one had any clear sense of how ancient these mines 
-   26 [artic] 19th-century expedition stereoview, not mines
-   14 [europeana] Victorian hospital scene, entirely unrelated
-   12 [smithsonian] Brass luggage tag, unrelated to mines
-   12 [europeana] Mid-century banquet photo, unrelated
-    9 [artic] Charcoal portrait sketch, unrelated subject
-    9 [artic] Comic cartoon, wrong subject entirely
-    9 [europeana] Modern crowd festival, unrelated to mines
-   -1 [openverse/flickr] (not inspected)
+=== BEAT: No photographs of the chambers were ever published.
+   46 [artic] photograph on floor, abstract suppression concept
+   26 [artic] photographer illustration but wrong context entirely
+   12 [europeana] landscape photo with baked-in text labels
+    9 [europeana] architectural fragments, completely unrelated
+    9 [europeana] ancient artifacts, completely unrelated
+    9 [met] 19th-century ships, completely unrelated
+    7 [artic] decorative furniture, entirely irrelevant
+    3 [nasa] planetary moon image, entirely irrelevant
 
-=== BEAT: The fires had long since gone cold, but one thing survived, charcoal.
-   49 [artic] Active fire scene, not cold aftermath
-   46 [artic] Abstract fire artwork, not charcoal aftermath
-   42 [artic] Post-fire refugees but no charcoal visible
-    6 [europeana] Brick church exterior, completely irrelevant
-    6 [europeana] Church tower exterior, completely irrelevant
-    6 [europeana] Church facade exterior, completely irrelevant
-    5 [openverse/flickr] Night cityscape, completely irrelevant
-    5 [openverse/nasa] Satellite view of Florida, irrelevant
+=== BEAT: No artifacts appeared in any museum.
+   62 [nasa] museum display cases with costumed mannequins
+   59 [met] ornate clock in museum gallery setting
+   34 [met] painting displayed in museum, not artifact
+   24 [artic] illustration of figures, not museum artifacts
+   16 [europeana] genealogy chart, no museum connection
+   16 [europeana] historical genealogy map, not museum artifacts
+   14 [artic] dark figurative print, unrelated to museums
+   14 [artic] duplicate dark print, unrelated to museums
 
-=== BEAT: When scientists tested that charcoal using radiocarbon dating, the res
-   35 [nasa] Scientists in lab but wrong subject matter
-   10 [artic] Landscape etching, no scientific context
-    9 [artic] Renaissance painting, no science relevance
-    8 [artic] Japanese woodblock print, entirely unrelated
-    8 [nasa] Aerial terrain photo, no radiocarbon connection
-    5 [nasa] Spacecraft assembly, unrelated to dating
-   -1 [openverse/nasa] (not inspected)
-   -1 [openverse/nasa] (not inspected)
+=== BEAT: No scientific report followed.
+   46 [met] scientist at desk suggests reporting activity
+   28 [openverse/nasa] satellite weather image loosely scientific
+   20 [nasa] rocket launch not absence of reporting
+   18 [nasa] students handling rocket hardware
+   18 [nasa] military cadets inspecting rocket
+   14 [met] ornate clock unrelated to scientific reports
+   12 [met] religious diptych completely unrelated
+   12 [artic] Dutch portrait unrelated to science
 
-=== BEAT: Some of the oldest mining activity at Lake Superior dated back approxi
-   42 [artic] Worker with tool, generic labor scene
-   30 [nasa] Aerial geology, possibly mining terrain
-   24 [artic] Water surface, loosely Lake Superior
-    9 [europeana] Medieval Bristol map, unrelated to mining
-    9 [europeana] Old city map, no mining connection
-    6 [europeana] Women at shop, completely irrelevant
-    6 [artic] Shipwreck scene, totally unrelated
-    5 [nasa] Desert dunes aerial, wrong geography
+=== BEAT: As interests in the story grew over the following decades, researchers
+   46 [europeana] researcher-era portrait, plausible academic figure
+   44 [europeana] serious professional portrait, possible researcher
+   30 [nasa] Mars surface, no connection to researchers
+   26 [artic] 19th century illustration, unrelated to researchers
+   25 [nasa] Saturn moons, unrelated to narration
+   24 [europeana] casual social photo, not research context
+   22 [nasa] Saturn rings abstract, no research context
+   19 [artic] Japanese woodblock print, irrelevant subject
 
-=== BEAT: Tiny fragments left behind by the fire's ancient miners built against 
-   42 [smithsonian] ancient textile fragment, vaguely preserved artifact
-   29 [europeana] gold coins with ruler, unrelated
-   26 [europeana] dental casts, unrelated to fire pits
-   24 [europeana] medieval badge drawing, not fire debris
-   16 [smithsonian] decorative lace, completely unrelated
-   14 [artic] ornate metal architectural element, unrelated
-   14 [artic] decorative metalwork ceiling piece, unrelated
-   14 [artic] cast iron decorative grille, unrelated
+=== BEAT: The expedition that had supposedly made one of the greatest finds in A
+   46 [artic] Ancient stone mound, archaeological mystery feel
+   26 [europeana] Colonial group photo, wrong context entirely
+   19 [europeana] North African figures, unrelated to narration
+   16 [europeana] Colonial horse scene, wrong subject
+   14 [artic] Classical illustration, wrong era and subject
+   12 [artic] Portrait of child, completely unrelated
+    5 [nasa] Russian astronaut at podium, irrelevant
+    5 [nasa] Hurricane from space, irrelevant
 
-=== BEAT: To appreciate what that number actually represents, it helps to place 
-   62 [nasa] aerial view places location in global context
-   16 [europeana] Victorian newspaper page, irrelevant content
-   12 [artic] figurative painting, no global context
-   12 [artic] decorative textile panel, completely irrelevant
-   12 [artic] abstract artwork, no relevant content
-   12 [europeana] handwritten letter, no global context
-   12 [europeana] archaeological artifact, no global context
-   10 [nasa] portrait of woman, no comparative context
+=== BEAT: If this expedition really happened, where were the records?
+   76 [artic] stereocard labeled 'Expedition of 1873' directly relevant
+   42 [artic] ancient ruin, vaguely archaeological but no expedition records
+   16 [europeana] animal hide artifact, no connection to expedition records
+   14 [artic] 19th-century cartoon illustration, not expedition records
+   12 [met] Renaissance portrait painting, unrelated to expedition records
+   10 [met] pastoral painting of woman, no expedition context
+    5 [nasa] Earth from space, completely unrelated
+    4 [nasa] modern NASA astronaut portrait, wrong subject entirely
 
-=== BEAT: These mines were already operating thousands of years before the Roman
-   16 [europeana] Native silver jewelry, not ancient mines
-    6 [artic] Musical instruments still life, irrelevant
-    6 [artic] Modern skyscraper architectural drawing, irrelevant
-    6 [artic] Abstract contemporary print, irrelevant
-    6 [europeana] Modern red dress on hanger, irrelevant
-    2 [nasa] NASA locomotive and VAB, irrelevant
-    2 [nasa] NASA railroad bridge over water, irrelevant
-    2 [nasa] Industrial pier over water, irrelevant
+=== BEAT: The newspaper had named the explorer as GE Kincaid, and had tied the w
+   66 [europeana] period newspaper page with article text
+   46 [artic] person reading newspaper, period illustration
+   42 [loc] old newspaper stand, vaguely relevant period
+   19 [artic] portrait artwork unrelated to narration
+   14 [loc] comic illustration, unrelated subject matter
+   14 [loc] comic strip panels, unrelated content
+    9 [europeana] rural building, completely unrelated
+    9 [europeana] modern institutional building, irrelevant
 
-=== BEAT: Archaeologists refer to this long tradition as the old copper culture,
-    8 [artic] Surrealist illustration unrelated to copper culture
-    6 [artic] Modern gallery text wall, completely irrelevant
-    6 [artic] Black-and-white storefront photo, wrong subject
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
+=== BEAT: Jordan, a discovery of that scale should have produced photographs, ex
+   32 [loc] Book spine hints at museum records but too obscure
+   26 [loc] Old catalogue spine barely relevant to narration
+   19 [loc] Book spine unrelated to expedition documentation
+   18 [europeana] Small engraving of coastal scene unrelated to narration
+   16 [artic] Classical etching unrelated to expeditions or records
+   16 [europeana] Historical engraving unrelated to expedition records
+   12 [artic] Spanish text illustration completely unrelated
+    6 [artic] Abstract art completely wrong for narration
 
-=== BEAT: Generation after generation returned to the same ridges, using the sam
-    9 [artic] Ancient battle painting, wrong subject entirely
-    6 [europeana] Modern family portrait, no mining relevance
-    6 [europeana] Contemporary couple portrait, unrelated
-    6 [europeana] Polish concert poster with prominent text
-    6 [artic] Decorative porcelain plate, no mining connection
-    4 [artic] Blank white canvas, unusable
-    2 [nasa] CGI space shuttle render, wrong subject
-    2 [nasa] CGI space station render, wrong subject
-
-=== BEAT: The archaeological evidence that indigenous communities around the Gre
-   14 [artic] Abstract golden artwork, loosely copper-colored only
-   12 [europeana] Aerial cropmarks, European archaeology, irrelevant
-    9 [europeana] Irish archaeological map, wrong region entirely
-    9 [europeana] Irish mill distribution map, entirely wrong subject
-    7 [artic] Abstract black artwork, no relevant content
-    6 [nasa] Mesoamerican stone ruins, wrong culture/region
-    6 [nasa] Central American stone monument, not Great Lakes
-    6 [artic] Exhibition poster with heavy text overlay
-
-=== BEAT: But alongside what archaeology has documented with confidence, a separ
-   56 [met] Engraved jade artifact evokes archaeological documentation
-   48 [europeana] Excavated skull and objects suggest unanswered questions
-   42 [europeana] Archaeological metal finds, generic but period-relevant
-   36 [europeana] Small artifact, poor resolution, scale ruler visible
-   16 [artic] Modern art sculpture, irrelevant to archaeology
-   12 [artic] Text overlay, modern artwork, wrong subject
-    9 [artic] Abstract near-blank canvas, unusable
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: Whether that memory preserves a specific historical event, a broader s
-   62 [openverse/flickr] Lincoln Memorial inscription evokes preserved historical memory
-   56 [met] Ancient figurine sits between historical event and symbolic tradition
-   49 [met] Ancient artifact ambiguous between history and symbol
-   42 [met] Seurat painting loosely evokes tradition and memory
-   26 [artic] Abstract grid drawing unrelated to memory/history
-   22 [artic] Hotel collage art unrelated to historical memory
-   14 [artic] Textile/flooring sample completely irrelevant
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: Because according to what the Hopi Elder described, the people his tra
-   22 [nasa] Aerial terrain, no copper mining context
-   18 [nasa] Satellite view irrelevant to Hopi copper mining
-   16 [met] European sailing ships, wrong subject entirely
-   12 [artic] Renaissance engraving, unrelated mythological scene
-    9 [met] Christian Annunciation painting, wholly irrelevant
-    9 [met] Van Eyck religious diptych, completely unrelated
-    8 [artic] Faint portrait sketch, no relevant subject
-    8 [europeana] Eastern European church photo, irrelevant
-
-=== BEAT: But as the archaeological discoveries have continued accumulating, the
-   86 [europeana] aerial view of major archaeological excavation site
-   66 [europeana] aerial cropmarks reveal buried archaeological features
-   52 [nasa] ancient stone ruins partially excavated, jungle setting
-   49 [europeana] archaeological site diagram, illustrated not photographic
-   42 [met] ancient ceramic vessel, loosely archaeological artifact
-   18 [nasa] satellite farmland image, no archaeological relevance
-   12 [artic] illustrated book cover, wrong subject entirely
-    9 [artic] promotional poster with baked-in text overlay
-
-=== BEAT: One puzzle has always quietly troubled historians.
-   56 [met] historical puzzle-like folded letter artifact
-   34 [met] decorative furniture unrelated to historians
-   22 [artic] newspaper clipping wrong topic entirely
-   16 [europeana] catalogue label watermark ruins usability
-   14 [europeana] catalogue label watermark ruins usability
-   14 [europeana] catalogue label watermark ruins usability
-   12 [artic] near-blank beige canvas unusable
-   12 [artic] near-blank dark canvas unusable
-
-=== BEAT: Because for the first time, evidence emerging from the ground, and mem
-   22 [artic] Medieval engraving; tradition evoked but no specificity
-   19 [met] Renaissance Annunciation painting; oral tradition tangential
-   16 [artic] Decorative knotwork print; no archaeological relevance
-   16 [met] Renaissance portrait; no ground or oral tradition
-   14 [europeana] Modern political figures; wrong subject entirely
-   14 [met] Baroque crucifixion painting; no archaeological link
-   12 [europeana] Rabbits in dirt; irrelevant to narration
-   12 [europeana] Comic strip panels; wrong medium and subject
-
-=== BEAT: They came from somewhere else, they worked the deposits, they carried 
-   16 [met] Medieval doorway, no mining or migration context
-   16 [europeana] Winter sleigh group photo, unrelated
-   14 [met] Russian religious icon, wrong subject entirely
-   14 [europeana] Family portrait photo, no mining connection
-   12 [artic] Modern art installation, irrelevant to narration
-   12 [met] Portrait painting, unrelated to subject
-   12 [artic] Modernist figure drawing, irrelevant
-    9 [artic] Contemporary figurative painting, unrelated
-
-=== BEAT: If the ancient mines were located at Lake Superior, why does one of th
-   34 [wikimedia] Generic overgrown pit, not Lake Superior mines
-   22 [artic] Canoe at sunset, no relevant connection
-   22 [nasa] Space view of Earth, too abstract
-   22 [nasa] Desert aerial view, possibly Arizona but unclear
-   20 [nasa] Arid satellite view, wrong region context
-    9 [met] South Asian stone relief, wrong culture
-    9 [met] South Asian bronze deity, wrong culture
-    9 [met] South Asian stone deity pair, wrong culture
-
-=== BEAT: The distance alone seems to make it implausible.
-   66 [met] sweeping panoramic vista emphasizes vast distance
-   46 [artic] panoramic landscape suggests vast distance
-   29 [smithsonian] modest rural sketch, minimal distance implied
-   26 [wikimedia] indigenous figure scene, no distance concept
-   24 [smithsonian] faint sketch, no clear distance depicted
-   22 [artic] abstract scribbled watercolor, unclear subject
-    6 [artic] blank canvas, completely unusable
-   -1 [wikimedia] (not inspected)
-
-=== BEAT: The two places are separated by forests, open plains, desert terrain, 
-   42 [met] Open plains landscape painting, loosely relevant
-   26 [wikimedia] Romantic forest painting, too narrow focus
-   12 [nasa] Mars surface, not Earth terrain separation
-   10 [nasa] Mars craters, wrong planet entirely
-    9 [artic] Abstract colorful painting, unusable
-    9 [europeana] Monk at monastery, irrelevant to terrain
-    7 [artic] Medieval medallion engraving, irrelevant
-    7 [artic] Surrealist abstract painting, irrelevant
-
-=== BEAT: Yet long before roads or railways connected North America, indigenous 
-   12 [artic] European peasants walking, wrong continent/subject
-    9 [artic] Abstract dune prints, no trade network content
-    7 [met] Renaissance European court scene, wrong context
-    7 [met] Italian Renaissance portrait, irrelevant subject
-    7 [met] Italian Renaissance female portrait, irrelevant
-    6 [artic] Blurry modern film still, irrelevant
-    6 [europeana] Book title page, wrong subject entirely
-    6 [europeana] Scandinavian farmhouse photo, completely irrelevant
-
-=== BEAT: Copper from the Great Lakes traveled hundreds and sometimes thousands 
-   42 [europeana] copper bowls artifact illustration but wrong region
-   42 [nasa] orbital view could suggest Great Lakes region
-   19 [europeana] medieval European copper roundels, wrong context
-   18 [nasa] arid terrain from orbit, no lakes visible
-   14 [artic] ancient Greek silver coins, unrelated
-   14 [artic] ancient silver coins, wrong subject entirely
-   12 [nasa] false-color satellite image, wrong region
-    9 [artic] medieval manuscript page, completely unrelated
-
-=== BEAT: Along with materials came knowledge and memory, passed with care from 
-   52 [artic] elder figure with document hints knowledge transmission
-   46 [europeana] prehistoric tools, materials but no knowledge transfer
-   42 [europeana] pottery sherds suggest heritage but no transmission scene
-   22 [nasa] Apollo plaque text dominates, wrong context entirely
-   19 [europeana] garment on mannequin unrelated to knowledge passing
-   16 [artic] modern figurative painting unrelated to narration
-   14 [artic] Paris cityscape unrelated to narration theme
-   10 [nasa] spacecraft component, no cultural knowledge theme
-
-=== BEAT: It is within that context that the 1894 account becomes genuinely diff
-   22 [artic] dramatic woman photo unrelated to 1894 account
-   16 [europeana] microscopic cell image unrelated to context
-   16 [europeana] microscopic cell image completely irrelevant
-   14 [artic] modern geometric sculpture unrelated to narration
-   14 [artic] ceramic bowl unrelated to 1894 account
-    9 [europeana] modern backpack entirely anachronistic and irrelevant
-    8 [nasa] planetary atmosphere image completely irrelevant
-    8 [nasa] planetary crater surface completely irrelevant
-
-=== BEAT: He spoke of people who arrived from across the water, worked the metal
-   46 [artic] violence and fire, not metalworking migrants
-   42 [artic] medieval arrivals scene, period figures gathering
-    9 [europeana] modern political crowd, completely irrelevant
-    9 [europeana] modern dignitary ceremony, unrelated
-    9 [europeana] modern crowd scene, no relevance
-    5 [nasa] modern memorial ceremony, unrelated
-    5 [nasa] modern speaker at podium, unrelated
-    5 [nasa] astronaut hall of fame, completely irrelevant
-
-=== BEAT: They were something separate in the memory that had been preserved.
-   89 [europeana] damaged archival portrait perfectly embodies preserved memory
-   82 [europeana] preserved archival photo of couple, separate in memory
-   66 [artic] surreal floating faces evoke separate preserved memory
-   49 [artic] abstract face painting loosely suggests memory theme
-   34 [europeana] artifacts preserved but no human memory connection
-   15 [nasa] contemporary NASA portrait unrelated to preserved memory
+=== BEAT: The Smithsonian has stated consistently that it has no record of a GE 
+   12 [nasa] modern gala group photo, irrelevant
+   12 [artic] porcelain figurine, completely irrelevant
+   10 [nasa] awards ceremony speaker, wrong context
+   10 [nasa] formal award group, unrelated subject
+    9 [artic] near-blank beige texture, unusable
+    9 [artic] near-blank dark canvas, unusable
    -1 [openverse/flickr] (not inspected)
    -1 [openverse/flickr] (not inspected)
 
-=== BEAT: Whether every element of that description corresponds to a literal seq
-   46 [artic] Historical armor, loosely evokes uncertain past
-   46 [artic] Historical breastplate, evokes unverifiable past
-   42 [artic] Historical costume detail, generic period artifact
-    7 [europeana] Fashion catalogue cover, wrong subject entirely
-    6 [smithsonian] BHL logo watermark, unusable catalogue image
+=== BEAT: But others argued the situation was not quite that simple.
+   32 [europeana] Ancient written tablet hints at contested record
+   26 [artic] Still life painting unrelated to debate
+   24 [artic] Old woodblock print unrelated to argument
+   22 [artic] Watercolor cityscape irrelevant to narration
+   19 [europeana] Decorative artifact unrelated to debate
+   16 [europeana] Technical diagram sketch unrelated to narration
+   10 [nasa] Mars surface imagery irrelevant to narration
+   10 [nasa] Satellite landscape image irrelevant to debate
+
+=== BEAT: For many historians that settled the matter, the story, they concluded
+   46 [europeana] Handwritten letter suggests historical document/fabrication theme
+   22 [openverse/flickr] Mid-century street scene, tangentially period-relevant
+   16 [artic] Native American scene, unrelated to newspapers
+   14 [artic] Portrait sketch, unrelated to newspapers
+   12 [europeana] Interior room, no relevance to fabrication
+   12 [artic] Abstract sketch, no relevant connection
+   12 [europeana] Modern harbor scene, completely unrelated
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The newspaper itself was undeniably real.
+   76 [artic] person reading newspaper by lamplight
+   69 [europeana] actual newspaper page clearly shown
+   46 [artic] figure reading but newspaper not visible
+   22 [europeana] meeting room, no newspaper present
+   14 [europeana] group portrait, no newspaper present
+    9 [artic] abstract target painting, unrelated
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Jordan tied to any such expedition, and no record of artifacts matchin
+    6 [artic] Painting of neckties, completely irrelevant
+    6 [artic] Modern figurative painting, no relevance
+    6 [artic] Abstract geometric art, entirely irrelevant
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The April 5th and April 9th editions unquestionably existed, and resea
+   46 [smithsonian] old book cover, period print but unrelated
+   34 [artic] early 1900s etching, period but unrelated
+   26 [europeana] April 5 date visible but wrong year 1850
+   24 [europeana] small engraving, unrelated building scene
+   22 [europeana] landscape engraving unrelated to newspapers
+   12 [artic] modern Japan street scene, wrong era
+    9 [artic] abstract light installation, irrelevant
+    5 [nasa] modern NASA event, completely wrong context
+
+=== BEAT: The mystery was never whether the story was published.
+   22 [europeana] Medieval seal with inscription, vaguely document-like
+   14 [europeana] Japanese woodblock print, unrelated context
+   12 [artic] Dark building painting, no publication context
+    9 [artic] Surrealist sculpture unrelated to publication
+    9 [artic] Wooden tower sculpture, no relevance
+    9 [europeana] Horse riders photo, completely unrelated
+    5 [nasa] Space imagery of Pluto, unrelated
+    5 [nasa] Mars surface map, no publication theme
+
+=== BEAT: Simply being printed did not prove a discovery was real, but it did no
+   16 [artic] Decorative textile; unrelated to publishing
+   12 [artic] Outdoor fountain sculpture; completely unrelated
    -1 [openverse/flickr] (not inspected)
    -1 [openverse/flickr] (not inspected)
    -1 [openverse/flickr] (not inspected)
 
-=== BEAT: They were remembered as people who did not belong to the Hopi or to th
-   18 [nasa] Memorial plaques but wrong cultural context
-   15 [nasa] Memorial ceremony but wrong subject
-   14 [nasa] Memorial flowers, wrong cultural context
-   12 [artic] Abstract fantasy art, no relevance
-   10 [artic] Cubist face painting, unrelated content
-    9 [artic] Mythological centaur engraving, irrelevant
-    8 [europeana] Child in costume, no connection
-    8 [europeana] Wooden cart artifact, no connection
+=== BEAT: The mystery was whether the events it described ever actually happened
+   59 [artic] historical engraving suggests ancient disputed events
+   48 [nasa] handwritten plaque suggests recorded historical account
+   46 [artic] moody painting evokes mystery but generic
+   26 [artic] wooden sculpture unrelated to narration
+   24 [europeana] catalogue plate with labels and borders
+   19 [europeana] small artefacts unrelated to narration theme
+   18 [nasa] Saturn sequence unrelated to narration
+   16 [europeana] traditional garment entirely unrelated
 
-=== BEAT: The Hopi Elder described a great northern body of water, where strange
-   56 [artic] Hopi kachina doll, culturally relevant but indirect
-   49 [artic] Hopi pottery, culturally relevant but no narrative match
-   42 [artic] Native American portrait, no copper/water context
+=== BEAT: In the late 19th and early 20th centuries, newspapers sometimes printe
+   22 [europeana] City map with baked-in text labels, wrong subject
+   16 [artic] Bird illustration unrelated to newspapers/archaeology
+   14 [artic] Medieval carved bust, wrong period and subject
+   12 [europeana] Bat-shaped metal ornament, completely irrelevant
+   12 [artic] African carved wooden object, unrelated subject
+    9 [europeana] Plain text document page, not usable footage
+    5 [nasa] Modern aerospace technicians, wrong era entirely
+    5 [nasa] Modern aerospace technicians, wrong era entirely
 
-=== BEAT: Oral traditions do not function the way written records do.
-   14 [artic] Japanese room interior; no oral tradition
-   14 [artic] Chinese architectural interior; unrelated content
-   12 [europeana] Kitchen family portrait; unrelated topic
-    6 [artic] Nude figure; irrelevant to oral tradition
+=== BEAT: Then researchers noticed something else.
+   26 [artic] Street notice on pole, unrelated to research discovery
+   22 [artic] Decorative staircase installation, unrelated to researchers
+   19 [artic] Framed dog portrait painting, irrelevant to narration
    -1 [openverse/flickr] (not inspected)
    -1 [openverse/flickr] (not inspected)
    -1 [openverse/flickr] (not inspected)
 
-=== BEAT: They carry important events forward through generations of storytellin
-   46 [europeana] ancient stone artifacts suggest archaeology theme
-   44 [smithsonian] decorated woven object hints traditional craft
-   42 [smithsonian] woven artifact suggests indigenous material culture
-   26 [europeana] Victorian man portrait, unrelated to oral tradition
-   24 [smithsonian] ornate gold object, no clear relevance
-   22 [artic] dramatic photo, no oral tradition connection
-   19 [europeana] textile on black backdrop, unrelated
-   12 [artic] heavy baked-in text overlay, wrong subject
+=== BEAT: Only three years before the Gazette story ran, the Antiquities Act of 
+   22 [artic] Early American town painting, vaguely period but irrelevant
+    6 [artic] Soviet WWII propaganda poster, completely irrelevant
+    6 [europeana] WWI/WWII bombed buildings, wrong subject entirely
+    6 [europeana] Embroidered textile, no relation to Antiquities Act
+    6 [europeana] Modern horseback riders, completely irrelevant
+    6 [artic] White sculptural chair object, entirely irrelevant
+    2 [nasa] Cold War jet aircraft, wrong era and subject
+    2 [nasa] NASA rocket launch facility, entirely irrelevant
 
-=== BEAT: And yet the mines are real, the stone hammers are real, the charcoal f
-   46 [wikimedia] open moorland cut suggests old excavation
-   28 [nasa] satellite view too abstract for ancient mines
-   12 [europeana] coin artifact, unrelated to mining evidence
-   12 [europeana] worn coin, not mining or charcoal dating
-   12 [europeana] coin both sides, unrelated to narration
-   12 [nasa] aerial evaporation ponds, not ancient mines
-    9 [wikimedia] modern corporate financial document, irrelevant
-    6 [artic] musical instruments still life, entirely wrong
-
-=== BEAT: Others argue that oral traditions frequently preserve symbolic rather 
-   56 [met] Religious icon suggests symbolic/spiritual tradition
-   42 [met] Decorative interior, weak oral tradition link
-   26 [met] Portrait irrelevant to oral tradition theme
+=== BEAT: The Grand Canyon was already under federal protection, which meant any
+   84 [artic] Archival Grand Canyon engraving, period-appropriate artwork
+   82 [artic] Period etching of Grand Canyon, historically appropriate
+   78 [wikimedia] Grand Canyon panoramic view, usable establishing shot
+   76 [wikimedia] Grand Canyon landscape, atmospheric and evocative
+   74 [wikimedia] Grand Canyon at sunset, visually compelling
+   40 [nasa] Satellite split-image, too modern and abstract
+   38 [nasa] Aerial satellite view, wrong era feel
    -1 [openverse/flickr] (not inspected)
 
-=== BEAT: What makes the 1894 account worth taking seriously is not that it reso
-   66 [artic] late 19th-century etching studies, period correct
-   59 [artic] late 19th-century street scene, period-appropriate
-   46 [smithsonian] metal tag inscribed with date, archival object
-   29 [artic] Gauguin 1890s but wrong thematic context
-   26 [met] 17th-century painting, wrong era entirely
-   19 [met] Baroque religious painting, wrong century
-   14 [met] 16th-century portrait, wrong era entirely
-   -1 [openverse/flickr] (not inspected)
+=== BEAT: It fit the era, even if no records confirming it have ever surfaced.
+   69 [europeana] Excavated archaeological find suits unverified history
+   66 [met] Fortune teller scene suits unverified legend narrative
+   62 [met] Medieval artifact fits era, no record context
+   59 [wikimedia] Ancient ruins fit unverified historical claims
+   56 [artic] Period artwork but unrelated to unverified records
+   56 [artic] Period artwork, loosely era-appropriate only
+   54 [artic] Period print, no connection to missing records
+   49 [europeana] Historical artifact, period-appropriate heraldic piece
 
-=== BEAT: What makes it worth remembering is that a story recorded in the Arizon
-    9 [met] Renaissance portrait unrelated to Arizona or North
-    9 [met] Renaissance portrait irrelevant to narration
-    9 [artic] Impressionist crowd scene unrelated
-    9 [artic] Decorative textile unrelated to subject
-    9 [europeana] Baroque mythological painting unrelated
-    6 [artic] Text-heavy poster with baked-in text
-    6 [europeana] Webpage screenshot unusable format
-    6 [europeana] Modern kitsch souvenir item irrelevant
-
-=== BEAT: Others still have offered more speculative explanations though none of
-   59 [europeana] stone artifact fragments suggest archaeological finds
-   46 [met] vanitas skull suggests speculation/mystery loosely
-   14 [met] food still life entirely irrelevant
-   14 [artic] floral still life painting irrelevant
-   12 [smithsonian] bank key tag completely unrelated
-   12 [nasa] aerial landscape no archaeological relevance
-    9 [europeana] modern family snapshot totally unrelated
-    9 [europeana] mid-century portrait photo irrelevant
-
-=== BEAT: More than 6000 years have passed since the first fires were set agains
-   32 [europeana] Wood cross-section loosely suggests ancient fire
-    9 [europeana] Man with tools, no fire or rock
-    8 [smithsonian] Old engraving figure, unrelated subject
-    7 [met] Egyptian mother painting, wrong subject
-    7 [met] Medieval Flemish portrait diptych, irrelevant
-    7 [met] Renaissance cleric portrait, wrong subject
-    6 [artic] Political cartoon unrelated to Lake Superior
-    6 [wikimedia] Yosemite stereocard text, irrelevant
-
-=== BEAT: It does not.
-   59 [europeana] AIDS poster text denial theme relevant
-   26 [met] keyboard instrument photo generic context
-   22 [artic] 19th-century cartoon with text overlay
-   22 [met] portrait painting unrelated to narration
-   20 [nasa] planetary surface generic no clear link
-   20 [nasa] cratered surface generic no clear link
-   19 [met] ancient artifact unrelated to narration
-   18 [nasa] Mars lander scene unrelated denial context
-
-=== BEAT: The forests have reclaimed the landscape, the camps are gone, the voic
-   76 [met] Dark brooding forest painting, abandoned silent atmosphere
-   69 [artic] Etching of ancient trees overtaking rocks below
-   66 [artic] Dark engraving of dense reclaimed forest interior
-   46 [met] Asian ink landscape with mountains and huts
-   12 [artic] Surrealist nude figures in forest, wrong
-    5 [openverse/nasa] Modern aerial of MetLife Stadium, wrong subject
-    5 [nasa] Radar satellite image with baked-in text overlays
-   -1 [wikimedia] (not inspected)
-
-=== BEAT: That alone gives it a weight that is difficult to simply put down.
-   76 [europeana] man standing reading book in study
-   32 [artic] woodcut figures with fallen items loosely relevant
-   26 [met] harvest scene, no reading or weight
-   24 [met] martyrdom painting, unrelated to putting down
-   24 [europeana] forest walk photo, no object weight
-   22 [met] tiny amulet bead, no weight metaphor
-   16 [europeana] damaged ceramic fragments, unclear and irrelevant
-   14 [artic] abstract marks on paper, too sparse
-
-=== BEAT: Walk the Keweenaw Peninsula or cross to Isle Royale today, and the dep
-    7 [artic] Monet coastal painting irrelevant to Keweenaw
-    6 [artic] Giacometti sculpture unrelated to copper mining
-    6 [artic] Rainy urban street scene, wrong subject
-    6 [met] Gauguin Tahitian painting, no connection
-    6 [met] Medieval religious painting, wrong subject
-    6 [met] Renaissance architectural scene, irrelevant
-
-=== BEAT: Archaeologists continue studying the stone tools, the charcoal fragmen
-    6 [artic] Urban street sketch, no archaeological content
-    6 [artic] Portrait painting, no archaeological relevance
-    6 [artic] Modern portrait photo, completely unrelated
-   -1 [openverse/flickr] (not inspected)
+=== BEAT: Some investigators later reported scattered references to a GE concade
+   56 [artic] investigators examining documents sketch, loosely relevant
+   46 [artic] period portrait suggests historical individual existed
+   38 [openverse/flickr] gravestone suggests historical person existed
+   12 [artic] WWII Soviet propaganda poster, wrong subject
+    4 [smithsonian] BHL logo watermark, unusable catalogue image
    -1 [openverse/flickr] (not inspected)
    -1 [openverse/flickr] (not inspected)
 
-=== BEAT: None of that is legend.
-   46 [europeana] press conference scene, vaguely factual tone
-   45 [nasa] real Saturn photo emphasises documented reality
-   38 [nasa] real planetary surface, factual/scientific feel
-   29 [artic] trompe-l'oeil painting, not documentary evidence
-   26 [europeana] printed text page, unreadable at broadcast
-   24 [artic] 19th-century illustration, unrelated subject
-   19 [europeana] botanical close-up, irrelevant to narration
-   18 [nasa] NASA aircraft tails, unrelated to narration
+=== BEAT: In other words, the newspaper's reference to a government-backed Smith
+   22 [artic] still life with lanterns, vaguely expeditionary
+   19 [artic] watercolor cityscape, not Smithsonian related
+   16 [europeana] unclear dark photo, unrelated content
+   16 [met] classical scene painting, not relevant
+   14 [wikimedia] book cover, wrong subject entirely
+   14 [europeana] decorative medal, unrelated to expedition
+   12 [wikimedia] modern sculpture, unrelated to narration
+   12 [artic] gallery wall text, completely unrelated
 
-=== BEAT: But the evidence of their presence is still there.
-   76 [smithsonian] Labeled specimen vial shows physical evidence remains
-   66 [europeana] Markers or monuments showing traces of presence
-   55 [nasa] Arrows pointing to surface traces on moon
-   40 [nasa] Planetary surface impact evidence loosely relevant
-   39 [artic] Abstract artwork suggests faded traces ambiguously
-   34 [wikimedia] Vintage crime scene unrelated to narration
-   19 [europeana] Military portrait unrelated to narration
-   19 [europeana] Military portrait unrelated to narration
+=== BEAT: Others pointed to gaps in the archives from that period, though missin
+   30 [nasa] Saturn rings with gaps loosely metaphorical
+   28 [nasa] Mars map with black gaps metaphorically apt
+   26 [europeana] Ancient artifact, not archival records gap
+   16 [artic] Faint artistic sketch, irrelevant to archives
+   15 [nasa] Dark space image, no archival relevance
+   12 [artic] Figure drawing unrelated to missing records
+    9 [artic] Warhol-style sketch, completely irrelevant
+   -1 [openverse/flickr] (not inspected)
 
-=== BEAT: It is part of the documented archaeological record, quietly demonstrat
-   22 [europeana] Old well diagram, wrong region/context
-   14 [artic] European forest etching, irrelevant
-   12 [europeana] Modern building, no archaeological relevance
-   10 [europeana] Abstract drawing, no archaeological content
-    9 [artic] Victorian interior scene, completely unrelated
-    9 [artic] Georgian cartoon, wrong subject entirely
-    2 [openverse/flickr] Gaming history infographic, wrong subject
-    2 [nasa] Lunar or planetary surface image
+=== BEAT: Either the Arizona Gazette printed one of the most detailed hoaxes of 
+   46 [artic] Native Southwest silver turquoise artifact, period-adjacent
+   44 [artic] Navajo squash blossom necklace, Southwest context only
+   42 [artic] Surreal moonlit canyon painting, loosely evocative
+   26 [smithsonian] Military commemorative plaques, unrelated to Arizona expedition
 
-=== BEAT: How many generations committed their working lives to these mines?
-    7 [artic] colorful painting of gardeners, not mines
-    6 [artic] nude figures with sports equipment, unrelated
-    4 [artic] blank white canvas, completely unusable
-    2 [openverse/flickr] military personnel dining, no mine relevance
+=== BEAT: None of it on its own confirms the expedition, but none of it cleanly 
+   76 [artic] Mixed letters and documents evoke inconclusive evidence pile
+   59 [europeana] Ambiguous bones suggest inconclusive physical evidence
+   46 [met] Collector with documents, ambiguous evidence theme
+   42 [artic] Period illustration suggests uncertainty and waiting
+   30 [nasa] Abstract surface texture, too ambiguous visually
+   26 [met] Romanesque portal, unrelated to expedition evidence
+   24 [europeana] Festive truck parade, unrelated to narration
+   19 [europeana] Watermarked press conference, wrong context
+
+=== BEAT: More than a century later, the account remains suspended between two p
+   59 [artic] Historical etching evokes century-old suspended record
+   46 [artic] Ambiguous sketch suggests uncertainty but too vague
+   42 [artic] Planetarium dome suggests cosmic mystery loosely
+   16 [europeana] Bee close-up unrelated to historical ambiguity
+   15 [nasa] Satellite imagery with baked-in annotation text
+   14 [europeana] Beekeeper at cactus irrelevant to narration
+   14 [europeana] Honeycomb bee macro unrelated to subject
+   12 [nasa] False-color satellite view irrelevant to narration
+
+=== BEAT: And this is exactly where the Hopi returned to the center of the story
+   12 [artic] 19th-century European illustration, unrelated
+   10 [artic] WWI aerial photo, no Hopi connection
+    9 [europeana] Portrait photo mother child, unrelated
+    8 [nasa] Satellite/CGI terrain map, unrelated
+    8 [europeana] Elephant veterinary treatment, unrelated
+    7 [artic] Soviet WWII propaganda poster, wrong subject
+    7 [europeana] Danish cartoon with watermark, unrelated
+    5 [nasa] Topographic CGI map, no Hopi relevance
+
+=== BEAT: Unlike written records, which can burn, decay, or disappear, Hopi know
+   62 [pexels] stacked old handwritten papers evoke fragile written records
+   55 [pixabay] aged paper stack suggests decaying written records
+   50 [pexels] handwritten ledger pages suggest perishable written records
+   48 [pexels] weathered handwritten pages suggest fragile written records
+   45 [pixabay] cursive handwriting on aged paper, written records concept
+   42 [met] illuminated manuscript illustrates written records concept
+   15 [pexels] modern notebook with pen, wrong era and context
+
+=== BEAT: Could two completely different sources, one a newspaper printed in 190
+   18 [artic] Medieval engraving, vaguely old but irrelevant
+   12 [europeana] Archaeological artifacts with CMS watermark borders
+   12 [europeana] Archaeological artifacts with measurement scale watermark
+   12 [europeana] Archaeological artifacts with CMS watermark borders
+   10 [openverse/flickr] WWII decoding machine, wrong context entirely
+    5 [artic] Impressionist painting, irrelevant to narration
+    5 [openverse/flickr] Two men in lab, completely irrelevant
+    5 [openverse/flickr] Decorative logo, no documentary relevance
+
+=== BEAT: It does not prove the cave existed as described, but it does raise a s
+   38 [europeana] Ancient artifacts raise historical questions
+   22 [openverse/flickr] Latin text art loosely about proof
+   12 [openverse/flickr] Taj Mahal tourist photo irrelevant
+   12 [artic] Animal sketch entirely irrelevant
+   10 [europeana] Military handshake unrelated to caves
+   10 [europeana] Armed soldiers scene irrelevant
+   10 [artic] Abstract animal print irrelevant
+    8 [openverse/flickr] Fishing at sunset completely unrelated
+
+=== BEAT: And could it be that the Hopi were never lying at all, but describing 
+   42 [pixabay] Blood moon evokes ancient celestial memory
+   38 [pixabay] Primordial ocean twilight, loosely evokes ancient memory
+   36 [pixabay] Aerial ocean shore, vaguely primordial feeling
+   12 [pexels] Dark ship window, no thematic relevance
+   10 [pixabay] Old wooden bed, no Hopi connection
+   10 [openverse/flickr] Abandoned wheelchair, no thematic connection
+    8 [pexels] Neon sign text, wrong subject entirely
+    5 [artic] 19th-century French caricature, irrelevant
+
+=== BEAT: It is a landscape riddled with extensive natural cave systems, especia
+   45 [pexels] Arid eroded landscape, loosely relevant terrain
+   42 [pexels] Rocky mountain landscape, some relevance
+   38 [pexels] Rocky hillside, some karst-like terrain
+   35 [pixabay] Rocky waterfall, vaguely cave-like setting
+   22 [pexels] Hilly landscape, no cave or limestone features
+   15 [wikimedia] Alpine village, wrong landscape entirely
+   12 [pexels] Rolling farmland, no caves or limestone
+   10 [nasa] Dense forest, no caves or limestone
+
+=== BEAT: Many sections remain extraordinarily difficult to reach, and even toda
+   10 [pexels] Desert mud ruins, no canyon or caves
+   10 [pexels] Modern concrete ruins, no canyon
+   10 [pexels] Classical columns ruins, no canyon
+   10 [pexels] Urban archaeological site, no canyon
+   10 [pexels] Classical colonnaded ruins, no canyon
+    8 [pexels] Aerial scrubland ruins, no canyon cliffs
+    8 [pexels] Open archaeological field, no canyon
+    8 [pexels] Tropical building ruin, no canyon caves
+
+=== BEAT: Most visitors experience only the rim, gazing down across an immense e
+   22 [pixabay] Churning river water, no canyon rim context
+   18 [pexels] Petra Jordan doorway, not Grand Canyon
+   15 [pexels] Visitors gazing upward but inside museum
+   12 [pexels] Park tram in wooded area, wrong location
+   10 [pixabay] Misty autumn landscape, no canyon
+    8 [pexels] Museum interior crowd, not canyon rim
+    8 [internet-archive] Old horse cart on rocky road, wrong subject
+    8 [pixabay] Silhouette at waterside bench, no canyon
+
+=== BEAT: But beneath those towering cliffs lies an intricate world of natural c
+   62 [pexels] underwater cave opening with divers exploring
+   48 [pexels] dramatic cliff spires, misses cave subject
+   45 [pexels] towering cliffs but no cave interior shown
+   42 [pexels] rocky cliff face, no caves or passages
+   38 [pixabay] narrow rock passage but too close and dark
+   22 [wikimedia] aerial satellite view, no caves visible
+
+=== BEAT: They are behaving like people who believe deeply and sincerely that so
+   30 [openverse/flickr] Generic street scene; no sincere belief behavior visible
    -1 [openverse/flickr] (not inspected)
    -1 [openverse/flickr] (not inspected)
 
-=== BEAT: How many people crossed Lake Superior season after season carrying sto
-   32 [europeana] Metal artifact loosely evokes ancient metalwork
-   16 [artic] Mediterranean beach scene, unrelated
-   12 [europeana] Rural wooden well, unrelated
-   12 [europeana] Winter skiing scene, unrelated
-    9 [artic] Modern indoor scene, unrelated
-    9 [artic] Contemporary colorful painting, unrelated
-   -1 [openverse/flickr] (not inspected)
+=== BEAT: So are the Hopi lying about the Grand Canyon?
+    2 [openverse/flickr] Columbus collage, unrelated to Hopi or Grand Canyon
+    1 [openverse/flickr] Pirate flag collage, completely irrelevant
    -1 [openverse/flickr] (not inspected)
 
-=== BEAT: What remains genuinely open is everything beyond those established fac
-   66 [artic] chaotic collage evokes open unknowns visually
-   59 [artic] ancient mysteries, unknown history beyond established facts
-   46 [artic] serene portrait; vaguely open, contemplative gaze
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
+=== BEAT: What the Hopi have preserved is a memory, carried across centuries wit
+   82 [artic] Hopi kachina doll, preserved cultural artifact
+   80 [wikimedia] Historic Hopi pueblo community, memory carried forward
+   78 [artic] Pueblo ceramic vessel, preserved ancestral craft
+   77 [wikimedia] Historic Hopi weaver, centuries-old craft continuing
+   75 [wikimedia] Historic Hopi woman grinding corn, tradition preserved
+   72 [artic] Historic Native American portrait, memory across centuries
+   38 [europeana] Woven textile, unclear Hopi connection
+   36 [europeana] Similar textile, generic indigenous weaving
+
+=== BEAT: Lying requires knowing a thing is false and telling it anyway.
+   38 [openverse/flickr] person speaking at microphone, generic communication
+   30 [pixabay] person lying in field, weak metaphorical link
+   12 [internet-archive] text document, unreadable, no visual relevance
+   12 [pixabay] open book with flower, no relevant content
+   12 [pixabay] open book with flowers, no relevant content
+   10 [pixabay] blank old book pages, no relevant content
+   10 [pixabay] cows in field, completely irrelevant
+   10 [pixabay] wolf resting, completely irrelevant
+
+=== BEAT: Based on the evidence, the fairest answer is no.
+   65 [pixabay] Crime scene chalk outline suggests verdict
+   62 [pexels] Fingerprint evidence documents on desk
+   60 [pexels] Filing case documents implies investigation
+   58 [pexels] Fingerprinting ink pad suggests evidence
+   55 [pixabay] Magnifying glass implies investigating evidence
+   40 [europeana] Panel discussion suggests deliberation/verdict
+   22 [internet-archive] Illustrated judge portrait, baked-in text
+   10 [pixabay] Two people on floor, unrelated
+
+=== BEAT: Whether that memory records literal underground chambers, a sacred spi
+   45 [pexels] Elder pensive face suits generational debate theme
+   42 [pixabay] CGI brain loosely fits 'memory' concept
+   40 [pexels] Archival records suggest historical documentation debate
+   38 [pixabay] Old letters evoke historical memory faintly
+   30 [wikimedia] Religious cross monument, faint spiritual link
+   12 [wikimedia] Ice sculpture stereoview, not relevant
+   10 [artic] Abstract grid drawing, completely irrelevant
+    8 [artic] Hotel collage artwork, no relevance
+
+=== BEAT: A newspaper report, archaeological and geological knowledge about the 
+   62 [pixabay] Vintage newspaper pages visible clearly
+   58 [pixabay] UK newspaper fronts, modern but legible
+   55 [pixabay] Rolled newspapers generic but relevant
+   50 [pixabay] Newspapers on stand, foreign text visible
+   45 [pixabay] Generic newspaper stack, no clear content
+   40 [pixabay] Folded newspaper close-up, little detail
+   38 [pixabay] Titanic headlines visible, wrong subject
+   38 [pixabay] Blurry newspaper stack, minimal detail
+
+=== BEAT: Throughout this story we have looked at three very different kinds of 
+   38 [pixabay] Open book loosely suggests research/evidence
+   22 [wikimedia] Historical scene unrelated to evidence types
+   22 [nasa] Moon landing unrelated to evidence review
+   20 [pixabay] Child reading unrelated to evidence concept
+   20 [artic] Old engraving unrelated to evidence types
+   18 [met] Renaissance painting unrelated to evidence
+   18 [artic] Tapestry artwork unrelated to evidence
+   15 [pixabay] Children outdoors unrelated to evidence
+
+=== BEAT: Each tells part of the story.
+   72 [artic] Historical portrait tells personal human story
+   63 [met] Ornate cross with multiple medallion portraits
+   62 [met] Carved cross with multiple biblical scenes
+   55 [nasa] Moon mission scene, one chapter of exploration
+   45 [pixabay] Aerial landscape, loosely suggests fragments
+   40 [pixabay] Person pointing at chart, storytelling gesture
+   38 [pixabay] Generic presentation scene, minimal narrative
+   28 [artic] Abstract artwork, unclear narrative fragment
+
+=== BEAT: But that is not the same as deception.
+   58 [pixabay] monk figurines see-hear-speak-no-evil fits
+   55 [pixabay] see-no-evil monkeys suggest hidden truth
+   55 [pixabay] Kermit see-no-evil trio fits concealment
+   52 [pixabay] three wise frogs figurines loosely relevant
+   52 [pixabay] three wise frogs cover-ears theme
+   48 [pixabay] see-no-evil figures suggest concealment
+   42 [europeana] medical deception scene loosely fits theme
+   40 [pixabay] finger puppets too whimsical for theme
+
+=== BEAT: None of them, alone, settles it.
+   58 [openverse/flickr] Abandoned instruments alone, incomplete ensemble
+   55 [pexels] Single person alone on rocky summit
+   52 [pexels] Solitary figure alone gazing out
+   52 [pixabay] Lone silhouette walking alone at sunset
+   50 [pixabay] One person walking alone in forest
+   48 [pixabay] Single person walking alone in woods
+   48 [pixabay] Solo figure alone on forest path
+   42 [openverse/flickr] One person alone on subway platform
+
+=== BEAT: History is rarely that clean.
+   65 [artic] Brutal woodcut conveys history's harsh reality
+   62 [artic] Dark racial injustice art suits complex history
+   58 [internet-archive] Archival aerial parade footage suggests real history
+   48 [pixabay] Book pages evoke history but too generic
+   30 [openverse/flickr] Tourist in library; unrelated to messy history
+   12 [europeana] Museum interior with baked-in text overlay
    -1 [openverse/flickr] (not inspected)
 
-=== BEAT: How much metal was ultimately removed from these ancient excavations a
-   46 [europeana] small ancient metal artifacts with ruler
-   44 [europeana] small ancient metal objects with ruler
-   44 [europeana] small ancient metal hooks with ruler
-   24 [artic] modern bronze lion sculpture, wrong context
-   19 [artic] reflective metal sphere, indirect connection only
-    9 [met] 18th-century furniture, unrelated to excavations
-    9 [met] decorative chairs, unrelated to mining
-    9 [met] ornate cabinet, unrelated to excavations
+=== BEAT: Sometimes it creates entirely new ones.
+   72 [pixabay] hands sketching new smartphone design concept
+   65 [pixabay] craftsman creating new guitar instrument
+   55 [pixabay] robots building new things on assembly line
+   48 [pixabay] person writing, generic creative act
+   42 [pixabay] abstract fluid forms suggest new creation
+   20 [pixabay] person with flowers, no creation theme
+   12 [artic] dark painting of man, not creation
+   10 [artic] monochrome figurative painting, irrelevant
 
-=== BEAT: If you enjoy documentaries about forgotten history, ancient engineerin
-    8 [wikimedia] Portrait of unidentified modern man, irrelevant
-   -1 [wikimedia] (not inspected)
-   -1 [wikimedia] (not inspected)
+=== BEAT: Sometimes a discovery answers old questions.
+   62 [pixabay] scientist examining data suggests discovery moment
+   45 [pixabay] astronaut on Mars evokes exploration discovery
+   30 [pixabay] generic space nebula, loosely cosmic discovery
+   22 [pixabay] abstract CGI nebula, no discovery context
+   20 [pixabay] CGI spacecraft render, wrong medium
+   18 [artic] historical etching of boat scene, unrelated
+   12 [artic] illustrated book cover with baked-in text
+   12 [artic] historical etching of figures, unrelated scene
+
+=== BEAT: The Grand Canyon has done both.
+   85 [pixabay] Grand Canyon shrouded in dramatic clouds
+   82 [pixabay] Person at Grand Canyon rim overlook
+   80 [pixabay] Grand Canyon aerial view with river
+   78 [pixabay] Grand Canyon rim at sunset with snow
+   78 [pixabay] Classic Grand Canyon layered canyon view
+   75 [pixabay] Grand Canyon with gnarled foreground tree
+   72 [nasa] Satellite view of Grand Canyon region
+   62 [pixabay] Horseshoe Bend not Grand Canyon proper
+
+=== BEAT: Or perhaps the answer was never hidden inside the canyon at all.
+   42 [pixabay] misty mountain path suggests looking beyond landscape
+   15 [nasa] mudflat scene, no canyon context
+   12 [pixabay] answer-hidden metaphor but cartoon illustration
+   10 [pixabay] cartoon illustration, no canyon connection
+    8 [pixabay] question marks suggest mystery but green screen asset
+    8 [pixabay] beach scene, unrelated to canyon mystery
+    6 [pixabay] teacup, no relevance to canyon narrative
+    5 [pixabay] CGI chrome letters, irrelevant to canyon
+
+=== BEAT: Perhaps it has always lived in the memory of the people who knew this 
+   82 [pixabay] Cloud-shrouded primeval jungle, pre-civilization feel
+   78 [pixabay] Misty terraced highlands, ancient indigenous landscape
+   65 [pixabay] Ancient misty mountain path, pre-civilization atmosphere
+   62 [pixabay] Ancient karst seascape, timeless pre-survey feel
+   60 [pixabay] Small village at forest edge, traditional settlement
+   55 [pixabay] Modern boats undercut timeless landscape mood
+   45 [pixabay] Birds in flight, loosely evokes timeless nature
+   30 [pixabay] Paved road signals modern infrastructure, not ancient
+
+=== BEAT: A memory of emerging from beneath the earth.
+   32 [pixabay] emerging from ground level, earthy setting
+   30 [pixabay] dark landscape, vaguely subterranean atmosphere
+   28 [pixabay] hand touching fence, memory/tactile mood
+   22 [pixabay] CGI brain render, no earth emergence
+   18 [pixabay] CGI Earth from space, not emergence
+   15 [pixabay] abstract network pattern, no earth context
+   12 [pixabay] CGI space scene, no earth emergence
+   10 [pixabay] rose on notebook, unrelated to narration
+
+=== BEAT: The Hopi have never claimed to hold every answer.
+    5 [pixabay] Candles unrelated to Hopi people
+    5 [pixabay] CGI fantasy art not Hopi related
+    5 [pixabay] CGI spiritual figure not Hopi
+    5 [pixabay] CGI meditation art not Hopi
+    4 [pixabay] Bracket fungi unrelated to Hopi
+    3 [pixabay] Mediterranean beach irrelevant to Hopi
+    3 [pixabay] Alarm clock unrelated to narration
+    3 [pixabay] Tropical palms unrelated to Hopi
+
+=== BEAT: What they have held onto is a memory.
+   42 [pixabay] Candles evoke nostalgia loosely, generic
+   38 [pixabay] Clock suggests time passing, loosely relevant
+   30 [nasa] Historical diagram with baked-in labels, period artifact
+   22 [pixabay] CGI meditation figure, too abstract/illustrative
+   18 [pixabay] Wildflowers unrelated to memory concept
+   15 [pixabay] Beach scene unrelated to memory theme
+   12 [pixabay] Palm trees irrelevant to memory narration
+   10 [pixabay] Palm trees against sky, no relevance
+
+=== BEAT: And a memory of unusual beings, who were already there, when the ances
+   55 [openverse/flickr] Blurred ancient faces suggest unusual mythic beings
+   48 [loc] Ethereal figures suggest mythological unusual beings
+   42 [pixabay] Stepping stones suggest ancestral journey metaphor
+   38 [pixabay] Dark primordial landscape evokes ancient beginnings
+   22 [pixabay] Abstract particle network, no ancestral beings
+   20 [pixabay] CGI Earth render, no ancestral context
+   18 [europeana] Framed miniature painting, unclear subject
+   15 [pixabay] CGI brain render, wrong subject entirely
+
+=== BEAT: That memory has survived longer than the newspaper, longer than the st
+   55 [pexels] Vintage black-and-white photos evoke old memories
+   48 [pexels] People reviewing old photos, memory theme fits
+   42 [pixabay] Old letters/papers suggest aged memory, generic
+   38 [pexels] Man in reflective pose, loosely suggests memory
+   18 [artic] Old newspaper fragments but wrong framing/art
+   12 [loc] Book spine with baked-in text, wrong subject
+    5 [artic] Abstract art grid, completely irrelevant
+    5 [artic] Tile pattern with ruler, completely irrelevant
+
+=== BEAT: Maybe that is why the canyon still fascinates us.
+   12 [loc] Birds on lake, no canyon visible
+   12 [pixabay] Beach sunset, no canyon present
+   10 [pixabay] Wooden sign in forest, no canyon
+   10 [pixabay] CGI question marks, no canyon content
+   10 [pixabay] Sketched question mark, loosely thematic only
+    8 [artic] Gauguin painting, unrelated to canyon
+    8 [loc] Political cartoon, wrong subject entirely
+    8 [artic] Goya war etching, unrelated subject
+
+=== BEAT: What if anything still lies hidden beneath them?
+   65 [pixabay] Deep lake surface hides unknown depths
+   62 [pixabay] Still water conceals hidden depths below
+   58 [pixabay] Ocean waves suggest vast hidden depths
+   55 [pixabay] Dense undergrowth hides what lies beneath
+   50 [pixabay] Misty moorland ground, hidden-beneath atmosphere
+   48 [pixabay] Open ground under ancient tree, atmospheric
+   45 [pixabay] Open heathland, generic landscape, loosely relevant
+   42 [pixabay] Leaf-covered path, vague hidden-beneath feel
+
+=== BEAT: A memory of underground chambers.
+   85 [pexels] abandoned underground stone chamber tunnel ruins
+   82 [pixabay] cave chambers with dramatic stalactites formations
+   78 [pexels] dark underground railway tunnel chamber
+   75 [pexels] underground stairwell descending into tunnel chamber
+   72 [pexels] underground tunnel corridor evokes subterranean memory
+   70 [pexels] cavernous underground station hall columns
+   42 [wikimedia] memorial plaque references underground station
+   38 [pixabay] miners underground but portrait-focused snapshot
 
 === BEAT: Thank you for watching.
-   42 [wikimedia] Generic farewell scene, loosely usable
-   22 [wikimedia] Baked-in text and channel watermarks overlay
-   -1 [wikimedia] (not inspected)
-
-=== BEAT: Leave your thoughts in the comments, and I will see you in the next do
-   16 [met] Religious painting unrelated to outro call-to-action
-   14 [met] Chinese calligraphy manuscript irrelevant to narration
-   12 [artic] Abstract floral painting unrelated to documentary outro
-    9 [artic] Book/catalogue cover with baked-in text overlay
-    9 [artic] Exhibition poster with prominent baked-in text
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: Who do you believe the ancient miners remembered in the 1894 Hopi acco
-   12 [met] African ivory mask, wrong culture entirely
-   12 [met] El Greco painting, Spanish city, irrelevant
-    9 [met] Islamic interior architecture, wrong context
-    9 [europeana] 1868 Punch cartoon, wrong subject entirely
-    7 [artic] Abstract print, no connection to topic
-    7 [europeana] Botanical specimen sheet, unrelated to Hopi
-    6 [wikimedia] Modern statue, unrelated to Hopi account
-    6 [artic] Cartoon sketch, completely unrelated subject
-
-=== BEAT: And before you go, I would genuinely like to hear what you think.
-   46 [wikimedia] Woman leaving through door, farewell gesture
-   42 [artic] Pensive woman gazing, contemplative mood fits
-   34 [met] Portrait subject, no conversational context
-   34 [met] Portrait subject, no conversational context
-   26 [europeana] Naval scene unrelated to soliciting opinion
-   19 [europeana] Cartoon gallows scene, irrelevant subject
-   19 [artic] Abstract print, no narrative connection
-   14 [met] Ancient Egyptian stele, entirely wrong context
-
-=== BEAT: The island sits many miles from the mainland, surrounded by cold and u
-   82 [nasa] aerial view of isolated islands surrounded by ocean
-   35 [nasa] aerial coastal city, not isolated island
-   22 [europeana] inland pagoda on calm water, wrong subject
-    6 [artic] Renaissance engraving, completely unrelated
-    6 [met] ivory figurine, entirely unrelated
-    6 [met] decorative shield artifact, entirely unrelated
-    6 [artic] marble figurine, entirely unrelated
-    6 [europeana] illuminated manuscript page, unrelated
-
-=== BEAT: Reaching it required deliberate planning, reliable watercraft capable 
-   56 [artic] Period watercraft on open water, usable
-   22 [wikimedia] Pioneer scene but baked-in text label
-   12 [wikimedia] Submarine salvage, wrong context entirely
-    9 [wikimedia] Modern military vehicle, completely irrelevant
-    8 [met] Egyptian pyramid, wrong subject entirely
-    7 [artic] Japanese woodblock print, unrelated subject
-    7 [met] Decorative wooden panel, completely irrelevant
-    7 [met] Glass vessel object, completely irrelevant
-
-=== BEAT: This is not a place anyone reaches by accident.
-   86 [europeana] soldier enters dangerous trench deliberately
-   38 [nasa] industrial workspace, loosely suggests intentional access
-   32 [artic] generic landscape etching, unrelated subject
-   22 [nasa] robotics competition, casual public event
-   22 [europeana] handwritten letter with watermark overlay
-   16 [artic] portrait painting unrelated to narration
-   15 [nasa] baseball game crowd, everyday accessible venue
-   14 [europeana] concert poster with baked-in text overlay
-
-=== BEAT: What remains genuinely uncertain is the identity of the people the tra
-   76 [wikimedia] unidentified ancient figure, uncertain identity
-   69 [met] religious figures remembered by tradition
-   66 [artic] anonymous mummified person, identity uncertain
-   49 [met] historical figures whose identity is debated
-   24 [met] decorative vessel irrelevant to identity
-
-=== BEAT: Some researchers believe the account reflects distant echoes of ancien
-   66 [europeana] ancient indigenous ceramic artifact, culturally relevant
-   42 [artic] figures working with rocks, vaguely mining-adjacent
-    6 [artic] dog portrait, completely irrelevant
-    6 [met] European religious painting, wrong culture
-    5 [openverse/flickr] stack of books, irrelevant
-    2 [nasa] modern NASA researcher, wrong context
-    2 [nasa] scientific image analysis, completely irrelevant
-    2 [nasa] false-color Earth satellite image, irrelevant
-
-=== BEAT: The archaeological evidence confirms that the mining happened on an ex
-   22 [met] Greek vase with figures, not mining
-   14 [met] Greek pottery, figures unrelated to mining
-    9 [wikimedia] Buddhist statue, no mining relevance
-    7 [artic] Abstract black artwork, completely irrelevant
-    7 [artic] Religious confirmation scene, no mining
-   -1 [wikimedia] (not inspected)
-   -1 [wikimedia] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: It does not tell us every chapter of the story.
-   66 [artic] council gathering suggests incomplete story chapters
-   52 [europeana] worn coins suggest partial historical record
-   46 [europeana] artifact fragment implies incomplete chapter
-   45 [nasa] CGI planets; unknown cosmic chapters metaphor
-   39 [europeana] cartoon figures examining artwork loosely relevant
-   38 [nasa] alien landscape; abstract incomplete story metaphor
-   26 [artic] resting calf irrelevant to narration
-   24 [artic] abstract animal print unrelated to narration
-
-=== BEAT: That is where history and memory converge.
-   76 [smithsonian] Segregation-era artifact where history becomes tangible memory
-   66 [europeana] Medieval manuscript where historical record meets cultural memory
-   64 [europeana] Ancient illustrated text embodies history preserved in memory
-   62 [europeana] Illuminated manuscript detail evokes preserved historical narrative
-   -1 [wikimedia] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [wikimedia] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: The past is rarely preserved in a single place or a single form.
-   76 [met] Vanitas—skull, bubble, coins span multiple symbolic forms
-   59 [artic] 19th-century satirical print, archival document form
-   52 [europeana] Archival photo preserving a historical moment
-   46 [artic] Interior painting, loosely evokes preserved spaces
-   42 [artic] Portrait painting, single preserved form only
-   -1 [wikimedia] (not inspected)
-   -1 [wikimedia] (not inspected)
-
-=== BEAT: The account recorded in 1894 does not replace what archaeology has est
-   46 [artic] Mesoamerican stone carving, indigenous archaeology loosely relevant
-   34 [met] Ceramic vessel, archaeological object but wrong culture
-   12 [europeana] 19th-century book title page, wrong subject
-   10 [europeana] 1882 book title page, wrong subject entirely
-    9 [artic] Russian avant-garde book illustration, irrelevant
-    9 [artic] Contemporary video art installation, irrelevant
-    8 [met] Baroque crucifixion painting, entirely irrelevant
-    8 [met] Ornate French interior, entirely irrelevant
-
-=== BEAT: Whether the strangers the Hopi elder described in 1894 were real histo
-   42 [artic] titled 'A Stranger Passes By' loosely relevant
-   26 [europeana] Indigenous people but wrong continent and culture
-   12 [artic] near-blank dark canvas, unusable
-    9 [europeana] Viking cartoon; wrong culture and period
-    8 [met] 16th-century European portrait, wrong context
-    7 [artic] contemporary woman portrait, irrelevant
-    7 [met] Toulouse-Lautrec figures, completely unrelated
-   -1 [wikimedia] (not inspected)
-
-=== BEAT: But placed beside each other, they reflect something that historians h
-   66 [smithsonian] multiple historical scenes placed side by side
-   55 [nasa] two images placed side by side for comparison
-   52 [europeana] two artifacts placed side by side compared
-   46 [artic] historical street scene etching, no pairing
-   44 [met] single ancient relief, no comparison shown
-   44 [artic] historical street scene etching, single image
-   42 [europeana] family photo, no comparative historical context
-   39 [artic] single Impressionist street scene painting
-
-=== BEAT: What we do know is that the mines were real, the copper was real, the 
-   12 [met] El Greco cityscape, no mining content
-    7 [artic] Glass art object, no mining relevance
-    6 [artic] Victorian fashion illustration, completely irrelevant
-    6 [europeana] Puppet animation scene, irrelevant
-    6 [artic] Text-overlay art photograph, irrelevant
-    6 [europeana] Puppet castle scene, irrelevant
-    6 [europeana] Puppet characters, no mining relevance
-    4 [nasa] NASA press conference, wrong subject entirely
-
-=== BEAT: Sometimes it survives in the ground, sometimes it survives in document
-   69 [met] old master portrait, generational memory preserved
-   66 [europeana] artifacts surviving in ground, archaeology
-   64 [europeana] medieval artifact unearthed, survives in ground
-   59 [europeana] archaeological find surviving in ground
-   46 [artic] figures in mythic scene, storytelling theme
-   39 [artic] figures at water, generational story loose
-   34 [artic] expressionist figures, no clear narrative link
-   -1 [wikimedia] (not inspected)
-
-=== BEAT: Perhaps that is exactly why this mystery has held people's attention f
-   76 [artic] Mysterious eye artwork evokes enduring enigma
-   45 [nasa] Crater aerial view suggests geological mystery
-   42 [nasa] Mars landscape suggests unexplored cosmic mystery
-   34 [met] Ceramic vessel unrelated to mystery theme
-   32 [artic] War scene unrelated to mystery theme
-   29 [met] Ancient figurine unrelated to mystery concept
-   26 [artic] Decorative sword irrelevant to mystery narrative
-   24 [met] Ornate goblet unrelated to mystery theme
-
-=== BEAT: Not because it provides easy answers, but because it keeps reminding u
-   38 [nasa] Vast cosmic void evokes lost ancient worlds
-   26 [artic] Modern illustration, unrelated to ancient loss
-   16 [europeana] Holocaust museum exhibit, wrong context entirely
-   14 [europeana] Modern religious soldier, wrong period
-   12 [europeana] Modern crowd with Torah, irrelevant
-    9 [artic] Text-only artwork, contradicts narration theme
-    9 [met] Decorative armchair, no relevance
-    9 [met] Ornate cabinet, no relevance
-
-=== BEAT: In practice it is far more like a puzzle with a significant number of 
-   46 [artic] geometric shapes array, loosely puzzle-like
-   16 [europeana] courtroom scene, no puzzle relevance
-   14 [artic] 19th-century cartoon, unrelated subject
-   14 [europeana] WWI soldiers drilling, unrelated
-   12 [europeana] musical instrument, no puzzle connection
-   10 [nasa] spacecraft recovery, unrelated to puzzle
-    8 [nasa] astronaut portrait, unrelated subject
-    8 [nasa] astronaut portrait, unrelated subject
-
-=== BEAT: Every excavation surfaces another clue, every overlooked record adds a
-   56 [artic] archaeological artifact but no excavation context
-   -1 [openverse/wikimedia] (not inspected)
-
-=== BEAT: History is often imagined as a complete and coherent account of the pa
-   46 [artic] timeline text on wall suggests historical chronology
-   34 [europeana] indigenous artifact hints at untold histories loosely
-   26 [artic] violent woodcut unrelated to history-as-narrative concept
-   22 [artic] racial injustice woodcut, wrong for narration topic
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: The ancient copper mines of Lake Superior remain one of those unfinish
-   32 [europeana] Modern industrial mine, wrong region/period
-   16 [europeana] European landscape engraving, wrong subject entirely
-    6 [artic] Chinese watercolor painting, completely irrelevant
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: "They were not his people," he explained. They had arrived from across
-   42 [artic] Sailing ships on open sea, loosely evokes seafarers
-   38 [pexels] Indigenous people by water with modern boat
-   24 [wikimedia] Book illustration with baked-in caption text
-   22 [unsplash] Modern costumed Chinese boaters, wrong culture/period
-   18 [artic] Abstract print artwork, wrong subject entirely
-   12 [pixabay] Modern motorboat in fog, wrong period
-    8 [pixabay] Aerial kayak shot, modern, wrong subject
-    5 [loc] Book title page, text only, useless
-
-=== BEAT: These whales were bred to kill sea monsters.
-   26 [artic] Ceramic bowl with fish motifs, not whales
-   22 [artic] Ceramic bowl with single fish, not whales
-   19 [wikimedia] Fish fossils, no whales or sea monsters
-   16 [artic] Old Master drawing, no whales or monsters
-   12 [met] Ivory figurine, completely unrelated subject
-   12 [met] Carved bone tool, unrelated to whales
-    9 [met] Medieval ivory relief, religious scene unrelated
-    6 [loc] Book spine only, unusable
-
-=== BEAT: These are sperm whales, the largest predators on the entire planet.
-   98 [wikimedia] Adult and calf sperm whales underwater
-   96 [wikimedia] Two sperm whales swimming underwater, clear
-   76 [artic] Historic engraving of beached sperm whale
-   59 [loc] Archival photo of large beached whale
-   44 [loc] Historic drawing of whale at sea
-   42 [wikimedia] Whale skeleton museum display, not sperm whale
-   29 [loc] Whaling ship deck, no whale visible
-   24 [smithsonian] Small isolated artifact, not whales
-
-=== BEAT: Every day, these whales dive thousands of meters into the pitch black 
-   56 [wikimedia] sperm whale skeleton loosely relevant
-   12 [internet-archive] title card baked-in text unusable
-    9 [artic] decorative ceramic bowl unrelated
-    6 [artic] Renaissance drawing unrelated figures
-    5 [internet-archive] dark blurry unidentifiable footage unusable
-    4 [loc] book spine completely unrelated
-    4 [loc] book spine completely unrelated
-    4 [loc] book spine completely unrelated
-
-=== BEAT: Sperm whales can eat fish with bones that weigh over 200 pounds.
-   76 [wikimedia] sperm whale skeleton shows anatomy clearly
-   49 [met] Turner whale hunting painting loosely relevant
-   32 [artic] beached whales too distant, unclear
-    6 [loc] book title page, wrong subject entirely
-    6 [loc] Punch magazine cover, irrelevant
-    6 [loc] Harper's Weekly title page, irrelevant
-    6 [artic] abstract artwork, no whale connection
-    6 [met] ivory figurine, unrelated to whales
-
-=== BEAT: And no, it's not because we have bones.
-   12 [europeana] hunched figure, vaguely posture-related
-   12 [internet-archive] rooster has bones but CGI animation
-    9 [loc] cartoon collage unrelated to bones
-    9 [europeana] woman polishing brass, unrelated
-    9 [loc] political cartoon, no bone relevance
-    9 [loc] typed document card, irrelevant
-    9 [met] decorative quilt, entirely unrelated
-    9 [met] ornate sofa, no relevance
-
-=== BEAT: These are the deadliest predators ever, and you, my unfortunate friend
-    6 [loc] WWII soldier, no whale content
-    6 [loc] Man at stop sign, irrelevant
-    6 [loc] Memorial stone monument, irrelevant
-    6 [met] Decorative enamel locket, irrelevant
-    6 [met] Crucifixion painting, no whale
-    6 [met] 16th century portrait, irrelevant
-    6 [artic] Painter portrait, no whale
-    6 [artic] Baroque portrait engraving, irrelevant
-
-=== BEAT: But despite all of this, the whale won't eat you, the whale won't even
-    9 [artic] 19th century journal cover, irrelevant
-    8 [europeana] Microscopic biological scan, irrelevant
-    8 [europeana] Fluorescent microscopy image, irrelevant
-    7 [met] Ancient figurine sculpture, irrelevant
-    7 [loc] Outdoor gathering scene, irrelevant
-    7 [artic] Abstract sculpture on stand, irrelevant
-    7 [europeana] Person serving food, irrelevant
-    6 [loc] Furniture store street scene, irrelevant
-
-=== BEAT: Sperm whales will go miles out of their way to find 1,000 pound coloss
-   46 [met] Whaling ship painting, loosely relevant
-   19 [artic] Beach scene, no whales or squid
-   12 [loc] Book cover, no marine life
-    9 [loc] Lighthouse diagram, irrelevant
-    9 [loc] Punch magazine cover, irrelevant
-    9 [met] Carved cross artifact, irrelevant
-    9 [artic] Woman reclining painting, irrelevant
-    9 [artic] Abstract figures painting, irrelevant
-
-=== BEAT: It's not because we're too inconvenient.
-   46 [met] armchair could suggest inconvenience concept
-   44 [met] elaborate chair suggests comfort/inconvenience theme
-   34 [artic] group gathering scene, loosely relevant
-   32 [artic] Goya print of isolated figure, tangential
-   22 [europeana] prominent text-heavy AIDS poster unrelated
-   22 [internet-archive] school lockers, vaguely institutional but weak
-   20 [internet-archive] baked-in text, talking-head unrelated
-   19 [met] ornate cabinet, irrelevant to narration
-
-=== BEAT: No matter how delicious you might make yourself try to be, a sperm wha
-    6 [artic] Political cartoon, no whale relevance
-    6 [met] African wooden sculpture, irrelevant
-    6 [artic] Surrealist money painting, irrelevant
-    6 [artic] Teacups on grid, completely irrelevant
-    6 [met] Ornate grandfather clock, irrelevant
-    6 [europeana] Red Cross document, irrelevant
-    2 [internet-archive] Title card text, no whale content
-    2 [internet-archive] Indoor bedroom scene, irrelevant
-
-=== BEAT: In all of recorded history, there are zero cases of a wild sperm whale
-    6 [europeana] Historical map, no whale content
-    5 [europeana] Heraldic coat of arms, irrelevant
-    5 [artic] Art gallery installation, irrelevant
-    5 [artic] Japanese floral screen painting, irrelevant
-    5 [artic] Text-only publication cover, irrelevant
-    5 [europeana] Botanical herbarium specimen, irrelevant
-    4 [internet-archive] Dark blurry frame, possibly whale-like shape
-    1 [nasa] Astronomical nebula image, irrelevant
-
-=== BEAT: But why do these giants not want to eat us?
-   14 [artic] Gauguin painting, Polynesian figures, unrelated
-   12 [europeana] Taxidermy mouse, not giant animals
-   12 [nasa] Lunar craters vaguely suggest giant scale
-   10 [nasa] Mars surface spiral pattern, no creatures
-    9 [artic] Dark door with flowers, irrelevant
-    9 [artic] Portrait photo, no giant animals
-    9 [europeana] Museum display of red objects, irrelevant
-    9 [europeana] Red and black object, unclear, irrelevant
-
-=== BEAT: And if you really ticked one off, would it ever try to eat you?
-   12 [met] Ornate revolver, weapon not animal attack
-    9 [artic] Gauguin painting, no animal threat
-    7 [met] Chinese landscape scroll, irrelevant
-    7 [artic] Abstract cat print artwork, irrelevant
-    6 [artic] Abstract photo artwork with text overlay
-    6 [europeana] Greek sheet music cover, irrelevant
-    6 [europeana] AIDS awareness poster, irrelevant
-    6 [europeana] Labor union protest, irrelevant
-
-=== BEAT: The most obvious answer is that they just aren't aggressive.
-   42 [europeana] taxidermied bird, non-aggressive animal specimen
-   42 [internet-archive] children talking calmly, non-aggressive behavior
-   26 [met] old painting, pickpocket scene, unrelated
-   19 [met] 16th-century portrait, unrelated subject
-   12 [internet-archive] man at map, no aggression context
-    9 [artic] text artwork about fear/manipulation, irrelevant
-    9 [artic] text artwork about domination, wrong theme
-    9 [artic] Spanish broadside text, irrelevant
-
-=== BEAT: Great white sharks hunt seals.
-   49 [wikimedia] large shark on beach, no seal hunting
-   10 [internet-archive] indistinct dark footage, no sharks visible
-    6 [artic] human farmers with tools, completely unrelated
-    6 [artic] horse steeplechase illustration, completely unrelated
-    6 [artic] horse race scene, completely unrelated
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: When we think of whales, we usually think of peaceful creatures that j
-    6 [artic] burning cardboard, no whale content
-    6 [artic] artwork with text overlay, no whales
-    6 [europeana] cartoon illustration of two men
-    6 [artic] Goya etching, no ocean or whales
-    6 [europeana] vintage wedding portrait, no whales
-    6 [europeana] old building photograph, no whales
-    2 [internet-archive] outdoor crowd scene, no whales
-    2 [internet-archive] extreme close-up of man's face
-
-=== BEAT: But if you actually look at how a sperm whale survives, peaceful is th
-    6 [artic] Gauguin painting, Tahitian figures, irrelevant
-    6 [artic] Abstract photo artwork with baked-in text
-    6 [artic] Abstract printmaking, cats and interior, irrelevant
-    6 [europeana] AIDS awareness poster, prominent text overlay
-    6 [europeana] AIDS awareness poster, prominent text overlay
-    6 [europeana] School portrait collage, text borders, irrelevant
-    2 [internet-archive] Outdoor crowd scene, no whale relevance
-    2 [nasa] Two men at table, interview setup, irrelevant
-
-=== BEAT: Orca's hunt fish and penguins.
-   76 [wikimedia] Orca dorsal fin surfacing near shore
-    9 [met] Historical painting of human fishing scene
-    9 [met] Drawing of indigenous hunters on shore
-    6 [met] Mughal court procession illustration unrelated
-    6 [artic] Still life of glass vessels unrelated
-    6 [artic] Abstract blue plant silhouettes unrelated
-    6 [artic] Horse steeplechase race print unrelated
-   -1 [wikimedia] (not inspected)
-
-=== BEAT: Sperm whales hunt monsters.
-    6 [artic] Surrealist painting, no whales or ocean
-    6 [met] Ivory figurine, completely unrelated subject
-    6 [artic] Horse steeplechase print, no marine life
-    6 [artic] Horse race crowd scene, no whales
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: Every single day, sperm whales dive thousands of meters down into the 
-    6 [met] Urban ruins, no marine life whatsoever
-    6 [met] African wooden sculpture, completely unrelated
-    6 [artic] Marble statue, no ocean or whales
-    6 [artic] Chinese painting of figures, not marine
-    6 [artic] Vintage portrait photo, no ocean content
-    2 [internet-archive] Low-quality beach video, no whales or squid
-
-=== BEAT: These are 40-foot-long invertebrates armed with sharp beaks and tentac
-    6 [smithsonian] Metal tableware object, no squid/invertebrate
-
-=== BEAT: Yeah, you really don't want to get grabbed by that.
-   59 [europeana] jagged metal object looks dangerous to grab
-   38 [internet-archive] close-up suggests menace or grabbing moment
-   26 [artic] political cartoon, no grabbing danger shown
-   16 [artic] couple on bench, irrelevant to danger
-   12 [artic] abstract cat print, no relevant danger
-   10 [internet-archive] people outside building, no threat visible
-    2 [internet-archive] near-blank dark frame, unusable
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: And the sperm whale actively seeks them out in total darkness.
-   59 [artic] Historic engraving of beached sperm whale
-   42 [europeana] Whale distribution map, loosely relevant
-   34 [europeana] Ivory whale carving, not hunting behavior
-   29 [europeana] Ivory whale carving, not hunting behavior
-   26 [artic] Beach scene, no whale visible clearly
-   20 [openverse/flickr] Teeth/jaw specimen, not sperm whale hunting
-    9 [artic] Pre-Columbian ceramic vessel, unrelated
-    6 [met] 16th century portrait, entirely unrelated
-
-=== BEAT: When these whales come back to the surface, their heads are completely
-   12 [openverse/flickr] Ships at sea, no whale scarring
-    7 [artic] Decorative pottery with fish motif
-    7 [artic] Decorative pottery with fish motif
-    6 [artic] Historical drawing of human figures
-    6 [europeana] Ceramic bird figurine, irrelevant
-    6 [europeana] Small ceramic objects, irrelevant
-    6 [europeana] Painting of cows in water, irrelevant
-    5 [internet-archive] Title card only, no whale content
-
-=== BEAT: So, I made my point.
-   59 [artic] Knight armor pointing gauntlet forward
-   22 [artic] Ornate metal gate, no narrative link
-   19 [europeana] Fossil rock specimen, unrelated
-   18 [artic] Chinese landscape painting, unrelated
-   16 [europeana] Horse painting and jar, unrelated
-   14 [europeana] Gold ring, no relevance to narration
-   12 [internet-archive] Book cover, wrong subject entirely
-    8 [internet-archive] Film credits text overlay, unusable
-
-=== BEAT: They're violent, they're a little bit insane, and they're pretty darn 
-   46 [artic] chaotic abstract art suggests violent insane cool
-   42 [artic] 19th-century street performers, slightly wild energy
-   34 [europeana] riot gear laid out, vaguely relevant context
-   26 [artic] stormy landscape sketch, no violence or coolness
-   12 [internet-archive] man with pixel sunglasses, trivial meme
-    5 [internet-archive] title card credits, no relevant content
-    5 [internet-archive] production title card, no subject
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: We know they're way more capable of killing things that are significan
-    6 [artic] Abstract artwork, no predator depicted
-    6 [artic] Close-up statue with text overlay
-    6 [europeana] Family group photo, irrelevant
-    6 [artic] Portrait of seated woman, irrelevant
-    6 [europeana] Woman before church building, irrelevant
-    6 [europeana] Two women on street, irrelevant
-    2 [internet-archive] Cast list text, no predator content
-    2 [internet-archive] Two women indoors, irrelevant
-
-=== BEAT: So, if they're this aggressive and this dangerous, why do we still vie
-    6 [artic] abstract colorful artwork, no whales
-    6 [artic] portrait etching of elderly person
-    6 [artic] surreal etching of figures, unrelated
-    6 [europeana] couple in garden, no whale relevance
-    6 [europeana] family photo, completely unrelated
-    6 [europeana] performers on scaffolding, unrelated
-    2 [internet-archive] office scene, no whale relevance
-    2 [internet-archive] film title card, completely unrelated
-
-=== BEAT: We get it.
-   45 [internet-archive] speaker gesturing understanding to audience
-   40 [internet-archive] person speaking/acknowledging, loosely fits
-   35 [nasa] person speaking to camera, generic
-   29 [europeana] workers in kitchen, watermark visible
-   24 [artic] abstract art with text, irrelevant
-   24 [artic] Victorian cartoon scene, unrelated
-   19 [artic] 19th century French boating illustration, irrelevant
-   19 [europeana] period illustration with baked-in text borders
-
-=== BEAT: When you see a video of a massive blue whale, or a humpback whale, the
-    6 [artic] Abstract art print, no whales
-    6 [artic] 19th century cartoon, no whales
-    6 [artic] Period sketch of people, no whales
-    6 [europeana] Cartoon of rooftop scene, no whales
-    6 [europeana] Historical street scene illustration, no whales
-    6 [smithsonian] Botanical specimen, no whales
-    6 [europeana] Medieval manuscript page, no whales
-    2 [internet-archive] Close-up man's face, no whales
-
-=== BEAT: Baleen whales don't have teeth.
-    6 [artic] Pre-Columbian pottery, no whale relevance
-    6 [artic] Impressionist painting of woman, irrelevant
-    6 [artic] Ancient stone vessel, no whale relevance
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: And that's not because they're baleen whales.
-    6 [artic] Figurative painting; no whales visible
-    6 [artic] Text artwork; no whale content
-    6 [artic] 19th-century cartoon; no whales
-    6 [europeana] Handwritten Arabic card; irrelevant
-    6 [europeana] Medieval illuminated manuscript; irrelevant
-    6 [europeana] Holocaust museum exhibit; irrelevant
-    6 [smithsonian] WWII V-mail letter; irrelevant
-    6 [smithsonian] WWII V-mail letter; irrelevant
-
-=== BEAT: They have massive plates of keratin in their mouths that act like gian
-    6 [artic] Goya etching, no whale baleen shown
-    6 [artic] Goya etching, completely unrelated subject
-    6 [met] Buddhist gilt statue, no keratin plates
-    6 [met] Gold torque jewelry, unrelated to baleen
-    6 [met] Gold coin necklace, no whale relevance
-    6 [artic] Ancient urn, no filter-feeding depicted
-    6 [europeana] Toy cavalry soldiers, completely irrelevant
-    6 [europeana] Toy horsemen, no whale connection
-
-=== BEAT: They just open up and engulf entire clouds of tiny animals all at once
-   12 [nasa] Aerial melt pools, vaguely engulfing shapes
-    8 [nasa] Abstract fluid motion, not feeding behavior
-    6 [met] Chinese landscape painting, no marine life
-    6 [met] Bruegel harvest scene, no marine life
-    6 [met] Equestrian portrait, completely unrelated
-    6 [artic] Renaissance engraving of figures fighting
-    6 [artic] Still life painting, no animals
-    6 [artic] Blank canvas artwork, nothing relevant
-
-=== BEAT: But sperm whales are completely different.
-   76 [artic] historic engraving of beached sperm whale
-   72 [artic] period engraving beached whale scene
-   42 [artic] distant beach scene, whale barely visible
-   22 [openverse/flickr] shark jaw bones, not sperm whale
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: Because of this, we culturally assign the label of gentle giant to bas
-    6 [met] Buddhist statue, no whale relevance
-    6 [met] Egyptian relief, no whale relevance
-    6 [europeana] AIDS awareness poster, unrelated
-    6 [met] Islamic helmet artifact, unrelated
-    6 [artic] Dark figurative print, unrelated
-    6 [artic] London transport poster, unrelated
-    6 [artic] Text overlay portrait, unrelated
-    6 [europeana] Handwritten Arabic letter, unrelated
-
-=== BEAT: They're actual predators, and not just that, but apex predators.
-    6 [artic] Jewelry/rings, no predator content
-    6 [artic] Abstract colorful artwork, no predators
-    6 [artic] Panoramic landscape scan, no predators
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: We assume that because they're big, they must be passive filter feeder
-    6 [artic] Abstract art photo, no marine life
-    6 [artic] Abstract sculpture, unrelated to narration
-    6 [artic] Figurative painting, no ocean animals
-    6 [met] Ancient marble sculpture, irrelevant
-    6 [met] Museum corridor, Egyptian reliefs, irrelevant
-    6 [met] Medieval religious painting, irrelevant
-    6 [europeana] Decorative tile pattern, irrelevant
-    6 [europeana] Museum artifact fragments, irrelevant
-
-=== BEAT: They actually have teeth, meaning they actually have to do the work an
-   12 [smithsonian] Native warriors but not teeth/hunting
-    6 [europeana] Tiger-stripe robe, unrelated to hunting teeth
-    6 [artic] Abstract egg and bones painting, irrelevant
-    6 [met] Japanese woodblock print, unrelated
-    6 [met] Baroque mythology painting, unrelated
-    6 [met] Egyptian temple museum display, unrelated
-    6 [artic] Abstract panoramic scan, unreadable
-    6 [artic] Abstract cubist painting, unrelated
-
-=== BEAT: So, if they have the instincts of a killer, and well, more than the ca
-   16 [artic] 19th century cartoon, no killer animal
-   12 [artic] abstract illustration, irrelevant subject matter
-   10 [openverse/flickr] portrait of woman, no killer animal
-    9 [europeana] religious study scene, no relevance
-    7 [europeana] Swedish labor protest, no relevance
-    6 [europeana] text-only graphic, completely irrelevant
-    6 [artic] ancient urn, utterly irrelevant
-    2 [internet-archive] astrology video thumbnail, irrelevant
-
-=== BEAT: Well, we actually have a very clear answer to that.
-   46 [europeana] Authoritative male portrait suggests expert speaker
-   42 [europeana] Couple portrait suggests personal clarity/answer moment
-   36 [europeana] 1920s social gathering, loosely conversational setting
-   35 [internet-archive] Elder figure gesturing, could suggest explanation
-   30 [internet-archive] Man working industrially, generic process footage
-   22 [artic] Bronze life mask sculpture, no clear answer context
-   16 [artic] 19th-century battle engraving unrelated to narration
-   14 [met] Renaissance Last Judgment painting, unrelated
-
-=== BEAT: During the 1800s, the whaling industry was at its absolute peak.
-    9 [europeana] Horse racing scene, unrelated to whaling
-    9 [europeana] Military collage, unrelated to whaling
-    9 [europeana] Military officers portrait, not whaling
-    9 [artic] Japanese woodblock print, unrelated subject
-    9 [artic] Japanese domestic scene print, irrelevant
-    9 [artic] Japanese street scene print, irrelevant
-    5 [internet-archive] Man with map, unrelated to whaling
-    3 [internet-archive] Text card from film, wrong subject
-
-=== BEAT: And usually, the whales would just try to swim away.
-   16 [artic] Ceramic bowl with fish motifs, not whales
-   14 [artic] Pottery bowl with single fish, not whale
-    6 [artic] Old Master drawing, no whales present
-    6 [met] Biblical crowd scene, no whales
-    6 [met] Ornate antique firearm, irrelevant
-    6 [met] Medieval armor display, no whales
-    6 [europeana] Historical garment fragments, irrelevant
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: Humans were sailing out into the middle of the ocean in wooden ships, 
-   76 [smithsonian] scrimshaw whale tooth, whaling era artifact
-   59 [artic] rowboat and sailing vessel, wrong context
-   34 [artic] calm inland waterway, not ocean whaling
-   24 [artic] Japanese wave print, no whaling content
-    5 [openverse/flickr] bronze statue bust, completely irrelevant
-    5 [internet-archive] destroyed buildings, wrong subject entirely
-    2 [internet-archive] abstract graphic lines, totally irrelevant
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: Because for a couple of hundred years, humans made them very, very mad
-   34 [artic] Period couple sketch, vaguely historical era
-   26 [artic] Architectural sketch, no clear anger/conflict theme
-    9 [artic] Colorful modern pop-art print, irrelevant
-    9 [europeana] Modern family photo, no historical context
-    9 [europeana] AIDS awareness poster, wrong subject entirely
-    9 [europeana] Knitted gloves museum object, irrelevant
-    8 [internet-archive] Film credits text, not relevant imagery
-    8 [internet-archive] Film credits text, not relevant imagery
-
-=== BEAT: But sometimes, they fought back.
-   66 [artic] dark artwork depicting two figures struggling
-   42 [internet-archive] tense dramatic face, possible resistance scene
-   26 [europeana] beaded bag artifact, no conflict depicted
-   24 [artic] figures by boat, no fighting depicted
-   24 [artic] dark figures by shore, no combat
-   22 [europeana] mythological figures, no clear fighting back
-   14 [met] peasants harvesting, peaceful rural scene
-    9 [met] religious triptych painting, no conflict
-
-=== BEAT: The most famous example of this happened in 1820 with a whale ship cal
-    6 [europeana] Corroded coin, no relevance to Essex
-    6 [europeana] WWI-era military officers, wrong period
-    6 [artic] Spanish broadsheet illustration, unrelated
-    6 [met] Medieval bishop sculpture, no connection
-    6 [met] Renaissance Annunciation painting, unrelated
-    6 [europeana] Children eating scene painting, unrelated
-    6 [met] Decorative wooden chair, no relevance
-    6 [artic] Text artwork on yellow, unrelated
-
-=== BEAT: The crew of the Essex had just harpooned a smaller whale, when suddenl
-   42 [artic] Period maritime scene but wrong event
-    6 [smithsonian] BHL logo placeholder, no content
-    6 [europeana] Modern sailors eating, wrong context
-    6 [europeana] Men dining indoors, irrelevant
-    6 [europeana] Duplicate dining scene, irrelevant
-    6 [artic] Men walking railroad tracks, irrelevant
-    6 [artic] Prison or military building, irrelevant
-    2 [nasa] NASA astronaut briefing, wrong subject
-
-=== BEAT: It looked at the ship and went, "Yeah, no, my turn." Turned its gigant
-    6 [europeana] Indoor meeting scene, no whale or ship
-    6 [artic] Portrait painting of girl, irrelevant
-    6 [artic] Surrealist illustration, no whale or ship
-    6 [artic] Valentine cartoon sketch, completely irrelevant
-    6 [europeana] Two women outdoors, no whale or ship
-    6 [europeana] Rural building photo, completely irrelevant
-    2 [nasa] NASA official speaking, no whale or ship
-    2 [nasa] Aerial landscape view, no whale or ship
-
-=== BEAT: It slammed its massive head directly into the side of the hull.
-    6 [smithsonian] Faint landscape sketch, no hull impact
-    6 [met] Egyptian temple ruins, unrelated
-    6 [artic] Military parade, no ship or creature
-    6 [artic] Crowd ceremony, no hull or beast
-    6 [met] 17th-century family portrait, unrelated
-    6 [artic] Elderly woman portrait, unrelated
-    2 [nasa] Space nebula, no ship or creature
-    2 [nasa] Bubble Nebula, no hull or impact
-
-=== BEAT: But, the whale wasn't done.
-   26 [artic] old master drawing, no whale visible
-   22 [artic] ceramic bowl with fish motifs, not whale
-   22 [artic] ceramic bowl with fish, not whale
-   10 [internet-archive] title card with baked-in text only
-    9 [smithsonian] blank text document, unusable
-    8 [internet-archive] airplane takeoff, completely wrong subject
-    5 [internet-archive] men at desk, no whale content
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: The impact was so violent that it knocked the sailors off their feet, 
-   32 [artic] Workers inside curved hull structure
-    9 [europeana] WWI era magazine illustration; no ship
-    6 [europeana] Antique guitar instrument; irrelevant
-    6 [artic] Goya donkey etching; irrelevant
-    6 [met] Religious crucifixion painting; irrelevant
-    6 [artic] Victorian women portrait photo; irrelevant
-    6 [europeana] Children drinking in cinema; irrelevant
-    3 [internet-archive] Martial arts outdoors; no ship
-
-=== BEAT: The Essex began taking on water instantly, and the ship was completely
-    9 [wikimedia] Portrait of a man, no ship
-    8 [artic] Landscape painting, no maritime scene
-    8 [europeana] Small artifact with scale bar, irrelevant
-    7 [met] Harvest scene, completely irrelevant
-    7 [met] Religious annunciation painting, irrelevant
-    7 [met] Medieval nativity scene, irrelevant
-    7 [artic] Degas dancer sketch, irrelevant
-    7 [artic] Toulouse-Lautrec print, no ship
-
-=== BEAT: The whale recognized the ship as a threat, and just took it out.
-   12 [artic] Ceramic bowl with fish motifs only
-   10 [artic] Fish on pottery, no whale or ship
-    6 [artic] Old master sketch, no whale or ship
-    5 [europeana] Antique textile hat, completely irrelevant
-    5 [europeana] Old knitted hat, no relevance
-    5 [europeana] Striped hat artifact, no relevance
-    5 [met] Ivory figurine, no whale or ship
-    5 [met] Ornate silver cup, no relevance
-
-=== BEAT: This was an intentional strike.
-   55 [nasa] official podium announcement could relate to strike declaration
-   45 [nasa] NASA briefing with satellite dish suggests space strike announcement
-   40 [nasa] early aircraft loosely suggests aerial strike context
-   38 [nasa] Wright Flyer historical aviation loosely relevant
-   34 [europeana] ancient artifact unrelated to intentional strike
-   29 [europeana] flint blades loosely tool-related but irrelevant
-   22 [nasa] official podium speech loosely relevant
-   20 [nasa] award ceremony unrelated to intentional strike
-
-=== BEAT: So, we have absolute proof that a sperm whale can look at a human ship
-    6 [met] Renaissance portrait, no whale or ship
-    6 [met] Renaissance portrait woman, irrelevant
-    6 [artic] Napoleonic soldiers engraving, irrelevant
-    6 [artic] Victorian photograph of women, irrelevant
-    6 [artic] woodcut print catalogue page, irrelevant
-    6 [europeana] Motorola flip phone, completely irrelevant
-    6 [europeana] Motorola flip phone, completely irrelevant
-    4 [internet-archive] dark blurry footage, nothing discernible
-
-=== BEAT: When the whale destroyed the Essex, the ship sank, leaving the survivi
-   22 [internet-archive] Cast list mentions whale but wrong format
-    9 [artic] Old master drawing, no maritime relevance
-    8 [artic] Decorative pottery, unrelated to Essex
-    8 [artic] Ceramic bowl with fish, irrelevant
-    7 [met] Ivory figurine, completely unrelated
-    7 [met] Renaissance Annunciation painting, irrelevant
-    4 [internet-archive] Aerial city parade footage, irrelevant
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: But, there's one specific detail about the Essex sinking that makes th
-   22 [internet-archive] man pointing at map, nautical possible
-   16 [met] 18th century portrait painting, unrelated
-   12 [artic] French sketch with text overlays, unrelated
-   12 [artic] dramatic portrait child, unrelated
-   10 [internet-archive] man at desk, wrong era context
-    9 [met] decorative pagoda furniture, unrelated
-    9 [artic] modern chair design, completely unrelated
-    9 [europeana] archaeological bone fragment, unrelated
-
-=== BEAT: They were panicked, thrashing around, and completely defenseless.
-   32 [artic] chaotic crowd scene, some motion visible
-    9 [artic] abstract face, no action or distress
-    8 [smithsonian] small damaged portrait, wrong subject
-    8 [artic] calm portrait print, no panic depicted
-    7 [met] calm Renaissance portrait, no panic
-    7 [met] serene Renaissance portrait, irrelevant
-    6 [smithsonian] text list page, no imagery
-
-=== BEAT: They were sitting in fragile rowboats or just straight up floating in 
-   34 [artic] Figures near water on dock, close
-   29 [europeana] Large military vessel, not fragile rowboats
-    9 [europeana] People on beach sand, no water
-    9 [wikimedia] Elephant in river, wrong subject
-    9 [met] Harvest scene painting, no boats
-    6 [europeana] Artillery gun, completely irrelevant
-    6 [wikimedia] Market vendor, no water context
-    6 [wikimedia] Elderly man on bench, irrelevant
-
-=== BEAT: The whale was right there.
-   76 [europeana] Dutch painting shows beached whale ashore
-   69 [europeana] close-up of whale carcass flesh visible
-   26 [artic] ceramic bowl with fish-like animals depicted
-   24 [artic] ceramic bowl with single fish decoration
-    6 [artic] old master drawing, human figures only
-    5 [nasa] aerial coastal view, no whale
-    4 [europeana] stone fragments, completely irrelevant
-    2 [internet-archive] dark outdoor scene, no whale visible
-
-=== BEAT: It was highly agitated and sitting in the water surrounded by a bunch 
-   16 [artic] Ceramic pot; no water or humans
-    9 [artic] Abstract print; no creature or humans visible
-    7 [artic] Text page; completely irrelevant content
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: But, the whale just left.
-   38 [internet-archive] Ocean map view, loosely nautical context
-   34 [europeana] Empty boats at dock, no whale
-   26 [artic] Ceramic bowl with fish motifs only
-   12 [europeana] Small carved pendants, no whale
-    9 [artic] Old master drawing, no whale
-    7 [artic] Renaissance etching of fighting figures
-    6 [europeana] Protest crowd with signs, irrelevant
-    5 [internet-archive] Aerial city parade footage, irrelevant
-
-=== BEAT: It had just successfully defeated its enemy.
-   56 [artic] Engraving of figures wrestling/fighting loosely relevant
-   42 [europeana] Stored military vehicles, post-war vague connection
-   40 [internet-archive] Iraq map suggests military conflict context
-   22 [nasa] Space shuttle landing, no defeat narrative
-   20 [nasa] Shuttle landing unrelated to defeating enemy
-   15 [nasa] Mission control staff smiling, too generic
-   12 [artic] Portrait engraving of older man, irrelevant
-   10 [nasa] Worker in hazmat suit, no battle context
-
-=== BEAT: If this was a shark or a bear or a tiger, this is the part where the h
-    6 [europeana] People sitting indoors, no predator context
-    6 [europeana] Indoor event speech, no animal threat
-    6 [europeana] Award ceremony, zero predator relevance
-    6 [artic] Portrait painting of artist, irrelevant
-    6 [artic] Historical engraving portrait, no predator
-    6 [artic] Landscape etching, no predator content
-    5 [nasa] Baseball crowd, humans present but no predator
-    5 [nasa] Humans gathered around arena, minor tension
-
-=== BEAT: Could a sperm whale even physically do it?
-   76 [artic] Historic engraving of beached sperm whale
-   42 [artic] Beach scene, whale barely discernible
-   16 [wikimedia] Abstract diagram, no sperm whale visible
-   -1 [wikimedia] (not inspected)
-   -1 [wikimedia] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: And for baleen whales, this is actually 100% true.
-   92 [wikimedia] Close-up of actual baleen plates directly
-   76 [wikimedia] Humpback breaching, clear baleen whale
-   66 [wikimedia] Real baleen whale surfacing, usable context
-   34 [europeana] Illustrated diagram with prominent baked-in text
-   -1 [openverse/wikimedia] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: Why?
-   92 [artic] Goya Disasters of War print titled 'Por qué?' (Why?)
-   76 [artic] Gauguin's 'No No' or questioning Tahitian scene
-   24 [artic] chaotic text collage unrelated to narration
-   22 [europeana] cartoon cityscape illustration unrelated to why
-   19 [europeana] German protest songbook cover with baked-in text
-   14 [europeana] damaged textile fragment barely legible
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: If a blue whale accidentally scooped you up in its mouth, it physicall
-   66 [wikimedia] Real blue whale aerial shot, no mouth visible
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [wikimedia] (not inspected)
-   -1 [wikimedia] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: But once again, sperm whales are built completely differently.
-   86 [wikimedia] Sperm whale skeleton showing unique anatomy
-    6 [met] Unrelated human figures illustration
-    6 [met] Church interior painting, irrelevant
-    6 [artic] Soviet propaganda poster, irrelevant
-    6 [artic] Landscape tapestry, completely irrelevant
-    6 [artic] Cavalry battle scene, irrelevant
-    2 [internet-archive] Blurry outdoor vegetation, irrelevant
-    2 [internet-archive] Blurry cactus video frame, irrelevant
-
-=== BEAT: There's a very common myth that whales can't eat humans because their 
-    6 [europeana] Group portrait, no whale relevance
-    6 [wikimedia] Microscope slide, no whale relevance
-    6 [wikimedia] Microscopic bristles, no whale relevance
-    6 [artic] Polaroid collage artwork, no whale relevance
-    6 [met] Medieval figurine sculpture, no whale relevance
-    6 [met] Renaissance religious painting, no whale relevance
-    6 [met] Decorative quilt, no whale relevance
-    6 [artic] Park scene painting, no whale relevance
-
-=== BEAT: You'd just get stuck, and the whale would have to spit you out, which 
-   12 [internet-archive] Cartoon animals, no whale or swallowing depicted
-   12 [artic] Dark etching of figure, no whale connection
-    8 [artic] Renaissance figures engraving, no whale
-    7 [met] Egyptian papyrus scroll, unrelated content
-    7 [met] Degas painting of women, unrelated
-    7 [europeana] Religious painting with watermark, unrelated
-    6 [artic] Bronze equestrian statue, no whale relevance
-    6 [europeana] School classroom photo, entirely unrelated
-
-=== BEAT: Their esophagus is incredibly wide, and their jaws can open to an almo
-    6 [artic] Abstract artwork, no animal anatomy shown
-    6 [met] Egyptian papyrus scroll, unrelated subject
-    6 [met] Medieval enamel reliquary box, unrelated
-    6 [met] Renaissance religious painting, unrelated
-    6 [artic] Comic strip illustration, unrelated subject
-    6 [artic] Comic strip artwork, no animal anatomy
-
-=== BEAT: Even though a blue whale is the largest animal to ever exist on planet
-    9 [europeana] Blue beads with ruler, vaguely size-comparison adjacent
-    6 [met] Renaissance religious painting, no whale content
-    6 [met] Flemish portrait diptych, unrelated to whales
-    6 [met] Renaissance hunt scene, no whale relevance
-    6 [artic] Cubist abstract painting, no whale relevance
-    6 [artic] Abstract driftwood painting, no whale content
-    6 [artic] Watercolor portrait, no whale relevance
-    6 [europeana] Expressionist figure painting, no whale content
-
-=== BEAT: If a sperm whale swam up to you and opened its mouth, you could comfor
-   86 [wikimedia] sperm whale adult with calf, throat size implied
-   82 [wikimedia] real sperm whales underwater, good scale context
-   76 [artic] historic engraving beached sperm whale with humans
-   55 [openverse/flickr] whale jaw teeth show mouth anatomy loosely
-   49 [wikimedia] whale skeleton shows scale but wrong species
-   24 [artic] beach scene, whale barely visible, unusable
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: They're literally designed to swallow 40-foot giant squids.
-    6 [met] carved cross, no squid or whale
-    6 [met] Flemish portrait diptych, completely unrelated
-    6 [met] Islamic decorative medallion, no marine life
-    6 [artic] abstract colorful painting, no squid
-    6 [artic] bare tree branches sketch, unrelated
-    6 [artic] marbled paper pattern, no marine subject
-    2 [internet-archive] Trump speech footage, no relevance
-    2 [internet-archive] talking head interview, no relevance
-
-=== BEAT: There's absolutely nothing physically stopping a sperm whale from swal
-    6 [artic] Abstract art, no whale or ocean
-    6 [met] Dark forest painting, irrelevant
-    6 [artic] Western scene, no whale content
-    6 [met] Egyptian stele, completely unrelated
-    6 [met] Portrait of woman, irrelevant
-    6 [artic] Portrait engraving, no whale
-    2 [internet-archive] WWII title card, unrelated
-    2 [internet-archive] Close-up face, no whale content
-
-=== BEAT: So, if the anatomy isn't stopping them, what is?
-   76 [wikimedia] Anatomy lesson painting reinforces anatomy theme
-   69 [wikimedia] Detailed anatomy diagram supports anatomy-isn't-stopping narration
-   49 [wikimedia] Eye anatomy illustration loosely relevant only
-   19 [artic] Abstract art sculpture unrelated to narration
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: When you look at a piece of food, you use your eyes.
-   22 [nasa] Cereal box food but baked-in text dominates
-   18 [internet-archive] Hands near jar, no clear food viewing
-   16 [europeana] Workshop scene, no food or eyes
-   16 [europeana] Workshop scene, no food or eyes
-   16 [europeana] Workshop scene, no food or eyes
-   14 [artic] Abstract print, no food or eyes
-   12 [artic] 19th-century illustration, unrelated scene
-   12 [artic] Street scene illustration, unrelated
-
-=== BEAT: You see the color, the shape, and the size.
-   86 [artic] cubist painting rich in color shape size
-   59 [artic] detailed print shows shapes and warm tones
-   44 [artic] architectural sketch shows shape and form
-   30 [internet-archive] two figures by water, minimal visual interest
-   26 [europeana] WWI caricature with baked-in text overlay
-   16 [europeana] dark unclear fragment with museum watermark
-   15 [internet-archive] distant aerial view, no clear subject matter
-   15 [internet-archive] dark grainy faces, unclear and unusable
-
-=== BEAT: And your brain tells you, "Yes, that's a sandwich." But sperm whales h
-    9 [artic] abstract art, no whale or brain
-    8 [artic] 19th-century genre scene, no relevance
-    7 [artic] text-overlay artwork, wrong subject entirely
-    6 [europeana] handwritten letter with watermark overlay
-    4 [internet-archive] industrial machinery, completely unrelated
-    4 [internet-archive] video call screenshot, no relevance
-    3 [internet-archive] newspaper headline, wrong subject matter
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: There's absolutely zero sunlight down there.
-   16 [artic] Bright foggy bridge painting, not darkness
-   12 [smithsonian] Hot air balloon basket, unrelated
-   10 [artic] Colorful grid pattern, no darkness depicted
-    9 [artic] Sun-drenched interior, opposite of narration
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: Having good eyesight in the midnight zone is completely useless, becau
-   16 [artic] clouds and light, not deep ocean darkness
-    9 [artic] Egyptian mummy mask, completely unrelated
-    9 [artic] illustrated still life, completely unrelated
-    9 [europeana] Victorian family portrait, completely unrelated
-    8 [internet-archive] man in boat, unrelated to midnight zone
-    8 [internet-archive] person talking, unrelated to midnight zone
-    5 [internet-archive] church choir, unrelated to ocean darkness
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: It's completely dark.
-   72 [internet-archive] very dark, murky, near-black footage
-   46 [artic] dark night sky but not completely dark
-   38 [internet-archive] dim indoor scene, watermark present
-   32 [europeana] catalogue plate with labels and borders
-   24 [europeana] catalogue artefact with ruler overlay
-   24 [europeana] catalogue image with ruler, irrelevant
-    9 [artic] colorful portrait, unrelated to darkness
-    5 [nasa] bright daylight scene, irrelevant
-
-=== BEAT: A sperm whale's blocky head is filled with a substance called spermice
-   76 [artic] Historic engraving of beached sperm whale
-   24 [artic] Beach scene, no whale visible
-    9 [artic] Ceramic vessel, unrelated to whales
-    6 [smithsonian] BHL logo watermark, no subject visible
-   -1 [openverse/flickr] (not inspected)
-
-=== BEAT: So to hunt down there, sperm whales rely entirely on sound.
-    6 [artic] French estate engraving, no whale relevance
-    6 [artic] Chinese landscape painting, unrelated
-    6 [artic] Ancient ceramic vessel, no whale connection
-    6 [europeana] Horse riders, completely unrelated
-    6 [europeana] Wooden carving sculpture, not whales
-    6 [europeana] Carved container artifact, unrelated
-    2 [internet-archive] CGI children's cartoon show
-    2 [internet-archive] CGI animated jet plane cartoon
-
-=== BEAT: Every day, these whales dive thousands of meters into the pitch black 
-   78 [pexels] Clear sperm whale underwater, no squid
-   72 [pixabay] Sperm whale fluke diving, classic shot
-   68 [pixabay] Sperm whale dorsal surface at surface
-   65 [pexels] Sperm whale with diver, shallow water
-   55 [pexels] Whale diving down, human present
-   45 [pexels] Small squid not giant squid species
-   40 [pixabay] Likely fin whale not sperm whale
-
-=== BEAT: The cheetah waits motionless in the tall grass, then it explodes into 
-   92 [pixabay] cheetah sprinting at full speed savanna
-   90 [pixabay] cheetah full sprint dry savanna habitat
-   88 [unsplash] cheetah sprinting toward camera in tall grass
-   87 [pexels] cheetah waiting alert in tall grass
-   85 [pexels] cheetah stalking motionless in tall grass
-   82 [pexels] cheetah running through tall grass wild
-   78 [pexels] cheetah running across dry savanna ground
-   75 [pexels] cheetah mid-stride across open dry grassland
-
-=== BEAT: These are the deadliest predators ever.
-   88 [pexels] Close-up sperm whale head underwater, clear
-   72 [pexels] Sperm whale with diver, predator scale shown
-   70 [pexels] Aerial sperm whale at ocean surface
-   62 [pixabay] Sperm whale fluke diving, recognizable species
-   58 [pixabay] Sperm whale fluke surfacing, small low-res
-   45 [pixabay] Whale blowing at surface, species unclear
-   40 [pexels] Diver underwater, whale barely visible background
-   38 [pexels] Diver dominates frame, whale distant background
-
-=== BEAT: These are sperm whales, the largest predators on the entire planet.
-   88 [pexels] clear sperm whale head underwater closeup
-   85 [unsplash] full sperm whale body with diver scale
-   82 [pexels] sperm whale fluking, open ocean setting
-   78 [pixabay] sperm whale fluke diving, clean shot
-   72 [pexels] sperm whale underwater with diver, portrait
-   65 [pixabay] sperm whale fluke, small dark frame
-   55 [pixabay] whale blowing at surface, species unclear
-   30 [pexels] diver-focused, whale barely visible
-
-=== BEAT: These whales were bred to kill sea monsters.
-   88 [pexels] close-up sperm whale underwater clear shot
-   82 [pexels] sperm whale fluke clear open ocean
-   75 [pixabay] sperm whale fluke diving characteristic shape
-   72 [pexels] sperm whale underwater with diver present
-   70 [pixabay] sperm whale tail surface but tiny
-   55 [pixabay] whale spouting but species unclear small
-   45 [pexels] diver dominates frame whale barely visible
-   40 [smithsonian] scrimshaw tooth artifact not live whale
-
-=== BEAT: And you, my unfortunate friend, just landed right next to an adult bul
-   92 [pexels] diver next to large sperm whale underwater
-   90 [unsplash] freediver beside large sperm whale underwater
-   88 [pexels] diver alongside sperm whale underwater perfectly
-   78 [pexels] close-up sperm whale head underwater, no human
-   62 [pixabay] sperm whale fluke diving, classic identification shot
-   60 [pixabay] sperm whale at surface, tail visible, real footage
-   45 [pexels] diver entering water, whale barely visible
-   40 [pixabay] whale at surface, species unclear, tiny frame
-
-=== BEAT: Nearby, a pack of gray wolves moves silently through the snow.
-   88 [pexels] multiple gray wolves in snowy forest
-   85 [pexels] wolves moving through snowy winter scene
-   75 [pexels] gray wolf walking through snow alone
-   72 [pexels] pack of wolves interacting in snow
-   70 [pexels] two wolves in snow good pack hint
-   65 [pexels] single gray wolf walking in snow
-   65 [unsplash] wolves in heavy snowstorm dynamic scene
-   62 [unsplash] gray wolf in snowy setting alone
-
-=== BEAT: These whales were bred to kill sea monsters.
-   70 [pixabay] sperm whale fluke diving, open ocean
-   70 [pixabay] sperm whale fluke clearly diving
-   68 [pixabay] whale fluke with dramatic coastal backdrop
-   62 [pixabay] whale fluke visible, species unclear
-   55 [pixabay] whale body visible but no clear fluke
-   45 [pixabay] scrimshaw tooth evokes sperm whale history
-   20 [artic] Japanese woodblock illustration, not real footage
-
-=== BEAT: These are the deadliest predators ever.
-   70 [pixabay] sperm whale fluke shape clearly identifiable
-   68 [pixabay] whale fluke diving, likely sperm whale
-   65 [pixabay] whale back/fluke at surface, plausible sperm whale
-   62 [pixabay] whale fluke visible but species uncertain
-   55 [pexels] diver near large whale underwater, passive encounter
-   10 [artic] Japanese woodblock print illustration not reality
-
-=== BEAT: Nearby, a pack of gray wolves moves silently through the snow.
-   65 [pixabay] Close gray wolf portrait, correct species
-   62 [pixabay] Two gray wolves close-up, winter background
-   60 [pixabay] Gray wolf pack together, no snow
-   58 [pixabay] Wolf pack resting, no snow, wrong behavior
-   55 [pixabay] Two gray wolves, summer greenery not snow
-   52 [pixabay] Gray wolf resting, autumn setting no snow
-   30 [pixabay] Gray wolves but visible enclosure fencing
-   28 [pexels] White wolf but no snow, captive setting
-
-=== BEAT: The cheetah waits motionless in the tall grass, then it explodes into 
-   95 [pixabay] cheetah sprinting at full speed wild
-   90 [unsplash] cheetah charging through tall grass directly
-   88 [pexels] cheetah running through tall grass wild
-   85 [pexels] cheetah mid-sprint across dry savanna
-   82 [pexels] cheetah waiting alert in tall grass
-   80 [pexels] cheetah stalking low through tall dry grass
-   78 [pexels] cheetah stalking at golden sunset savanna
-   78 [pexels] cheetah stalking through dry golden grass
-
-=== BEAT: These are the deadliest predators ever.
-   82 [pexels] Clear sperm whale head underwater, wild
-   78 [pexels] Sperm whale fluke clear open ocean
-   75 [pixabay] Sperm whale fluke diving, identifiable species
-   72 [pexels] Sperm whale with diver, predator scale shown
-   65 [pixabay] Whale fluke surfacing, likely sperm whale
-   62 [pixabay] Sperm whale dorsal at surface, usable
-   60 [pixabay] Sperm whale blowing at surface, wild
-   58 [pixabay] Dark whale fluke, low contrast image
-
-=== BEAT: Nearby, a pack of gray wolves moves silently through the snow.
-   83 [pexels] two wolves in snowy winter forest
-   82 [pexels] gray wolf standing in deep snow
-   80 [pexels] two gray wolves moving in snow
-   78 [pexels] gray wolf in snowy winter landscape
-   76 [pexels] multiple wolves in snow scene
-   75 [pexels] gray wolf walking through snow
-   72 [pixabay] white wolf pack in snowy forest
-   58 [pexels] pack of three gray wolves standing alert
-
-=== BEAT: The cheetah waits motionless in the tall grass, then it explodes into 
-   92 [pixabay] cheetah sprinting at full speed savanna
-   88 [unsplash] cheetah charging through tall green grass
-   85 [pexels] cheetah running through tall grass
-   82 [pexels] cheetah mid-stride across open savanna
-   78 [pexels] cheetah stalking at golden sunrise savanna
-   76 [pexels] cheetah stalking intently through tall grass
-   75 [pexels] cheetah stalking low through tall grass
-   72 [pexels] cheetah walking open savanna portrait
-
-=== BEAT: These whales were bred to kill sea monsters.
-   88 [pexels] Clear sperm whale head underwater close-up
-   85 [pexels] Classic sperm whale fluke dramatic ocean shot
-   78 [pexels] Sperm whale underwater with diver scale
-   72 [pixabay] Sperm whale fluke diving at surface
-   72 [pixabay] Distinctive sperm whale tail flukes diving
-   70 [pixabay] Sperm whale body at surface diving
-   65 [pixabay] Whale fluke at surface, likely sperm
-   60 [pixabay] Whale fluke partially visible, species uncertain
-
-=== BEAT: And you, my unfortunate friend, just landed right next to an adult bul
-   92 [pexels] diver alongside massive sperm whale underwater
-   80 [pexels] swimmer with sperm whale visible behind
-   78 [pixabay] person on board next to large whale
-   72 [pexels] close-up sperm whale head underwater, no human
-   40 [pexels] aerial whale barely visible, no human
-   30 [pexels] likely orca not sperm whale, wrong species
-
-=== BEAT: Nearby, a pack of gray wolves moves silently through the snow.
-   85 [pexels] two wolves active in snowy winter forest
-   85 [pexels] gray wolf walking through snow perfectly
-   82 [pexels] gray wolf standing in deep snow
-   80 [pexels] two wolves moving in snow setting
-   78 [pexels] wolf moving through snow, winter scene
-   78 [pexels] multiple wolves in snow landscape
-   75 [pexels] single gray wolf standing in snow
-   72 [pexels] single wolf in snowy winter setting
-
-=== BEAT: The cheetah waits motionless in the tall grass, then it explodes into 
-   95 [pixabay] cheetah at full sprint, motion blur
-   90 [unsplash] cheetah sprinting toward camera in grass
-   88 [pexels] cheetah running through tall grass
-   85 [pexels] cheetah mid-stride across savanna
-   82 [pexels] cheetah crouching low in tall grass
-   75 [pexels] cheetah stalking in tall grass
-   72 [pexels] cheetah stalking in tall grass
-   72 [pexels] cheetah alert in tall dry grass
+   92 [pixabay] Exact phrase on polished cinematic background
+   88 [pixabay] Exact phrase with dynamic particle animation
+   80 [pixabay] Exact phrase on clean bold red background
+   72 [pixabay] Exact phrase but plain 3D text on white
+   70 [pixabay] Thank You tiles, warm natural feel
+   65 [pixabay] Thank You visible, missing 'for watching' text
+   60 [pixabay] Correct phrase but social-media subscribe clutter
+   55 [pixabay] Correct phrase but garish green-screen background
+
+=== BEAT: And before you go, I would like to hear from you.
+   38 [openverse/flickr] question sign loosely implies soliciting input
+   30 [loc] cartoon loosely suggests dialogue or conversation
+   20 [loc] huddle cartoon unrelated to soliciting feedback
+   15 [europeana] historical naval scene unrelated
+    5 [openverse/flickr] classic car irrelevant to narration
+    5 [artic] prominent text contradicts hearing from audience
+
+=== BEAT: If you enjoy documentaries that explore forgotten history through hist
+   55 [pexels] Cinema audience watching content fits subscribe appeal
+   52 [loc] Historical engraving fits documentary historical records theme
+   48 [loc] Historical gathering scene fits forgotten history mood
+   42 [pexels] VHS tapes loosely suggest documentary viewing
+   38 [pexels] Person watching TV loosely suggests viewing
+   30 [pexels] Camera filming loosely suggests documentary production
+   18 [internet-archive] Western horseman irrelevant to narration
+   15 [internet-archive] Generic city skyline unrelated to subject

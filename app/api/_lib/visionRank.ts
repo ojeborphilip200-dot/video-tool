@@ -46,7 +46,7 @@ export async function visionRank(
   const verdicts = new Map<string, VisionVerdict>();
   if (candidates.length === 0) return verdicts;
 
-  const batch = candidates.slice(0, 20);
+  const batch = candidates.slice(0, 12);
   const thumbs = await Promise.all(batch.map((c) => fetchThumb(c.thumbnail)));
 
   const usable: { cand: VisionCandidate; img: { data: string; mediaType: string } }[] = [];
@@ -102,8 +102,9 @@ Respond ONLY with a JSON array, one entry per image, in the order shown:
 
   try {
     const message = await anthropic.messages.create({
-      model: "claude-sonnet-4-6",
+      model: "claude-sonnet-5",
       max_tokens: 1500,
+      output_config: { effort: "medium" },
       messages: [{ role: "user", content }],
     });
     const raw = message.content[0].type === "text" ? message.content[0].text : "[]";
