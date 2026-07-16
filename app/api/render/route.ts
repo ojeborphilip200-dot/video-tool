@@ -413,6 +413,34 @@ async function runRenderJob(jobId: string, input: RenderInput) {
       }
     }
 
+    // Map animations own their frame: a country-highlight or route animation is a
+    // full-screen graphic with its own label, so a callout pill on top of it just
+    // competes. Drop any callout that overlaps a map clip's on-screen window.
+    {
+      const mapWindows: { start: number; end: number }[] = [];
+      let cursor = 0;
+      const bw = input.beatWindows || [];
+      for (let i = 0; i < input.clips.length; i++) {
+        const c = input.clips[i];
+        const len = c.trimEnd - c.trimStart;
+        if (String(c.url).startsWith("map:")) {
+          mapWindows.push({ start: cursor, end: cursor + len });
+        }
+        cursor += len;
+      }
+      if (mapWindows.length > 0 && callouts.length > 0) {
+        const before = callouts.length;
+        callouts = callouts.filter((c) => {
+          const cStart = c.start;
+          const cEnd = c.start + Math.min(Math.max(c.end - c.start, 1.2), 5.5);
+          return !mapWindows.some((w) => cStart < w.end && cEnd > w.start);
+        });
+        if (callouts.length < before) {
+          console.log(`DEBUG - suppressed ${before - callouts.length} callout(s) overlapping map animations`);
+        }
+      }
+    }
+
     // Build themed HyperFrames overlay clips (cached transparent WebM per event)
     const textOverlays: { file: string; start: number }[] = [];
     const totalEvents = callouts.length + countups.length;

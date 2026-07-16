@@ -68,3 +68,1568 @@
    55 [unsplash] Small ancient-style cat figurine in hand
    55 [pexels] Cat comfortably living with human never left
    52 [met] Ancient cuneiform tablet civilization artifact only
+
+=== BEAT: The Elder described a place nearly 1,500 miles away, a vast inland lak
+   32 [loc] Generic prairie landscape, no lake or copper
+   19 [loc] Small building engraving, wrong subject
+   16 [met] European harvest painting, unrelated subject
+   14 [met] European forest road painting, irrelevant
+   14 [loc] Colonial building exterior, wrong context
+   12 [artic] Renaissance engraving of bathing figure, unrelated
+   12 [met] Renaissance martyrdom painting, completely unrelated
+   12 [europeana] Religious engraving, holy family, unrelated
+
+=== BEAT: They were not his people, he explained.
+   66 [artic] crowd of strangers meeting, outsider dynamic
+   55 [nasa] man explaining to mixed group of strangers
+   52 [nasa] man addressing audience, explaining something
+   49 [artic] solitary man portrait, outsider feeling conveyed
+   34 [loc] lone figure possibly distanced, too vague
+   26 [loc] graffiti text unrelated to narration
+   24 [artic] abstract face, no narrative connection
+   22 [met] harvest scene, no outsider narrative
+
+=== BEAT: They had arrived from across the water long before living memory.
+   86 [loc] small boat approaching ship across water, arrival scene
+   66 [met] Venetian painting with ships visible in background
+   49 [met] Flemish portrait pair, period migration era plausible
+   42 [met] Bruegel harvest scene, old-world peasant life period
+   24 [loc] soldiers by train, wrong context entirely
+   22 [artic] classical figures but no water or voyage
+   16 [loc] political cartoon interior, no maritime context
+   14 [artic] train station painting, no sea crossing
+
+=== BEAT: In 1894, a visitor sat with a Hopi Elder in the Arizona desert and hea
+   59 [smithsonian] Brass tag stamped APR 12-94, period date match
+   46 [loc] Late 19th-century outdoor scene, wrong region
+   32 [europeana] 1909 Swedish town photo, wrong location entirely
+   26 [artic] 1877 Paris street painting, wrong continent
+   22 [artic] European etching portraits, no desert connection
+   16 [met] Victorian interior room, no desert or Hopi context
+   12 [loc] Japanese woodblock print, wrong subject entirely
+   12 [loc] Japanese woodblock crowd scene, irrelevant
+
+=== BEAT: They worked the metal, loaded it onto vessels, and vanished, leaving b
+   46 [europeana] ancient metal tongs, metalworking tool artifact
+   42 [europeana] copper currency ring, traded metal object
+   22 [loc] decorative metal objects, no mining context
+   16 [loc] Victorian curiosity shop, no mining relevance
+   16 [europeana] WWI ambulance, no mining relevance
+   14 [artic] agricultural workers, unrelated to mining
+   14 [wikimedia] metal type printing blocks, irrelevant
+   12 [wikimedia] modern toy spring, wrong subject entirely
+
+=== BEAT: When miners reached Michigan's Lake Superior during the 19th century, 
+   22 [wikimedia] Columbia River scene, wrong location entirely
+   19 [loc] Frank Leslie's newspaper, industrial machinery scene
+   16 [loc] Illustrated newspaper cover, indoor banquet scene
+   12 [artic] Portrait miniature, no mining connection
+    9 [loc] Harper's Weekly cover, text-heavy magazine page
+    6 [met] Religious painting, completely unrelated subject
+    6 [met] Ancient Egyptian stele, wrong era entirely
+    6 [artic] Greek amphora, ancient artifact unrelated
+
+=== BEAT: At first hearing, it sounds like another piece of old folklore, except
+   56 [met] Biblical triptych; wounds and folklore adjacent
+   49 [artic] Medieval engraving; folkloric female figure
+   24 [met] 19th-century portrait; no wounds or folklore
+   22 [artic] Decorative ornament; no relevant content
+   16 [artic] Abstract sketch; no wounds or folklore
+   14 [europeana] Modern official meeting; no relevance
+   14 [europeana] Modern official gathering; irrelevant
+   14 [europeana] Modern formal meeting; irrelevant
+
+=== BEAT: Stone tools lay abandoned where they had been dropped.
+   12 [met] Stone relief carving, not abandoned tools
+   12 [met] Carved stone figurine, not tools
+    9 [met] Stone sculpture head, not tools
+    9 [artic] Stone Buddha sculpture, wrong subject
+    9 [artic] Stone carved stele, not tools
+    6 [loc] Book spine, no stone tools visible
+    6 [loc] Book spine, completely irrelevant
+    6 [loc] Book spine, no archaeological content
+
+=== BEAT: Enormous pits scarred the terrain in every direction.
+    8 [artic] figure on rack, no pits terrain
+    6 [artic] ceramic face vessel, no terrain
+    6 [met] Renaissance musicians painting, unrelated
+    6 [artic] scarred torso, not landscape pits
+    6 [smithsonian] open wallet, no terrain visible
+    4 [loc] book spine, completely irrelevant
+    4 [loc] book spine, completely irrelevant
+    4 [loc] book spine, completely irrelevant
+
+=== BEAT: They found thousands of ancient mines already there.
+   42 [nasa] Aerial terrain view, no visible mines
+   34 [loc] Stereoview town panorama, unrelated
+   29 [loc] Railroad bridge in canyon, not mines
+   24 [artic] Ancient gold ring, loosely ancient artifact
+   24 [europeana] 19th century British building engraving, unrelated
+   19 [loc] Waterfront building, unrelated to mines
+   19 [met] Bruegel harvest painting, not mining
+   14 [wikimedia] Asian temple incense burner, unrelated
+
+=== BEAT: And perhaps most striking of all, the richest modern mines were freque
+   46 [europeana] ancient flint tools, loosely mining-adjacent
+   44 [europeana] prehistoric stone tools, tangentially relevant
+   42 [europeana] ancient worked flint fragments, weak link
+   22 [nasa] aerial terrain, no visible ancient mines
+    9 [artic] ancient coins, wrong subject entirely
+    9 [artic] Roman gold coin, unrelated to mining
+    9 [met] Greek terracotta figurine, irrelevant
+    9 [met] decorative ceramic jar, irrelevant
+
+=== BEAT: Who opened those mines?
+   12 [artic] Tribune building competition drawing, unrelated
+    9 [artic] Ocean sunset scene, unrelated to mines
+    9 [met] Decorative wooden cabinet, unrelated to mines
+    9 [met] Ornate cabinet furniture, unrelated to mines
+    9 [met] Chinese scroll painting, unrelated to mines
+    3 [openverse/flickr] Airport tarmac scene, completely unrelated
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: How did they pull such staggering quantities of copper out of the eart
+    8 [artic] Dark painting of door, irrelevant
+    6 [artic] Decorative textile, no copper mining relevance
+    6 [europeana] Early 20th century family portrait, wrong
+    6 [artic] Modern Venus de Milo sculpture, irrelevant
+    2 [nasa] Space nebula, completely unrelated subject
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Because this is not simply the story of ancient copper.
+   22 [artic] Blake illustration of hellfire, unrelated subject
+   20 [nasa] Planetary cratered surface, loosely ancient/elemental
+   19 [artic] Goya etching of seated woman, unrelated
+   18 [nasa] Bright crater on planetary body, unrelated
+   16 [europeana] Holocaust museum exhibit, wrong subject
+   12 [europeana] Book cover sketch of boy, unrelated
+    9 [europeana] AIDS awareness poster, wrong subject entirely
+    9 [artic] Text-only conceptual artwork, unrelated subject
+
+=== BEAT: The further you follow this mystery, the more disorienting it becomes.
+   72 [nasa] Saturn's cosmic mystery evokes disorientation well
+   59 [artic] Fragmented abstract print suggests disorientation visually
+   34 [artic] Pleasant courtyard scene, no mystery or disorientation
+   32 [artic] Generic portrait, no thematic connection to mystery
+   29 [met] Crucifixion scene, solemn but irrelevant to mystery
+   26 [met] Harvest scene, cheerful and grounded, not disorienting
+   24 [met] Museum altarpiece display, no mystery resonance
+   16 [europeana] Portrait engraving with heavy baked-in text overlay
+
+=== BEAT: And why were people living in the Arizona desert preserving a story ab
+   12 [artic] Small animal artifact, no relevant connection
+   10 [artic] Patchwork garment, no relevant connection
+    9 [met] Religious battle painting, no desert or miners
+    9 [europeana] Outdoors family snapshot, no relevant subject
+    8 [met] Decorative quilt, unrelated to narration
+    8 [europeana] Early 20th century portrait couple, unrelated
+    8 [europeana] Domestic indoor scene, no desert or miners
+    7 [met] Madonna and child painting, irrelevant
+
+=== BEAT: The first men who reached Lake Superior in search of copper believed t
+    9 [artic] Medieval engraving, period wrong context
+    6 [europeana] WWI soldiers, wrong subject entirely
+    6 [artic] Abstract modern painting, irrelevant
+    6 [artic] Decorative geometric print, irrelevant
+    6 [europeana] Arab dignitaries, wrong subject entirely
+    6 [europeana] Early motor racing, wrong subject
+    2 [nasa] NASA astronaut hall, wrong subject
+    2 [nasa] Astronaut Hall of Fame interior
+
+=== BEAT: It is the story of one of the oldest and largest mining operations eve
+   12 [artic] Renaissance engraving, no mining content
+    9 [artic] Decorative tapestry, unrelated to mining
+    9 [artic] Tapestry scene, no mining relevance
+    6 [europeana] Movie poster, completely unrelated
+    6 [europeana] Cartoon illustration, no mining connection
+    6 [europeana] Film poster, wholly irrelevant
+    4 [nasa] Mars rock strata, not terrestrial mining
+    3 [nasa] Planetary surface craters, not North America
+
+=== BEAT: By the middle of the 19th century, word of rich deposits had spread wi
+   26 [artic] embroidered map, wrong era/topic
+   22 [wikimedia] mountain wilderness, vaguely western US
+    9 [artic] Van Gogh sketch, irrelevant subject
+    9 [wikimedia] English castle, wrong subject entirely
+    9 [wikimedia] German castle, wrong subject entirely
+    9 [europeana] modern political figures, wrong era
+    9 [europeana] modern political ceremony, irrelevant
+    9 [europeana] modern political figures, wrong era
+
+=== BEAT: Investors committed large sums to mining ventures.
+    6 [artic] Bronze statue, no mining investment relevance
+    6 [artic] Decorative ceramic plate, unrelated subject
+    6 [artic] Classical marble sculpture, no relevance
+
+=== BEAT: Prospectors moved north into the forests of Michigan, persuaded that o
+    6 [artic] Medieval European painting, wrong era entirely
+    6 [artic] Religious medieval painting, completely irrelevant
+    6 [artic] Medieval religious panel, wrong subject entirely
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: They expected ground no one had ever broken.
+   30 [nasa] Storm debris on ground, loosely evokes broken terrain
+   22 [artic] Decorative tree print, no ground-breaking relevance
+   22 [nasa] NASA jet in flight, not ground-breaking context
+   20 [nasa] Cargo ship port, no pioneering ground connection
+   19 [europeana] Soccer practice, unrelated to breaking ground
+   19 [europeana] Soccer kick, no connection to narration
+   19 [europeana] Soccer field drill, irrelevant to narration
+   16 [artic] Nude figure print, unrelated to breaking ground
+
+=== BEAT: As crews cleared away accumulated decades of fallen timber and dense l
+   32 [artic] Dark forest engraving, no clearing crews
+   26 [artic] Inverted forest print, wrong subject
+   18 [nasa] Aerial coastal view, no timber clearing
+    9 [artic] Naval shipwreck scene, completely unrelated
+    2 [nasa] Portrait of man, entirely unrelated
+    2 [nasa] Man on phone, entirely unrelated
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: What they found instead was evidence that someone had reached the copp
+   66 [europeana] green corroded copper sheet fragments, prior extraction evidence
+   49 [europeana] green-patinated copper fragments with scale ruler
+   42 [europeana] small artifact with ruler, vaguely archaeological
+   26 [artic] gold ring, not copper or mining evidence
+    9 [artic] surrealist art object, completely irrelevant
+    9 [met] Bruegel harvest painting, wrong subject entirely
+    9 [artic] Mexican broadside print, unrelated topic
+    9 [met] classical marble sculpture, no relevance
+
+=== BEAT: At first these seemed unremarkable, just uneven ground scattered throu
+    6 [europeana] Beetle specimen, unrelated to forest ground
+    6 [artic] Decorative pattern, no forest relevance
+    6 [europeana] Indoor spinning wheel scene, irrelevant
+    6 [artic] Abstract painting, no forest ground shown
+    6 [artic] Medieval engraving of figure, irrelevant
+    6 [europeana] People in robes, no forest setting
+    2 [nasa] Astronaut in space station, irrelevant
+    2 [nasa] Rocket launch, completely unrelated
+
+=== BEAT: But the more the miners looked, the more impossible the pits became to
+   45 [nasa] aerial view of crater pits, suggestive
+   42 [nasa] aerial pit-like terrain, no mining
+   38 [nasa] colorized aerial craters, loosely pit-like
+   26 [artic] classical drawing, no mining depicted
+   16 [artic] art installation, no mining relevance
+   12 [europeana] unrelated crowd scene, no mining context
+   10 [europeana] Israeli truck protest, unrelated
+    9 [europeana] modern office scene, irrelevant
+
+=== BEAT: They were not random.
+   66 [europeana] hoard of coins suggests deliberate selection pattern
+   55 [nasa] patterned excavation craters suggest deliberate placement
+   49 [europeana] two artifacts with scale, loose relevance
+   44 [europeana] two stone tools with ruler, weak relevance
+   20 [nasa] NASA assembly facility, unrelated
+   19 [artic] romantic pastoral scene, unrelated
+   18 [nasa] NASA rocket assembly hall, unrelated
+   16 [artic] abstract surrealist print, unrelated
+
+=== BEAT: They stretched across hillsides in long deliberate lines, tracing the 
+   22 [artic] Vertical lines but abstract art context
+   16 [smithsonian] Hillside landscape but no mining traces
+   14 [smithsonian] Landscape sketch with horizon lines only
+   12 [smithsonian] Faint mountain sketch, no mining lines
+    9 [met] Japanese screen painting, unrelated subject
+    7 [met] Pre-Columbian vessel, unrelated to mining
+    6 [artic] Abstract art, no mining or hillside lines
+    6 [artic] Japanese woodblock print, completely unrelated
+
+=== BEAT: Whenever modern miners broke open one of these ancient excavations, th
+    6 [artic] Portrait miniature, no mining relevance
+    6 [artic] Hindu stone relief, unrelated to mining
+    6 [artic] Gothic reliquary, no copper mining connection
+
+=== BEAT: The same pattern appeared again and again across the landscape.
+   89 [europeana] identical spiral motifs repeated across entire vessel
+   82 [europeana] repeating decorative pattern across artifact surface
+   72 [nasa] repeated linear patterns across terrain landscape
+   45 [nasa] city lights pattern across broad landscape
+   25 [nasa] planetary surface but poor framing/borders
+   24 [artic] CGI cityscape render, not real landscape
+    9 [artic] illustration of two people, irrelevant
+    9 [artic] portrait of woman, no landscape pattern
+
+=== BEAT: The people who had opened these pits had somehow identified the most p
+   16 [artic] violent axe scene unrelated to mining geology
+   12 [artic] medieval court scene unrelated to pit mining
+    9 [europeana] 20th-century crowd on trucks, irrelevant
+    7 [europeana] heavy watermarks, street scene, irrelevant
+    7 [europeana] heavy watermarks, tourist scene, irrelevant
+    5 [nasa] two men with plaque, unrelated to geology
+    4 [nasa] modern portrait, no connection to subject
+    3 [nasa] young woman portrait, entirely irrelevant
+
+=== BEAT: Whoever created these workings understood the ground with a depth of k
+   46 [artic] Agricultural workers, not geological workings
+   42 [artic] Architectural drawings, not mining workings
+    9 [artic] Book cover with prominent text overlay
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: As the excavations continued, the finds grew more remarkable still.
+   82 [europeana] remarkable ancient helmet find displayed
+   66 [europeana] archaeological dig site entrance visible
+   59 [europeana] small artifact find with scale ruler
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: This was not fortune.
+   46 [artic] rococo social scene, vaguely fate/fortune theme
+   42 [europeana] stern portrait implies deliberate action
+   39 [artic] dramatic historical etching, loosely usable
+   34 [artic] religious scene, no fortune connection
+   22 [wikimedia] fishing boats, no thematic relevance
+   16 [europeana] family photo, no contextual relevance
+   15 [nasa] Mars surface dots, no relevance
+   14 [europeana] collage artwork, wrong tone entirely
+
+=== BEAT: Some mining districts contained so many of these tools that early fiel
+    6 [artic] Ocean sunset scene, no mining tools
+    6 [artic] Architecture rendering, unrelated to mining
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Buried beneath layers of accumulated earth were enormous quantities of
+   16 [wikimedia] Aerial planetary layers, no stone hammers
+   12 [wikimedia] Mars terrain render, irrelevant entirely
+   12 [artic] Tropical figures etching, no stone tools
+   10 [nasa] False-color satellite imagery, no relevance
+   10 [nasa] Mars ice layers, not archaeological tools
+    9 [artic] Japanese writing tools illustration, irrelevant
+    9 [met] Flemish portrait painting, no connection
+    9 [met] Religious triptych painting, no connection
+
+=== BEAT: Many of them carefully shaped with grooves cut around their middles so
+    9 [europeana] Decorative animal figurine, no grooved tools
+    7 [artic] Japanese woodblock print, unrelated subject
+    6 [europeana] Hillside landscape with cross, irrelevant
+    6 [europeana] Rocky gorge landscape, completely unrelated
+    6 [artic] Contemporary painting of garden scene
+    6 [artic] Charcoal portrait drawing, unrelated subject
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Thousands upon thousands of hammers had been left behind exactly where
+   16 [artic] Medieval martyrdom scene, no hammers
+   14 [europeana] NYC night skyline, unrelated to hammers
+   12 [artic] Composite art photo, baked-in text overlay
+    9 [artic] Chinese ink painting, completely unrelated
+    9 [europeana] Israeli protest, no labor or hammers
+    9 [europeana] Political demonstration, no hammers visible
+    5 [nasa] Mars rover landscape, no hammers
+    5 [nasa] Outdoor event tents at sunset, unrelated
+
+=== BEAT: There were no iron picks, no steel chisels, no mechanical equipment of
+   62 [nasa] Nazca lines made without modern equipment
+   49 [europeana] ancient tools but unclear iron/stone context
+   35 [nasa] raw rock/mineral sample, loosely relevant
+   34 [europeana] stone disc artifact, loose relevance only
+   26 [europeana] technical illustration unrelated to primitive tools
+   19 [artic] figurative print unrelated to ancient construction
+   16 [artic] decorative ceramic jar, wrong subject entirely
+   12 [artic] abstract modernist painting, completely irrelevant
+
+=== BEAT: Only stone, wood, and the unmistakable evidence of a massive workforce
+   66 [europeana] carved volcanic rock basin, workforce evidence
+   46 [europeana] stone tool but no quarrying context
+   46 [europeana] stone tool but no quarrying context
+   22 [artic] Buddhist statue, wrong culture and context
+   12 [artic] landscape painting, irrelevant to narration
+    9 [artic] American Gothic painting, completely wrong
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The more 19th century engineers surveyed the region, the clearer the p
+   86 [europeana] 19th-century survey map of East Florida region
+   30 [nasa] Aerial region view, modern satellite not archival
+   12 [europeana] Portrait of Renaissance painter, wrong context
+    9 [artic] Bird illustration unrelated to surveying
+    9 [europeana] French theater publication cover, irrelevant
+    9 [artic] Medieval sculpture, unrelated to surveying
+    9 [artic] Japanese dragon figurine, completely irrelevant
+    5 [nasa] Austrian rocket mail stamps, wrong subject
+
+=== BEAT: Modern companies simply cleared out the soil that had settled back int
+    8 [artic] Forest scene; no mining or excavation
+    6 [artic] Nighthawks diner; completely unrelated
+    6 [artic] Figurative portrait painting; no relevance
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: They were not pioneering a new mining district.
+    6 [artic] Abstract cubist painting, no mining content
+    6 [artic] Symbolist print, no mining relevance
+    6 [artic] Surrealist lithograph, no mining content
+    6 [europeana] Landscape painting, no mining relevance
+    6 [europeana] Portrait painting, no mining relevance
+    6 [europeana] Portrait painting, no mining relevance
+    2 [nasa] NASA rocket launch, unrelated to mining
+    2 [nasa] Planetary astronomy images, no mining
+
+=== BEAT: They were reopening an ancient one.
+   26 [artic] Mythological illustration, ancient theme loosely
+   19 [artic] Surreal lithograph, no reopening depicted
+   16 [europeana] Modern city bridge, nothing ancient reopened
+   14 [artic] Abstract cubist painting, no connection
+   12 [europeana] Contemporary house exterior, no relevance
+    5 [nasa] NASA museum exhibit, no ancient reopening
+    5 [nasa] NASA cleanroom rover assembly, wrong context
+    4 [nasa] Man at podium, completely irrelevant
+
+=== BEAT: Some of the most productive copper mines of the industrial era existed
+   18 [nasa] Barren landscape, vaguely geological but irrelevant
+   16 [europeana] Southern hemisphere map, no mining relevance
+   12 [artic] Spanish broadside illustration, wrong subject
+    9 [europeana] WWII aircrew, completely wrong subject
+    9 [europeana] Underwater swimmers, unrelated to mining
+    6 [artic] Text-only artwork, no mining content
+    6 [artic] Text-only artwork, completely irrelevant
+    5 [nasa] Mars surface imagery, wrong planet entirely
+
+=== BEAT: That realization raised a question no one could satisfactorily answer.
+   36 [europeana] Old map evokes unanswered geographic questions
+   34 [europeana] Archaeological ruins suggest unanswered historical mystery
+   29 [europeana] Baroque angel sketch, no conceptual match
+   28 [nasa] Space shuttle render, vaguely scientific curiosity
+   26 [artic] Architectural drawing, no unanswered question depicted
+   24 [met] Harvest scene, unrelated to questioning realization
+   22 [artic] Medieval helmet artifact, no narrative relevance
+   22 [artic] Another helmet artifact, no narrative match
+
+=== BEAT: If these ancient miners possessed enough knowledge to locate the riche
+   46 [artic] ancient figure but wrong culture/region
+   19 [artic] Chinese landscape painting, irrelevant
+   14 [artic] 19th-century portrait miniature, wrong context
+    8 [nasa] Mars surface imagery, wrong planet/topic
+    5 [nasa] Mars geology with baked-in text labels
+    5 [nasa] modern laboratory scientist, completely irrelevant
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: And perhaps more critically, how had they accomplished work on such an
+   36 [wikimedia] 19th-century rural scene, no construction tools shown
+    9 [artic] Abstract figures, no engineering or construction context
+    8 [artic] Gas mask figures, wrong subject entirely
+    7 [wikimedia] Flower arrangement, completely irrelevant
+    7 [artic] Surreal eye illustration, completely irrelevant
+   -1 [wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: In most places, copper does not occur as metal.
+   46 [europeana] ancient metal artifacts, not copper ore
+   44 [europeana] bronze/copper artifacts, processed not natural
+   42 [europeana] metal rings, processed copper not ore
+   34 [artic] bronze lion sculpture, processed metal
+    4 [artic] text artwork, completely irrelevant
+    4 [artic] text artwork, completely irrelevant
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: To understand why these ancient workings astonished everyone who exami
+   12 [europeana] Coastal scenery but wrong location entirely
+    6 [met] Renaissance hunting scene, wholly irrelevant
+    6 [met] Decorative wall sconces, completely irrelevant
+    6 [met] Religious painting, no connection to subject
+    6 [europeana] Microscopy image, biologically irrelevant
+    6 [artic] 19th-century classroom cartoon, irrelevant
+    6 [europeana] Modern street protest, wholly irrelevant
+    6 [artic] Gauguin Tahiti painting, irrelevant
+
+=== BEAT: It exists locked inside rock as ore, and reaching it requires crushing
+   16 [artic] ornate door lock, not metal smelting
+   12 [artic] still life painting unrelated to smelting
+   10 [nasa] modern lab machinery, not smelting furnace
+    8 [artic] video art installation, completely irrelevant
+    6 [nasa] modern aerospace equipment, wrong context
+    5 [nasa] spacecraft interior wiring, totally irrelevant
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: Lake Superior was fundamentally different.
+   46 [artic] Large body of water visible, dramatic sky
+    9 [artic] Modern architecture, no lake connection
+    6 [artic] Nearly blank dark frame, unusable
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Here, nature had already completed most of the preparation.
+   66 [europeana] lush landscape painting suggests nature's readiness
+   45 [openverse/nasa] satellite view of natural terrain, too abstract
+   42 [europeana] rural scene but baked-in caption text visible
+   12 [artic] historical figure on crutches, unrelated subject
+    9 [artic] neon art installation with prominent text, irrelevant
+    9 [artic] abstract art installation, unrelated to narration
+    9 [europeana] handwritten letter document, completely irrelevant
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Deep beneath the Keweenaw Peninsula and Isle Royale lay enormous depos
+   16 [artic] Sunset canoe scene, no copper geology
+   12 [artic] Tropical etching, no copper deposits
+    9 [artic] Japanese woodblock, completely unrelated
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: In certain locations, massive pieces of solid copper rested surprising
+    6 [artic] Large crowd ceremony, no copper masses
+    6 [artic] Military parade, completely unrelated subject
+    6 [artic] Illustrated book page, wrong subject entirely
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/nasa] (not inspected)
+
+=== BEAT: A person who knew where to search did not need a furnace to begin work
+    9 [artic] Greek pottery, no metal working relevance
+    9 [artic] Ancient Greek vase, unrelated to narration
+    9 [artic] Greek ceramic vessel, no metal context
+    9 [europeana] Mid-century portrait, no metal working shown
+    9 [europeana] Family gathering, no metal working relevance
+    9 [europeana] Outdoor picnic scene, unrelated to narration
+    5 [nasa] NASA facility portrait, no metal working
+    5 [nasa] Woman with dog outdoors, irrelevant
+
+=== BEAT: Once removed from the surrounding rock, copper could be cut, hammered,
+   19 [smithsonian] Pale stone figurine, not copper metalwork
+   14 [artic] Stone carving, wrong material and period
+   14 [artic] Stone carving, wrong material and period
+    6 [europeana] Modern tourists on rocks, irrelevant
+    6 [europeana] Modern tourists on rocks, irrelevant
+    6 [europeana] Modern urban construction, irrelevant
+    6 [artic] 19th-century Paris street, irrelevant
+    6 [smithsonian] Handwritten ledger page, irrelevant
+
+=== BEAT: That single geological circumstance changed the entire history of the 
+   16 [smithsonian] Text document about Exodus migration, not geological
+   14 [artic] Crowd illustration, no geological circumstance shown
+   12 [met] Persian equestrian drawing, no geological connection
+   12 [met] Religious diptych painting, unrelated to geology
+    9 [artic] Ancient ceramic vessel, no geological relevance
+    9 [artic] Decorative pottery artifact, unrelated to geology
+
+=== BEAT: It meant that people equipped with little beyond stone tools, wooden w
+   16 [artic] Modern woodcut violence, wrong subject
+   12 [artic] Medieval European scene, unrelated subject
+    6 [europeana] Contemporary portrait, completely irrelevant
+    6 [europeana] Modern photo of two men, irrelevant
+    6 [europeana] Modern press conference, completely irrelevant
+    2 [nasa] Modern woman portrait, irrelevant
+    2 [nasa] NASA spacesuit display, irrelevant
+    1 [openverse/flickr] Text badge on shirt, irrelevant
+
+=== BEAT: The richest deposits were locked inside some of the hardest basalt on 
+   62 [nasa] Aerial view of large open-pit mine
+    9 [europeana] Small artifact with label, wrong subject
+    6 [artic] Marble religious sculpture, irrelevant to mining
+    6 [artic] Religious painting, no geological relevance
+    6 [artic] Old Master drawing of crucifixion scene
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: But removing the copper was still an immense undertaking.
+   66 [wikimedia] copper mine ruins suggest mining undertaking
+   65 [nasa] aerial view of large copper mine operations
+   55 [nasa] workers handling large copper dome structure
+   26 [europeana] corroded copper fragments but catalog plate
+   22 [artic] engraving of printing workshop unrelated
+   22 [europeana] bronze artifact catalog shot unrelated
+   19 [europeana] small copper ring artifact catalog shot
+    9 [artic] mythological painting completely irrelevant
+
+=== BEAT: Without steel drills or explosive charges, the miners relied on a tech
+    9 [artic] Modern sculpture, no mining relevance
+    8 [artic] Military figures, unrelated to mining
+    7 [artic] Medieval armor, completely unrelated
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: It sounds straightforward.
+   46 [artic] Simple cake decoration suggests straightforward task
+   16 [artic] Abstract artwork unrelated to narration
+   12 [artic] CGI abstract visuals, no relevant content
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: They built large fires directly against the rock face, heating the sto
+    8 [nasa] Rocky mountain face visible but no fire
+    6 [europeana] Rural barn, no fire or rock
+    6 [europeana] Wooden farmhouse, completely irrelevant
+    6 [europeana] Scandinavian farm buildings, no relevance
+    6 [artic] Bronze archer sculpture, unrelated
+    6 [artic] Bronze figure sculpture, unrelated
+    6 [artic] Bronze standing figure, unrelated
+    3 [nasa] Industrial aerial landscape, unrelated
+
+=== BEAT: Then they flooded it with cold water.
+   56 [europeana] urban street flood with vehicles and water
+   38 [nasa] aerial river flood, no cold water context
+   26 [artic] figure in flood water, but illustration
+   20 [nasa] flood mapping collage with heavy text overlays
+   16 [artic] cemetery excavation, no flooding visible
+   10 [openverse/nasa] satellite weather view, not flooding
+    9 [artic] abstract artwork, unrelated to flooding
+    9 [europeana] impressionist painting of woman on rocks
+
+=== BEAT: The violent change in temperature forced cracks through the rock, allo
+    9 [artic] Decorative textile print, unrelated scene
+    8 [artic] Bamboo ink painting, no rock splitting
+    6 [artic] Collage of perfume posters, irrelevant
+    6 [europeana] Abstract figure drawing, unrelated content
+    6 [europeana] Porcelain figurine, wrong subject entirely
+    6 [europeana] Watercolor figures, no rock or mining
+    2 [nasa] Rocket launch, completely wrong subject
+    2 [nasa] Rocket launch, completely wrong subject
+
+=== BEAT: In practice, it was exhausting and slow beyond modern reckoning.
+   16 [europeana] Period portrait, wrong subject entirely
+    5 [openverse/flickr] Modern gymnast, watermark, totally irrelevant
+   -1 [artic] (not inspected)
+   -1 [met] (not inspected)
+   -1 [met] (not inspected)
+   -1 [europeana] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [artic] (not inspected)
+
+=== BEAT: Every few inches of progress represented hours of coordinated labor.
+   66 [artic] industrial machinery suggests coordinated heavy labor
+   45 [nasa] cleanroom team shows coordinated precision work
+   22 [smithsonian] decorative textile pattern, no labor context
+   16 [artic] text art installation contradicts narration theme
+   12 [artic] minimalist sculpture, no labor depicted
+   12 [met] Degas dancer sketch, unrelated to labor
+   10 [nasa] space equipment panel, wrong subject entirely
+   10 [nasa] space biotechnology hardware, irrelevant subject
+
+=== BEAT: Water had to be carried to the site.
+   76 [europeana] workers handling water tank at construction site
+   42 [europeana] water container product, no carrying shown
+   14 [artic] Greek hydria water vessel, tangentially related
+    8 [artic] Monet water lilies painting, not relevant
+    8 [artic] Monet garden bridge painting, not relevant
+    6 [europeana] naval battle scene, unrelated
+    5 [nasa] satellite view of river, no water carrying
+    3 [nasa] false-color satellite image, irrelevant
+
+=== BEAT: Broken rock had to be lifted out of the pit by hand before the entire 
+   26 [smithsonian] small stones, no pit or lifting
+   20 [nasa] astronaut near rock, wrong context entirely
+   19 [europeana] single stone artifact, no excavation context
+   16 [europeana] flint fragments, catalogue scan format
+    9 [met] Renaissance painting, unrelated subject
+    9 [europeana] Japanese woodblock print, unrelated
+    8 [nasa] aerial dark terrain, no pit work visible
+    7 [met] ornate clock, completely irrelevant
+
+=== BEAT: That is precisely what the archaeological evidence indicates happened 
+   69 [europeana] prehistoric copper tools with scale ruler
+   66 [europeana] ancient copper artifact, archaeological find
+   64 [europeana] small ancient metal artifacts with scale
+   14 [wikimedia] modern fire scene, unrelated
+    9 [met] medieval religious painting, wrong subject
+    9 [artic] modern art sculpture, unrelated
+    4 [wikimedia] blank black frame, unusable
+    4 [artic] text-overlaid artwork, wrong subject
+
+=== BEAT: Ancient workers had already accomplished something that seemed almost 
+   46 [artic] workers depicted but modern era painting
+   32 [artic] beggar on crutches, not ancient workers
+   19 [europeana] woodpile and farm buildings, not ancient
+   16 [artic] abstract modern art installation, irrelevant
+   14 [europeana] modern Scandinavian farm building, wrong context
+   14 [europeana] modern rural outbuilding, no ancient relevance
+   -1 [openverse/flickr] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: One of the most remarkable individual discoveries came from a pit wher
+   16 [artic] Canyon landscape, no copper mining depicted
+    9 [wikimedia] Modern bridge, completely unrelated subject
+    9 [europeana] Portrait of aviator, no mining relevance
+    9 [artic] Bronze lion statue, unrelated to copper mining
+    9 [europeana] Religious wedding ceremony, no relevance
+    9 [europeana] People with fruit baskets, unrelated
+    8 [nasa] Aerial terrain scan, no mining relevance
+    6 [artic] Text artwork, wrong subject entirely
+
+=== BEAT: Now imagine that process repeated not over weeks, not over years, but 
+   82 [europeana] Aged frescoes embody centuries of sustained religious effort
+   76 [met] Bruegel harvest shows centuries of repetitive human labor
+   66 [artic] Classical landscape painting evokes ancient civilizations' endurance
+   62 [artic] Mughal miniature represents centuries of sustained artistic tradition
+   59 [met] Renaissance altarpiece suggests long artistic tradition
+   34 [europeana] Early photo street scene lacks centuries-spanning scope
+   16 [artic] Modern photo art irrelevant to centuries of effort
+    9 [europeana] Surrealist collage entirely irrelevant to narration
+
+=== BEAT: They had freed it from the surrounding rock and raised it onto a heavy
+   22 [met] Egyptian relief fragment, not quarrying
+   16 [met] Harvest scene, no stone quarrying
+   12 [artic] Neoclassical figures, unrelated scene
+   12 [europeana] Islamic manuscript illustration, unrelated
+    9 [met] Decorative porcelain vases, unrelated
+    9 [artic] Abstract modernist print, unrelated
+    9 [artic] Surrealist print, nothing relevant
+    9 [europeana] Medieval document with color swatches
+
+=== BEAT: The copper sat exactly where they left it.
+   66 [artic] engraving shows copper plate printing workshop
+   42 [europeana] small copper artifact left in place
+    9 [artic] mythological painting unrelated to copper
+    8 [artic] religious painting entirely unrelated
+   -1 [openverse/wikimedia] (not inspected)
+
+=== BEAT: Then, for reasons that remained completely unknown, they stopped.
+   46 [europeana] Stone monument suggests cessation, loosely usable
+   34 [europeana] Period portrait, studio text baked in
+   32 [europeana] Portrait with studio label watermark overlay
+   26 [artic] Artistic nude torso, unrelated to narration
+   22 [artic] Abstract painting, irrelevant to narration
+   22 [artic] Abstract sketch, irrelevant to narration
+    9 [wikimedia] Baked-in text overlay, unusable
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: When 19th century miners uncovered the mass, the ancient wooden suppor
+   22 [europeana] Elongated wooden object, vaguely evokes timber
+    6 [europeana] Blank placeholder image, unusable
+    6 [met] Ornate gilt mirror, completely irrelevant
+    6 [met] Gilt rococo mirror sconce, irrelevant
+    6 [artic] Bird illustration, no mining connection
+    6 [artic] Medieval carved bust, no relevance
+    6 [artic] Asian dragon sculpture, completely irrelevant
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: It is the kind of discovery that demands you pause.
+   76 [europeana] ancient Egyptian artifact demands contemplative pause
+   62 [nasa] dramatic space discovery visual, CGI render penalty
+   58 [nasa] planetary surface detail invites pausing examination
+   46 [europeana] archival etching, figures examining something faintly
+   42 [artic] period engraving but caption text visible on page
+   34 [europeana] generic construction scene, no discovery moment
+   32 [artic] casual sketch, no sense of discovery
+   20 [nasa] abstract stripes, no clear subject to discover
+
+=== BEAT: Someone invested enormous quantities of time, knowledge, and human eff
+    9 [artic] WWI war bond poster, unrelated topic
+    7 [artic] Goya etching, no mining connection
+    6 [artic] text-only artwork, completely irrelevant
+
+=== BEAT: That question has absorbed historians for generations because every an
+   16 [artic] Potatoes painting, no archaeological pits
+   12 [artic] Dark light-text installation, irrelevant
+    9 [artic] Blank beige canvas, nothing depicted
+    2 [nasa] Venus planet images, wrong subject
+    2 [nasa] Planetary body, completely unrelated
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: People using only stone tools had raised more than a ton of solid meta
+   26 [europeana] aerial field patterns, no mining or metal
+   16 [europeana] historic town square fountain, wrong subject
+   14 [europeana] 19th-century peasants eating, wrong context
+   12 [artic] Buddhist stone sculpture, unrelated to mining
+   12 [artic] carved stone head, no metal extraction context
+   10 [artic] modern marble sculpture, completely unrelated
+    5 [nasa] Mars landscape, entirely wrong context
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The deeper archaeologists pushed their investigations across the Lake 
+    9 [artic] Abstract sculpture unrelated to excavation
+    6 [artic] Surrealist artwork unrelated to archaeology
+    6 [artic] Goya painting unrelated to archaeology
+    6 [met] Renaissance triptych unrelated to mines
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: It accumulates across generations, each one refining and passing forwa
+   46 [met] scholar amid books suggests knowledge accumulation
+   39 [met] ancient artifact hints at generational inheritance
+   32 [artic] decorative plate unrelated to knowledge transmission
+   26 [met] dark forest landscape irrelevant to narration
+   24 [artic] decorative plate with scenic transfer print
+    9 [wikimedia] modern fire trucks contradict narration entirely
+    9 [wikimedia] BLM fire vehicles completely irrelevant
+    4 [artic] blank white canvas unusable
+
+=== BEAT: That degree of coordination does not develop quickly.
+   22 [met] Decorative globe object, no coordination theme
+   22 [nasa] Aurora atmospheric phenomenon, loosely evokes slow natural development
+   16 [artic] Fetal skeleton unrelated to coordination
+   12 [artic] Card game art irrelevant to coordination
+   12 [europeana] Cassette tape, irrelevant subject matter
+   10 [nasa] Lunar surface photo, no coordination relevance
+   10 [nasa] Aerial landscape, no coordination theme
+    9 [artic] Text-only page, unusable as footage
+
+=== BEAT: This was not a loose group of individuals who wandered into the wilder
+   22 [artic] Wilderness landscape loosely evokes setting
+   12 [europeana] Political cartoon, unrelated to copper mining
+   12 [met] Bronze horse sculpture, unrelated
+    9 [met] Classical sculpture, wrong subject entirely
+    9 [europeana] Ship in dry dock, unrelated
+    9 [artic] Baroque portrait engraving, unrelated
+    9 [artic] 19th-century painter portrait, unrelated
+    8 [europeana] Engraved text panel, unrelated
+
+=== BEAT: This was an organized seasonal operation.
+   46 [artic] Medieval domestic work scene, loosely seasonal craft
+   46 [artic] Medieval interior work engraving, loosely relevant
+   38 [nasa] Organized group activity but indoor catering event
+   24 [artic] Faint architectural sketch, unclear subject matter
+   14 [met] Japanese hanging scrolls, irrelevant to narration
+   12 [europeana] Religious ceremony gathering, not seasonal operation
+   12 [europeana] Indoor religious event, unrelated to narration
+   12 [europeana] Jewish ritual ceremony, not seasonal operation
+
+=== BEAT: Every year, people had to plan and prepare for the crossing, navigate 
+   26 [artic] Small copper animal artifact, loosely relevant
+   22 [met] Wooden artifact, no copper or lake crossing
+    9 [artic] Textile garment, unrelated to copper extraction
+    6 [europeana] Polish folk dance event, completely irrelevant
+    6 [europeana] Outdoor group exercise, completely irrelevant
+    6 [europeana] Modern city street map, irrelevant
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: That changes how these miners have to be understood.
+   22 [met] harvest farmers not miners, wrong subject
+   16 [europeana] abandoned building, no mining connection
+   12 [artic] civil rights arrest, no mining relevance
+   12 [europeana] archaeological rings artifact, no miners
+   10 [nasa] CGI terrain render, no miners depicted
+    9 [artic] abstract textile artwork, irrelevant
+    9 [met] Gauguin Tahitian painting, no miners
+    9 [europeana] bicycle display product, irrelevant
+
+=== BEAT: Forests had grown back across the old workings, and centuries of accum
+   46 [artic] Trees reclaiming building, loosely relevant
+   22 [artic] Abstract painting, no forest or soil
+    6 [artic] Decorative cabinet, completely irrelevant
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: For many years, no one had any clear sense of how ancient these mines 
+   26 [artic] 19th-century expedition stereoview, not mines
+   14 [europeana] Victorian hospital scene, entirely unrelated
+   12 [smithsonian] Brass luggage tag, unrelated to mines
+   12 [europeana] Mid-century banquet photo, unrelated
+    9 [artic] Charcoal portrait sketch, unrelated subject
+    9 [artic] Comic cartoon, wrong subject entirely
+    9 [europeana] Modern crowd festival, unrelated to mines
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The fires had long since gone cold, but one thing survived, charcoal.
+   49 [artic] Active fire scene, not cold aftermath
+   46 [artic] Abstract fire artwork, not charcoal aftermath
+   42 [artic] Post-fire refugees but no charcoal visible
+    6 [europeana] Brick church exterior, completely irrelevant
+    6 [europeana] Church tower exterior, completely irrelevant
+    6 [europeana] Church facade exterior, completely irrelevant
+    5 [openverse/flickr] Night cityscape, completely irrelevant
+    5 [openverse/nasa] Satellite view of Florida, irrelevant
+
+=== BEAT: When scientists tested that charcoal using radiocarbon dating, the res
+   35 [nasa] Scientists in lab but wrong subject matter
+   10 [artic] Landscape etching, no scientific context
+    9 [artic] Renaissance painting, no science relevance
+    8 [artic] Japanese woodblock print, entirely unrelated
+    8 [nasa] Aerial terrain photo, no radiocarbon connection
+    5 [nasa] Spacecraft assembly, unrelated to dating
+   -1 [openverse/nasa] (not inspected)
+   -1 [openverse/nasa] (not inspected)
+
+=== BEAT: Some of the oldest mining activity at Lake Superior dated back approxi
+   42 [artic] Worker with tool, generic labor scene
+   30 [nasa] Aerial geology, possibly mining terrain
+   24 [artic] Water surface, loosely Lake Superior
+    9 [europeana] Medieval Bristol map, unrelated to mining
+    9 [europeana] Old city map, no mining connection
+    6 [europeana] Women at shop, completely irrelevant
+    6 [artic] Shipwreck scene, totally unrelated
+    5 [nasa] Desert dunes aerial, wrong geography
+
+=== BEAT: Tiny fragments left behind by the fire's ancient miners built against 
+   42 [smithsonian] ancient textile fragment, vaguely preserved artifact
+   29 [europeana] gold coins with ruler, unrelated
+   26 [europeana] dental casts, unrelated to fire pits
+   24 [europeana] medieval badge drawing, not fire debris
+   16 [smithsonian] decorative lace, completely unrelated
+   14 [artic] ornate metal architectural element, unrelated
+   14 [artic] decorative metalwork ceiling piece, unrelated
+   14 [artic] cast iron decorative grille, unrelated
+
+=== BEAT: To appreciate what that number actually represents, it helps to place 
+   62 [nasa] aerial view places location in global context
+   16 [europeana] Victorian newspaper page, irrelevant content
+   12 [artic] figurative painting, no global context
+   12 [artic] decorative textile panel, completely irrelevant
+   12 [artic] abstract artwork, no relevant content
+   12 [europeana] handwritten letter, no global context
+   12 [europeana] archaeological artifact, no global context
+   10 [nasa] portrait of woman, no comparative context
+
+=== BEAT: These mines were already operating thousands of years before the Roman
+   16 [europeana] Native silver jewelry, not ancient mines
+    6 [artic] Musical instruments still life, irrelevant
+    6 [artic] Modern skyscraper architectural drawing, irrelevant
+    6 [artic] Abstract contemporary print, irrelevant
+    6 [europeana] Modern red dress on hanger, irrelevant
+    2 [nasa] NASA locomotive and VAB, irrelevant
+    2 [nasa] NASA railroad bridge over water, irrelevant
+    2 [nasa] Industrial pier over water, irrelevant
+
+=== BEAT: Archaeologists refer to this long tradition as the old copper culture,
+    8 [artic] Surrealist illustration unrelated to copper culture
+    6 [artic] Modern gallery text wall, completely irrelevant
+    6 [artic] Black-and-white storefront photo, wrong subject
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Generation after generation returned to the same ridges, using the sam
+    9 [artic] Ancient battle painting, wrong subject entirely
+    6 [europeana] Modern family portrait, no mining relevance
+    6 [europeana] Contemporary couple portrait, unrelated
+    6 [europeana] Polish concert poster with prominent text
+    6 [artic] Decorative porcelain plate, no mining connection
+    4 [artic] Blank white canvas, unusable
+    2 [nasa] CGI space shuttle render, wrong subject
+    2 [nasa] CGI space station render, wrong subject
+
+=== BEAT: The archaeological evidence that indigenous communities around the Gre
+   14 [artic] Abstract golden artwork, loosely copper-colored only
+   12 [europeana] Aerial cropmarks, European archaeology, irrelevant
+    9 [europeana] Irish archaeological map, wrong region entirely
+    9 [europeana] Irish mill distribution map, entirely wrong subject
+    7 [artic] Abstract black artwork, no relevant content
+    6 [nasa] Mesoamerican stone ruins, wrong culture/region
+    6 [nasa] Central American stone monument, not Great Lakes
+    6 [artic] Exhibition poster with heavy text overlay
+
+=== BEAT: But alongside what archaeology has documented with confidence, a separ
+   56 [met] Engraved jade artifact evokes archaeological documentation
+   48 [europeana] Excavated skull and objects suggest unanswered questions
+   42 [europeana] Archaeological metal finds, generic but period-relevant
+   36 [europeana] Small artifact, poor resolution, scale ruler visible
+   16 [artic] Modern art sculpture, irrelevant to archaeology
+   12 [artic] Text overlay, modern artwork, wrong subject
+    9 [artic] Abstract near-blank canvas, unusable
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Whether that memory preserves a specific historical event, a broader s
+   62 [openverse/flickr] Lincoln Memorial inscription evokes preserved historical memory
+   56 [met] Ancient figurine sits between historical event and symbolic tradition
+   49 [met] Ancient artifact ambiguous between history and symbol
+   42 [met] Seurat painting loosely evokes tradition and memory
+   26 [artic] Abstract grid drawing unrelated to memory/history
+   22 [artic] Hotel collage art unrelated to historical memory
+   14 [artic] Textile/flooring sample completely irrelevant
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Because according to what the Hopi Elder described, the people his tra
+   22 [nasa] Aerial terrain, no copper mining context
+   18 [nasa] Satellite view irrelevant to Hopi copper mining
+   16 [met] European sailing ships, wrong subject entirely
+   12 [artic] Renaissance engraving, unrelated mythological scene
+    9 [met] Christian Annunciation painting, wholly irrelevant
+    9 [met] Van Eyck religious diptych, completely unrelated
+    8 [artic] Faint portrait sketch, no relevant subject
+    8 [europeana] Eastern European church photo, irrelevant
+
+=== BEAT: But as the archaeological discoveries have continued accumulating, the
+   86 [europeana] aerial view of major archaeological excavation site
+   66 [europeana] aerial cropmarks reveal buried archaeological features
+   52 [nasa] ancient stone ruins partially excavated, jungle setting
+   49 [europeana] archaeological site diagram, illustrated not photographic
+   42 [met] ancient ceramic vessel, loosely archaeological artifact
+   18 [nasa] satellite farmland image, no archaeological relevance
+   12 [artic] illustrated book cover, wrong subject entirely
+    9 [artic] promotional poster with baked-in text overlay
+
+=== BEAT: One puzzle has always quietly troubled historians.
+   56 [met] historical puzzle-like folded letter artifact
+   34 [met] decorative furniture unrelated to historians
+   22 [artic] newspaper clipping wrong topic entirely
+   16 [europeana] catalogue label watermark ruins usability
+   14 [europeana] catalogue label watermark ruins usability
+   14 [europeana] catalogue label watermark ruins usability
+   12 [artic] near-blank beige canvas unusable
+   12 [artic] near-blank dark canvas unusable
+
+=== BEAT: Because for the first time, evidence emerging from the ground, and mem
+   22 [artic] Medieval engraving; tradition evoked but no specificity
+   19 [met] Renaissance Annunciation painting; oral tradition tangential
+   16 [artic] Decorative knotwork print; no archaeological relevance
+   16 [met] Renaissance portrait; no ground or oral tradition
+   14 [europeana] Modern political figures; wrong subject entirely
+   14 [met] Baroque crucifixion painting; no archaeological link
+   12 [europeana] Rabbits in dirt; irrelevant to narration
+   12 [europeana] Comic strip panels; wrong medium and subject
+
+=== BEAT: They came from somewhere else, they worked the deposits, they carried 
+   16 [met] Medieval doorway, no mining or migration context
+   16 [europeana] Winter sleigh group photo, unrelated
+   14 [met] Russian religious icon, wrong subject entirely
+   14 [europeana] Family portrait photo, no mining connection
+   12 [artic] Modern art installation, irrelevant to narration
+   12 [met] Portrait painting, unrelated to subject
+   12 [artic] Modernist figure drawing, irrelevant
+    9 [artic] Contemporary figurative painting, unrelated
+
+=== BEAT: If the ancient mines were located at Lake Superior, why does one of th
+   34 [wikimedia] Generic overgrown pit, not Lake Superior mines
+   22 [artic] Canoe at sunset, no relevant connection
+   22 [nasa] Space view of Earth, too abstract
+   22 [nasa] Desert aerial view, possibly Arizona but unclear
+   20 [nasa] Arid satellite view, wrong region context
+    9 [met] South Asian stone relief, wrong culture
+    9 [met] South Asian bronze deity, wrong culture
+    9 [met] South Asian stone deity pair, wrong culture
+
+=== BEAT: The distance alone seems to make it implausible.
+   66 [met] sweeping panoramic vista emphasizes vast distance
+   46 [artic] panoramic landscape suggests vast distance
+   29 [smithsonian] modest rural sketch, minimal distance implied
+   26 [wikimedia] indigenous figure scene, no distance concept
+   24 [smithsonian] faint sketch, no clear distance depicted
+   22 [artic] abstract scribbled watercolor, unclear subject
+    6 [artic] blank canvas, completely unusable
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: The two places are separated by forests, open plains, desert terrain, 
+   42 [met] Open plains landscape painting, loosely relevant
+   26 [wikimedia] Romantic forest painting, too narrow focus
+   12 [nasa] Mars surface, not Earth terrain separation
+   10 [nasa] Mars craters, wrong planet entirely
+    9 [artic] Abstract colorful painting, unusable
+    9 [europeana] Monk at monastery, irrelevant to terrain
+    7 [artic] Medieval medallion engraving, irrelevant
+    7 [artic] Surrealist abstract painting, irrelevant
+
+=== BEAT: Yet long before roads or railways connected North America, indigenous 
+   12 [artic] European peasants walking, wrong continent/subject
+    9 [artic] Abstract dune prints, no trade network content
+    7 [met] Renaissance European court scene, wrong context
+    7 [met] Italian Renaissance portrait, irrelevant subject
+    7 [met] Italian Renaissance female portrait, irrelevant
+    6 [artic] Blurry modern film still, irrelevant
+    6 [europeana] Book title page, wrong subject entirely
+    6 [europeana] Scandinavian farmhouse photo, completely irrelevant
+
+=== BEAT: Copper from the Great Lakes traveled hundreds and sometimes thousands 
+   42 [europeana] copper bowls artifact illustration but wrong region
+   42 [nasa] orbital view could suggest Great Lakes region
+   19 [europeana] medieval European copper roundels, wrong context
+   18 [nasa] arid terrain from orbit, no lakes visible
+   14 [artic] ancient Greek silver coins, unrelated
+   14 [artic] ancient silver coins, wrong subject entirely
+   12 [nasa] false-color satellite image, wrong region
+    9 [artic] medieval manuscript page, completely unrelated
+
+=== BEAT: Along with materials came knowledge and memory, passed with care from 
+   52 [artic] elder figure with document hints knowledge transmission
+   46 [europeana] prehistoric tools, materials but no knowledge transfer
+   42 [europeana] pottery sherds suggest heritage but no transmission scene
+   22 [nasa] Apollo plaque text dominates, wrong context entirely
+   19 [europeana] garment on mannequin unrelated to knowledge passing
+   16 [artic] modern figurative painting unrelated to narration
+   14 [artic] Paris cityscape unrelated to narration theme
+   10 [nasa] spacecraft component, no cultural knowledge theme
+
+=== BEAT: It is within that context that the 1894 account becomes genuinely diff
+   22 [artic] dramatic woman photo unrelated to 1894 account
+   16 [europeana] microscopic cell image unrelated to context
+   16 [europeana] microscopic cell image completely irrelevant
+   14 [artic] modern geometric sculpture unrelated to narration
+   14 [artic] ceramic bowl unrelated to 1894 account
+    9 [europeana] modern backpack entirely anachronistic and irrelevant
+    8 [nasa] planetary atmosphere image completely irrelevant
+    8 [nasa] planetary crater surface completely irrelevant
+
+=== BEAT: He spoke of people who arrived from across the water, worked the metal
+   46 [artic] violence and fire, not metalworking migrants
+   42 [artic] medieval arrivals scene, period figures gathering
+    9 [europeana] modern political crowd, completely irrelevant
+    9 [europeana] modern dignitary ceremony, unrelated
+    9 [europeana] modern crowd scene, no relevance
+    5 [nasa] modern memorial ceremony, unrelated
+    5 [nasa] modern speaker at podium, unrelated
+    5 [nasa] astronaut hall of fame, completely irrelevant
+
+=== BEAT: They were something separate in the memory that had been preserved.
+   89 [europeana] damaged archival portrait perfectly embodies preserved memory
+   82 [europeana] preserved archival photo of couple, separate in memory
+   66 [artic] surreal floating faces evoke separate preserved memory
+   49 [artic] abstract face painting loosely suggests memory theme
+   34 [europeana] artifacts preserved but no human memory connection
+   15 [nasa] contemporary NASA portrait unrelated to preserved memory
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Whether every element of that description corresponds to a literal seq
+   46 [artic] Historical armor, loosely evokes uncertain past
+   46 [artic] Historical breastplate, evokes unverifiable past
+   42 [artic] Historical costume detail, generic period artifact
+    7 [europeana] Fashion catalogue cover, wrong subject entirely
+    6 [smithsonian] BHL logo watermark, unusable catalogue image
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: They were remembered as people who did not belong to the Hopi or to th
+   18 [nasa] Memorial plaques but wrong cultural context
+   15 [nasa] Memorial ceremony but wrong subject
+   14 [nasa] Memorial flowers, wrong cultural context
+   12 [artic] Abstract fantasy art, no relevance
+   10 [artic] Cubist face painting, unrelated content
+    9 [artic] Mythological centaur engraving, irrelevant
+    8 [europeana] Child in costume, no connection
+    8 [europeana] Wooden cart artifact, no connection
+
+=== BEAT: The Hopi Elder described a great northern body of water, where strange
+   56 [artic] Hopi kachina doll, culturally relevant but indirect
+   49 [artic] Hopi pottery, culturally relevant but no narrative match
+   42 [artic] Native American portrait, no copper/water context
+
+=== BEAT: Oral traditions do not function the way written records do.
+   14 [artic] Japanese room interior; no oral tradition
+   14 [artic] Chinese architectural interior; unrelated content
+   12 [europeana] Kitchen family portrait; unrelated topic
+    6 [artic] Nude figure; irrelevant to oral tradition
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: They carry important events forward through generations of storytellin
+   46 [europeana] ancient stone artifacts suggest archaeology theme
+   44 [smithsonian] decorated woven object hints traditional craft
+   42 [smithsonian] woven artifact suggests indigenous material culture
+   26 [europeana] Victorian man portrait, unrelated to oral tradition
+   24 [smithsonian] ornate gold object, no clear relevance
+   22 [artic] dramatic photo, no oral tradition connection
+   19 [europeana] textile on black backdrop, unrelated
+   12 [artic] heavy baked-in text overlay, wrong subject
+
+=== BEAT: And yet the mines are real, the stone hammers are real, the charcoal f
+   46 [wikimedia] open moorland cut suggests old excavation
+   28 [nasa] satellite view too abstract for ancient mines
+   12 [europeana] coin artifact, unrelated to mining evidence
+   12 [europeana] worn coin, not mining or charcoal dating
+   12 [europeana] coin both sides, unrelated to narration
+   12 [nasa] aerial evaporation ponds, not ancient mines
+    9 [wikimedia] modern corporate financial document, irrelevant
+    6 [artic] musical instruments still life, entirely wrong
+
+=== BEAT: Others argue that oral traditions frequently preserve symbolic rather 
+   56 [met] Religious icon suggests symbolic/spiritual tradition
+   42 [met] Decorative interior, weak oral tradition link
+   26 [met] Portrait irrelevant to oral tradition theme
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: What makes the 1894 account worth taking seriously is not that it reso
+   66 [artic] late 19th-century etching studies, period correct
+   59 [artic] late 19th-century street scene, period-appropriate
+   46 [smithsonian] metal tag inscribed with date, archival object
+   29 [artic] Gauguin 1890s but wrong thematic context
+   26 [met] 17th-century painting, wrong era entirely
+   19 [met] Baroque religious painting, wrong century
+   14 [met] 16th-century portrait, wrong era entirely
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: What makes it worth remembering is that a story recorded in the Arizon
+    9 [met] Renaissance portrait unrelated to Arizona or North
+    9 [met] Renaissance portrait irrelevant to narration
+    9 [artic] Impressionist crowd scene unrelated
+    9 [artic] Decorative textile unrelated to subject
+    9 [europeana] Baroque mythological painting unrelated
+    6 [artic] Text-heavy poster with baked-in text
+    6 [europeana] Webpage screenshot unusable format
+    6 [europeana] Modern kitsch souvenir item irrelevant
+
+=== BEAT: Others still have offered more speculative explanations though none of
+   59 [europeana] stone artifact fragments suggest archaeological finds
+   46 [met] vanitas skull suggests speculation/mystery loosely
+   14 [met] food still life entirely irrelevant
+   14 [artic] floral still life painting irrelevant
+   12 [smithsonian] bank key tag completely unrelated
+   12 [nasa] aerial landscape no archaeological relevance
+    9 [europeana] modern family snapshot totally unrelated
+    9 [europeana] mid-century portrait photo irrelevant
+
+=== BEAT: More than 6000 years have passed since the first fires were set agains
+   32 [europeana] Wood cross-section loosely suggests ancient fire
+    9 [europeana] Man with tools, no fire or rock
+    8 [smithsonian] Old engraving figure, unrelated subject
+    7 [met] Egyptian mother painting, wrong subject
+    7 [met] Medieval Flemish portrait diptych, irrelevant
+    7 [met] Renaissance cleric portrait, wrong subject
+    6 [artic] Political cartoon unrelated to Lake Superior
+    6 [wikimedia] Yosemite stereocard text, irrelevant
+
+=== BEAT: It does not.
+   59 [europeana] AIDS poster text denial theme relevant
+   26 [met] keyboard instrument photo generic context
+   22 [artic] 19th-century cartoon with text overlay
+   22 [met] portrait painting unrelated to narration
+   20 [nasa] planetary surface generic no clear link
+   20 [nasa] cratered surface generic no clear link
+   19 [met] ancient artifact unrelated to narration
+   18 [nasa] Mars lander scene unrelated denial context
+
+=== BEAT: The forests have reclaimed the landscape, the camps are gone, the voic
+   76 [met] Dark brooding forest painting, abandoned silent atmosphere
+   69 [artic] Etching of ancient trees overtaking rocks below
+   66 [artic] Dark engraving of dense reclaimed forest interior
+   46 [met] Asian ink landscape with mountains and huts
+   12 [artic] Surrealist nude figures in forest, wrong
+    5 [openverse/nasa] Modern aerial of MetLife Stadium, wrong subject
+    5 [nasa] Radar satellite image with baked-in text overlays
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: That alone gives it a weight that is difficult to simply put down.
+   76 [europeana] man standing reading book in study
+   32 [artic] woodcut figures with fallen items loosely relevant
+   26 [met] harvest scene, no reading or weight
+   24 [met] martyrdom painting, unrelated to putting down
+   24 [europeana] forest walk photo, no object weight
+   22 [met] tiny amulet bead, no weight metaphor
+   16 [europeana] damaged ceramic fragments, unclear and irrelevant
+   14 [artic] abstract marks on paper, too sparse
+
+=== BEAT: Walk the Keweenaw Peninsula or cross to Isle Royale today, and the dep
+    7 [artic] Monet coastal painting irrelevant to Keweenaw
+    6 [artic] Giacometti sculpture unrelated to copper mining
+    6 [artic] Rainy urban street scene, wrong subject
+    6 [met] Gauguin Tahitian painting, no connection
+    6 [met] Medieval religious painting, wrong subject
+    6 [met] Renaissance architectural scene, irrelevant
+
+=== BEAT: Archaeologists continue studying the stone tools, the charcoal fragmen
+    6 [artic] Urban street sketch, no archaeological content
+    6 [artic] Portrait painting, no archaeological relevance
+    6 [artic] Modern portrait photo, completely unrelated
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: None of that is legend.
+   46 [europeana] press conference scene, vaguely factual tone
+   45 [nasa] real Saturn photo emphasises documented reality
+   38 [nasa] real planetary surface, factual/scientific feel
+   29 [artic] trompe-l'oeil painting, not documentary evidence
+   26 [europeana] printed text page, unreadable at broadcast
+   24 [artic] 19th-century illustration, unrelated subject
+   19 [europeana] botanical close-up, irrelevant to narration
+   18 [nasa] NASA aircraft tails, unrelated to narration
+
+=== BEAT: But the evidence of their presence is still there.
+   76 [smithsonian] Labeled specimen vial shows physical evidence remains
+   66 [europeana] Markers or monuments showing traces of presence
+   55 [nasa] Arrows pointing to surface traces on moon
+   40 [nasa] Planetary surface impact evidence loosely relevant
+   39 [artic] Abstract artwork suggests faded traces ambiguously
+   34 [wikimedia] Vintage crime scene unrelated to narration
+   19 [europeana] Military portrait unrelated to narration
+   19 [europeana] Military portrait unrelated to narration
+
+=== BEAT: It is part of the documented archaeological record, quietly demonstrat
+   22 [europeana] Old well diagram, wrong region/context
+   14 [artic] European forest etching, irrelevant
+   12 [europeana] Modern building, no archaeological relevance
+   10 [europeana] Abstract drawing, no archaeological content
+    9 [artic] Victorian interior scene, completely unrelated
+    9 [artic] Georgian cartoon, wrong subject entirely
+    2 [openverse/flickr] Gaming history infographic, wrong subject
+    2 [nasa] Lunar or planetary surface image
+
+=== BEAT: How many generations committed their working lives to these mines?
+    7 [artic] colorful painting of gardeners, not mines
+    6 [artic] nude figures with sports equipment, unrelated
+    4 [artic] blank white canvas, completely unusable
+    2 [openverse/flickr] military personnel dining, no mine relevance
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: How many people crossed Lake Superior season after season carrying sto
+   32 [europeana] Metal artifact loosely evokes ancient metalwork
+   16 [artic] Mediterranean beach scene, unrelated
+   12 [europeana] Rural wooden well, unrelated
+   12 [europeana] Winter skiing scene, unrelated
+    9 [artic] Modern indoor scene, unrelated
+    9 [artic] Contemporary colorful painting, unrelated
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: What remains genuinely open is everything beyond those established fac
+   66 [artic] chaotic collage evokes open unknowns visually
+   59 [artic] ancient mysteries, unknown history beyond established facts
+   46 [artic] serene portrait; vaguely open, contemplative gaze
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: How much metal was ultimately removed from these ancient excavations a
+   46 [europeana] small ancient metal artifacts with ruler
+   44 [europeana] small ancient metal objects with ruler
+   44 [europeana] small ancient metal hooks with ruler
+   24 [artic] modern bronze lion sculpture, wrong context
+   19 [artic] reflective metal sphere, indirect connection only
+    9 [met] 18th-century furniture, unrelated to excavations
+    9 [met] decorative chairs, unrelated to mining
+    9 [met] ornate cabinet, unrelated to excavations
+
+=== BEAT: If you enjoy documentaries about forgotten history, ancient engineerin
+    8 [wikimedia] Portrait of unidentified modern man, irrelevant
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: Thank you for watching.
+   42 [wikimedia] Generic farewell scene, loosely usable
+   22 [wikimedia] Baked-in text and channel watermarks overlay
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: Leave your thoughts in the comments, and I will see you in the next do
+   16 [met] Religious painting unrelated to outro call-to-action
+   14 [met] Chinese calligraphy manuscript irrelevant to narration
+   12 [artic] Abstract floral painting unrelated to documentary outro
+    9 [artic] Book/catalogue cover with baked-in text overlay
+    9 [artic] Exhibition poster with prominent baked-in text
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Who do you believe the ancient miners remembered in the 1894 Hopi acco
+   12 [met] African ivory mask, wrong culture entirely
+   12 [met] El Greco painting, Spanish city, irrelevant
+    9 [met] Islamic interior architecture, wrong context
+    9 [europeana] 1868 Punch cartoon, wrong subject entirely
+    7 [artic] Abstract print, no connection to topic
+    7 [europeana] Botanical specimen sheet, unrelated to Hopi
+    6 [wikimedia] Modern statue, unrelated to Hopi account
+    6 [artic] Cartoon sketch, completely unrelated subject
+
+=== BEAT: And before you go, I would genuinely like to hear what you think.
+   46 [wikimedia] Woman leaving through door, farewell gesture
+   42 [artic] Pensive woman gazing, contemplative mood fits
+   34 [met] Portrait subject, no conversational context
+   34 [met] Portrait subject, no conversational context
+   26 [europeana] Naval scene unrelated to soliciting opinion
+   19 [europeana] Cartoon gallows scene, irrelevant subject
+   19 [artic] Abstract print, no narrative connection
+   14 [met] Ancient Egyptian stele, entirely wrong context
+
+=== BEAT: The island sits many miles from the mainland, surrounded by cold and u
+   82 [nasa] aerial view of isolated islands surrounded by ocean
+   35 [nasa] aerial coastal city, not isolated island
+   22 [europeana] inland pagoda on calm water, wrong subject
+    6 [artic] Renaissance engraving, completely unrelated
+    6 [met] ivory figurine, entirely unrelated
+    6 [met] decorative shield artifact, entirely unrelated
+    6 [artic] marble figurine, entirely unrelated
+    6 [europeana] illuminated manuscript page, unrelated
+
+=== BEAT: Reaching it required deliberate planning, reliable watercraft capable 
+   56 [artic] Period watercraft on open water, usable
+   22 [wikimedia] Pioneer scene but baked-in text label
+   12 [wikimedia] Submarine salvage, wrong context entirely
+    9 [wikimedia] Modern military vehicle, completely irrelevant
+    8 [met] Egyptian pyramid, wrong subject entirely
+    7 [artic] Japanese woodblock print, unrelated subject
+    7 [met] Decorative wooden panel, completely irrelevant
+    7 [met] Glass vessel object, completely irrelevant
+
+=== BEAT: This is not a place anyone reaches by accident.
+   86 [europeana] soldier enters dangerous trench deliberately
+   38 [nasa] industrial workspace, loosely suggests intentional access
+   32 [artic] generic landscape etching, unrelated subject
+   22 [nasa] robotics competition, casual public event
+   22 [europeana] handwritten letter with watermark overlay
+   16 [artic] portrait painting unrelated to narration
+   15 [nasa] baseball game crowd, everyday accessible venue
+   14 [europeana] concert poster with baked-in text overlay
+
+=== BEAT: What remains genuinely uncertain is the identity of the people the tra
+   76 [wikimedia] unidentified ancient figure, uncertain identity
+   69 [met] religious figures remembered by tradition
+   66 [artic] anonymous mummified person, identity uncertain
+   49 [met] historical figures whose identity is debated
+   24 [met] decorative vessel irrelevant to identity
+
+=== BEAT: Some researchers believe the account reflects distant echoes of ancien
+   66 [europeana] ancient indigenous ceramic artifact, culturally relevant
+   42 [artic] figures working with rocks, vaguely mining-adjacent
+    6 [artic] dog portrait, completely irrelevant
+    6 [met] European religious painting, wrong culture
+    5 [openverse/flickr] stack of books, irrelevant
+    2 [nasa] modern NASA researcher, wrong context
+    2 [nasa] scientific image analysis, completely irrelevant
+    2 [nasa] false-color Earth satellite image, irrelevant
+
+=== BEAT: The archaeological evidence confirms that the mining happened on an ex
+   22 [met] Greek vase with figures, not mining
+   14 [met] Greek pottery, figures unrelated to mining
+    9 [wikimedia] Buddhist statue, no mining relevance
+    7 [artic] Abstract black artwork, completely irrelevant
+    7 [artic] Religious confirmation scene, no mining
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: It does not tell us every chapter of the story.
+   66 [artic] council gathering suggests incomplete story chapters
+   52 [europeana] worn coins suggest partial historical record
+   46 [europeana] artifact fragment implies incomplete chapter
+   45 [nasa] CGI planets; unknown cosmic chapters metaphor
+   39 [europeana] cartoon figures examining artwork loosely relevant
+   38 [nasa] alien landscape; abstract incomplete story metaphor
+   26 [artic] resting calf irrelevant to narration
+   24 [artic] abstract animal print unrelated to narration
+
+=== BEAT: That is where history and memory converge.
+   76 [smithsonian] Segregation-era artifact where history becomes tangible memory
+   66 [europeana] Medieval manuscript where historical record meets cultural memory
+   64 [europeana] Ancient illustrated text embodies history preserved in memory
+   62 [europeana] Illuminated manuscript detail evokes preserved historical narrative
+   -1 [wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The past is rarely preserved in a single place or a single form.
+   76 [met] Vanitas—skull, bubble, coins span multiple symbolic forms
+   59 [artic] 19th-century satirical print, archival document form
+   52 [europeana] Archival photo preserving a historical moment
+   46 [artic] Interior painting, loosely evokes preserved spaces
+   42 [artic] Portrait painting, single preserved form only
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: The account recorded in 1894 does not replace what archaeology has est
+   46 [artic] Mesoamerican stone carving, indigenous archaeology loosely relevant
+   34 [met] Ceramic vessel, archaeological object but wrong culture
+   12 [europeana] 19th-century book title page, wrong subject
+   10 [europeana] 1882 book title page, wrong subject entirely
+    9 [artic] Russian avant-garde book illustration, irrelevant
+    9 [artic] Contemporary video art installation, irrelevant
+    8 [met] Baroque crucifixion painting, entirely irrelevant
+    8 [met] Ornate French interior, entirely irrelevant
+
+=== BEAT: Whether the strangers the Hopi elder described in 1894 were real histo
+   42 [artic] titled 'A Stranger Passes By' loosely relevant
+   26 [europeana] Indigenous people but wrong continent and culture
+   12 [artic] near-blank dark canvas, unusable
+    9 [europeana] Viking cartoon; wrong culture and period
+    8 [met] 16th-century European portrait, wrong context
+    7 [artic] contemporary woman portrait, irrelevant
+    7 [met] Toulouse-Lautrec figures, completely unrelated
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: But placed beside each other, they reflect something that historians h
+   66 [smithsonian] multiple historical scenes placed side by side
+   55 [nasa] two images placed side by side for comparison
+   52 [europeana] two artifacts placed side by side compared
+   46 [artic] historical street scene etching, no pairing
+   44 [met] single ancient relief, no comparison shown
+   44 [artic] historical street scene etching, single image
+   42 [europeana] family photo, no comparative historical context
+   39 [artic] single Impressionist street scene painting
+
+=== BEAT: What we do know is that the mines were real, the copper was real, the 
+   12 [met] El Greco cityscape, no mining content
+    7 [artic] Glass art object, no mining relevance
+    6 [artic] Victorian fashion illustration, completely irrelevant
+    6 [europeana] Puppet animation scene, irrelevant
+    6 [artic] Text-overlay art photograph, irrelevant
+    6 [europeana] Puppet castle scene, irrelevant
+    6 [europeana] Puppet characters, no mining relevance
+    4 [nasa] NASA press conference, wrong subject entirely
+
+=== BEAT: Sometimes it survives in the ground, sometimes it survives in document
+   69 [met] old master portrait, generational memory preserved
+   66 [europeana] artifacts surviving in ground, archaeology
+   64 [europeana] medieval artifact unearthed, survives in ground
+   59 [europeana] archaeological find surviving in ground
+   46 [artic] figures in mythic scene, storytelling theme
+   39 [artic] figures at water, generational story loose
+   34 [artic] expressionist figures, no clear narrative link
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: Perhaps that is exactly why this mystery has held people's attention f
+   76 [artic] Mysterious eye artwork evokes enduring enigma
+   45 [nasa] Crater aerial view suggests geological mystery
+   42 [nasa] Mars landscape suggests unexplored cosmic mystery
+   34 [met] Ceramic vessel unrelated to mystery theme
+   32 [artic] War scene unrelated to mystery theme
+   29 [met] Ancient figurine unrelated to mystery concept
+   26 [artic] Decorative sword irrelevant to mystery narrative
+   24 [met] Ornate goblet unrelated to mystery theme
+
+=== BEAT: Not because it provides easy answers, but because it keeps reminding u
+   38 [nasa] Vast cosmic void evokes lost ancient worlds
+   26 [artic] Modern illustration, unrelated to ancient loss
+   16 [europeana] Holocaust museum exhibit, wrong context entirely
+   14 [europeana] Modern religious soldier, wrong period
+   12 [europeana] Modern crowd with Torah, irrelevant
+    9 [artic] Text-only artwork, contradicts narration theme
+    9 [met] Decorative armchair, no relevance
+    9 [met] Ornate cabinet, no relevance
+
+=== BEAT: In practice it is far more like a puzzle with a significant number of 
+   46 [artic] geometric shapes array, loosely puzzle-like
+   16 [europeana] courtroom scene, no puzzle relevance
+   14 [artic] 19th-century cartoon, unrelated subject
+   14 [europeana] WWI soldiers drilling, unrelated
+   12 [europeana] musical instrument, no puzzle connection
+   10 [nasa] spacecraft recovery, unrelated to puzzle
+    8 [nasa] astronaut portrait, unrelated subject
+    8 [nasa] astronaut portrait, unrelated subject
+
+=== BEAT: Every excavation surfaces another clue, every overlooked record adds a
+   56 [artic] archaeological artifact but no excavation context
+   -1 [openverse/wikimedia] (not inspected)
+
+=== BEAT: History is often imagined as a complete and coherent account of the pa
+   46 [artic] timeline text on wall suggests historical chronology
+   34 [europeana] indigenous artifact hints at untold histories loosely
+   26 [artic] violent woodcut unrelated to history-as-narrative concept
+   22 [artic] racial injustice woodcut, wrong for narration topic
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The ancient copper mines of Lake Superior remain one of those unfinish
+   32 [europeana] Modern industrial mine, wrong region/period
+   16 [europeana] European landscape engraving, wrong subject entirely
+    6 [artic] Chinese watercolor painting, completely irrelevant
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: "They were not his people," he explained. They had arrived from across
+   42 [artic] Sailing ships on open sea, loosely evokes seafarers
+   38 [pexels] Indigenous people by water with modern boat
+   24 [wikimedia] Book illustration with baked-in caption text
+   22 [unsplash] Modern costumed Chinese boaters, wrong culture/period
+   18 [artic] Abstract print artwork, wrong subject entirely
+   12 [pixabay] Modern motorboat in fog, wrong period
+    8 [pixabay] Aerial kayak shot, modern, wrong subject
+    5 [loc] Book title page, text only, useless

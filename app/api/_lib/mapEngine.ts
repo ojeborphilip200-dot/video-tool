@@ -34,8 +34,35 @@ export function createMapRenderer(
 ): (t: number) => string {
   const template = config.template || "route";
 
+  // ---- Country alias resolver: "USA"/"UK"/"South Korea"/"Czechia" etc. map to
+  // the canonical GeoJSON name before any loose matching runs ----
+  const COUNTRY_ALIASES: Record<string, string> = {
+    usa: "united states", "u.s.": "united states", "u.s.a.": "united states",
+    us: "united states", america: "united states", "united states of america": "united states",
+    uk: "united kingdom", britain: "united kingdom", "great britain": "united kingdom",
+    england: "united kingdom", "u.k.": "united kingdom",
+    "south korea": "korea", "republic of korea": "korea",
+    "north korea": "korea", "dprk": "korea",
+    "ivory coast": "cote d'ivoire", "côte d'ivoire": "cote d'ivoire",
+    "czech republic": "czechia", czechia: "czech republic",
+    burma: "myanmar", holland: "netherlands", "the netherlands": "netherlands",
+    uae: "united arab emirates", "u.a.e.": "united arab emirates",
+    drc: "democratic republic of the congo", "dr congo": "democratic republic of the congo",
+    russia: "russia", "russian federation": "russia",
+    "vatican": "vatican", "vatican city": "vatican",
+  };
+  const ISO_MAP: Record<string, string> = {
+    us: "united states", gb: "united kingdom", fr: "france", de: "germany",
+    it: "italy", es: "spain", cn: "china", jp: "japan", in: "india", br: "brazil",
+    ru: "russia", ca: "canada", au: "australia", mx: "mexico", co: "colombia",
+    nz: "new zealand", kr: "korea", kp: "korea", ci: "cote d'ivoire", cz: "czechia",
+    usa: "united states", gbr: "united kingdom", fra: "france", deu: "germany",
+    col: "colombia", nzl: "new zealand", kor: "korea", civ: "cote d'ivoire",
+  };
+
   // ---- Region matching (for "region" template + camera) ----
-  const regionName = (config.region || "").toLowerCase();
+  const rawRegion = (config.region || "").toLowerCase().trim();
+  const regionName = COUNTRY_ALIASES[rawRegion] || ISO_MAP[rawRegion] || rawRegion;
   const isRegionFeature = (f: any) => {
     if (!regionName) return false;
     const n = String(f?.properties?.name || "").toLowerCase();
@@ -198,24 +225,63 @@ export function createMapRenderer(
   }
 
   if (template === "region") {
-    const p0 = anchors[0] || [width / 2, height / 2];
+    // Camera pushes from a wide regional view (framed by the auto-fit bounds)
+    // to a tight framing centered on the country. p0 is the country's centroid.
+    let cx = 0, cy = 0;
+    if (regionFeatures.length > 0) {
+      // centroid of the region's projected bounding box
+      let rMinLat = 90, rMaxLat = -90, rMinLon = 180, rMaxLon = -180;
+      for (const f of regionFeatures) {
+        const polys = f.geometry.type === "Polygon" ? [f.geometry.coordinates] : f.geometry.coordinates;
+        for (const poly of polys) {
+          for (const [lon, lat] of poly[0]) {
+            rMinLat = Math.min(rMinLat, lat); rMaxLat = Math.max(rMaxLat, lat);
+            rMinLon = Math.min(rMinLon, lon); rMaxLon = Math.max(rMaxLon, lon);
+          }
+        }
+      }
+      const c = project((rMinLon + rMaxLon) / 2, (rMinLat + rMaxLat) / 2);
+      cx = c[0]; cy = c[1];
+    } else {
+      cx = width / 2; cy = height / 2;
+    }
+
     return (t: number) => {
-      const fadeIn = ease(clamp01((t - 0.3) / 0.8));
-      const breathe = 0.75 + 0.25 * Math.sin((t / 2.2) * Math.PI * 2);
+      const prog = clamp01(t / dur);
+      // 0-20% wide, 20-55% push in, hold after
+      const push = ease(clamp01((prog - 0.2) / 0.35));
+      const k = 1 + 1.15 * push; // 1x (wide) -> ~2.15x (tight on country)
+
+      // Highlight animates in over 35-60%
+      const hi = ease(clamp01((prog - 0.35) / 0.25));
+      const breathe = 0.78 + 0.22 * Math.sin((t / 2.2) * Math.PI * 2);
       const regionSvg = regionPaths
         .map(
           (d) =>
-            `<path d="${d}" fill="${ACCENT_FILL}" stroke="${ACCENT}" stroke-width="2" opacity="${(fadeIn * breathe).toFixed(2)}"/>` +
-            `<path d="${d}" fill="${LAND}" stroke="${BORDER}" stroke-width="1" opacity="${(1 - fadeIn).toFixed(2)}"/>`
+            `<path d="${d}" fill="${LAND}" stroke="${BORDER}" stroke-width="1" opacity="${(1 - hi).toFixed(2)}"/>` +
+            `<path d="${d}" fill="${ACCENT_FILL}" stroke="${ACCENT}" stroke-width="2.5" opacity="${(hi * breathe).toFixed(2)}"/>`
         )
         .join("");
-      const dim = `<rect width="${width}" height="${height}" fill="rgba(0,0,0,${(fadeIn * 0.25).toFixed(2)})"/>`;
-      const lbl = config.region
-        ? label([width / 2, height * 0.16], config.region.toUpperCase(), fadeIn, true)
-        : "";
-      const k = 1 + 0.08 * ease(clamp01(t / dur));
-      // dim the world, then draw the highlighted region above the dim
-      return wrap(landSvg + dim + regionSvg + lbl, k, p0);
+      const dim = `<rect width="${width}" height="${height}" fill="rgba(0,0,0,${(hi * 0.3).toFixed(2)})"/>`;
+
+      // Label scales + fades in over 50-70%, anchored near the country
+      const labelP = ease(clamp01((prog - 0.5) / 0.2));
+      let lbl = "";
+      if (config.region && labelP > 0) {
+        const name = config.region.toUpperCase();
+        const fs = 15;
+        const w = name.length * (fs * 0.7) + 26;
+        const lx = width / 2, ly = height * 0.15;
+        const scale = 0.85 + 0.15 * labelP;
+        lbl =
+          `<g opacity="${labelP.toFixed(2)}" transform="translate(${lx},${ly}) scale(${scale.toFixed(3)}) translate(${-lx},${-ly})">` +
+          `<rect x="${lx - w / 2}" y="${ly - 16}" width="${w}" height="30" rx="15" fill="#101216" stroke="${ACCENT}" stroke-width="1.5"/>` +
+          `<text x="${lx}" y="${ly + 5}" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="${fs}" font-weight="700" letter-spacing="2" fill="#f1f2f4">${name}</text>` +
+          `</g>`;
+      }
+
+      // Zoom toward the country's centroid, not the frame center
+      return wrap(landSvg + dim + regionSvg + lbl, k, [cx, cy]);
     };
   }
 

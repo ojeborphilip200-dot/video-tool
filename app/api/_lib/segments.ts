@@ -76,7 +76,13 @@ export async function buildSegment(opts: {
       `-vf "${vf}" -an -c:v libx264 -preset veryfast -crf 20 -pix_fmt yuv420p "${outPath}.tmp.mp4"`;
   }
 
-  await execAsync(cmd, { maxBuffer: 1024 * 1024 * 50 });
+  try {
+    await execAsync(cmd, { maxBuffer: 1024 * 1024 * 50 });
+  } catch (e: any) {
+    await fs.unlink(`${outPath}.tmp.mp4`).catch(() => {});
+    const reason = String(e?.stderr || e?.message || "").trim().split("\n").slice(-3).join(" | ");
+    throw new Error(`Segment build failed for ${opts.file}: ${reason}`);
+  }
   await fs.rename(`${outPath}.tmp.mp4`, outPath);
   return { path: outPath, duration: dur + pad };
 }
