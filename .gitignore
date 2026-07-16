@@ -48,3 +48,5 @@ models/
 .render-output
 hf-overlays/renders
 hf-overlays/node_modules
+vision-debug.txt
+ffmpeg-error.txt
