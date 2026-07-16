@@ -84,6 +84,7 @@ HARD PENALTIES (score below 30):
 - WRONG ANIMAL: if the narration names or implies a specific species, an image of a different species scores below 25 (a leopard is not a cheetah, a coyote is not a wolf, a crow is not a raven). Wrong habitat (arctic animal on grass) or wrong behavior (a resting animal when the line describes hunting/attacking/running) also scores low. A visibly captive/zoo animal (enclosures, fences, tags, concrete) scores low when the narration implies the wild.
 - Collages, screenshots of webpages, book covers, or catalogue plates with borders/labels
 - Extreme close-ups of nothing, blank/near-blank frames, or badly damaged scans
+- GENERIC STAGED STOCK LOOK: posed actors smiling at the camera, isolated subjects on plain white/gradient backgrounds, obviously staged "corporate stock photo" scenes (fake handshakes, exaggerated team high-fives, models posing as "a doctor" or "a businessman" with no real-world context) - these score below 35 even when the nominal subject matches, because they read as generic rather than documentary-real
 
 COMPOSITION: prefer frames that read clearly at 16:9. A tall portrait scan is fine if the subject is right (we letterbox it) - do not reject it for shape alone.
 
