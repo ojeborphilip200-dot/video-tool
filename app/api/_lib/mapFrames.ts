@@ -12,6 +12,8 @@ const FPS = 25;
 
 // Renders a MapConfig to a cached, normalized mp4 - enters the timeline like
 // any other clip. Frames come from the SAME engine the browser preview uses.
+const inFlight = new Map<string, Promise<{ path: string; duration: number }>>();
+
 export async function buildMapClip(config: MapConfig): Promise<{ path: string; duration: number }> {
   await fs.mkdir(CACHE_DIR, { recursive: true });
   const key = crypto.createHash("sha1").update(JSON.stringify(config)).digest("hex");
@@ -24,6 +26,10 @@ export async function buildMapClip(config: MapConfig): Promise<{ path: string; d
     // build it
   }
 
+  const existing = inFlight.get(key);
+  if (existing) return existing;
+
+  const buildPromise = (async (): Promise<{ path: string; duration: number }> => {
   const worldRaw = await fs.readFile(
     path.join(process.cwd(), "public", "map-data", "world.geo.json"),
     "utf-8"
@@ -55,4 +61,12 @@ export async function buildMapClip(config: MapConfig): Promise<{ path: string; d
   await fs.rm(tmpDir, { recursive: true, force: true });
 
   return { path: outPath, duration: config.durationSec };
+  })();
+
+  inFlight.set(key, buildPromise);
+  try {
+    return await buildPromise;
+  } finally {
+    inFlight.delete(key);
+  }
 }

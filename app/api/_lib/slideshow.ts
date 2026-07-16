@@ -25,6 +25,8 @@ function kenBurns(durationSec: number): string {
 // image, crossfades between them. Homogeneous zoompan streams crossfade
 // reliably (unlike the mixed video/image inputs that broke xfade in the main
 // pass). Cached by content hash - repeat renders are instant.
+const inFlight = new Map<string, Promise<{ path: string; duration: number }>>();
+
 export async function buildImageSequenceClip(
   files: string[],
   durations: number[]
@@ -44,6 +46,10 @@ export async function buildImageSequenceClip(
     // build it
   }
 
+  const existing = inFlight.get(key);
+  if (existing) return existing;
+
+  const buildPromise = (async (): Promise<{ path: string; duration: number }> => {
   const n = files.length;
   const inputs = files.map((f) => `-i "${f}"`).join(" ");
 
@@ -79,4 +85,12 @@ export async function buildImageSequenceClip(
   }
   await fs.rename(tmp, outPath);
   return { path: outPath, duration: total };
+  })();
+
+  inFlight.set(key, buildPromise);
+  try {
+    return await buildPromise;
+  } finally {
+    inFlight.delete(key);
+  }
 }
