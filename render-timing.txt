@@ -17,3 +17,23 @@ segments: 6 in 0.0s
 segments: 6 in 125.8s
 ffmpeg: 5.1s | frame=  817 fps=167 q=-0.0 Lsize=    5951KiB time=00:00:32.64 bitrate=1493.7kbits/s speed=6.68x elapsed=0:00:04.88    
 ---
+segments: 6 in 0.0s
+ffmpeg: 4.3s | frame=  817 fps=196 q=-0.0 Lsize=    5951KiB time=00:00:32.64 bitrate=1493.7kbits/s speed=7.81x elapsed=0:00:04.17    
+---
+segments: 6 in 0.0s
+ffmpeg: 6.2s | frame=  817 fps=135 q=-0.0 Lsize=    5951KiB time=00:00:32.64 bitrate=1493.7kbits/s speed=5.38x elapsed=0:00:06.06    
+---
+segments: 6 in 0.0s
+ffmpeg: 4.3s | frame=  817 fps=197 q=-0.0 Lsize=    5951KiB time=00:00:32.64 bitrate=1493.7kbits/s speed=7.88x elapsed=0:00:04.14    
+---
+segments: 6 in 0.0s
+segments: 6 in 0.0s
+ffmpeg: 4.0s | frame=  817 fps=213 q=-0.0 Lsize=    5951KiB time=00:00:32.64 bitrate=1493.7kbits/s speed=8.51x elapsed=0:00:03.83    
+---
+segments: 6 in 0.0s
+segments: 6 in 0.0s
+ffmpeg: 4.0s | frame=  817 fps=210 q=-0.0 Lsize=    5951KiB time=00:00:32.64 bitrate=1493.7kbits/s speed=8.37x elapsed=0:00:03.89    
+---
+segments: 6 in 0.0s
+ffmpeg: 3.9s | frame=  817 fps=219 q=-0.0 Lsize=    5951KiB time=00:00:32.64 bitrate=1493.7kbits/s speed=8.76x elapsed=0:00:03.72    
+---

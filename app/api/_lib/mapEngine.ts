@@ -5,6 +5,7 @@ export type MapLocation = { name: string; lat: number; lon: number };
 
 export type MapConfig = {
   template: "route" | "reveal" | "sequence" | "region" | "spread";
+  style?: "default" | "dark" | "political";
   locations: MapLocation[];
   region?: string; // for "region": country/region name to highlight
   durationSec: number;
@@ -12,12 +13,25 @@ export type MapConfig = {
 
 type XY = [number, number];
 
-const OCEAN = "#0b0c0f";
-const LAND = "#1a1e24";
-const BORDER = "#2c323b";
-const ACCENT = "#5b8cff";
-const ACCENT_FILL = "rgba(91,140,255,0.28)";
-const MARKER = "#ff8a65";
+type MapTheme = { OCEAN: string; LAND: string; BORDER: string; ACCENT: string; ACCENT_FILL: string; MARKER: string };
+
+const MAP_THEMES: Record<string, MapTheme> = {
+  // Current look: deep navy ocean, blue accent
+  default: {
+    OCEAN: "#0b0c0f", LAND: "#1a1e24", BORDER: "#2c323b",
+    ACCENT: "#5b8cff", ACCENT_FILL: "rgba(91,140,255,0.28)", MARKER: "#ff8a65",
+  },
+  // Vox / Johnny Harris cinematic: near-black ocean, muted land, bright red highlight
+  dark: {
+    OCEAN: "#05070a", LAND: "#161a1f", BORDER: "#232830",
+    ACCENT: "#ff2e2e", ACCENT_FILL: "rgba(255,46,46,0.30)", MARKER: "#ff2e2e",
+  },
+  // Political: flat clean colors, soft borders, red highlight on pale land
+  political: {
+    OCEAN: "#afcbe3", LAND: "#e9e4d8", BORDER: "#b8b0a0",
+    ACCENT: "#d13b3b", ACCENT_FILL: "rgba(209,59,59,0.32)", MARKER: "#d13b3b",
+  },
+};
 
 function ease(u: number): number {
   return u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;
@@ -32,6 +46,9 @@ export function createMapRenderer(
   width = 1280,
   height = 720
 ): (t: number) => string {
+  const T = MAP_THEMES[config.style || "default"] || MAP_THEMES.default;
+  const OCEAN = T.OCEAN, LAND = T.LAND, BORDER = T.BORDER, ACCENT = T.ACCENT, ACCENT_FILL = T.ACCENT_FILL, MARKER = T.MARKER;
+
   const template = config.template || "route";
 
   // ---- Country alias resolver: "USA"/"UK"/"South Korea"/"Czechia" etc. map to

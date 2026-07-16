@@ -8,7 +8,7 @@ function makeMapMedia(beat: Beat, beatIndex: number): MediaItem {
     id: `map-${beatIndex}`,
     kind: "video",
     thumbnail: "",
-    previewUrl: "map:" + JSON.stringify({ ...beat.map, durationSec: Number(beat.duration.toFixed(2)) }),
+    previewUrl: "map:" + JSON.stringify({ ...beat.map, style: beat.map?.style || "dark", durationSec: Number(beat.duration.toFixed(2)) }),
     duration: beat.duration,
     source: "map",
   };
@@ -42,11 +42,12 @@ export default function MediaPanel() {
   );
   useEffect(() => () => { if (narrationUrl) URL.revokeObjectURL(narrationUrl); }, [narrationUrl]);
 
-  async function findMedia(index: number, regenerate = false) {
+  async function findMedia(index: number, regenerate = false, extraExclude: string[] = []) {
     const beat = state.beats[index];
     const page = regenerate ? (beat.mediaPage || 1) + 1 : beat.mediaPage || 1;
 
     const excludeIds = [
+      ...extraExclude,
       ...new Set(
         state.beats.flatMap((b, bi) => {
           const own = bi === index;

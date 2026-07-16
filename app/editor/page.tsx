@@ -63,7 +63,7 @@ function Editor() {
     window.addEventListener("mouseup", up);
   }
   const clamp = (v: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, v));
-  const { status, exportVideo, canExport, clearResult, cancelExport } = useExport();
+  const { status, exportVideo, canExport, clearResult, cancelExport, swapToPrevious } = useExport();
   const { state, dispatch, canUndo, canRedo, saveState, newProject } = useProject();
 
   // Selecting a clip on the timeline reveals it in the Media panel
@@ -254,7 +254,7 @@ function Editor() {
       >
         {status.videoUrl ? (
           <div style={{ width: "100%", maxWidth: "820px" }}>
-            <video id="rendered-video" src={status.videoUrl} controls autoPlay style={{ width: "100%", maxHeight: "calc(100vh - 420px)", borderRadius: "8px", background: "#000" }} />
+            <video id="rendered-video" key={status.videoUrl} src={status.videoUrl} controls autoPlay style={{ width: "100%", maxHeight: "calc(100vh - 420px)", borderRadius: "8px", background: "#000" }} />
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "10px" }}>
               <a href={status.videoUrl} download="final-video.mp4" className="btn btn-primary" style={{ textDecoration: "none" }}>
                 Download MP4
@@ -268,6 +268,16 @@ function Editor() {
                 >
                   {status.renderedWithCaptions ? "Re-render without captions" : "Re-render with captions"}
                 </button>
+                {status.previousVideoUrl && (
+                  <button
+                    className="btn btn-secondary"
+                    onClick={swapToPrevious}
+                    title="Swap back to the render you had before this one"
+                    style={{ marginRight: "8px" }}
+                  >
+                    ↩ Previous render
+                  </button>
+                )}
                 <button className="btn btn-secondary" onClick={clearResult}>
                   Back to editing
                 </button>

@@ -81,6 +81,7 @@ HARD PENALTIES (score below 30):
 - Depicts the wrong entity, wrong century, or contradicts the narration
 - CGI renders, 3D art, or obvious illustrations when the line calls for reality${historyMode ? " (period paintings, engravings and archival photographs are CORRECT here, not penalized)" : ""}
 - Prominent baked-in text, watermarks, logos, or stock-agency overlays
+- WRONG ANIMAL: if the narration names or implies a specific species, an image of a different species scores below 25 (a leopard is not a cheetah, a coyote is not a wolf, a crow is not a raven). Wrong habitat (arctic animal on grass) or wrong behavior (a resting animal when the line describes hunting/attacking/running) also scores low. A visibly captive/zoo animal (enclosures, fences, tags, concrete) scores low when the narration implies the wild.
 - Collages, screenshots of webpages, book covers, or catalogue plates with borders/labels
 - Extreme close-ups of nothing, blank/near-blank frames, or badly damaged scans
 

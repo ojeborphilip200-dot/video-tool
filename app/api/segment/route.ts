@@ -52,7 +52,8 @@ For each beat provide:
   "sequence" = multiple places named/revealed one by one with no travel between them (2-6 locations in narration order)
   "region" = one country/state/region itself is the subject - also provide "region": "<name>" alongside a representative location
   "reveal" = a single highly significant place (1 location)
-Format: { "template": "route", "score": 82, "region": "Ukraine", "locations": [{ "name": "Kyiv", "lat": 50.45, "lon": 30.52 }, ...] } with accurate real-world coordinates ("region" only for the region template).
+Also include "style": "dark" for cinematic documentary tone (use this for MOST map scenes - it's the Vox/Johnny Harris look), "political" for wars, elections, borders, treaties, and territorial disputes (clean flat map), or "default" only if neither fits.
+Format: { "template": "route", "score": 82, "region": "Ukraine", "style": "dark", "locations": [{ "name": "Kyiv", "lat": 50.45, "lon": 30.52 }, ...] } with accurate real-world coordinates ("region" only for the region template).
 
 Respond ONLY with a valid JSON array, no other text:
 [{ "text": "...", "entities": ["..."], "queries": ["...", "..."], "keywords": ["..."], "treatment": "video", "map": { "template": "route", "score": 82, "locations": [{ "name": "...", "lat": 0, "lon": 0 }] } }]

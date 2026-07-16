@@ -9,6 +9,7 @@ export type ExportStatus = {
   progress: number;
   message: string;
   videoUrl: string | null;
+  previousVideoUrl: string | null;
   renderedWithCaptions: boolean;
   etaSeconds: number | null;
   jobId: string | null;
@@ -21,6 +22,7 @@ export function useExport() {
     progress: 0,
     message: "",
     videoUrl: null,
+    previousVideoUrl: null,
     renderedWithCaptions: true,
     etaSeconds: null,
     jobId: null,
@@ -38,6 +40,7 @@ export function useExport() {
       progress: 0,
       message: "Received",
       videoUrl: null,
+      previousVideoUrl: null,
       renderedWithCaptions: withCaptions,
       etaSeconds: null,
       jobId: null,
@@ -156,6 +159,7 @@ export function useExport() {
               rendering: false,
               progress: 100,
               message: "Done",
+              previousVideoUrl: s.videoUrl,
               videoUrl: URL.createObjectURL(blob),
             }));
             return;
@@ -192,5 +196,14 @@ export function useExport() {
     setStatus((s) => ({ ...s, videoUrl: null }));
   }
 
-  return { status, exportVideo, canExport, clearResult, cancelExport, totalDuration: total };
+  // Accidental re-render? Swap back to the render that was on screen before it.
+  function swapToPrevious() {
+    setStatus((s) =>
+      s.previousVideoUrl
+        ? { ...s, videoUrl: s.previousVideoUrl, previousVideoUrl: s.videoUrl }
+        : s
+    );
+  }
+
+  return { status, exportVideo, canExport, clearResult, cancelExport, swapToPrevious, totalDuration: total };
 }

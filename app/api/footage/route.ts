@@ -23,7 +23,7 @@ function slugToWords(url: string): string {
 async function searchPexelsVideos(query: string, page = 1): Promise<MediaItem[]> {
   try {
     const res = await fetch(
-      `https://api.pexels.com/videos/search?query=${encodeURIComponent(query)}&per_page=3&page=${page}`,
+      `https://api.pexels.com/videos/search?query=${encodeURIComponent(query)}&per_page=10&page=${page}`,
       { headers: { Authorization: process.env.PEXELS_API_KEY as string } }
     );
     const data = await res.json();
@@ -49,7 +49,7 @@ async function searchPexelsVideos(query: string, page = 1): Promise<MediaItem[]>
 async function searchPexelsImages(query: string, page = 1): Promise<MediaItem[]> {
   try {
     const res = await fetch(
-      `https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&per_page=3&page=${page}`,
+      `https://api.pexels.com/v1/search?query=${encodeURIComponent(query)}&per_page=10&page=${page}`,
       { headers: { Authorization: process.env.PEXELS_API_KEY as string } }
     );
     const data = await res.json();
@@ -74,7 +74,7 @@ async function searchPexelsImages(query: string, page = 1): Promise<MediaItem[]>
 async function searchPixabayVideos(query: string, page = 1): Promise<MediaItem[]> {
   try {
     const res = await fetch(
-      `https://pixabay.com/api/videos/?key=${process.env.PIXABAY_API_KEY}&q=${encodeURIComponent(query)}&per_page=3&page=${page}`
+      `https://pixabay.com/api/videos/?key=${process.env.PIXABAY_API_KEY}&q=${encodeURIComponent(query)}&per_page=10&page=${page}`
     );
     const data = await res.json();
     if (!res.ok || !data.hits) return [];
@@ -98,7 +98,7 @@ async function searchPixabayVideos(query: string, page = 1): Promise<MediaItem[]
 async function searchPixabayImages(query: string, page = 1): Promise<MediaItem[]> {
   try {
     const res = await fetch(
-      `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=${encodeURIComponent(query)}&per_page=3&image_type=photo&page=${page}`
+      `https://pixabay.com/api/?key=${process.env.PIXABAY_API_KEY}&q=${encodeURIComponent(query)}&per_page=10&image_type=photo&page=${page}`
     );
     const data = await res.json();
     if (!res.ok || !data.hits) return [];
@@ -417,11 +417,13 @@ export async function POST(req: NextRequest) {
       images.push(...i);
     }
 
-    // Rounds 2+: EVERY remaining query across the full provider set. Retrieval
-    // breadth is what picture research lives on.
+    // Rounds 2+: EVERY remaining query across the full provider set. Each query
+    // pulls from a DIFFERENT result page so a script's many similar beats (e.g.
+    // several "lion" beats) draw from different slices instead of all hammering
+    // page 1 and repeating the same handful of clips.
     for (let qi = 1; qi < queryList.length; qi++) {
       if (videos.length + images.length >= 70) break;
-      const { videos: v, images: i } = await fanOut(queryList[qi], page, {
+      const { videos: v, images: i } = await fanOut(queryList[qi], page + qi, {
         wantV, wantI, historyMode: body.historyMode === true,
       });
       videos.push(...v);

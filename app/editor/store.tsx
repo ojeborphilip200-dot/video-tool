@@ -45,7 +45,7 @@ export type Beat = {
   mediaPage?: number;
   era?: string;
   providers?: string[];
-  map?: { template: string; score: number; region?: string; locations: { name: string; lat: number; lon: number }[] };
+  map?: { template: string; score: number; region?: string; style?: string; locations: { name: string; lat: number; lon: number }[] };
   selectedClips: SelectedClip[];
 };
 

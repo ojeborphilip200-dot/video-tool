@@ -1633,3 +1633,1001 @@
    12 [pixabay] Modern motorboat in fog, wrong period
     8 [pixabay] Aerial kayak shot, modern, wrong subject
     5 [loc] Book title page, text only, useless
+
+=== BEAT: These whales were bred to kill sea monsters.
+   26 [artic] Ceramic bowl with fish motifs, not whales
+   22 [artic] Ceramic bowl with single fish, not whales
+   19 [wikimedia] Fish fossils, no whales or sea monsters
+   16 [artic] Old Master drawing, no whales or monsters
+   12 [met] Ivory figurine, completely unrelated subject
+   12 [met] Carved bone tool, unrelated to whales
+    9 [met] Medieval ivory relief, religious scene unrelated
+    6 [loc] Book spine only, unusable
+
+=== BEAT: These are sperm whales, the largest predators on the entire planet.
+   98 [wikimedia] Adult and calf sperm whales underwater
+   96 [wikimedia] Two sperm whales swimming underwater, clear
+   76 [artic] Historic engraving of beached sperm whale
+   59 [loc] Archival photo of large beached whale
+   44 [loc] Historic drawing of whale at sea
+   42 [wikimedia] Whale skeleton museum display, not sperm whale
+   29 [loc] Whaling ship deck, no whale visible
+   24 [smithsonian] Small isolated artifact, not whales
+
+=== BEAT: Every day, these whales dive thousands of meters into the pitch black 
+   56 [wikimedia] sperm whale skeleton loosely relevant
+   12 [internet-archive] title card baked-in text unusable
+    9 [artic] decorative ceramic bowl unrelated
+    6 [artic] Renaissance drawing unrelated figures
+    5 [internet-archive] dark blurry unidentifiable footage unusable
+    4 [loc] book spine completely unrelated
+    4 [loc] book spine completely unrelated
+    4 [loc] book spine completely unrelated
+
+=== BEAT: Sperm whales can eat fish with bones that weigh over 200 pounds.
+   76 [wikimedia] sperm whale skeleton shows anatomy clearly
+   49 [met] Turner whale hunting painting loosely relevant
+   32 [artic] beached whales too distant, unclear
+    6 [loc] book title page, wrong subject entirely
+    6 [loc] Punch magazine cover, irrelevant
+    6 [loc] Harper's Weekly title page, irrelevant
+    6 [artic] abstract artwork, no whale connection
+    6 [met] ivory figurine, unrelated to whales
+
+=== BEAT: And no, it's not because we have bones.
+   12 [europeana] hunched figure, vaguely posture-related
+   12 [internet-archive] rooster has bones but CGI animation
+    9 [loc] cartoon collage unrelated to bones
+    9 [europeana] woman polishing brass, unrelated
+    9 [loc] political cartoon, no bone relevance
+    9 [loc] typed document card, irrelevant
+    9 [met] decorative quilt, entirely unrelated
+    9 [met] ornate sofa, no relevance
+
+=== BEAT: These are the deadliest predators ever, and you, my unfortunate friend
+    6 [loc] WWII soldier, no whale content
+    6 [loc] Man at stop sign, irrelevant
+    6 [loc] Memorial stone monument, irrelevant
+    6 [met] Decorative enamel locket, irrelevant
+    6 [met] Crucifixion painting, no whale
+    6 [met] 16th century portrait, irrelevant
+    6 [artic] Painter portrait, no whale
+    6 [artic] Baroque portrait engraving, irrelevant
+
+=== BEAT: But despite all of this, the whale won't eat you, the whale won't even
+    9 [artic] 19th century journal cover, irrelevant
+    8 [europeana] Microscopic biological scan, irrelevant
+    8 [europeana] Fluorescent microscopy image, irrelevant
+    7 [met] Ancient figurine sculpture, irrelevant
+    7 [loc] Outdoor gathering scene, irrelevant
+    7 [artic] Abstract sculpture on stand, irrelevant
+    7 [europeana] Person serving food, irrelevant
+    6 [loc] Furniture store street scene, irrelevant
+
+=== BEAT: Sperm whales will go miles out of their way to find 1,000 pound coloss
+   46 [met] Whaling ship painting, loosely relevant
+   19 [artic] Beach scene, no whales or squid
+   12 [loc] Book cover, no marine life
+    9 [loc] Lighthouse diagram, irrelevant
+    9 [loc] Punch magazine cover, irrelevant
+    9 [met] Carved cross artifact, irrelevant
+    9 [artic] Woman reclining painting, irrelevant
+    9 [artic] Abstract figures painting, irrelevant
+
+=== BEAT: It's not because we're too inconvenient.
+   46 [met] armchair could suggest inconvenience concept
+   44 [met] elaborate chair suggests comfort/inconvenience theme
+   34 [artic] group gathering scene, loosely relevant
+   32 [artic] Goya print of isolated figure, tangential
+   22 [europeana] prominent text-heavy AIDS poster unrelated
+   22 [internet-archive] school lockers, vaguely institutional but weak
+   20 [internet-archive] baked-in text, talking-head unrelated
+   19 [met] ornate cabinet, irrelevant to narration
+
+=== BEAT: No matter how delicious you might make yourself try to be, a sperm wha
+    6 [artic] Political cartoon, no whale relevance
+    6 [met] African wooden sculpture, irrelevant
+    6 [artic] Surrealist money painting, irrelevant
+    6 [artic] Teacups on grid, completely irrelevant
+    6 [met] Ornate grandfather clock, irrelevant
+    6 [europeana] Red Cross document, irrelevant
+    2 [internet-archive] Title card text, no whale content
+    2 [internet-archive] Indoor bedroom scene, irrelevant
+
+=== BEAT: In all of recorded history, there are zero cases of a wild sperm whale
+    6 [europeana] Historical map, no whale content
+    5 [europeana] Heraldic coat of arms, irrelevant
+    5 [artic] Art gallery installation, irrelevant
+    5 [artic] Japanese floral screen painting, irrelevant
+    5 [artic] Text-only publication cover, irrelevant
+    5 [europeana] Botanical herbarium specimen, irrelevant
+    4 [internet-archive] Dark blurry frame, possibly whale-like shape
+    1 [nasa] Astronomical nebula image, irrelevant
+
+=== BEAT: But why do these giants not want to eat us?
+   14 [artic] Gauguin painting, Polynesian figures, unrelated
+   12 [europeana] Taxidermy mouse, not giant animals
+   12 [nasa] Lunar craters vaguely suggest giant scale
+   10 [nasa] Mars surface spiral pattern, no creatures
+    9 [artic] Dark door with flowers, irrelevant
+    9 [artic] Portrait photo, no giant animals
+    9 [europeana] Museum display of red objects, irrelevant
+    9 [europeana] Red and black object, unclear, irrelevant
+
+=== BEAT: And if you really ticked one off, would it ever try to eat you?
+   12 [met] Ornate revolver, weapon not animal attack
+    9 [artic] Gauguin painting, no animal threat
+    7 [met] Chinese landscape scroll, irrelevant
+    7 [artic] Abstract cat print artwork, irrelevant
+    6 [artic] Abstract photo artwork with text overlay
+    6 [europeana] Greek sheet music cover, irrelevant
+    6 [europeana] AIDS awareness poster, irrelevant
+    6 [europeana] Labor union protest, irrelevant
+
+=== BEAT: The most obvious answer is that they just aren't aggressive.
+   42 [europeana] taxidermied bird, non-aggressive animal specimen
+   42 [internet-archive] children talking calmly, non-aggressive behavior
+   26 [met] old painting, pickpocket scene, unrelated
+   19 [met] 16th-century portrait, unrelated subject
+   12 [internet-archive] man at map, no aggression context
+    9 [artic] text artwork about fear/manipulation, irrelevant
+    9 [artic] text artwork about domination, wrong theme
+    9 [artic] Spanish broadside text, irrelevant
+
+=== BEAT: Great white sharks hunt seals.
+   49 [wikimedia] large shark on beach, no seal hunting
+   10 [internet-archive] indistinct dark footage, no sharks visible
+    6 [artic] human farmers with tools, completely unrelated
+    6 [artic] horse steeplechase illustration, completely unrelated
+    6 [artic] horse race scene, completely unrelated
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: When we think of whales, we usually think of peaceful creatures that j
+    6 [artic] burning cardboard, no whale content
+    6 [artic] artwork with text overlay, no whales
+    6 [europeana] cartoon illustration of two men
+    6 [artic] Goya etching, no ocean or whales
+    6 [europeana] vintage wedding portrait, no whales
+    6 [europeana] old building photograph, no whales
+    2 [internet-archive] outdoor crowd scene, no whales
+    2 [internet-archive] extreme close-up of man's face
+
+=== BEAT: But if you actually look at how a sperm whale survives, peaceful is th
+    6 [artic] Gauguin painting, Tahitian figures, irrelevant
+    6 [artic] Abstract photo artwork with baked-in text
+    6 [artic] Abstract printmaking, cats and interior, irrelevant
+    6 [europeana] AIDS awareness poster, prominent text overlay
+    6 [europeana] AIDS awareness poster, prominent text overlay
+    6 [europeana] School portrait collage, text borders, irrelevant
+    2 [internet-archive] Outdoor crowd scene, no whale relevance
+    2 [nasa] Two men at table, interview setup, irrelevant
+
+=== BEAT: Orca's hunt fish and penguins.
+   76 [wikimedia] Orca dorsal fin surfacing near shore
+    9 [met] Historical painting of human fishing scene
+    9 [met] Drawing of indigenous hunters on shore
+    6 [met] Mughal court procession illustration unrelated
+    6 [artic] Still life of glass vessels unrelated
+    6 [artic] Abstract blue plant silhouettes unrelated
+    6 [artic] Horse steeplechase race print unrelated
+   -1 [wikimedia] (not inspected)
+
+=== BEAT: Sperm whales hunt monsters.
+    6 [artic] Surrealist painting, no whales or ocean
+    6 [met] Ivory figurine, completely unrelated subject
+    6 [artic] Horse steeplechase print, no marine life
+    6 [artic] Horse race crowd scene, no whales
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Every single day, sperm whales dive thousands of meters down into the 
+    6 [met] Urban ruins, no marine life whatsoever
+    6 [met] African wooden sculpture, completely unrelated
+    6 [artic] Marble statue, no ocean or whales
+    6 [artic] Chinese painting of figures, not marine
+    6 [artic] Vintage portrait photo, no ocean content
+    2 [internet-archive] Low-quality beach video, no whales or squid
+
+=== BEAT: These are 40-foot-long invertebrates armed with sharp beaks and tentac
+    6 [smithsonian] Metal tableware object, no squid/invertebrate
+
+=== BEAT: Yeah, you really don't want to get grabbed by that.
+   59 [europeana] jagged metal object looks dangerous to grab
+   38 [internet-archive] close-up suggests menace or grabbing moment
+   26 [artic] political cartoon, no grabbing danger shown
+   16 [artic] couple on bench, irrelevant to danger
+   12 [artic] abstract cat print, no relevant danger
+   10 [internet-archive] people outside building, no threat visible
+    2 [internet-archive] near-blank dark frame, unusable
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: And the sperm whale actively seeks them out in total darkness.
+   59 [artic] Historic engraving of beached sperm whale
+   42 [europeana] Whale distribution map, loosely relevant
+   34 [europeana] Ivory whale carving, not hunting behavior
+   29 [europeana] Ivory whale carving, not hunting behavior
+   26 [artic] Beach scene, no whale visible clearly
+   20 [openverse/flickr] Teeth/jaw specimen, not sperm whale hunting
+    9 [artic] Pre-Columbian ceramic vessel, unrelated
+    6 [met] 16th century portrait, entirely unrelated
+
+=== BEAT: When these whales come back to the surface, their heads are completely
+   12 [openverse/flickr] Ships at sea, no whale scarring
+    7 [artic] Decorative pottery with fish motif
+    7 [artic] Decorative pottery with fish motif
+    6 [artic] Historical drawing of human figures
+    6 [europeana] Ceramic bird figurine, irrelevant
+    6 [europeana] Small ceramic objects, irrelevant
+    6 [europeana] Painting of cows in water, irrelevant
+    5 [internet-archive] Title card only, no whale content
+
+=== BEAT: So, I made my point.
+   59 [artic] Knight armor pointing gauntlet forward
+   22 [artic] Ornate metal gate, no narrative link
+   19 [europeana] Fossil rock specimen, unrelated
+   18 [artic] Chinese landscape painting, unrelated
+   16 [europeana] Horse painting and jar, unrelated
+   14 [europeana] Gold ring, no relevance to narration
+   12 [internet-archive] Book cover, wrong subject entirely
+    8 [internet-archive] Film credits text overlay, unusable
+
+=== BEAT: They're violent, they're a little bit insane, and they're pretty darn 
+   46 [artic] chaotic abstract art suggests violent insane cool
+   42 [artic] 19th-century street performers, slightly wild energy
+   34 [europeana] riot gear laid out, vaguely relevant context
+   26 [artic] stormy landscape sketch, no violence or coolness
+   12 [internet-archive] man with pixel sunglasses, trivial meme
+    5 [internet-archive] title card credits, no relevant content
+    5 [internet-archive] production title card, no subject
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: We know they're way more capable of killing things that are significan
+    6 [artic] Abstract artwork, no predator depicted
+    6 [artic] Close-up statue with text overlay
+    6 [europeana] Family group photo, irrelevant
+    6 [artic] Portrait of seated woman, irrelevant
+    6 [europeana] Woman before church building, irrelevant
+    6 [europeana] Two women on street, irrelevant
+    2 [internet-archive] Cast list text, no predator content
+    2 [internet-archive] Two women indoors, irrelevant
+
+=== BEAT: So, if they're this aggressive and this dangerous, why do we still vie
+    6 [artic] abstract colorful artwork, no whales
+    6 [artic] portrait etching of elderly person
+    6 [artic] surreal etching of figures, unrelated
+    6 [europeana] couple in garden, no whale relevance
+    6 [europeana] family photo, completely unrelated
+    6 [europeana] performers on scaffolding, unrelated
+    2 [internet-archive] office scene, no whale relevance
+    2 [internet-archive] film title card, completely unrelated
+
+=== BEAT: We get it.
+   45 [internet-archive] speaker gesturing understanding to audience
+   40 [internet-archive] person speaking/acknowledging, loosely fits
+   35 [nasa] person speaking to camera, generic
+   29 [europeana] workers in kitchen, watermark visible
+   24 [artic] abstract art with text, irrelevant
+   24 [artic] Victorian cartoon scene, unrelated
+   19 [artic] 19th century French boating illustration, irrelevant
+   19 [europeana] period illustration with baked-in text borders
+
+=== BEAT: When you see a video of a massive blue whale, or a humpback whale, the
+    6 [artic] Abstract art print, no whales
+    6 [artic] 19th century cartoon, no whales
+    6 [artic] Period sketch of people, no whales
+    6 [europeana] Cartoon of rooftop scene, no whales
+    6 [europeana] Historical street scene illustration, no whales
+    6 [smithsonian] Botanical specimen, no whales
+    6 [europeana] Medieval manuscript page, no whales
+    2 [internet-archive] Close-up man's face, no whales
+
+=== BEAT: Baleen whales don't have teeth.
+    6 [artic] Pre-Columbian pottery, no whale relevance
+    6 [artic] Impressionist painting of woman, irrelevant
+    6 [artic] Ancient stone vessel, no whale relevance
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: And that's not because they're baleen whales.
+    6 [artic] Figurative painting; no whales visible
+    6 [artic] Text artwork; no whale content
+    6 [artic] 19th-century cartoon; no whales
+    6 [europeana] Handwritten Arabic card; irrelevant
+    6 [europeana] Medieval illuminated manuscript; irrelevant
+    6 [europeana] Holocaust museum exhibit; irrelevant
+    6 [smithsonian] WWII V-mail letter; irrelevant
+    6 [smithsonian] WWII V-mail letter; irrelevant
+
+=== BEAT: They have massive plates of keratin in their mouths that act like gian
+    6 [artic] Goya etching, no whale baleen shown
+    6 [artic] Goya etching, completely unrelated subject
+    6 [met] Buddhist gilt statue, no keratin plates
+    6 [met] Gold torque jewelry, unrelated to baleen
+    6 [met] Gold coin necklace, no whale relevance
+    6 [artic] Ancient urn, no filter-feeding depicted
+    6 [europeana] Toy cavalry soldiers, completely irrelevant
+    6 [europeana] Toy horsemen, no whale connection
+
+=== BEAT: They just open up and engulf entire clouds of tiny animals all at once
+   12 [nasa] Aerial melt pools, vaguely engulfing shapes
+    8 [nasa] Abstract fluid motion, not feeding behavior
+    6 [met] Chinese landscape painting, no marine life
+    6 [met] Bruegel harvest scene, no marine life
+    6 [met] Equestrian portrait, completely unrelated
+    6 [artic] Renaissance engraving of figures fighting
+    6 [artic] Still life painting, no animals
+    6 [artic] Blank canvas artwork, nothing relevant
+
+=== BEAT: But sperm whales are completely different.
+   76 [artic] historic engraving of beached sperm whale
+   72 [artic] period engraving beached whale scene
+   42 [artic] distant beach scene, whale barely visible
+   22 [openverse/flickr] shark jaw bones, not sperm whale
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Because of this, we culturally assign the label of gentle giant to bas
+    6 [met] Buddhist statue, no whale relevance
+    6 [met] Egyptian relief, no whale relevance
+    6 [europeana] AIDS awareness poster, unrelated
+    6 [met] Islamic helmet artifact, unrelated
+    6 [artic] Dark figurative print, unrelated
+    6 [artic] London transport poster, unrelated
+    6 [artic] Text overlay portrait, unrelated
+    6 [europeana] Handwritten Arabic letter, unrelated
+
+=== BEAT: They're actual predators, and not just that, but apex predators.
+    6 [artic] Jewelry/rings, no predator content
+    6 [artic] Abstract colorful artwork, no predators
+    6 [artic] Panoramic landscape scan, no predators
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: We assume that because they're big, they must be passive filter feeder
+    6 [artic] Abstract art photo, no marine life
+    6 [artic] Abstract sculpture, unrelated to narration
+    6 [artic] Figurative painting, no ocean animals
+    6 [met] Ancient marble sculpture, irrelevant
+    6 [met] Museum corridor, Egyptian reliefs, irrelevant
+    6 [met] Medieval religious painting, irrelevant
+    6 [europeana] Decorative tile pattern, irrelevant
+    6 [europeana] Museum artifact fragments, irrelevant
+
+=== BEAT: They actually have teeth, meaning they actually have to do the work an
+   12 [smithsonian] Native warriors but not teeth/hunting
+    6 [europeana] Tiger-stripe robe, unrelated to hunting teeth
+    6 [artic] Abstract egg and bones painting, irrelevant
+    6 [met] Japanese woodblock print, unrelated
+    6 [met] Baroque mythology painting, unrelated
+    6 [met] Egyptian temple museum display, unrelated
+    6 [artic] Abstract panoramic scan, unreadable
+    6 [artic] Abstract cubist painting, unrelated
+
+=== BEAT: So, if they have the instincts of a killer, and well, more than the ca
+   16 [artic] 19th century cartoon, no killer animal
+   12 [artic] abstract illustration, irrelevant subject matter
+   10 [openverse/flickr] portrait of woman, no killer animal
+    9 [europeana] religious study scene, no relevance
+    7 [europeana] Swedish labor protest, no relevance
+    6 [europeana] text-only graphic, completely irrelevant
+    6 [artic] ancient urn, utterly irrelevant
+    2 [internet-archive] astrology video thumbnail, irrelevant
+
+=== BEAT: Well, we actually have a very clear answer to that.
+   46 [europeana] Authoritative male portrait suggests expert speaker
+   42 [europeana] Couple portrait suggests personal clarity/answer moment
+   36 [europeana] 1920s social gathering, loosely conversational setting
+   35 [internet-archive] Elder figure gesturing, could suggest explanation
+   30 [internet-archive] Man working industrially, generic process footage
+   22 [artic] Bronze life mask sculpture, no clear answer context
+   16 [artic] 19th-century battle engraving unrelated to narration
+   14 [met] Renaissance Last Judgment painting, unrelated
+
+=== BEAT: During the 1800s, the whaling industry was at its absolute peak.
+    9 [europeana] Horse racing scene, unrelated to whaling
+    9 [europeana] Military collage, unrelated to whaling
+    9 [europeana] Military officers portrait, not whaling
+    9 [artic] Japanese woodblock print, unrelated subject
+    9 [artic] Japanese domestic scene print, irrelevant
+    9 [artic] Japanese street scene print, irrelevant
+    5 [internet-archive] Man with map, unrelated to whaling
+    3 [internet-archive] Text card from film, wrong subject
+
+=== BEAT: And usually, the whales would just try to swim away.
+   16 [artic] Ceramic bowl with fish motifs, not whales
+   14 [artic] Pottery bowl with single fish, not whale
+    6 [artic] Old Master drawing, no whales present
+    6 [met] Biblical crowd scene, no whales
+    6 [met] Ornate antique firearm, irrelevant
+    6 [met] Medieval armor display, no whales
+    6 [europeana] Historical garment fragments, irrelevant
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Humans were sailing out into the middle of the ocean in wooden ships, 
+   76 [smithsonian] scrimshaw whale tooth, whaling era artifact
+   59 [artic] rowboat and sailing vessel, wrong context
+   34 [artic] calm inland waterway, not ocean whaling
+   24 [artic] Japanese wave print, no whaling content
+    5 [openverse/flickr] bronze statue bust, completely irrelevant
+    5 [internet-archive] destroyed buildings, wrong subject entirely
+    2 [internet-archive] abstract graphic lines, totally irrelevant
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Because for a couple of hundred years, humans made them very, very mad
+   34 [artic] Period couple sketch, vaguely historical era
+   26 [artic] Architectural sketch, no clear anger/conflict theme
+    9 [artic] Colorful modern pop-art print, irrelevant
+    9 [europeana] Modern family photo, no historical context
+    9 [europeana] AIDS awareness poster, wrong subject entirely
+    9 [europeana] Knitted gloves museum object, irrelevant
+    8 [internet-archive] Film credits text, not relevant imagery
+    8 [internet-archive] Film credits text, not relevant imagery
+
+=== BEAT: But sometimes, they fought back.
+   66 [artic] dark artwork depicting two figures struggling
+   42 [internet-archive] tense dramatic face, possible resistance scene
+   26 [europeana] beaded bag artifact, no conflict depicted
+   24 [artic] figures by boat, no fighting depicted
+   24 [artic] dark figures by shore, no combat
+   22 [europeana] mythological figures, no clear fighting back
+   14 [met] peasants harvesting, peaceful rural scene
+    9 [met] religious triptych painting, no conflict
+
+=== BEAT: The most famous example of this happened in 1820 with a whale ship cal
+    6 [europeana] Corroded coin, no relevance to Essex
+    6 [europeana] WWI-era military officers, wrong period
+    6 [artic] Spanish broadsheet illustration, unrelated
+    6 [met] Medieval bishop sculpture, no connection
+    6 [met] Renaissance Annunciation painting, unrelated
+    6 [europeana] Children eating scene painting, unrelated
+    6 [met] Decorative wooden chair, no relevance
+    6 [artic] Text artwork on yellow, unrelated
+
+=== BEAT: The crew of the Essex had just harpooned a smaller whale, when suddenl
+   42 [artic] Period maritime scene but wrong event
+    6 [smithsonian] BHL logo placeholder, no content
+    6 [europeana] Modern sailors eating, wrong context
+    6 [europeana] Men dining indoors, irrelevant
+    6 [europeana] Duplicate dining scene, irrelevant
+    6 [artic] Men walking railroad tracks, irrelevant
+    6 [artic] Prison or military building, irrelevant
+    2 [nasa] NASA astronaut briefing, wrong subject
+
+=== BEAT: It looked at the ship and went, "Yeah, no, my turn." Turned its gigant
+    6 [europeana] Indoor meeting scene, no whale or ship
+    6 [artic] Portrait painting of girl, irrelevant
+    6 [artic] Surrealist illustration, no whale or ship
+    6 [artic] Valentine cartoon sketch, completely irrelevant
+    6 [europeana] Two women outdoors, no whale or ship
+    6 [europeana] Rural building photo, completely irrelevant
+    2 [nasa] NASA official speaking, no whale or ship
+    2 [nasa] Aerial landscape view, no whale or ship
+
+=== BEAT: It slammed its massive head directly into the side of the hull.
+    6 [smithsonian] Faint landscape sketch, no hull impact
+    6 [met] Egyptian temple ruins, unrelated
+    6 [artic] Military parade, no ship or creature
+    6 [artic] Crowd ceremony, no hull or beast
+    6 [met] 17th-century family portrait, unrelated
+    6 [artic] Elderly woman portrait, unrelated
+    2 [nasa] Space nebula, no ship or creature
+    2 [nasa] Bubble Nebula, no hull or impact
+
+=== BEAT: But, the whale wasn't done.
+   26 [artic] old master drawing, no whale visible
+   22 [artic] ceramic bowl with fish motifs, not whale
+   22 [artic] ceramic bowl with fish, not whale
+   10 [internet-archive] title card with baked-in text only
+    9 [smithsonian] blank text document, unusable
+    8 [internet-archive] airplane takeoff, completely wrong subject
+    5 [internet-archive] men at desk, no whale content
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: The impact was so violent that it knocked the sailors off their feet, 
+   32 [artic] Workers inside curved hull structure
+    9 [europeana] WWI era magazine illustration; no ship
+    6 [europeana] Antique guitar instrument; irrelevant
+    6 [artic] Goya donkey etching; irrelevant
+    6 [met] Religious crucifixion painting; irrelevant
+    6 [artic] Victorian women portrait photo; irrelevant
+    6 [europeana] Children drinking in cinema; irrelevant
+    3 [internet-archive] Martial arts outdoors; no ship
+
+=== BEAT: The Essex began taking on water instantly, and the ship was completely
+    9 [wikimedia] Portrait of a man, no ship
+    8 [artic] Landscape painting, no maritime scene
+    8 [europeana] Small artifact with scale bar, irrelevant
+    7 [met] Harvest scene, completely irrelevant
+    7 [met] Religious annunciation painting, irrelevant
+    7 [met] Medieval nativity scene, irrelevant
+    7 [artic] Degas dancer sketch, irrelevant
+    7 [artic] Toulouse-Lautrec print, no ship
+
+=== BEAT: The whale recognized the ship as a threat, and just took it out.
+   12 [artic] Ceramic bowl with fish motifs only
+   10 [artic] Fish on pottery, no whale or ship
+    6 [artic] Old master sketch, no whale or ship
+    5 [europeana] Antique textile hat, completely irrelevant
+    5 [europeana] Old knitted hat, no relevance
+    5 [europeana] Striped hat artifact, no relevance
+    5 [met] Ivory figurine, no whale or ship
+    5 [met] Ornate silver cup, no relevance
+
+=== BEAT: This was an intentional strike.
+   55 [nasa] official podium announcement could relate to strike declaration
+   45 [nasa] NASA briefing with satellite dish suggests space strike announcement
+   40 [nasa] early aircraft loosely suggests aerial strike context
+   38 [nasa] Wright Flyer historical aviation loosely relevant
+   34 [europeana] ancient artifact unrelated to intentional strike
+   29 [europeana] flint blades loosely tool-related but irrelevant
+   22 [nasa] official podium speech loosely relevant
+   20 [nasa] award ceremony unrelated to intentional strike
+
+=== BEAT: So, we have absolute proof that a sperm whale can look at a human ship
+    6 [met] Renaissance portrait, no whale or ship
+    6 [met] Renaissance portrait woman, irrelevant
+    6 [artic] Napoleonic soldiers engraving, irrelevant
+    6 [artic] Victorian photograph of women, irrelevant
+    6 [artic] woodcut print catalogue page, irrelevant
+    6 [europeana] Motorola flip phone, completely irrelevant
+    6 [europeana] Motorola flip phone, completely irrelevant
+    4 [internet-archive] dark blurry footage, nothing discernible
+
+=== BEAT: When the whale destroyed the Essex, the ship sank, leaving the survivi
+   22 [internet-archive] Cast list mentions whale but wrong format
+    9 [artic] Old master drawing, no maritime relevance
+    8 [artic] Decorative pottery, unrelated to Essex
+    8 [artic] Ceramic bowl with fish, irrelevant
+    7 [met] Ivory figurine, completely unrelated
+    7 [met] Renaissance Annunciation painting, irrelevant
+    4 [internet-archive] Aerial city parade footage, irrelevant
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: But, there's one specific detail about the Essex sinking that makes th
+   22 [internet-archive] man pointing at map, nautical possible
+   16 [met] 18th century portrait painting, unrelated
+   12 [artic] French sketch with text overlays, unrelated
+   12 [artic] dramatic portrait child, unrelated
+   10 [internet-archive] man at desk, wrong era context
+    9 [met] decorative pagoda furniture, unrelated
+    9 [artic] modern chair design, completely unrelated
+    9 [europeana] archaeological bone fragment, unrelated
+
+=== BEAT: They were panicked, thrashing around, and completely defenseless.
+   32 [artic] chaotic crowd scene, some motion visible
+    9 [artic] abstract face, no action or distress
+    8 [smithsonian] small damaged portrait, wrong subject
+    8 [artic] calm portrait print, no panic depicted
+    7 [met] calm Renaissance portrait, no panic
+    7 [met] serene Renaissance portrait, irrelevant
+    6 [smithsonian] text list page, no imagery
+
+=== BEAT: They were sitting in fragile rowboats or just straight up floating in 
+   34 [artic] Figures near water on dock, close
+   29 [europeana] Large military vessel, not fragile rowboats
+    9 [europeana] People on beach sand, no water
+    9 [wikimedia] Elephant in river, wrong subject
+    9 [met] Harvest scene painting, no boats
+    6 [europeana] Artillery gun, completely irrelevant
+    6 [wikimedia] Market vendor, no water context
+    6 [wikimedia] Elderly man on bench, irrelevant
+
+=== BEAT: The whale was right there.
+   76 [europeana] Dutch painting shows beached whale ashore
+   69 [europeana] close-up of whale carcass flesh visible
+   26 [artic] ceramic bowl with fish-like animals depicted
+   24 [artic] ceramic bowl with single fish decoration
+    6 [artic] old master drawing, human figures only
+    5 [nasa] aerial coastal view, no whale
+    4 [europeana] stone fragments, completely irrelevant
+    2 [internet-archive] dark outdoor scene, no whale visible
+
+=== BEAT: It was highly agitated and sitting in the water surrounded by a bunch 
+   16 [artic] Ceramic pot; no water or humans
+    9 [artic] Abstract print; no creature or humans visible
+    7 [artic] Text page; completely irrelevant content
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: But, the whale just left.
+   38 [internet-archive] Ocean map view, loosely nautical context
+   34 [europeana] Empty boats at dock, no whale
+   26 [artic] Ceramic bowl with fish motifs only
+   12 [europeana] Small carved pendants, no whale
+    9 [artic] Old master drawing, no whale
+    7 [artic] Renaissance etching of fighting figures
+    6 [europeana] Protest crowd with signs, irrelevant
+    5 [internet-archive] Aerial city parade footage, irrelevant
+
+=== BEAT: It had just successfully defeated its enemy.
+   56 [artic] Engraving of figures wrestling/fighting loosely relevant
+   42 [europeana] Stored military vehicles, post-war vague connection
+   40 [internet-archive] Iraq map suggests military conflict context
+   22 [nasa] Space shuttle landing, no defeat narrative
+   20 [nasa] Shuttle landing unrelated to defeating enemy
+   15 [nasa] Mission control staff smiling, too generic
+   12 [artic] Portrait engraving of older man, irrelevant
+   10 [nasa] Worker in hazmat suit, no battle context
+
+=== BEAT: If this was a shark or a bear or a tiger, this is the part where the h
+    6 [europeana] People sitting indoors, no predator context
+    6 [europeana] Indoor event speech, no animal threat
+    6 [europeana] Award ceremony, zero predator relevance
+    6 [artic] Portrait painting of artist, irrelevant
+    6 [artic] Historical engraving portrait, no predator
+    6 [artic] Landscape etching, no predator content
+    5 [nasa] Baseball crowd, humans present but no predator
+    5 [nasa] Humans gathered around arena, minor tension
+
+=== BEAT: Could a sperm whale even physically do it?
+   76 [artic] Historic engraving of beached sperm whale
+   42 [artic] Beach scene, whale barely discernible
+   16 [wikimedia] Abstract diagram, no sperm whale visible
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: And for baleen whales, this is actually 100% true.
+   92 [wikimedia] Close-up of actual baleen plates directly
+   76 [wikimedia] Humpback breaching, clear baleen whale
+   66 [wikimedia] Real baleen whale surfacing, usable context
+   34 [europeana] Illustrated diagram with prominent baked-in text
+   -1 [openverse/wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Why?
+   92 [artic] Goya Disasters of War print titled 'Por qué?' (Why?)
+   76 [artic] Gauguin's 'No No' or questioning Tahitian scene
+   24 [artic] chaotic text collage unrelated to narration
+   22 [europeana] cartoon cityscape illustration unrelated to why
+   19 [europeana] German protest songbook cover with baked-in text
+   14 [europeana] damaged textile fragment barely legible
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: If a blue whale accidentally scooped you up in its mouth, it physicall
+   66 [wikimedia] Real blue whale aerial shot, no mouth visible
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [wikimedia] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: But once again, sperm whales are built completely differently.
+   86 [wikimedia] Sperm whale skeleton showing unique anatomy
+    6 [met] Unrelated human figures illustration
+    6 [met] Church interior painting, irrelevant
+    6 [artic] Soviet propaganda poster, irrelevant
+    6 [artic] Landscape tapestry, completely irrelevant
+    6 [artic] Cavalry battle scene, irrelevant
+    2 [internet-archive] Blurry outdoor vegetation, irrelevant
+    2 [internet-archive] Blurry cactus video frame, irrelevant
+
+=== BEAT: There's a very common myth that whales can't eat humans because their 
+    6 [europeana] Group portrait, no whale relevance
+    6 [wikimedia] Microscope slide, no whale relevance
+    6 [wikimedia] Microscopic bristles, no whale relevance
+    6 [artic] Polaroid collage artwork, no whale relevance
+    6 [met] Medieval figurine sculpture, no whale relevance
+    6 [met] Renaissance religious painting, no whale relevance
+    6 [met] Decorative quilt, no whale relevance
+    6 [artic] Park scene painting, no whale relevance
+
+=== BEAT: You'd just get stuck, and the whale would have to spit you out, which 
+   12 [internet-archive] Cartoon animals, no whale or swallowing depicted
+   12 [artic] Dark etching of figure, no whale connection
+    8 [artic] Renaissance figures engraving, no whale
+    7 [met] Egyptian papyrus scroll, unrelated content
+    7 [met] Degas painting of women, unrelated
+    7 [europeana] Religious painting with watermark, unrelated
+    6 [artic] Bronze equestrian statue, no whale relevance
+    6 [europeana] School classroom photo, entirely unrelated
+
+=== BEAT: Their esophagus is incredibly wide, and their jaws can open to an almo
+    6 [artic] Abstract artwork, no animal anatomy shown
+    6 [met] Egyptian papyrus scroll, unrelated subject
+    6 [met] Medieval enamel reliquary box, unrelated
+    6 [met] Renaissance religious painting, unrelated
+    6 [artic] Comic strip illustration, unrelated subject
+    6 [artic] Comic strip artwork, no animal anatomy
+
+=== BEAT: Even though a blue whale is the largest animal to ever exist on planet
+    9 [europeana] Blue beads with ruler, vaguely size-comparison adjacent
+    6 [met] Renaissance religious painting, no whale content
+    6 [met] Flemish portrait diptych, unrelated to whales
+    6 [met] Renaissance hunt scene, no whale relevance
+    6 [artic] Cubist abstract painting, no whale relevance
+    6 [artic] Abstract driftwood painting, no whale content
+    6 [artic] Watercolor portrait, no whale relevance
+    6 [europeana] Expressionist figure painting, no whale content
+
+=== BEAT: If a sperm whale swam up to you and opened its mouth, you could comfor
+   86 [wikimedia] sperm whale adult with calf, throat size implied
+   82 [wikimedia] real sperm whales underwater, good scale context
+   76 [artic] historic engraving beached sperm whale with humans
+   55 [openverse/flickr] whale jaw teeth show mouth anatomy loosely
+   49 [wikimedia] whale skeleton shows scale but wrong species
+   24 [artic] beach scene, whale barely visible, unusable
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: They're literally designed to swallow 40-foot giant squids.
+    6 [met] carved cross, no squid or whale
+    6 [met] Flemish portrait diptych, completely unrelated
+    6 [met] Islamic decorative medallion, no marine life
+    6 [artic] abstract colorful painting, no squid
+    6 [artic] bare tree branches sketch, unrelated
+    6 [artic] marbled paper pattern, no marine subject
+    2 [internet-archive] Trump speech footage, no relevance
+    2 [internet-archive] talking head interview, no relevance
+
+=== BEAT: There's absolutely nothing physically stopping a sperm whale from swal
+    6 [artic] Abstract art, no whale or ocean
+    6 [met] Dark forest painting, irrelevant
+    6 [artic] Western scene, no whale content
+    6 [met] Egyptian stele, completely unrelated
+    6 [met] Portrait of woman, irrelevant
+    6 [artic] Portrait engraving, no whale
+    2 [internet-archive] WWII title card, unrelated
+    2 [internet-archive] Close-up face, no whale content
+
+=== BEAT: So, if the anatomy isn't stopping them, what is?
+   76 [wikimedia] Anatomy lesson painting reinforces anatomy theme
+   69 [wikimedia] Detailed anatomy diagram supports anatomy-isn't-stopping narration
+   49 [wikimedia] Eye anatomy illustration loosely relevant only
+   19 [artic] Abstract art sculpture unrelated to narration
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: When you look at a piece of food, you use your eyes.
+   22 [nasa] Cereal box food but baked-in text dominates
+   18 [internet-archive] Hands near jar, no clear food viewing
+   16 [europeana] Workshop scene, no food or eyes
+   16 [europeana] Workshop scene, no food or eyes
+   16 [europeana] Workshop scene, no food or eyes
+   14 [artic] Abstract print, no food or eyes
+   12 [artic] 19th-century illustration, unrelated scene
+   12 [artic] Street scene illustration, unrelated
+
+=== BEAT: You see the color, the shape, and the size.
+   86 [artic] cubist painting rich in color shape size
+   59 [artic] detailed print shows shapes and warm tones
+   44 [artic] architectural sketch shows shape and form
+   30 [internet-archive] two figures by water, minimal visual interest
+   26 [europeana] WWI caricature with baked-in text overlay
+   16 [europeana] dark unclear fragment with museum watermark
+   15 [internet-archive] distant aerial view, no clear subject matter
+   15 [internet-archive] dark grainy faces, unclear and unusable
+
+=== BEAT: And your brain tells you, "Yes, that's a sandwich." But sperm whales h
+    9 [artic] abstract art, no whale or brain
+    8 [artic] 19th-century genre scene, no relevance
+    7 [artic] text-overlay artwork, wrong subject entirely
+    6 [europeana] handwritten letter with watermark overlay
+    4 [internet-archive] industrial machinery, completely unrelated
+    4 [internet-archive] video call screenshot, no relevance
+    3 [internet-archive] newspaper headline, wrong subject matter
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: There's absolutely zero sunlight down there.
+   16 [artic] Bright foggy bridge painting, not darkness
+   12 [smithsonian] Hot air balloon basket, unrelated
+   10 [artic] Colorful grid pattern, no darkness depicted
+    9 [artic] Sun-drenched interior, opposite of narration
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: Having good eyesight in the midnight zone is completely useless, becau
+   16 [artic] clouds and light, not deep ocean darkness
+    9 [artic] Egyptian mummy mask, completely unrelated
+    9 [artic] illustrated still life, completely unrelated
+    9 [europeana] Victorian family portrait, completely unrelated
+    8 [internet-archive] man in boat, unrelated to midnight zone
+    8 [internet-archive] person talking, unrelated to midnight zone
+    5 [internet-archive] church choir, unrelated to ocean darkness
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: It's completely dark.
+   72 [internet-archive] very dark, murky, near-black footage
+   46 [artic] dark night sky but not completely dark
+   38 [internet-archive] dim indoor scene, watermark present
+   32 [europeana] catalogue plate with labels and borders
+   24 [europeana] catalogue artefact with ruler overlay
+   24 [europeana] catalogue image with ruler, irrelevant
+    9 [artic] colorful portrait, unrelated to darkness
+    5 [nasa] bright daylight scene, irrelevant
+
+=== BEAT: A sperm whale's blocky head is filled with a substance called spermice
+   76 [artic] Historic engraving of beached sperm whale
+   24 [artic] Beach scene, no whale visible
+    9 [artic] Ceramic vessel, unrelated to whales
+    6 [smithsonian] BHL logo watermark, no subject visible
+   -1 [openverse/flickr] (not inspected)
+
+=== BEAT: So to hunt down there, sperm whales rely entirely on sound.
+    6 [artic] French estate engraving, no whale relevance
+    6 [artic] Chinese landscape painting, unrelated
+    6 [artic] Ancient ceramic vessel, no whale connection
+    6 [europeana] Horse riders, completely unrelated
+    6 [europeana] Wooden carving sculpture, not whales
+    6 [europeana] Carved container artifact, unrelated
+    2 [internet-archive] CGI children's cartoon show
+    2 [internet-archive] CGI animated jet plane cartoon
+
+=== BEAT: Every day, these whales dive thousands of meters into the pitch black 
+   78 [pexels] Clear sperm whale underwater, no squid
+   72 [pixabay] Sperm whale fluke diving, classic shot
+   68 [pixabay] Sperm whale dorsal surface at surface
+   65 [pexels] Sperm whale with diver, shallow water
+   55 [pexels] Whale diving down, human present
+   45 [pexels] Small squid not giant squid species
+   40 [pixabay] Likely fin whale not sperm whale
+
+=== BEAT: The cheetah waits motionless in the tall grass, then it explodes into 
+   92 [pixabay] cheetah sprinting at full speed savanna
+   90 [pixabay] cheetah full sprint dry savanna habitat
+   88 [unsplash] cheetah sprinting toward camera in tall grass
+   87 [pexels] cheetah waiting alert in tall grass
+   85 [pexels] cheetah stalking motionless in tall grass
+   82 [pexels] cheetah running through tall grass wild
+   78 [pexels] cheetah running across dry savanna ground
+   75 [pexels] cheetah mid-stride across open dry grassland
+
+=== BEAT: These are the deadliest predators ever.
+   88 [pexels] Close-up sperm whale head underwater, clear
+   72 [pexels] Sperm whale with diver, predator scale shown
+   70 [pexels] Aerial sperm whale at ocean surface
+   62 [pixabay] Sperm whale fluke diving, recognizable species
+   58 [pixabay] Sperm whale fluke surfacing, small low-res
+   45 [pixabay] Whale blowing at surface, species unclear
+   40 [pexels] Diver underwater, whale barely visible background
+   38 [pexels] Diver dominates frame, whale distant background
+
+=== BEAT: These are sperm whales, the largest predators on the entire planet.
+   88 [pexels] clear sperm whale head underwater closeup
+   85 [unsplash] full sperm whale body with diver scale
+   82 [pexels] sperm whale fluking, open ocean setting
+   78 [pixabay] sperm whale fluke diving, clean shot
+   72 [pexels] sperm whale underwater with diver, portrait
+   65 [pixabay] sperm whale fluke, small dark frame
+   55 [pixabay] whale blowing at surface, species unclear
+   30 [pexels] diver-focused, whale barely visible
+
+=== BEAT: These whales were bred to kill sea monsters.
+   88 [pexels] close-up sperm whale underwater clear shot
+   82 [pexels] sperm whale fluke clear open ocean
+   75 [pixabay] sperm whale fluke diving characteristic shape
+   72 [pexels] sperm whale underwater with diver present
+   70 [pixabay] sperm whale tail surface but tiny
+   55 [pixabay] whale spouting but species unclear small
+   45 [pexels] diver dominates frame whale barely visible
+   40 [smithsonian] scrimshaw tooth artifact not live whale
+
+=== BEAT: And you, my unfortunate friend, just landed right next to an adult bul
+   92 [pexels] diver next to large sperm whale underwater
+   90 [unsplash] freediver beside large sperm whale underwater
+   88 [pexels] diver alongside sperm whale underwater perfectly
+   78 [pexels] close-up sperm whale head underwater, no human
+   62 [pixabay] sperm whale fluke diving, classic identification shot
+   60 [pixabay] sperm whale at surface, tail visible, real footage
+   45 [pexels] diver entering water, whale barely visible
+   40 [pixabay] whale at surface, species unclear, tiny frame
+
+=== BEAT: Nearby, a pack of gray wolves moves silently through the snow.
+   88 [pexels] multiple gray wolves in snowy forest
+   85 [pexels] wolves moving through snowy winter scene
+   75 [pexels] gray wolf walking through snow alone
+   72 [pexels] pack of wolves interacting in snow
+   70 [pexels] two wolves in snow good pack hint
+   65 [pexels] single gray wolf walking in snow
+   65 [unsplash] wolves in heavy snowstorm dynamic scene
+   62 [unsplash] gray wolf in snowy setting alone
+
+=== BEAT: These whales were bred to kill sea monsters.
+   70 [pixabay] sperm whale fluke diving, open ocean
+   70 [pixabay] sperm whale fluke clearly diving
+   68 [pixabay] whale fluke with dramatic coastal backdrop
+   62 [pixabay] whale fluke visible, species unclear
+   55 [pixabay] whale body visible but no clear fluke
+   45 [pixabay] scrimshaw tooth evokes sperm whale history
+   20 [artic] Japanese woodblock illustration, not real footage
+
+=== BEAT: These are the deadliest predators ever.
+   70 [pixabay] sperm whale fluke shape clearly identifiable
+   68 [pixabay] whale fluke diving, likely sperm whale
+   65 [pixabay] whale back/fluke at surface, plausible sperm whale
+   62 [pixabay] whale fluke visible but species uncertain
+   55 [pexels] diver near large whale underwater, passive encounter
+   10 [artic] Japanese woodblock print illustration not reality
+
+=== BEAT: Nearby, a pack of gray wolves moves silently through the snow.
+   65 [pixabay] Close gray wolf portrait, correct species
+   62 [pixabay] Two gray wolves close-up, winter background
+   60 [pixabay] Gray wolf pack together, no snow
+   58 [pixabay] Wolf pack resting, no snow, wrong behavior
+   55 [pixabay] Two gray wolves, summer greenery not snow
+   52 [pixabay] Gray wolf resting, autumn setting no snow
+   30 [pixabay] Gray wolves but visible enclosure fencing
+   28 [pexels] White wolf but no snow, captive setting
+
+=== BEAT: The cheetah waits motionless in the tall grass, then it explodes into 
+   95 [pixabay] cheetah sprinting at full speed wild
+   90 [unsplash] cheetah charging through tall grass directly
+   88 [pexels] cheetah running through tall grass wild
+   85 [pexels] cheetah mid-sprint across dry savanna
+   82 [pexels] cheetah waiting alert in tall grass
+   80 [pexels] cheetah stalking low through tall dry grass
+   78 [pexels] cheetah stalking at golden sunset savanna
+   78 [pexels] cheetah stalking through dry golden grass
+
+=== BEAT: These are the deadliest predators ever.
+   82 [pexels] Clear sperm whale head underwater, wild
+   78 [pexels] Sperm whale fluke clear open ocean
+   75 [pixabay] Sperm whale fluke diving, identifiable species
+   72 [pexels] Sperm whale with diver, predator scale shown
+   65 [pixabay] Whale fluke surfacing, likely sperm whale
+   62 [pixabay] Sperm whale dorsal at surface, usable
+   60 [pixabay] Sperm whale blowing at surface, wild
+   58 [pixabay] Dark whale fluke, low contrast image
+
+=== BEAT: Nearby, a pack of gray wolves moves silently through the snow.
+   83 [pexels] two wolves in snowy winter forest
+   82 [pexels] gray wolf standing in deep snow
+   80 [pexels] two gray wolves moving in snow
+   78 [pexels] gray wolf in snowy winter landscape
+   76 [pexels] multiple wolves in snow scene
+   75 [pexels] gray wolf walking through snow
+   72 [pixabay] white wolf pack in snowy forest
+   58 [pexels] pack of three gray wolves standing alert
+
+=== BEAT: The cheetah waits motionless in the tall grass, then it explodes into 
+   92 [pixabay] cheetah sprinting at full speed savanna
+   88 [unsplash] cheetah charging through tall green grass
+   85 [pexels] cheetah running through tall grass
+   82 [pexels] cheetah mid-stride across open savanna
+   78 [pexels] cheetah stalking at golden sunrise savanna
+   76 [pexels] cheetah stalking intently through tall grass
+   75 [pexels] cheetah stalking low through tall grass
+   72 [pexels] cheetah walking open savanna portrait
+
+=== BEAT: These whales were bred to kill sea monsters.
+   88 [pexels] Clear sperm whale head underwater close-up
+   85 [pexels] Classic sperm whale fluke dramatic ocean shot
+   78 [pexels] Sperm whale underwater with diver scale
+   72 [pixabay] Sperm whale fluke diving at surface
+   72 [pixabay] Distinctive sperm whale tail flukes diving
+   70 [pixabay] Sperm whale body at surface diving
+   65 [pixabay] Whale fluke at surface, likely sperm
+   60 [pixabay] Whale fluke partially visible, species uncertain
+
+=== BEAT: And you, my unfortunate friend, just landed right next to an adult bul
+   92 [pexels] diver alongside massive sperm whale underwater
+   80 [pexels] swimmer with sperm whale visible behind
+   78 [pixabay] person on board next to large whale
+   72 [pexels] close-up sperm whale head underwater, no human
+   40 [pexels] aerial whale barely visible, no human
+   30 [pexels] likely orca not sperm whale, wrong species
+
+=== BEAT: Nearby, a pack of gray wolves moves silently through the snow.
+   85 [pexels] two wolves active in snowy winter forest
+   85 [pexels] gray wolf walking through snow perfectly
+   82 [pexels] gray wolf standing in deep snow
+   80 [pexels] two wolves moving in snow setting
+   78 [pexels] wolf moving through snow, winter scene
+   78 [pexels] multiple wolves in snow landscape
+   75 [pexels] single gray wolf standing in snow
+   72 [pexels] single wolf in snowy winter setting
+
+=== BEAT: The cheetah waits motionless in the tall grass, then it explodes into 
+   95 [pixabay] cheetah at full sprint, motion blur
+   90 [unsplash] cheetah sprinting toward camera in grass
+   88 [pexels] cheetah running through tall grass
+   85 [pexels] cheetah mid-stride across savanna
+   82 [pexels] cheetah crouching low in tall grass
+   75 [pexels] cheetah stalking in tall grass
+   72 [pexels] cheetah stalking in tall grass
+   72 [pexels] cheetah alert in tall dry grass
