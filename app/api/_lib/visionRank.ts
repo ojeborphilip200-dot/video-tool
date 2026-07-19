@@ -59,17 +59,7 @@ export async function visionRank(
   const Anthropic = (await import("@anthropic-ai/sdk")).default;
   const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
-  const content: any[] = [
-    {
-      type: "text",
-      text: `You are a documentary picture editor choosing footage for this narration line:
-
-"${beatText}"
-
-${entities.length > 0 ? `Subjects that must be depicted: ${entities.join(", ")}` : ""}
-${era ? `Period: ${era}` : ""}
-
-I am showing you ${usable.length} candidate images (video candidates appear as their poster frame). JUDGE WHAT YOU ACTUALLY SEE - ignore what any caption might claim.
+  const rubricText = `You are a documentary picture editor choosing footage for narration lines. JUDGE WHAT YOU ACTUALLY SEE - ignore what any caption might claim.
 
 Score each 0-100:
 - 85-100: genuinely depicts this exact subject/event/period. A viewer would believe it was chosen by a professional researcher.
@@ -89,7 +79,24 @@ HARD PENALTIES (score below 30):
 COMPOSITION: prefer frames that read clearly at 16:9. A tall portrait scan is fine if the subject is right (we letterbox it) - do not reject it for shape alone.
 
 Respond ONLY with a JSON array, one entry per image, in the order shown:
-[{"i": 1, "score": 87, "reason": "six-word reason"}, ...]`,
+[{"i": 1, "score": 87, "reason": "six-word reason"}, ...]`;
+
+  const content: any[] = [
+    {
+      type: "text",
+      text: rubricText,
+      cache_control: { type: "ephemeral" },
+    },
+    {
+      type: "text",
+      text: `Now judge footage for this narration line:
+
+"${beatText}"
+
+${entities.length > 0 ? `Subjects that must be depicted: ${entities.join(", ")}` : ""}
+${era ? `Period: ${era}` : ""}
+
+I am showing you ${usable.length} candidate images (video candidates appear as their poster frame).`,
     },
   ];
 
