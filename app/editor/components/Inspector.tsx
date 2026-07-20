@@ -245,7 +245,7 @@ export default function Inspector() {
       const pick = pool[0] || videos[0] || images[0];
 
       if (!pick) {
-        alert("No fresh candidates found for this beat — try Regenerate in the Media tab for a wider search.");
+        dispatch({ type: "SET_ERROR", message: "No fresh candidates found for this beat - try Regenerate in the Media tab for a wider search." });
         setRegenerating(false);
         return;
       }
@@ -266,7 +266,7 @@ export default function Inspector() {
       });
       dispatch({ type: "SELECT", item: { type: "clip", beatIndex, clipId: pick.id } });
     } catch {
-      alert("Regeneration failed — please try again.");
+      dispatch({ type: "SET_ERROR", message: "Regeneration failed - please try again." });
     }
     setRegenerating(false);
   }

@@ -25,6 +25,7 @@ export default function MediaPanel() {
   const { state, dispatch } = useProject();
   const [preview, setPreview] = useState<{ beatIndex: number; media: MediaItem } | null>(null);
   const [beatAudioOn, setBeatAudioOn] = useState(false);
+  const [genProgress, setGenProgress] = useState<{ done: number; total: number } | null>(null);
 
   // Scroll the selected timeline clip into view inside this panel
   useEffect(() => {
@@ -58,7 +59,7 @@ export default function MediaPanel() {
       ),
     ];
 
-    dispatch({ type: "PATCH_BEAT", index, patch: { loadingMedia: true } });
+    dispatch({ type: "PATCH_BEAT", index, patch: { loadingMedia: true, mediaStatus: "idle" } });
 
     try {
       const res = await fetch("/api/footage", {
@@ -104,16 +105,53 @@ export default function MediaPanel() {
       dispatch({
         type: "PATCH_BEAT",
         index,
-        patch: { videos, images, loadingMedia: false, mediaPage: page, selectedClips },
+        patch: {
+          videos,
+          images,
+          loadingMedia: false,
+          mediaPage: page,
+          selectedClips,
+          mediaStatus: selectedClips.length > 0 ? "done" : "failed",
+        },
       });
-      if (data.error) alert("Error: " + data.error);
+      if (data.error) dispatch({ type: "SET_ERROR", message: data.error });
     } catch {
-      dispatch({ type: "PATCH_BEAT", index, patch: { loadingMedia: false } });
+      dispatch({ type: "PATCH_BEAT", index, patch: { loadingMedia: false, mediaStatus: "failed" } });
     }
   }
 
   async function findAll() {
-    await Promise.all(state.beats.map((_, i) => findMedia(i)));
+    const total = state.beats.length;
+    let done = 0;
+    setGenProgress({ done: 0, total });
+    await Promise.all(
+      state.beats.map((_, i) =>
+        findMedia(i).finally(() => {
+          done += 1;
+          setGenProgress({ done, total });
+        })
+      )
+    );
+    setGenProgress(null);
+  }
+
+  async function retryFailed() {
+    const failedIndices = state.beats
+      .map((b, i) => (b.mediaStatus === "failed" ? i : -1))
+      .filter((i) => i >= 0);
+    if (failedIndices.length === 0) return;
+    const total = failedIndices.length;
+    let done = 0;
+    setGenProgress({ done: 0, total });
+    await Promise.all(
+      failedIndices.map((i) =>
+        findMedia(i).finally(() => {
+          done += 1;
+          setGenProgress({ done, total });
+        })
+      )
+    );
+    setGenProgress(null);
   }
 
   function toggleSelect(index: number, media: MediaItem) {
@@ -337,11 +375,27 @@ export default function MediaPanel() {
         </div>
       )}
 
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px", flexWrap: "wrap", gap: "6px" }}>
         <h3 style={{ fontSize: "13px", margin: 0 }}>Media</h3>
-        <button onClick={findAll} className="btn btn-secondary" style={{ fontSize: "11px", padding: "4px 10px" }}>
-          Generate All
-        </button>
+        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+          {genProgress && (
+            <span style={{ fontSize: "10px", color: "var(--ed-text-3)" }}>
+              Generating {genProgress.done}/{genProgress.total}...
+            </span>
+          )}
+          {!genProgress && state.beats.some((b) => b.mediaStatus === "failed") && (
+            <button
+              onClick={retryFailed}
+              className="btn btn-secondary"
+              style={{ fontSize: "11px", padding: "4px 10px", color: "var(--ed-error)", borderColor: "var(--ed-error)" }}
+            >
+              Retry Failed ({state.beats.filter((b) => b.mediaStatus === "failed").length})
+            </button>
+          )}
+          <button onClick={findAll} disabled={!!genProgress} className="btn btn-secondary" style={{ fontSize: "11px", padding: "4px 10px" }}>
+            Generate All
+          </button>
+        </div>
       </div>
 
       {state.beats.map((beat, i) => {
@@ -362,8 +416,13 @@ export default function MediaPanel() {
               borderRadius: "6px",
             }}
           >
-            <div style={{ fontSize: "10px", color: "#ff8a65", fontFamily: "var(--font-mono)", marginBottom: "4px" }}>
-              B{i + 1} · {beat.duration.toFixed(1)}S · {remaining.toFixed(1)}S LEFT
+            <div style={{ fontSize: "10px", color: "var(--ed-playhead)", fontFamily: "var(--font-mono)", marginBottom: "4px", display: "flex", alignItems: "center", gap: "6px" }}>
+              <span>B{i + 1} · {beat.duration.toFixed(1)}S · {remaining.toFixed(1)}S LEFT</span>
+              {beat.loadingMedia && <span style={{ color: "var(--ed-text-3)" }}>⏳</span>}
+              {!beat.loadingMedia && beat.mediaStatus === "done" && <span style={{ color: "var(--ed-success)" }}>✓</span>}
+              {!beat.loadingMedia && beat.mediaStatus === "failed" && (
+                <span style={{ color: "var(--ed-error)", fontWeight: 600 }} title="Generation failed or found no usable footage - click Generate to retry">⚠ failed</span>
+              )}
             </div>
             <p style={{ fontSize: "11px", color: "var(--ed-text-2)", margin: "0 0 6px", lineHeight: 1.4 }}>
               {beat.text.length > 90 ? beat.text.slice(0, 90) + "..." : beat.text}

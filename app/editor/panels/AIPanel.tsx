@@ -22,7 +22,7 @@ export default function AIPanel() {
       dispatch({ type: "SET_SCRIPT", script: data.text });
       dispatch({ type: "SET_WORDS", words: data.words || [] });
     } else {
-      alert("Error: " + (data.error || "Transcription failed"));
+      dispatch({ type: "SET_ERROR", message: data.error || "Transcription failed" });
     }
   }
 

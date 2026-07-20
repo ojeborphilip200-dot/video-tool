@@ -42,6 +42,7 @@ export type Beat = {
   videos?: MediaItem[];
   images?: MediaItem[];
   loadingMedia?: boolean;
+  mediaStatus?: "idle" | "done" | "failed";
   mediaPage?: number;
   era?: string;
   providers?: string[];
@@ -96,6 +97,7 @@ export type ProjectState = {
   currentTime: number;
   playing: boolean;
   selected: SelectedTimelineItem;
+  error: string | null;
 };
 
 export const initialState: ProjectState = {
@@ -121,6 +123,7 @@ export const initialState: ProjectState = {
   currentTime: 0,
   playing: false,
   selected: null,
+  error: null,
 };
 
 export type Action =
@@ -139,7 +142,9 @@ export type Action =
   | { type: "REMOVE_TEXT_EVENT"; eventId: string }
   | { type: "HYDRATE"; state: ProjectState }
   | { type: "UNDO" }
-  | { type: "REDO" };
+  | { type: "REDO" }
+  | { type: "SET_ERROR"; message: string }
+  | { type: "CLEAR_ERROR" };
 
 function reducer(state: ProjectState, action: Action): ProjectState {
   switch (action.type) {
@@ -189,6 +194,10 @@ function reducer(state: ProjectState, action: Action): ProjectState {
     }
     case "SET_TEXT_EVENTS":
       return { ...state, textEvents: action.events };
+    case "SET_ERROR":
+      return { ...state, error: action.message };
+    case "CLEAR_ERROR":
+      return { ...state, error: null };
     case "REMOVE_TEXT_EVENT": {
       if (!state.textEvents) return state;
       const cleared =

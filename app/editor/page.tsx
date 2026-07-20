@@ -66,6 +66,13 @@ function Editor() {
   const { status, exportVideo, canExport, clearResult, cancelExport, swapToPrevious } = useExport();
   const { state, dispatch, canUndo, canRedo, saveState, newProject } = useProject();
 
+  // Auto-dismiss error toasts after 6s so they don't sit there forever
+  useEffect(() => {
+    if (!state.error) return;
+    const t = setTimeout(() => dispatch({ type: "CLEAR_ERROR" }), 6000);
+    return () => clearTimeout(t);
+  }, [state.error, dispatch]);
+
   // Selecting a clip on the timeline reveals it in the Media panel
   useEffect(() => {
     if (state.selected?.type === "clip") setNav("media");
@@ -114,6 +121,39 @@ function Editor() {
         color: "var(--ed-text-1)",
       }}
     >
+      {state.error && (
+        <div
+          style={{
+            position: "fixed",
+            bottom: "20px",
+            left: "50%",
+            transform: "translateX(-50%)",
+            zIndex: 9999,
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            padding: "10px 14px",
+            borderRadius: "10px",
+            background: "var(--ed-bg-2)",
+            border: "1px solid var(--ed-error)",
+            color: "var(--ed-text-1)",
+            fontSize: "12px",
+            maxWidth: "480px",
+            boxShadow: "0 8px 24px rgba(0,0,0,0.35)",
+          }}
+        >
+          <span style={{ color: "var(--ed-error)", fontWeight: 600 }}>⚠</span>
+          <span style={{ flex: 1 }}>{state.error}</span>
+          <button
+            onClick={() => dispatch({ type: "CLEAR_ERROR" })}
+            className="btn btn-secondary"
+            style={{ fontSize: "11px", padding: "3px 9px" }}
+          >
+            Dismiss
+          </button>
+        </div>
+      )}
+
       {/* Top bar */}
       <div
         style={{
