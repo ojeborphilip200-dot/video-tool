@@ -461,6 +461,12 @@ export async function POST(req: NextRequest) {
       `DEBUG - sourcing: ${queryList.length} queries -> ${videos.length} videos, ${images.length} images before ranking`
     );
 
+    // Tracks the final vision-confidence score across ranking + any
+    // reformulation attempt, sent back to the client so it can decide whether
+    // to auto-select this pick or flag the beat instead of silently using a
+    // poor/mismatched match. -1 means no vision signal was available at all.
+    let finalScore = -1;
+
     // VISION-FIRST RANKING: captions are the worst signal in this pipeline
     // (stock libraries keyword-spam, archives write catalog-speak), so the
     // engine now JUDGES WHAT IT SEES. Metadata ranking is only a cheap pre-sort
@@ -533,6 +539,7 @@ export async function POST(req: NextRequest) {
         images = ordered.filter((m) => m.kind === "image");
 
         const best = scored[0]?.s ?? -1;
+        finalScore = best;
         if (best < 55) {
           console.log(`DEBUG - WEAK BEAT (best ${best}) - reformulating queries and re-searching`);
           try {
@@ -592,6 +599,7 @@ export async function POST(req: NextRequest) {
                 const ordered2 = usable2.length >= 3 ? usable2 : scored2.map(({ m }) => m);
                 videos = ordered2.filter((m) => m.kind === "video");
                 images = ordered2.filter((m) => m.kind === "image");
+                finalScore = best2;
                 console.log(`DEBUG - reformulation WON (${best2} > ${best}), using new pool`);
               }
             }
@@ -609,7 +617,7 @@ export async function POST(req: NextRequest) {
     videos = videos.slice(0, 4);
     images = images.slice(0, 4);
 
-    return NextResponse.json({ videos, images });
+    return NextResponse.json({ videos, images, bestScore: finalScore });
   } catch (err: any) {
     console.error(err);
     return NextResponse.json({ error: err.message }, { status: 500 });

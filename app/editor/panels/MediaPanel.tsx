@@ -26,6 +26,7 @@ export default function MediaPanel() {
   const [preview, setPreview] = useState<{ beatIndex: number; media: MediaItem } | null>(null);
   const [beatAudioOn, setBeatAudioOn] = useState(false);
   const [genProgress, setGenProgress] = useState<{ done: number; total: number } | null>(null);
+  const [selectedForRegen, setSelectedForRegen] = useState<Set<number>>(new Set());
 
   // Scroll the selected timeline clip into view inside this panel
   useEffect(() => {
@@ -82,6 +83,13 @@ export default function MediaPanel() {
       const data = await res.json();
       const videos: MediaItem[] = data.videos || [];
       const images: MediaItem[] = data.images || [];
+      // -1 = no vision signal available (e.g. Anthropic credits/API down) -
+      // trust the pool as before. A real score below the floor means every
+      // candidate was a mediocre-or-worse match - don't silently auto-pick
+      // one; leave the beat empty so it surfaces as "failed" for review/retry.
+      const bestScore = typeof data.bestScore === "number" ? data.bestScore : -1;
+      const FOOTAGE_QUALITY_FLOOR = 50;
+      const footageQualityOk = bestScore === -1 || bestScore >= FOOTAGE_QUALITY_FLOOR;
 
       let selectedClips = regenerate ? [] : beat.selectedClips;
       if (selectedClips.length === 0) {
@@ -90,10 +98,10 @@ export default function MediaPanel() {
         if (beat.map && beat.map.score >= 85) {
           const mapMedia = makeMapMedia(beat, index);
           selectedClips = [{ media: mapMedia, trimStart: 0, trimEnd: beat.duration }];
-        } else if (state.settings.autoFill && iPool.length >= 2 && beat.duration >= 6) {
+        } else if (footageQualityOk && state.settings.autoFill && iPool.length >= 2 && beat.duration >= 6) {
           const per = beat.duration / 2;
           selectedClips = iPool.slice(0, 2).map((m) => ({ media: m, trimStart: 0, trimEnd: per }));
-        } else {
+        } else if (footageQualityOk) {
           const pick = beat.treatment === "image" ? iPool[0] || vPool[0] : vPool[0] || iPool[0];
           if (pick) {
             const trimEnd = pick.kind === "image" ? beat.duration : Math.min(pick.duration, beat.duration);
@@ -160,6 +168,52 @@ export default function MediaPanel() {
       setGenProgress({ done, total });
     }
     setGenProgress(null);
+  }
+
+  // Wipes every beat's current footage/selection and pulls a fresh set for
+  // all of them - only offered once the first full Generate All pass is done.
+  async function regenerateAll() {
+    const total = state.beats.length;
+    let done = 0;
+    setGenProgress({ done: 0, total });
+    const usedIds: string[] = [];
+    for (let i = 0; i < state.beats.length; i++) {
+      const picked = await findMedia(i, true, usedIds);
+      usedIds.push(...picked);
+      done += 1;
+      setGenProgress({ done, total });
+    }
+    setGenProgress(null);
+  }
+
+  // Regenerates ONLY the beats the user checked, seeded so it can't duplicate
+  // footage still in use on beats that weren't selected.
+  async function regenerateSelected() {
+    const indices = [...selectedForRegen].sort((a, b) => a - b);
+    if (indices.length === 0) return;
+    const total = indices.length;
+    let done = 0;
+    setGenProgress({ done: 0, total });
+    const usedIds: string[] = state.beats.flatMap((b, bi) =>
+      indices.includes(bi) ? [] : b.selectedClips.map((c) => c.media.id)
+    );
+    for (const i of indices) {
+      const picked = await findMedia(i, true, usedIds);
+      usedIds.push(...picked);
+      done += 1;
+      setGenProgress({ done, total });
+    }
+    setGenProgress(null);
+    setSelectedForRegen(new Set());
+  }
+
+  function toggleBeatSelect(index: number) {
+    setSelectedForRegen((prev) => {
+      const next = new Set(prev);
+      if (next.has(index)) next.delete(index);
+      else next.add(index);
+      return next;
+    });
   }
 
   function toggleSelect(index: number, media: MediaItem) {
@@ -428,8 +482,28 @@ export default function MediaPanel() {
               Retry Failed ({state.beats.filter((b) => b.mediaStatus === "failed").length})
             </button>
           )}
-          <button onClick={findAll} disabled={!!genProgress} className="btn btn-secondary" style={{ fontSize: "11px", padding: "4px 10px" }}>
-            Generate All
+          {!genProgress && selectedForRegen.size > 0 && (
+            <button
+              onClick={regenerateSelected}
+              className="btn btn-secondary"
+              style={{ fontSize: "11px", padding: "4px 10px" }}
+            >
+              Regenerate Selected ({selectedForRegen.size})
+            </button>
+          )}
+          <button
+            onClick={
+              state.beats.length > 0 && state.beats.every((b) => b.mediaStatus === "done" || b.mediaStatus === "failed")
+                ? regenerateAll
+                : findAll
+            }
+            disabled={!!genProgress}
+            className="btn btn-secondary"
+            style={{ fontSize: "11px", padding: "4px 10px" }}
+          >
+            {state.beats.length > 0 && state.beats.every((b) => b.mediaStatus === "done" || b.mediaStatus === "failed")
+              ? "Regenerate All"
+              : "Generate All"}
           </button>
         </div>
       </div>
@@ -453,6 +527,13 @@ export default function MediaPanel() {
             }}
           >
             <div style={{ fontSize: "10px", color: "var(--ed-playhead)", fontFamily: "var(--font-mono)", marginBottom: "4px", display: "flex", alignItems: "center", gap: "6px" }}>
+              <input
+                type="checkbox"
+                checked={selectedForRegen.has(i)}
+                onChange={() => toggleBeatSelect(i)}
+                title="Select for Regenerate Selected"
+                style={{ margin: 0, cursor: "pointer" }}
+              />
               <span>B{i + 1} · {beat.duration.toFixed(1)}S · {remaining.toFixed(1)}S LEFT</span>
               {beat.loadingMedia && <span style={{ color: "var(--ed-text-3)" }}>⏳</span>}
               {!beat.loadingMedia && beat.mediaStatus === "done" && <span style={{ color: "var(--ed-success)" }}>✓</span>}
