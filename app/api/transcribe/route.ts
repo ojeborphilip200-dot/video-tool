@@ -29,11 +29,14 @@ export async function POST(req: NextRequest) {
     groqForm.append("response_format", "verbose_json");
     groqForm.append("timestamp_granularities[]", "word");
 
+    console.log(`DEBUG - transcribe: file size ${(file.size / 1024 / 1024).toFixed(1)}MB, starting Groq upload...`);
+    const t0 = Date.now();
     const res = await fetch("https://api.groq.com/openai/v1/audio/transcriptions", {
       method: "POST",
       headers: { Authorization: `Bearer ${apiKey}` },
       body: groqForm,
     });
+    console.log(`DEBUG - transcribe: Groq responded in ${((Date.now() - t0) / 1000).toFixed(1)}s`);
 
     if (!res.ok) {
       const errText = await res.text();

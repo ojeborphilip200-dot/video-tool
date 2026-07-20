@@ -43,7 +43,7 @@ export default function MediaPanel() {
   );
   useEffect(() => () => { if (narrationUrl) URL.revokeObjectURL(narrationUrl); }, [narrationUrl]);
 
-  async function findMedia(index: number, regenerate = false, extraExclude: string[] = []) {
+  async function findMedia(index: number, regenerate = false, extraExclude: string[] = []): Promise<string[]> {
     const beat = state.beats[index];
     const page = regenerate ? (beat.mediaPage || 1) + 1 : beat.mediaPage || 1;
 
@@ -115,8 +115,10 @@ export default function MediaPanel() {
         },
       });
       if (data.error) dispatch({ type: "SET_ERROR", message: data.error });
+      return selectedClips.map((c) => c.media.id);
     } catch {
       dispatch({ type: "PATCH_BEAT", index, patch: { loadingMedia: false, mediaStatus: "failed" } });
+      return [];
     }
   }
 
@@ -124,14 +126,17 @@ export default function MediaPanel() {
     const total = state.beats.length;
     let done = 0;
     setGenProgress({ done: 0, total });
-    await Promise.all(
-      state.beats.map((_, i) =>
-        findMedia(i).finally(() => {
-          done += 1;
-          setGenProgress({ done, total });
-        })
-      )
-    );
+    // Sequential on purpose: each beat needs to know what EVERY earlier beat in
+    // this run already picked (React state hasn't settled yet mid-run), so we
+    // thread an accumulating usedIds list through instead of running in
+    // parallel - parallel was letting the same image land on two beats.
+    const usedIds: string[] = [];
+    for (let i = 0; i < state.beats.length; i++) {
+      const picked = await findMedia(i, false, usedIds);
+      usedIds.push(...picked);
+      done += 1;
+      setGenProgress({ done, total });
+    }
     setGenProgress(null);
   }
 
@@ -143,14 +148,17 @@ export default function MediaPanel() {
     const total = failedIndices.length;
     let done = 0;
     setGenProgress({ done: 0, total });
-    await Promise.all(
-      failedIndices.map((i) =>
-        findMedia(i).finally(() => {
-          done += 1;
-          setGenProgress({ done, total });
-        })
-      )
+    // Seed with everything already picked by beats NOT being retried, so a
+    // retried beat can't duplicate an image some other (already-done) beat uses.
+    const usedIds: string[] = state.beats.flatMap((b, bi) =>
+      failedIndices.includes(bi) ? [] : b.selectedClips.map((c) => c.media.id)
     );
+    for (const i of failedIndices) {
+      const picked = await findMedia(i, false, usedIds);
+      usedIds.push(...picked);
+      done += 1;
+      setGenProgress({ done, total });
+    }
     setGenProgress(null);
   }
 
@@ -234,6 +242,12 @@ export default function MediaPanel() {
       setBeatAudioOn(false);
     }
   }, [preview]);
+
+  // Scroll a specific beat into view in this panel - reuses the same pattern
+  // as the "scroll selected clip into view" effect above.
+  function jumpToBeat(index: number) {
+    document.getElementById(`mp-beat-${index}`)?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
 
   // Step through the open beat's gallery without leaving the preview
   function stepPreview(dir: 1 | -1) {
@@ -374,6 +388,28 @@ export default function MediaPanel() {
           </div>
         </div>
       )}
+
+      {(() => {
+        const totalCount = state.beats.length;
+        const doneCount = state.beats.filter((b) => b.mediaStatus === "done").length;
+        const incompleteIndex = state.beats.findIndex((b) => b.mediaStatus !== "done");
+        return (
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "8px" }}>
+            <span style={{ fontSize: "11px", color: "var(--ed-text-2)" }}>
+              {doneCount}/{totalCount} beats generated
+            </span>
+            {incompleteIndex !== -1 && (
+              <button
+                onClick={() => jumpToBeat(incompleteIndex)}
+                className="btn btn-secondary"
+                style={{ fontSize: "11px", padding: "4px 10px" }}
+              >
+                Go to Beat {incompleteIndex + 1} →
+              </button>
+            )}
+          </div>
+        );
+      })()}
 
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "10px", flexWrap: "wrap", gap: "6px" }}>
         <h3 style={{ fontSize: "13px", margin: 0 }}>Media</h3>
