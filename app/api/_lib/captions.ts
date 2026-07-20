@@ -19,22 +19,43 @@ export async function detectLocationCallouts(
   script: string,
   words: Word[]
 ): Promise<Callout[]> {
-  const Anthropic = (await import("@anthropic-ai/sdk")).default;
-  const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  // Runs on Gemini's free tier (gemini-3.1-flash-lite) instead of a paid Claude
+  // call - this is pure extraction with no real reasoning needed, so it doesn't
+  // need to touch Anthropic credits at all.
+  const apiKey = process.env.GEMINI_API_KEY;
+  let rawText = "[]";
 
-  const message = await anthropic.messages.create({
-    model: "claude-haiku-4-5-20251001",
-    max_tokens: 500,
-    output_config: { effort: "low" },
-    messages: [
-      {
-        role: "user",
-        content: `Extract every specific place name (city, country, region, landmark) mentioned in this script. Respond ONLY with a JSON array of strings, exact wording as it appears in the text, no other text. If none, respond with [].\n\nScript:\n${script}`,
-      },
-    ],
-  });
+  if (apiKey) {
+    try {
+      const res = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${apiKey}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [
+                  {
+                    text: `Extract every specific place name (city, country, region, landmark) mentioned in this script. Respond ONLY with a JSON array of strings, exact wording as it appears in the text, no other text. If none, respond with [].\n\nScript:\n${script}`,
+                  },
+                ],
+              },
+            ],
+          }),
+        }
+      );
+      if (res.ok) {
+        const data = await res.json();
+        rawText = data?.candidates?.[0]?.content?.parts?.[0]?.text ?? "[]";
+      } else {
+        console.error("Gemini location extraction failed:", res.status, await res.text());
+      }
+    } catch (err) {
+      console.error("Gemini location extraction error:", err);
+    }
+  }
 
-  const rawText = message.content[0].type === "text" ? message.content[0].text : "[]";
   const cleaned = rawText.replace(/```json|```/g, "").trim();
 
   let locationNames: string[] = [];
