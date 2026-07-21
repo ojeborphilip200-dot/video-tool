@@ -46,7 +46,10 @@ export async function visionRank(
   const verdicts = new Map<string, VisionVerdict>();
   if (candidates.length === 0) return verdicts;
 
-  const batch = candidates.slice(0, 12);
+  // Cut from 12 to 8: image tokens are the single biggest cost in this
+  // pipeline (fires on every beat) - pre-ranking already sorts the best
+  // candidates to the front, so the 9th-12th slots were rarely the pick.
+  const batch = candidates.slice(0, 8);
   const thumbs = await Promise.all(batch.map((c) => fetchThumb(c.thumbnail)));
 
   const usable: { cand: VisionCandidate; img: { data: string; mediaType: string } }[] = [];
