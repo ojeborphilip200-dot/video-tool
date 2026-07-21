@@ -121,6 +121,11 @@ export function detectListicleHooks(script: string, words: Word[]): ListicleHook
   const hooks: ListicleHook[] = [];
   const clean = (w: string) => w.toLowerCase().replace(/[^a-z0-9]/g, "");
 
+  if (words.length === 0) return hooks;
+  const narrationStart = words[0].start;
+  const narrationEnd = words[words.length - 1].end;
+  const narrationDur = Math.max(0.1, narrationEnd - narrationStart);
+
   let match: RegExpExecArray | null;
   let hookIdx = 0;
   while ((match = LISTICLE_RE.exec(script)) !== null) {
@@ -136,21 +141,12 @@ export function detectListicleHooks(script: string, words: Word[]): ListicleHook
       .filter((w) => w.text.length > 0);
     if (wordTokens.length < 3) continue;
 
-    const target = wordTokens.map((w) => clean(w.text));
-    let start = -1;
-    let end = -1;
-    for (let i = 0; i <= words.length - target.length; i++) {
-      let ok = true;
-      for (let j = 0; j < target.length; j++) {
-        if (clean(words[i + j].word) !== target[j]) { ok = false; break; }
-      }
-      if (ok) {
-        start = words[i].start;
-        end = words[i + target.length - 1].end;
-        break;
-      }
-    }
-    if (start < 0) continue;
+    const charStart = match.index;
+    const charEnd = match.index + match[0].length;
+    const startFrac = charStart / script.length;
+    const endFrac = charEnd / script.length;
+    const start = narrationStart + startFrac * narrationDur;
+    const end = narrationStart + endFrac * narrationDur;
 
     hooks.push({ id: `hook-${hookIdx++}`, words: wordTokens, start, end: end + 0.3 });
   }

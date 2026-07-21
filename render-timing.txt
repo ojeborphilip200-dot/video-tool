@@ -70,3 +70,9 @@ ffmpeg: 114.6s | frame=24940 fps=219 q=-0.0 Lsize=  503228KiB time=00:16:37.56 b
 segments: 36 in 139.1s
 ffmpeg: 130.4s | frame=25665 fps=198 q=-0.0 Lsize=  517556KiB time=00:17:06.56 bitrate=4130.1kbits/s speed=7.92x elapsed=0:02:09.62    
 ---
+segments: 1 in 2.3s
+ffmpeg: 3.4s | frame=  619 fps=192 q=-0.0 Lsize=   11949KiB time=00:00:24.72 bitrate=3959.7kbits/s speed=7.68x elapsed=0:00:03.22    
+---
+segments: 1 in 0.0s
+ffmpeg: 7.5s | frame=  619 fps= 84 q=-0.0 Lsize=   11975KiB time=00:00:24.72 bitrate=3968.5kbits/s speed=3.34x elapsed=0:00:07.40    
+---
