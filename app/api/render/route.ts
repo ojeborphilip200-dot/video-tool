@@ -5,7 +5,7 @@ import fs from "fs/promises";
 import path from "path";
 import os from "os";
 import { generateAss, Callout } from "../_lib/ass";
-import { detectYearCallouts, detectLocationCallouts } from "../_lib/captions";
+import { detectYearCallouts, detectLocationCallouts, detectListicleHooks, ListicleHook } from "../_lib/captions";
 import { detectCountups, CountupSpec } from "../_lib/countups";
 import { buildTextOverlay } from "../_lib/hfOverlays";
 import { buildSegment } from "../_lib/segments";
@@ -136,7 +136,7 @@ type RenderInput = {
   calloutsEnabled: boolean;
   countupLevel: string;
   beatWindows: { start: number; end: number; imagesOnly?: boolean }[];
-  textEventsOverride: { callouts: Callout[]; countups: CountupSpec[] } | null;
+  textEventsOverride: { callouts: Callout[]; countups: CountupSpec[]; listicleHooks?: ListicleHook[] } | null;
   sfxShutter: boolean;
   sfxCountup: boolean;
 };
@@ -368,17 +368,26 @@ async function runRenderJob(jobId: string, input: RenderInput) {
 
     let callouts: Callout[] = [];
     let countups: CountupSpec[] = [];
+    let listicleHooks: ListicleHook[] = [];
     if (input.textEventsOverride) {
       // The editor curated these (deletions applied) - obey, don't re-detect
       callouts = input.calloutsEnabled ? input.textEventsOverride.callouts || [] : [];
       countups = wantCountups ? input.textEventsOverride.countups || [] : [];
-      console.log(`DEBUG - curated text events: ${callouts.length} callouts, ${countups.length} countups`);
+      listicleHooks = input.textEventsOverride.listicleHooks || [];
+      console.log(`DEBUG - curated text events: ${callouts.length} callouts, ${countups.length} countups, ${listicleHooks.length} listicle hooks`);
     } else {
     if (words.length > 0 && input.calloutsEnabled) {
       callouts = detectYearCallouts(words);
       if (scriptText) {
         const locationCallouts = await detectLocationCallouts(scriptText, words);
         callouts = [...callouts, ...locationCallouts];
+      }
+    }
+    if (words.length > 0 && scriptText) {
+      try {
+        listicleHooks = detectListicleHooks(scriptText, words);
+      } catch (e) {
+        console.error("Listicle hook detection failed:", e);
       }
     }
     if (words.length > 0 && wantCountups && scriptText) {
@@ -449,7 +458,7 @@ async function runRenderJob(jobId: string, input: RenderInput) {
     // them one after another is pure queueing. Build them 3 at a time.
     const CALLOUT_POS = ["top-left", "top-right", "mid-left", "low-center", "mid-right"];
 
-    type OvTask = { kind: "callout" | "countup"; vars: Record<string, any>; start: number };
+    type OvTask = { kind: "callout" | "countup" | "listicleHook"; vars: Record<string, any>; start: number };
     const tasks: OvTask[] = [
       ...callouts.map((c, i) => ({
         kind: "callout" as const,
@@ -474,6 +483,14 @@ async function runRenderJob(jobId: string, input: RenderInput) {
           theme: input.textStyle,
         },
         start: cu.animStart,
+      })),
+      ...listicleHooks.map((h) => ({
+        kind: "listicleHook" as const,
+        vars: {
+          words: h.words,
+          dur: Math.min(Math.max(h.end - h.start, 3), 6),
+        },
+        start: Math.max(0, h.start - 0.15),
       })),
     ];
 

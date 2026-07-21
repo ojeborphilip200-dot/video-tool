@@ -101,3 +101,59 @@ export async function detectLocationCallouts(
 
   return callouts;
 }
+
+export type ListicleHookWord = { text: string; accent: boolean };
+export type ListicleHook = { id: string; words: ListicleHookWord[]; start: number; end: number };
+
+// Catches formulaic "N [intensifier] TYPE facts/things/reasons about X" hooks
+// (a very common documentary/listicle opening line) with a plain regex - no AI
+// call needed for something this predictable. Marks the number and any
+// "intensifier" word for accent-color styling in the rendered title card.
+const INTENSIFIER_WORDS = new Set([
+  "insane", "crazy", "wild", "shocking", "amazing", "incredible", "unbelievable",
+  "secret", "secrets", "hidden", "forgotten", "lost", "ancient", "mysterious",
+  "forbidden", "bizarre", "strange", "weird", "dark", "deadly", "terrifying",
+  "unknown", "untold", "banned", "cursed", "surprising", "wildest", "craziest",
+]);
+
+export function detectListicleHooks(script: string, words: Word[]): ListicleHook[] {
+  const LISTICLE_RE = /\b\d{1,3}\s+(?:\w+\s+){0,6}?(?:facts?|things?|reasons?|ways?|secrets?|mysteries|myths?|truths?|stories)\b[^.!?\n]*/gi;
+  const hooks: ListicleHook[] = [];
+  const clean = (w: string) => w.toLowerCase().replace(/[^a-z0-9]/g, "");
+
+  let match: RegExpExecArray | null;
+  let hookIdx = 0;
+  while ((match = LISTICLE_RE.exec(script)) !== null) {
+    const phrase = match[0].trim();
+    const rawWords = phrase.split(/\s+/).filter(Boolean);
+    if (rawWords.length < 3 || rawWords.length > 16) continue;
+
+    const wordTokens: ListicleHookWord[] = rawWords
+      .map((w, i) => ({
+        text: w.replace(/[^\w'-]/g, ""),
+        accent: i === 0 || INTENSIFIER_WORDS.has(clean(w)),
+      }))
+      .filter((w) => w.text.length > 0);
+    if (wordTokens.length < 3) continue;
+
+    const target = wordTokens.map((w) => clean(w.text));
+    let start = -1;
+    let end = -1;
+    for (let i = 0; i <= words.length - target.length; i++) {
+      let ok = true;
+      for (let j = 0; j < target.length; j++) {
+        if (clean(words[i + j].word) !== target[j]) { ok = false; break; }
+      }
+      if (ok) {
+        start = words[i].start;
+        end = words[i + target.length - 1].end;
+        break;
+      }
+    }
+    if (start < 0) continue;
+
+    hooks.push({ id: `hook-${hookIdx++}`, words: wordTokens, start, end: end + 0.3 });
+  }
+
+  return hooks;
+}

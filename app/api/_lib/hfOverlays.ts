@@ -112,11 +112,43 @@ function countupHtml(
 </div>`;
 }
 
+function listicleHookHtml(id: string, words: { text: string; accent: boolean }[], dur: number): string {
+  const d = Math.min(Math.max(dur, 3), 6);
+  const wordCount = words.length;
+  const fontSize = wordCount <= 6 ? 64 : wordCount <= 9 ? 56 : wordCount <= 13 ? 50 : 44;
+  const ACCENT = "#4f8fff";
+  const spans = words
+    .map((w) => `<span style="color: ${w.accent ? ACCENT : "#ffffff"};">${esc(w.text.toUpperCase())}</span>`)
+    .join(" ");
+  return `<div id="root" data-composition-id="${id}" data-start="0" data-width="1280" data-height="720" data-fps="25">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=block" rel="stylesheet">
+  <div id="hook" class="clip" data-start="0" data-duration="${(d + 0.2).toFixed(2)}" data-track-index="0"
+       style="position: absolute; top: 42%; left: 50%; transform: translate(-50%, -50%);
+              width: 88%; text-align: center; opacity: 0;">
+    <span id="txt" style="font-family: 'Montserrat', 'Arial Black', 'Helvetica Neue', sans-serif;
+                          font-weight: 800; font-size: ${fontSize}px; line-height: 1.18;
+                          letter-spacing: 1px;
+                          text-shadow: 0 3px 10px rgba(0,0,0,0.55), 0 1px 2px rgba(0,0,0,0.6);">${spans}</span>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.to("#hook", { opacity: 1, duration: 0.01 }, 0)
+      .from("#hook", { scale: 1.15, duration: 0.3, ease: "power3.out" }, 0)
+      .from("#txt", { y: 16, opacity: 0, duration: 0.35, ease: "power2.out" }, 0.05)
+      .to("#hook", { opacity: 0, y: -14, duration: 0.4, ease: "power2.in" }, ${(d - 0.4).toFixed(2)});
+    window.__timelines = window.__timelines || {};
+    window.__timelines["${id}"] = tl;
+  </script>
+</div>`;
+}
+
 // Renders a themed text overlay to a cached transparent WebM. Values are baked
 // into a generated composition file - no dependency on CLI variable flags.
 export async function buildTextOverlay(
-  type: "callout" | "countup",
-  variables: Record<string, string | number | boolean>
+  type: "callout" | "countup" | "listicleHook",
+  variables: Record<string, string | number | boolean | any>
 ): Promise<string> {
   await fs.mkdir(CACHE_DIR, { recursive: true });
   const key = crypto
@@ -136,7 +168,8 @@ export async function buildTextOverlay(
   const html =
     type === "callout"
       ? calloutHtml(compId, String(variables.text ?? ""), String(variables.theme ?? "standard"), Number(variables.dur ?? 4), String(variables.pos ?? "top-left"))
-      : countupHtml(compId, {
+      : type === "countup"
+      ? countupHtml(compId, {
           value: Number(variables.value ?? 0),
           prefix: String(variables.prefix ?? ""),
           suffix: String(variables.suffix ?? ""),
@@ -145,7 +178,8 @@ export async function buildTextOverlay(
           countDur: Number(variables.countDur ?? 3),
           hold: Number(variables.hold ?? 1.5),
           theme: String(variables.theme ?? "standard"),
-        });
+        })
+      : listicleHookHtml(compId, (variables.words as { text: string; accent: boolean }[]) || [], Number(variables.dur ?? 4.5));
 
   const genRel = `compositions/_${compId}.html`;
   const genAbs = path.join(HF_DIR, genRel);

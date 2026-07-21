@@ -1,14 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import { detectYearCallouts, detectLocationCallouts } from "../_lib/captions";
+import { detectYearCallouts, detectLocationCallouts, detectListicleHooks } from "../_lib/captions";
 import { detectCountups } from "../_lib/countups";
 
-// Runs callout + count-up detection ahead of render so the editor can show,
-// curate, and delete text animations on the timeline.
+// Runs callout + count-up + listicle-hook detection ahead of render so the
+// editor can show, curate, and delete text animations on the timeline.
 export async function POST(req: NextRequest) {
   try {
     const { script, words, countupLevel, calloutsEnabled } = await req.json();
     if (!Array.isArray(words) || words.length === 0) {
-      return NextResponse.json({ callouts: [], countups: [] });
+      return NextResponse.json({ callouts: [], countups: [], listicleHooks: [] });
     }
 
     let callouts: { text: string; start: number; end: number }[] = [];
@@ -33,9 +33,19 @@ export async function POST(req: NextRequest) {
       }
     }
 
+    let listicleHooks: ReturnType<typeof detectListicleHooks> = [];
+    if (script) {
+      try {
+        listicleHooks = detectListicleHooks(script, words);
+      } catch (e) {
+        console.error("Listicle hook detection failed in preflight:", e);
+      }
+    }
+
     return NextResponse.json({
       callouts: callouts.map((c, i) => ({ id: `co-${i}`, ...c })),
       countups: countups.map((c, i) => ({ id: `cu-${i}`, ...c })),
+      listicleHooks,
     });
   } catch (err: any) {
     console.error(err);

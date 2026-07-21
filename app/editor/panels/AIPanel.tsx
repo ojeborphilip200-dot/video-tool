@@ -87,7 +87,7 @@ export default function AIPanel() {
     })
       .then((r) => r.json())
       .then((d) =>
-        dispatch({ type: "SET_TEXT_EVENTS", events: { callouts: d.callouts || [], countups: d.countups || [] } })
+        dispatch({ type: "SET_TEXT_EVENTS", events: { callouts: d.callouts || [], countups: d.countups || [], listicleHooks: d.listicleHooks || [] } })
       )
       .catch(() => {});
 

@@ -77,7 +77,8 @@ export type TextEventCountup = {
   animStart: number;
   land: number;
 };
-export type TextEvents = { callouts: TextEventCallout[]; countups: TextEventCountup[] };
+export type TextEventListicleHook = { id: string; words: { text: string; accent: boolean }[]; start: number; end: number };
+export type TextEvents = { callouts: TextEventCallout[]; countups: TextEventCountup[]; listicleHooks: TextEventListicleHook[] };
 
 export type SelectedTimelineItem =
   | { type: "clip"; beatIndex: number; clipId: string }
@@ -209,6 +210,7 @@ function reducer(state: ProjectState, action: Action): ProjectState {
         textEvents: {
           callouts: state.textEvents.callouts.filter((c) => c.id !== action.eventId),
           countups: state.textEvents.countups.filter((c) => c.id !== action.eventId),
+          listicleHooks: (state.textEvents.listicleHooks || []).filter((c) => c.id !== action.eventId),
         },
         selected: cleared,
       };
